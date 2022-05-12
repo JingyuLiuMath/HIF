@@ -10,5 +10,5 @@ set(MPI_C_COMPILER       ${MPI_COMPILER_DIR}/mpicc)
 set(MPI_CXX_COMPILER     ${MPI_COMPILER_DIR}/mpicxx)
 set(MPI_Fortran_COMPILER ${MPI_COMPILER_DIR}/mpif90)
 
-set(EL_INCLUDE_DIR /opt/home-admin/jyliu/packages/elemental/master/include)
-set(EL_LIB_DIR /opt/home-admin/jyliu/packages/elemental/master/lib64)
+set(EL_INCLUDE_DIR /home/jyliu/packages/elemental/master/include)
+set(EL_LIB_DIR /home/jyliu/packages/elemental/master/lib64)
