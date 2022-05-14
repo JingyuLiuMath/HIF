@@ -1,6 +1,6 @@
 #pragma once
 #ifndef HIF_HPP
-#define HIF_HPP 1
+#define HIF_HPP
 
 #include <algorithm>
 #include <map>
@@ -24,7 +24,8 @@
 
 #include "HIF/core/environment.hpp"
 #include "HIF/hifgraph.hpp"
-#include "HIF/hifgraphvec.hpp"
+#include "GraphPart.hpp"
+#include "SetOperation.hpp"
 
 // For GNU 8+
 // namespace fs = std::filesystem;
