@@ -47,22 +47,30 @@ void HIFGraph<Scalar>::SetNeighborNode()
 						nbnodei->nbnodelevel_.push_back(childnode->level_);
 					}
 				}
-				else
+			}
+		}
+		else
+		{
+			for (int it = 0; it < 2; it++)
+			{
+				HIFGraph* childnbnodei = nbnodei->children_[it];
+				if (Intersect_Sort(childnode->nb_, childnbnodei->vtx_))
 				{
-					for (int it = 0; it < 2; it++)
-					{
-						HIFGraph* childnbnodei = nbnodei->children_[it];
-						if (Intersect_Sort(childnode->nb_, childnbnodei->vtx_))
-						{
-							childnode->nbnode_.push_back(childnbnodei);
-							childnode->nbnodeseqnum_.push_back(childnbnodei->seqnum_);
-							childnode->nbnodelevel_.push_back(childnbnodei->level_);
-						}
-					}
+					childnode->nbnode_.push_back(childnbnodei);
+					childnode->nbnodeseqnum_.push_back(childnbnodei->seqnum_);
+					childnode->nbnodelevel_.push_back(childnbnodei->level_);
 				}
 			}
 		}
 	}
+
+	// Recursively set neighbor node.
+	for (int iter = 0; iter < 2; iter++)
+	{
+		children_[iter]->SetNeighborNode();
+	}
+}
+
 }
 
 } // namespace HIF
