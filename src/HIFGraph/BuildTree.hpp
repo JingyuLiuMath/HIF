@@ -6,6 +6,10 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 {
+	sort(vtx_.begin(), vtx_.end());
+	sort(sep_.begin(), sep_.end());
+	sort(nb_.begin(), nb_.end());
+
 	// Don't partition if number of vtx less than minvtx.
 	if (vtx_.size() <= minvtx)
 	{
