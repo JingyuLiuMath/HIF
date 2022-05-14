@@ -17,10 +17,9 @@ HIFGraph<Scalar>::HIFGraph
 	level_ = 0;
 	seqnum_ = 0;
 
-	BuildTree(&A, minvtx);
+	BuildTree(A, minvtx);
 	SetNeighborNode();
-	FillTree(&A);
-
+	FillTree(A);
 }
 
 // Create a HIFGraph class.

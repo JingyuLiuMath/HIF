@@ -64,7 +64,6 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 
 	// Set numlevels.
 	numlevels_ = max(children_[0].numlevels_, children_[1].numlevels_);
-
 }
 
 

@@ -26,7 +26,7 @@ void HIFGraph<Scalar>::SetNeighborNode()
 				if (nbnodei->children_.empty())
 				{
 					// Now nbnodei doesn't have a child, we should treat it as a nbnode.
-					if (IsIntersect_Sort(childnode->nb_, nbnodei->vtx_);)
+					if (Intersect_Sort(childnode->nb_, nbnodei->vtx_))
 					{
 						// We have to avoid add one's ancestor as its nbnode.
 						int dlevel = childnode->level_ - nbnodei->level_;
@@ -52,7 +52,7 @@ void HIFGraph<Scalar>::SetNeighborNode()
 					for (int it = 0; it < 2; it++)
 					{
 						HIFGraph* childnbnodei = nbnodei->children_[it];
-						if (IsInrersec_Sort(childnode->nb_, childnbnodei->vtx_))
+						if (Intersect_Sort(childnode->nb_, childnbnodei->vtx_))
 						{
 							childnode->nbnode_.push_back(childnbnodei);
 							childnode->nbnodeseqnum_.push_back(childnbnodei->seqnum_);
