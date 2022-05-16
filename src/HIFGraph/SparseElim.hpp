@@ -36,4 +36,4 @@ void HIFGraph<Scalar>::SparseElim()
 	// AII = 0, ASI = 0.
 }
 
-} // namespace HIF
+} // namespace HIF.

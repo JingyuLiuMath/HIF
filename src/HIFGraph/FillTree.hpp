@@ -32,4 +32,4 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 	}
 }
 
-}
+} // namespace HIF.

@@ -17,7 +17,7 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel, double tol)
 		{
 			for (int iter = 0; iter < 2; iter++)
 			{
-				children_[iter].RecursiveSkel(whatlevel, tol);
+				children_[iter]->RecursiveSkel(whatlevel, tol);
 			}
 		}
 	}
@@ -372,4 +372,4 @@ void HIFGraph<Scalar>::NoSkel()
 	sk_.assign(sep_.begin(), sep_.end());
 }
 
-} // namespace HIF
+} // namespace HIF.

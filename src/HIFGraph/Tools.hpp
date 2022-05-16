@@ -70,4 +70,4 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
     // skelmtx(:, p2) = skelmtx(:, p1) * T.
 }
 
-}
+} // namespace HIF.

@@ -22,4 +22,4 @@ void HIFGraph<Scalar>::Factorization(double tol)
 	RootFactorization();
 }
 
-} // namespace HIF
+} // namespace HIF.
