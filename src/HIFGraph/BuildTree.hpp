@@ -10,7 +10,7 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 	sort(sep_.begin(), sep_.end());
 	sort(nb_.begin(), nb_.end());
 
-	// Don't partition if number of vtx less than minvtx.
+	// Don't partition if the number of vtx is less than minvtx.
 	if (vtx_.size() <= minvtx)
 	{
 		numlevels_ = level_;
@@ -66,7 +66,6 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 	numlevels_ = max(children_[0].numlevels_, children_[1].numlevels_);
 }
 
-
 // Send parent's sep, nb to children.
 template <typename Scalar>
 void HIFGraph<Scalar>::Pass(const SparseMatrix<Scalar>& A)
@@ -85,7 +84,6 @@ void HIFGraph<Scalar>::Pass(const SparseMatrix<Scalar>& A)
 			}
 			else
 			{
-				// Now sepi is a vtx of childnode.
 				if (FindFirstIndex(childnode->sep_, sepi) == -1)
 				{
 					// Pass sepi.
@@ -93,8 +91,8 @@ void HIFGraph<Scalar>::Pass(const SparseMatrix<Scalar>& A)
 				}
 				// Pass nb.
 				vector<int> nbA_sepi_all;
-				nbA_sepi_all.resize(Width(nbA));
-				for (int col = 0; col < Width(nbA); col++)
+				nbA_sepi_all.resize(nbA.Width());
+				for (int col = 0; col < nbA_sepi_all.size(); col++)
 				{
 					nbA_sepi_all[col] = nbA.Get(i, col);
 				}

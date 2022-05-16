@@ -2,30 +2,45 @@
 
 namespace HIF {
 
+// Set sepearator vertices' type.
 template <typename Scalar>
 void HIFGraph<Scalar>::SetSeparatorType()
 {
 	vector<int> ordersep(sep_.size(), 0);
+
 	for (int k = 0; k < nbnode_.size(); k++)
 	{
 		HIFGraph* nodek = nbnode_[k];
-		vector<int> tmp1;
-		// Intersect_Sort(sep_, nodek->nb_, tmp1, tmp2);
-		// [~, tmp, ~] = intersect(obj.sep, nodek.nb);
-		// obj.singlesep{k} = tmp;
-		singlesep_.push_back(tmp1);
-		for (int i = 0; i < tmp1.size(); i++)
+		vector<int> tmp;
+		Intersect_Sort(sep_, nodek->nb_, tmp, 1);
+		singlesep_.push_back(tmp);
+		for (int i = 0; i < tmp.size(); i++)
 		{
-			ordersep[tmp1[i]] += 1;
+			ordersep[tmp[i]] += 1;
 		}
 	}
 
 	for (int k = 0; k < nbnode_.size(); k++)
 	{
-		//  obj.singlesep{k} = obj.sep(intersect(find(ordersep == 1),obj.singlesep{k}));
+		vector<int> index_find_ordersep_1;
+		FindAllIndex(ordersep, 1, index_find_ordersep_1);
+		vector<int> index_sep;
+		Intersect_Sort(index_find_ordersep_1, singlesep_[k], index_sep);
+		singlesep_[k].clear();
+		singlesep_[k].resize(index_sep.size());
+		for (int i = 0; i < index_sep.size(); i++)
+		{
+			singlesep_[k][i] = sep_[index_sep[i]];
+		}
 	}
-
-	//  obj.complexsep = obj.sep(ordersep > 1);
+	
+	for (int i = 0; i < sep_.size(); i++)
+	{
+		if (ordersep[i] > 1)
+		{
+			complexsep_.push_back(sep_[i]);
+		}
+	}
 }
 
 } // namespace HIF

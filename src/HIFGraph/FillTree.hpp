@@ -2,13 +2,14 @@
 
 namespace HIF {
 
+// Fill the tree structure with A. 
 template <typename Scalar>
 void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 {
-
+	// We only fill the leaf nodes.
 	if (endflag_ == 1£©
 	{
-		SortSetDiff_Sort(vtx_,sep_,intr_);
+		Diff_Sort(vtx_,sep_,intr_);
 		
 		El::Zeros(AII_, intr_.size(), intr_.size);
 		El::Zeros(ASI_, sep_.size(), intr_.size);
