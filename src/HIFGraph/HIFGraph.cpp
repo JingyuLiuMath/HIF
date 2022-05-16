@@ -39,9 +39,9 @@ vector<int>& vtx, vector<int>& sep, vector<int>& nb)
 {
 	level_ = level;
 	seqnum_ = seqnum;
-	vtx_.assign(vtx.begin(), vtx.begin() + vtx.size());
-	sep_.assign(sep.begin(), sep.begin() + sep.size());
-	nb_.assign(nb.begin(), nb.begin() + nb.size());
+	vtx_.assign(vtx.begin(), vtx.end());
+	sep_.assign(sep.begin(), sep.end());
+	nb_.assign(nb.begin(), nb.end());
 }
 
 // Clear HIFGraph.

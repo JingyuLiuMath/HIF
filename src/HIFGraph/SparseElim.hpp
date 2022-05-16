@@ -30,14 +30,10 @@ void HIFGraph<Scalar>::SparseElim()
 {
 	// AII = LI * DI * LI^{T}.
 	LDLSolve(AII_, AIIinv_);
-
 	// AIIinvAIS = AII^{-1} * ASI^{T}.
 	Transpose(ASI_, AIIinvAIS_);
 	MultiplySolve(AIIinv_, AIIinvAIS_);
-
 	// AII = 0, ASI = 0.
-	AII_.Empty();
-	ASI_.Empty();
 }
 
 } // namespace HIF
