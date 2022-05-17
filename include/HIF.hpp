@@ -24,8 +24,9 @@
 
 #include "HIF/core/environment.hpp"
 #include "HIF/hifgraph.hpp"
-#include "GraphPart.hpp"
-#include "SetOperation.hpp"
+#include "HIF/graphpartition.hpp"
+#include "HIF/setoperation.hpp"
+#include "HIF/tools.hpp"
 
 // For GNU 8+
 // namespace fs = std::filesystem;

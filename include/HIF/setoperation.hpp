@@ -1,35 +1,47 @@
-// SetDiff
-// intersect
+#pragma once
+#ifndef SETOP_HPP
+#define SETOP_HPP 1
+
+#include "HIF.hpp"
+
 namespace HIF {
 
-// Find the first index of value in vec. If no index is found, return -1. 
+// ---------------------------------------Find---------------------------------------
 template <typename Scalar>
-int FindFirstIndex(vector<Scalar>& vec, Scalar value)
-{
-	int index = -1;
-	for (int i = 0; i < vec.size(); i++)
-	{
-		if (vec[i] == value)
-		{
-			index = i;
-			break;
-		}
-	}
-	return index;
-}
+int FindFirstIndex(const vector<Scalar>& vec, Scalar value);
 
-// Find all nonzero index in vec. If no index is found, return an empty vector.
 template <typename Scalar>
-void FindAllNonzeroIndex(vector<Scalar>& vec, vector<int>& index)
-{
-	index.clear();
-	for (int i = 0; i < vec.size(); i++)
-	{
-		if (vec[i] != 0)
-		{
-			index.push_back(i);
-		}
-	}
-}
+void FindAllNonzeroIndex(const vector<Scalar>& vec, vector<int>& index);
+
+template <typename Scalar>
+void FindAllIndex(const vector<Scalar>& vec, Scalar value, vector<int>& index);
+
+template <typename Scalar>
+void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<int>& index);
+
+// ---------------------------------------Intersect---------------------------------------
+template <typename Scalar>
+bool Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2);
+
+template <typename Scalar>
+void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
+	vector<int>& index1, vector<int>& index2);
+
+template <typename Scalar>
+void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
+	vector<int>& index, int who);
+
+template <typename Scalar>
+void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Scalar>& vec);
+
+template <typename Scalar>
+void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
+	vector<Scalar>& vec, vector<int>& index, int who);
+
+// ---------------------------------------Diff---------------------------------------
+template <typename Scalar>
+void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Scalar>& vec);
 
 } // namespace HIF.
+
+#endif // ifndef HIF_SETOP_HPP

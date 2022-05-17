@@ -4,10 +4,6 @@
 
 namespace HIF {
 
-} // namespace HIF
-
-namespace HIF2 {
-
-} // namespace HIF2
+} // namespace HIF.
 
 #endif // ifndef HIF_CORE_ENVIRONMENT_IMPL_HPP
