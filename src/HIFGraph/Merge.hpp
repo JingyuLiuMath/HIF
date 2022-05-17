@@ -73,6 +73,8 @@ void HIFGraph<Scalar>::Merge()
 
 	// We assign values blockly.
 
+	MatrixS copymtx; // Copy of assigned matrix. 
+
 	// AII
 	// An intr of the parent only belongs to the sep of one of its children.
 	// If two intrs belong to the same child, we assign AII from the child's ASS. 
@@ -91,10 +93,18 @@ void HIFGraph<Scalar>::Merge()
 	vector<int> myindex_intr21;
 	vector<int> cindex_intr21;
 	Intersect_Sort(intr_, children_[0]->nb_, myindex_intr21, cindex_intr21);
-	AII_(myindex_intr1, myindex_intr1) ((children_[0]->ASS_)(cindex_intr1, cindex_intr1));
-	AII_(myindex_intr2, myindex_intr2) ((children_[1]->ASS_)(cindex_intr2, cindex_intr2));
-	AII_(myindex_intr21, myindex_int1) ((children_[0]->ANS_)(cindex_intr21, cindex_intr1));
-	Transpose(AII_(myindex_intr2, myindex_intr1), AII_(myindex_intr1, myindex_intr2));
+	copymtx = (children_[0]->ASS_)(cindex_intr1, cindex_intr1);
+	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr2, copymtx);
+	copymtx.Empty();
+	copymtx = (children_[1]->ASS_)(cindex_intr2, cindex_intr2);
+	SubMatrixUpdate(AII_, myindex_intr2, myindex_intr2, copymtx);
+	copymtx.Empty();
+	copymtx = (children_[0]->ANS_)(cindex_intr21, cindex_intr1);
+	SubMatrixUpdate(AII_, myindex_intr21, myindex_intr1, copymtx);
+	copymtx.Empty();
+	Transpose(AII_(myindex_intr2, myindex_intr1), copymtx);
+	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr2, copymtx);
+	copymtx.Empty();
 
 	// ASI
 	// A sep of the parent only belongs to the sep of one of its children.
@@ -113,10 +123,18 @@ void HIFGraph<Scalar>::Merge()
 	vector<int> myindex_sep2y;
 	vector<int> cindex_sep2y;
 	Intersect_Sort(sep_, children[1]->nb_, myindex_sep2y, cindex_sep2y);
-	ASI_(myindex_sep1x, myindex_intr1) ((children_[0]->ASS_)(cindex_sep1x, cindex_intr1));
-	ASI_(myindex_sep2x, myindex_intr2) ((children_[1]->ASS_)(cindex_sep2x, cindex_intr2));
-	ASI_(myindex_sep1y, myindex_intr1) ((children_[0]->ANS_)(cindex_sep1y, cindex_intr1));
-	ASI_(myindex_sep2y, myindex_intr2) ((children_[1]->ANS_)(cindex_sep2y, cindex_intr2));
+	copymtx = (children_[0]->ASS_)(cindex_sep1x, cindex_intr1);
+	SubMatrixUpdate(ASI_, myindex_sep1x, myindex_intr1, copymtx);
+	copymtx.Empty();
+	copymtx = (children_[1]->ASS_)(cindex_sep2x, cindex_intr2);
+	SubMatrixUpdate(ASI_, myindex_sep2x, myindex_intr2, copymtx);
+	copymtx.Empty();
+	copymtx = (children_[0]->ANS_)(cindex_sep1y, cindex_intr1);
+	SubMatrixUpdate(ASI_, myindex_sep1y, myindex_intr1, copymtx);
+	copymtx.Empty();
+	copymtx = (children_[1]->ANS_)(cindex_sep2y, cindex_intr2);
+	SubMatrixUpdate(ASI_, myindex_sep2y, myindex_intr2, copymtx);
+	copymtx.Empty();
 
 	// ASS
 	// If two seps belongs to the same child, we assign ASS from the child's ASS. 
@@ -135,10 +153,18 @@ void HIFGraph<Scalar>::Merge()
 	vector<int> myindex_sep21;
 	vector<int> cindex_sep21;
 	Intersect_Sort(sep_, children_[0]->nb_, myindex_sep21, cindex_sep21);
-	ASS_(myindex_sep1, myindex_sep1) ((children_[0]->ASS_)(cindex_sep1, cindex_sep1));
-	ASS_(myindex_sep2, myindex_sep2) ((children_[1]->ASS_)(cindex_sep2, cindex_sep2));
-	ASS_(myindex_sep21, myindex_sep1) ((children_[0]->ANS_)(cindex_sep21, cindex_sep1));
-	Transpose(ASS_(myindex_sep2, myindex_sep1), ASS_(myindex_sep1, myindex_sep2));
+	copymtx = (children_[0]->ASS_)(cindex_sep1, cindex_sep1);
+	SubMatrixUpdate(ASS_, myindex_sep1, myindex_sep1, copymtx);
+	copymtx.Empty();
+	copymtx = (children_[1]->ASS_)(cindex_sep2, cindex_sep2);
+	SubMatrixUpdate(ASS_, myindex_sep2, myindex_sep2, copymtx);
+	copymtx.Empty();
+	copymtx = (children_[0]->ANS_)(cindex_sep21, cindex_sep1);
+	SubMatrixUpdate(ASS_, myindex_sep21, myindex_sep1, copymtx);
+	copymtx.Empty();
+	Transpose(ASS_(myindex_sep2, myindex_sep1), copymtx);
+	SubMatrixUpdate(ASS_, myindex_sep1, myindex_sep2, copymtx);
+	copymtx.Empty();
 
 	// ANS
 	// If a nb and a sep in the same child, we assign ANS from the child's ANS.
@@ -150,8 +176,12 @@ void HIFGraph<Scalar>::Merge()
 	vector<int> myindex_nb2x;
 	vector<int> cindex_nb2x;
 	Intersect_Sort(nb_, children[1]->nb_, myindex_nb2x, cindex_nb2x);
-	ANS_(myindex_nb1x, myindex_sep1) ((children_[0]->ANS_)(cindex_nb1x, cindex_sep1));
-	ANS_(myindex_nb2x, myindex_sep2) ((children_[1]->ANS_)(cindex_nb2x, cindex_sep2));
+	copymtx = (children_[0]->ANS_)(cindex_nb1x, cindex_sep1);
+	SubMatrixUpdate(ANS_, myindex_nb1x, myindex_sep1, copymtx);
+	copymtx.Empty();
+	copymtx = (children_[1]->ANS_)(cindex_nb2x, cindex_sep2);
+	SubMatrixUpdate(ANS_, myindex_nb2x, myindex_sep2, copymtx);
+	copymtx.Empty();
 
 	// Clear children's unnecessary information.
 	for (int iter = 0; iter < 2; iter++)
@@ -167,8 +197,6 @@ void HIFGraph<Scalar>::Merge()
 template <typename Scalar>
 void HIFGraph<Scalar>::FactorClear()
 {
-	AII_.Empty();
-	ASI_.Empty();
 	ASS_.Empty();
 	ANS_.Empty();
 }
