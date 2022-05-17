@@ -33,28 +33,21 @@ void HIFGraph<Scalar>::ApplyMerge(const vector<int>& xcol)
 		return;
 	}
 
-	MatrixS copyvec; // Copy of updated vector.
-
 	// xI.
 	// An intr of the parent only belongs to the sep of one of its children. 
 	// We assign xI from the children's xS.
-	El::Zeros(xI_, intr_.size(), xcol.size());
-	for (int iter = 0; iter < 2; iter++)
-	{
-		copyvec = (children_[iter]->xS_)(childreninfo_[iter].cindex_intr,xcol);
-		SubMatrixUpdate(xI_, childreninfo_[iter].myindex_intr, xcol, copyvec);
-		copyvec.Empty();
-	}
-
+	//
 	// xS.
 	// A sep of the parent only belongs to the sep of one of its children.
 	// We assign xS from the child's xS.
+	El::Zeros(xI_, intr_.size(), xcol.size());
 	El::Zeros(xS_, sep_.size(), xcol.size());
 	for (int iter = 0; iter < 2; iter++)
 	{
-		copyvec = (children_[iter]->xS_)(childreninfo_[iter].cindex_sep, xcol);
-		SubMatrixUpdate(xS_, childreninfo_[iter].myindex_sep, xcol, copyvec);
-		copyvec.Empty();
+		SubMatrixUpdate(xI_, childreninfo_[iter].myindex_intr, xcol, 
+			(children_[iter]->xS_)(childreninfo_[iter].cindex_intr, xcol));
+		SubMatrixUpdate(xS_, childreninfo_[iter].myindex_sep, xcol,
+			(children_[iter]->xS_)(childreninfo_[iter].cindex_sep, xcol));
 	}
 }
 
