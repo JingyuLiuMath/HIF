@@ -15,15 +15,15 @@ void HIFGraph<Scalar>::SetNeighborNode()
 	for (int iter = 0; iter < 2; iter++)
 	{
 		HIFGraph* childnode = children_[iter];
-		childnode->nbnode_.push_pack(children_[1 - iter]);
-		childnode->nbnodeseqnum_.push_pack(children_[1 - iter]->seqnum_);
-		childnode->nbnodelevel_.push_pack(children_[1 - iter]->level_);
+		(childnode->nbnode_).push_pack(children_[1 - iter]);
+		(childnode->nbnodeseqnum_).push_pack(children_[1 - iter]->seqnum_);
+		(childnode->nbnodelevel_).push_pack(children_[1 - iter]->level_);
 		if (!nbnode_.empty())
 		{
 			for (int i = 0; i < nbnode_.size(); i++)
 			{
 				HIFGraph* nbnodei = nbnode_[i];
-				if (nbnodei->children_.empty())
+				if ((nbnodei->children_).empty())
 				{
 					// Now nbnodei doesn't have a child, we should treat it as a nbnode.
 					if (Intersect_Sort(childnode->nb_, nbnodei->vtx_))
@@ -39,12 +39,12 @@ void HIFGraph<Scalar>::SetNeighborNode()
 						{
 							break;
 						}
-						childnode->nbnode_.push_back(nbnodei);
-						childnode->nbnodeseqnum_.push_pack(nbnodei->seqnum_);
-						childnode->nbnodelevel_.push_pack(nbnodei->level_);
-						nbnodei->nbnode_.push_back(childnode);
-						nbnodei->nbnodeseqnum_.push_back(childnode->seqnum_);
-						nbnodei->nbnodelevel_.push_back(childnode->level_);
+						(childnode->nbnode_).push_back(nbnodei);
+						(childnode->nbnodeseqnum_).push_pack(nbnodei->seqnum_);
+						(childnode->nbnodelevel_).push_pack(nbnodei->level_);
+						(nbnodei->nbnode_).push_back(childnode);
+						(nbnodei->nbnodeseqnum_).push_back(childnode->seqnum_);
+						(nbnodei->nbnodelevel_).push_back(childnode->level_);
 					}
 				}
 			}
@@ -56,9 +56,9 @@ void HIFGraph<Scalar>::SetNeighborNode()
 				HIFGraph* childnbnodei = nbnodei->children_[it];
 				if (Intersect_Sort(childnode->nb_, childnbnodei->vtx_))
 				{
-					childnode->nbnode_.push_back(childnbnodei);
-					childnode->nbnodeseqnum_.push_back(childnbnodei->seqnum_);
-					childnode->nbnodelevel_.push_back(childnbnodei->level_);
+					(childnode->nbnode_).push_back(childnbnodei);
+					(childnode->nbnodeseqnum_).push_back(childnbnodei->seqnum_);
+					(childnode->nbnodelevel_).push_back(childnbnodei->level_);
 				}
 			}
 		}

@@ -10,6 +10,7 @@
 #include "./Merge.hpp"
 #include "./RootFacorization.hpp"
 #include "./Apply.hpp"
+#include "./FillVecTree.hpp"
 #include "./ApplySparseElimUp.hpp"
 
 namespace HIF {
@@ -19,9 +20,10 @@ template <typename Scalar>
 HIFGraph<Scalar>::HIFGraph
 (const SparseMatrix<Scalar>& A, int minvtx)
 {
-	for (int i = 0; i < Height(A); i++)
+	vtx_.resize(A.Height());
+	for (int i = 0; i < vtx_.size(); i++)
 	{
-		vtx_.push_back(i);
+		vtx_[i] = i;
 	}
 	level_ = 0;
 	seqnum_ = 0;
@@ -48,7 +50,7 @@ vector<int>& vtx, vector<int>& sep, vector<int>& nb)
 template <typename Scalar>
 HIFGraph<Scalar>::~HIFGraph()
 {
-	// TODO: clear HIFGraph.
+
 }
 
 template class HIFGraph<float>;

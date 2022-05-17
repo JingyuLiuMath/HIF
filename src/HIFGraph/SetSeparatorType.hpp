@@ -6,17 +6,19 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::SetSeparatorType()
 {
+	singlesep_.resize(nbnode_.size());
+
 	vector<int> ordersep(sep_.size(), 0);
 
 	for (int k = 0; k < nbnode_.size(); k++)
 	{
 		HIFGraph* nodek = nbnode_[k];
-		vector<int> tmp;
-		Intersect_Sort(sep_, nodek->nb_, tmp, 1);
-		singlesep_.push_back(tmp);
+		vector<int> tmpindex;
+		Intersect_Sort(sep_, nodek->nb_, tmpindex, 1);
+		singlesep_[k] = tmpindex;
 		for (int i = 0; i < tmp.size(); i++)
 		{
-			ordersep[tmp[i]] += 1;
+			ordersep[tmpindex[i]] += 1;
 		}
 	}
 

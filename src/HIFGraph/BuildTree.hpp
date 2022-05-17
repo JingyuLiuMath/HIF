@@ -20,9 +20,8 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 
 	// Partition.
 	SparseMatrix<Scalar> tmpA = A(vtx_, vtx_);
-	
 	vector<int> p1, p2, sp1, sp2;
-	GraphPart(tmpA, &p1, &p2, &sp1, &sp2);
+	GraphPart(tmpA, p1, p2, sp1, sp2);
 	
 	vector<int> vtx1, vtx2, sep1, sep2;
 	vtx1.resize(p1.size());
@@ -41,7 +40,7 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 		sep1[i] = vtx_[sp1[i]];
 	}
 	sep2.resize(sp2.size());
-	for (int i = 0; i < spe2.size(); i++)
+	for (int i = 0; i < sep2.size(); i++)
 	{
 		sep2[i] = vtx_[sp2[i]];
 	}
@@ -66,15 +65,15 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 	numlevels_ = max(children_[0].numlevels_, children_[1].numlevels_);
 }
 
-// Send parent's sep, nb to children.
+// Pass parent's sep, nb to children.
 template <typename Scalar>
 void HIFGraph<Scalar>::Pass(const SparseMatrix<Scalar>& A)
 {
-	SparseMatrix<Scalar> nbA = A(sep_,nb_);
+	SparseMatrix<Scalar> nbA = A(sep_, nb_);
 
 	for (int i = 0; i < sep_.size(); i++)
 	{
-		int sepi = sep[i];
+		int sepi = sep_[i];
 		for (int iter = 0; iter < 2; iter++)
 		{
 			HIFGraph* childnode = children_[iter];
@@ -87,7 +86,7 @@ void HIFGraph<Scalar>::Pass(const SparseMatrix<Scalar>& A)
 				if (FindFirstIndex(childnode->sep_, sepi) == -1)
 				{
 					// Pass sepi.
-					childnode->sep_.push_back(sepi);
+					(childnode->sep_).push_back(sepi);
 				}
 				// Pass nb.
 				vector<int> nbA_sepi_all;
@@ -103,7 +102,7 @@ void HIFGraph<Scalar>::Pass(const SparseMatrix<Scalar>& A)
 					int addnbj = nb_[index_addnb[j]];
 					if (FindFirstIndex(childnode->nb_, addnbj) == -1)
 					{
-						childnode->nb_.push_back(addnbj);
+						(childnode->nb_).push_back(addnbj);
 					}
 				}
 			}
