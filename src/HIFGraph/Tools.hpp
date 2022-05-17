@@ -28,7 +28,7 @@ void LDLSolve(Matrix<Scalar>& A, Matrix<Scalar>& Ainv)
     LDLSolve(Ainv);
 }
 
-// X = A^{-1} * X.
+// X = A^{-1} * X where A^{-1} is stored in Ainv.
 template <typename Scalar>
 void MultiplySolve(Matrix<Scalar>& Ainv, Matrix<Scalar>& X)
 {
@@ -68,6 +68,20 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
         }
     }
     // skelmtx(:, p2) = skelmtx(:, p1) * T.
+}
+
+// A(rowindex, colindex) = newsubA.
+template <typename Scalar>
+void SubMatrixUpdate(Matrix<Scalar>& A, vector<int>& rowindex, vector<int>colindex,
+    Matrix<Scalar>& newsubA)
+{
+    for (int i = 0; i < rowindex.size(); i++)
+    {
+        for (int j = 0; j < colindex.size(); j++)
+        {
+            A.Set(rowindex[i], colindex[j], newsubA.Get(i, j));
+        }
+    }
 }
 
 } // namespace HIF.

@@ -1,6 +1,5 @@
 #include "HIF.hpp"
 
-
 namespace HIF {
 
 // Recursively sparse elimination.
@@ -34,6 +33,8 @@ void HIFGraph<Scalar>::SparseElim()
 	Transpose(ASI_, AIIinvAIS_);
 	MultiplySolve(AIIinv_, AIIinvAIS_);
 	// AII = 0, ASI = 0.
+	AII.Empty();
+	ASI.Empty();
 }
 
 } // namespace HIF.
