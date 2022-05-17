@@ -274,7 +274,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 			Scalar(1), ANS_(myindex_p22, myindex_p11));
 		Transpose(ANS_(myindex_p22, myindex_p11), (nodek->ANS_)(nodekindex_p11, nodekindex_p22));
 		// Ac2c2 = Ac2c2 - Ah2c2^{T} * Th2c2 - Th2c2^{T} * Ah2c2 + Th2c2^{T} * Ah2h2 * Th2c2.
-		// nodek.ASS(nodekindex_p22, nodekindex_p22) =  T2' * Ah2h2T2;
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), (nodek->ASS_)(nodekindex_p21, nodekindex_p22), T2,
 			Scalar(1), (nodek->ASS_)(nodekindex_p22, nodekindex_p22));
