@@ -37,7 +37,7 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 		}
 
 		MatrixS copyvec; // Copy of updated vector.
-		// Step1.
+		// Step 1.
 		// xc1 = xc1 - Th1c1^{T} * xh1.
 		copyvec = xS_(nbinfok.myindex_p12, xcol);
 		Gemm(TRANSPOSE, NORMAL,
@@ -53,7 +53,7 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 		SubMatrixUpdate(nbnodek->xS_, nbinfok.nodekindex_p22, xcol, copyvec);
 		copyvec.Empty();
 
-		// Step2.
+		// Step 2.
 		// xh1 = xh1 - (Ac1c1^{-1} * Ah1c1^{T})^{T} * xc1.
 		copyvec = xS_(nbinfok.myindex_p11, xcol);
 		Gemm(TRANSPOSE, NORMAL,
@@ -81,7 +81,7 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 		SubMatrixUpdate(xS_, nbinfok.myindex_p12, xcol, copyvec);
 		copyvec.Empty();
 
-		// Step3.
+		// Step 3.
 		// xh1 = xh1 - (Ac2c2^{-1} * Ac2h1)^{T} * xc2.
 		copyvec = xS_(nbinfok.myindex_p11, xcol);
 		Gemm(TRANSPOSE, NORMAL,
