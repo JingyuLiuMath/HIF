@@ -1,0 +1,39 @@
+#include "HIF.hpp"
+
+namespace HIF {
+
+template <typename Scalar>
+void HIFGraph<Scalar>::RecursiveApplySparseElimUp(int whatlevel)
+{
+	if (level_ == whatlevel)
+	{
+		ApplySparseElimUp();
+	}
+	else
+	{
+		if (endflag_ == 0)
+		{
+			for (int iter = 0; iter < 2; iter++)
+			{
+				children_[iter]->RecursiveApplySparseElimUp(whatlevel);
+			}
+		}
+	}
+}
+
+
+template <typename Scalar>
+void HIFGraph<Scalar>::ApplySparseElimUp()
+{
+	// xS = xS - (AII^{-1} * ASI^{T})^{T} * xI.
+	Gemm(TRANSPOSE, NORMAL,
+		Scalar(-1), AIIinvAIS, xI_,
+		Scalar(1), xS_);
+	// xI = LI^{-1} * xI.
+	Trmm(ELLR::LEFT, LOWER, NORMAL, UNIT, Scalar(1), AIIinv_, xI_);
+	// xI = DI^{-1} * xI. We only apply D once.
+	const auto D = GetDiagonal(AIIinv_);
+	DiagonalScale(ELLR::LEFT, NORMAL, D, xI_);
+}
+
+} // namespace HIF.
