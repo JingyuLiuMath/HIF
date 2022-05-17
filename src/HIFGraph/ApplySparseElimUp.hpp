@@ -2,6 +2,7 @@
 
 namespace HIF {
 
+// Phase 1 for applying sparse elimination recusively.
 template <typename Scalar>
 void HIFGraph<Scalar>::RecursiveApplySparseElimUp(int whatlevel)
 {
@@ -21,7 +22,7 @@ void HIFGraph<Scalar>::RecursiveApplySparseElimUp(int whatlevel)
 	}
 }
 
-
+// Phase 1 for applying sparse elimination.
 template <typename Scalar>
 void HIFGraph<Scalar>::ApplySparseElimUp()
 {
