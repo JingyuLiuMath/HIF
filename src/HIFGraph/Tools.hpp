@@ -84,4 +84,14 @@ void SubMatrixUpdate(Matrix<Scalar>& A, vector<int>& rowindex, vector<int>colind
     }
 }
 
+// vec = start:end-1.
+void RangeVec(int start, int end, vector<int>& vec)
+{
+    vec.resize(end - start);
+    for (int i = start; i < end; i++)
+    {
+        vec[i - start] = i;
+    }
+}
+
 } // namespace HIF.
