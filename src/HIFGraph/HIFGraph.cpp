@@ -4,14 +4,25 @@
 #include "./SetNeighborNode.hpp"
 #include "./FillTree.hpp"
 #include "./SetSeparatorType.hpp"
+
 #include "./Factorization.hpp"
 #include "./SparseElim.hpp"
 #include "./Skel.hpp"
 #include "./Merge.hpp"
 #include "./RootFacorization.hpp"
+
 #include "./Apply.hpp"
 #include "./FillVecTree.hpp"
 #include "./ApplySparseElimUp.hpp"
+#include "./ApplySkelUp.hpp"
+#include "./ApplyMerge.hpp"
+#include "./RootApply.hpp"
+#include "./ApplySplit.hpp"
+#include "./ApplySkelDown.hpp"
+#include "./ApplySparseElimDown.hpp"
+#include "./GetSolution.hpp"
+
+#include "./Tools.hpp"
 
 namespace HIF {
 

@@ -5,14 +5,17 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::Apply(Matrix<Scalar>& b)
 {
+	vector<int> xcol;
+	RangeVec(0, b.Width(), xcol);
+	
 	// Fill vector in the tree.
-	FillVecTree(b);
+	FillVecTree(b, xcol);
 
 	for (int tmplevel = numlevels_; tmplevel >= 1; tmplevel--)
 	{
 		RecursiveApplySparseElimUp(tmplevel);
-		RecursiveApplySkelUp(tmplevel);
-		RecursiveApplyMerge(tmplevel - 1);
+		RecursiveApplySkelUp(tmplevel, xcol);
+		RecursiveApplyMerge(tmplevel - 1, xcol);
 	}
 
 	// Root apply.
@@ -20,12 +23,12 @@ void HIFGraph<Scalar>::Apply(Matrix<Scalar>& b)
 
 	for (int tmplevel = 1; tmplevel <= numlevels_; tmplevel++)
 	{
-		RecursiveApplySplit(tmplevel - 1);
+		RecursiveApplySplit(tmplevel - 1, xcol);
+		RecursiveApplySkelDown(tmplevel, xcol);
 		RecursiveApplySparseElimDown(tmplevel);
-		RecursiveApplySkelDown(tmplevel);
 	}
 	
-	GetSolution(b);
+	GetSolution(b, xcol);
 
 }
 
