@@ -94,4 +94,18 @@ void RangeVec(int start, int end, vector<int>& vec)
     }
 }
 
+//
+template <typename Scalar>
+void FullMat(const SparseMatrix<Scalar>& sparseA, Matrix<Scalar>& A)
+{
+    A.Resize(sparseA.Height(), sparseA.Width());
+    for (int i = 0; i < A.Height(); i++)
+    {
+        for (int j = 0; j < A.Width(); j++)
+        {
+            A.Set(i, j, sparseA.Get(i, j));
+        }
+    }
+}
+
 } // namespace HIF.

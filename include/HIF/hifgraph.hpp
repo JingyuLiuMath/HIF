@@ -54,7 +54,7 @@ public:
     ~HIFGraph();
 
     // Factorization.
-    void Factorization(double tol);
+    void Factorization(double tol = 1e-3);
 
     // Application.
     void Apply(Matrix<Scalar>& b);
@@ -98,7 +98,7 @@ private:
 
     // Initialization functions.
     void BuildTree(const SparseMatrix<Scalar>& A, int minvtx);
-    void Pass(const SparseMatrix<Scalar>& A);
+    void Pass(const SparseMatrix<Scalar>& A); // Pass parent's sep, nb to children. change its name.
     void SetNeighborNode();  
     void FillTree(const SparseMatrix<Scalar>& A);
 

@@ -6,35 +6,28 @@ namespace HIF {
 template <typename Scalar>
 void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Scalar>& vec)
 {
-	vector<int> index;
-	Intersect_Sort(vec1, vec2, index, 1); // vec1[index] == intersect(vec1, vec2).
 	int i = 0;
 	int j = 0;
-	while (j < vec1.size())
+	while (i < vec1.size() && j < vec2.size())
 	{
-		if (i < index.size())
+		if (vec1[i] < vec2[j])
 		{
-			if (j == index[i])
-			{
-				j++;
-				i++;
-			}
-			else if (j < index[i])
-			{
-				vec.push_pack(vec1[j]);
-				j++;
-			}
-			else
-			{
-				i++;
-			}
+			vec.push_back[vec1[i]];
+			i++;
+		}
+		else if (vec1[i] > vec2[j])
+		{
+			j++;
 		}
 		else
 		{
-			vec.push_pack(vec1[j]);
+			i++;
 			j++;
 		}
-
+	}
+	while (i < vec1.size())
+	{
+		vec.push_back[vec1[i]];
 	}
 }
 

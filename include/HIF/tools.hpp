@@ -25,6 +25,9 @@ void SubMatrixUpdate(Matrix<Scalar>& A, vector<int>& rowindex, vector<int>colind
 
 void RangeVec(int start, int end, vector<int>& vec);
 
+template <typename Scalar>
+void FullMat(const SparseMatrix<Scalar>& sparseA, Matrix<Scalar>& A);
+
 } // namespace HIF.
 
 #endif // ifndef HIF_TOOLS_HPP
