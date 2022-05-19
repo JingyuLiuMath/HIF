@@ -98,7 +98,7 @@ private:
 
     // Initialization functions.
     void BuildTree(const SparseMatrix<Scalar>& A, int minvtx);
-    void Pass(const SparseMatrix<Scalar>& A); // Pass parent's sep, nb to children. change its name.
+    void PassSeparatorNeighbor(const SparseMatrix<Scalar>& A);
     void SetNeighborNode();  
     void FillTree(const SparseMatrix<Scalar>& A);
 

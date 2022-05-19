@@ -53,7 +53,7 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 		vtx2, sep2, sep1);
 
 	// Send information to children.
-	Pass(A);
+	PassSeparatorNeighbor(A);
 
 	// Recursively build tree.
 	for (int iter = 0; iter < 2; iter++)
@@ -67,7 +67,7 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 
 // Pass parent's sep, nb to children.
 template <typename Scalar>
-void HIFGraph<Scalar>::Pass(const SparseMatrix<Scalar>& A)
+void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrix<Scalar>& A)
 {
 	SparseMatrix<Scalar> nbA = A(sep_, nb_);
 
