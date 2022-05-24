@@ -11,9 +11,6 @@ template <typename Scalar>
 int FindFirstIndex(const vector<Scalar>& vec, Scalar value);
 
 template <typename Scalar>
-void FindAllNonzeroIndex(const vector<Scalar>& vec, vector<int>& index);
-
-template <typename Scalar>
 void FindAllIndex(const vector<Scalar>& vec, Scalar value, vector<int>& index);
 
 template <typename Scalar>
@@ -41,6 +38,10 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 // ---------------------------------------Diff---------------------------------------
 template <typename Scalar>
 void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Scalar>& vec);
+
+// ---------------------------------------Unique---------------------------------------
+template <typename Scalar>
+void Unique_Sort(vector<Scalar>& vec);
 
 } // namespace HIF.
 
