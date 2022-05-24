@@ -18,19 +18,6 @@ int FindFirstIndex(const vector<Scalar>& vec, Scalar value)
 	return index;
 }
 
-// Find all nonzero index in vec. If no index is found, index is a empty vector.
-template <typename Scalar>
-void FindAllNonzeroIndex(const vector<Scalar>& vec, vector<int>& index)
-{
-	for (int i = 0; i < vec.size(); i++)
-	{
-		if (vec[i] != 0)
-		{
-			index.push_back(i);
-		}
-	}
-}
-
 // vec[index] = value.
 template <typename Scalar>
 void FindAllIndex(const vector<Scalar>& vec, Scalar value, vector<int>& index)
