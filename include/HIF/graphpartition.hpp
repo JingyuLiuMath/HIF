@@ -4,16 +4,17 @@
 namespace HIF{
 
 template <typename Scalar>
-void GraphPart(const SparseMatrix<Scalar>& A, 
-	vector<int>& p1, vector<int>& p2, 
-	vector<int>& sep1, vector<int>& sep2);
+void GraphPart(const SparseMatrix<Scalar>& A,
+    vector<int>& p1, vector<int>& p2,
+    vector<int>& sep1, vector<int>& sep2);
 
 template <typename Scalar>
-void MetisPart(const SparseMatrix<Scalar>& A, 
-	vector<int>& p1, vector<int>& p2, vector<int>& sep);
+void MetisPart(const SparseMatrix<Scalar>& A,
+    vector<int>& p1, vector<int>& p2, vector<int>& sep);
 
 template <typename Scalar>
-void MetisGraph(const SparseMatrix<Scalar>& A, graph_t& g);
+void MetisSepPart(const SparseMatrix<Scalar>& A,
+    vector<int>& p1, vector<int>& p2, vector<int>& sep);
 
 void Accumarray(const vector<int>& vec, vector<int>& count);
 

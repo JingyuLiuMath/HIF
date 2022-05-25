@@ -41,10 +41,85 @@ void GraphPart(const SparseMatrix<Scalar>& A,
 
 // Metis partition.
 template <typename Scalar>
-void MetisPart(const SparseMatrix<Scalar>& A, 
+void MetisPart(const SparseMatrix<Scalar>& A,
     vector<int>& p1, vector<int>& p2, vector<int>& sep)
 {
-    // TODO: set nvtxs, xadj, adjncy.
+    // degree = sum((spones(nvtxs) - speye(size(nvtxs))) > 0);
+    // singleidx = find(degree == 0);
+    // idx = find(degree > 0);
+    SparseMatrix<int> B;
+    El::Zeros(B, A.Height(), A.Width());
+    for (int i = 0; i < B.Height(); i++)
+    {
+        for (int j = 0; j < B.Width(); j++)
+        {
+            if (A.Get(i, j) != 0)
+            {
+                B.Set(i, j, Scalar(1));
+            }
+            if (i == j)
+            {
+                B.Set(i, j, B.Get(i, j) - 1);
+            }
+        }
+    }
+    for (int i = 0; i < B.Height(); i++)
+    {
+        for (int j = 0; j < B.Width(); j++)
+        {
+            if (B.Get(i, j) != 0)
+            {
+                B.Set(i, j, Scalar(1));
+            }
+        }
+    }
+    vector<int> degree(B.Width(), 0);
+    for (int col = 0; col < degree.size(); col++)
+    {
+        for (int row = 0; row < B.Height(); row++) 
+        {
+            degree[col] += B.Get(row, col);
+        }
+    }
+    vector<int> singleidx;
+    vector<int> idx;
+    for (int i = 0; i < degree.size(); i++)
+    {
+        if (degree[i] == 0)
+        {
+            singleidx.push_back(i);
+        }
+        else
+        {
+            idx.push_back(i);
+        }
+    }
+    SparseMatrix<Scalar> A1 = A(idx, idx);
+    vector<int> lidx, ridx, sepidx;
+    MetisSepPart(A1, lidx, ridx, sepidx);
+    p1.resize(lidx.size());
+    p2.resize(ridx.size());
+    sep.resize(sepidx.size());
+    for (int i = 0; i < p1.size(); i++)
+    {
+        p1[i] = idx[lidx[i]];
+    }
+    for (int i = 0; i < p2.size(); i++)
+    {
+        p2[i] = idx[ridx[i]];
+    }
+    for (int i = 0; i < sep.size(); i++)
+    {
+        sep[i] = idx[sepidx[i]];
+    }
+    sep.insert(sep.end(), singleidx);
+}
+
+// Metis separator partition.
+template <typename Scalar>
+void MetisSepPart(const SparseMatrix<Scalar>& A, 
+    vector<int>& p1, vector<int>& p2, vector<int>& sep)
+{
     // nvtxs.
     idx_t nvtxs = A.Height();
     // xadj.
@@ -60,7 +135,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     }
     if (colindex.size() == 0)
     {
-        xadj.resize(0);
+        // nothing to do.
     }
     else
     {
@@ -68,12 +143,20 @@ void MetisPart(const SparseMatrix<Scalar>& A,
         Accumarray(colindex, accumj);
         vector<int> cumsumj;
         Cumsum(accumj, cumsumj);
-        g.xadj->resize(1);
-        (g.xadj)[0] = 0;
-        (g.xadj).insert((g.xadj).end(), cumsumj.start(), cumsumj.end());
+        xadj = new idx_t[cumsumj.size() + 1];
+        xadj[0] = 0;
+        for (int i = 1; i < cumsumj.size() + 1; i++)
+        {
+            xadj[i] = cumsumj[i];
+        }
     }
     // adjncy.
-    idx_t* adjncy = i;
+    idx_t* adjncy;
+    adjncy = new idx_t[rowindex.size()];
+    for (int i = 0; i < rowindex.size(); i++)
+    {
+        adjncy[i] = rowindex[i];
+    }
     // idx_t* adjncy;
     idx_t* vwgt;
     idx_t options[METIS_NOPTIONS];
@@ -173,38 +256,6 @@ void MetisPart(const SparseMatrix<Scalar>& A,
 
     /* clean up */
     FreeCtrl(&ctrl);
-}
-
-// Create graph.
-template <typename Scalar>
-void MetisGraph(const SparseMatrix<Scalar>& A, graph_t& g)
-{
-    g.nvtxs = A.Height();
-    vector<int> i, j;
-    FindAllNonzeroIndexMat(A, i, j);
-    vector<int> ijindex;
-    FindEqualIndex(i, j, ijindex);
-    for (int k = 0; k < ijindex.size(); k++)
-    {
-        i.erase(ijindex[k]);
-        j.erase(ijindex[k]);
-    }
-    if (j.size() == 0)
-    {
-        (g.xadj).resize(0);
-    }
-    else
-    {
-        // g.xadj = [1;cumsum(accumarray(j, 1))+1]
-        vector<int> accumj;
-        Accumarray(j, accumj);
-        vector<int> cumsumj;
-        Cumsum(accumj, cumsumj);
-        g.xadj->resize(1);
-        (g.xadj)[0] = 0;
-        (g.xadj).insert((g.xadj).end(), cumsumj.start(), cumsumj.end());
-    }
-    g.adjncy = i - 1;
 }
 
 // count = accumarray(vec, 1).
