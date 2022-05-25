@@ -52,4 +52,34 @@ void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, v
 	}
 }
 
+// A[rowi, colj] != 0.
+template <typename Scalar>
+FindAllNonzeroIndexMat(const SparseMatrix<Scalar>& A, vector<int>& row, vector<int>& col)
+{
+	for (int i = 0; i < A.Height(); i++)
+	{
+		for (int j = 0; j < A.Width(); j++)
+		{
+			if (A.Get(i, j) != 0)
+			{
+				row.push_back(i);
+				col.push_back(j);
+			}
+		}
+	}
+}
+
+// vec1[index] = vec2[index] where vec1 and vec2 are two vectors of the same length.
+template <typename Scalar>
+FindEqualIndex(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<int>& index)
+{
+	for (int i = 0; i < vec1.size(); i++)
+	{
+		if (vec1[i] == vec2[i])
+		{
+			index.push_back[i];
+		}
+	}
+}
+
 } // namespace HIF.
