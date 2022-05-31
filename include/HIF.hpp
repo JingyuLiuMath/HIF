@@ -24,7 +24,7 @@
 
 #include "HIF/core/environment.hpp"
 #include "HIF/hifgraph.hpp"
-#include "HIF/metismex.hpp"
+#include "HIF/graphpartition.hpp"
 #include "HIF/setoperation.hpp"
 #include "HIF/tools.hpp"
 
