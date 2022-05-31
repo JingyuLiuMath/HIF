@@ -17,9 +17,6 @@ template <typename Scalar>
 void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<int>& index);
 
 template <typename Scalar>
-FindAllNonzeroIndexMat(const SparseMatrix<Scalar>& A, vector<int>& row, vector<int>& col);
-
-template <typename Scalar>
 FindEqualIndex(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<int>& index);
 
 // ---------------------------------------Intersect---------------------------------------

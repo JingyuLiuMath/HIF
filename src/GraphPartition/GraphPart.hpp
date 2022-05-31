@@ -48,37 +48,31 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     // singleidx = find(degree == 0);
     // idx = find(degree > 0);
     SparseMatrix<int> B;
-    El::Zeros(B, A.Height(), A.Width());
-    for (int i = 0; i < B.Height(); i++)
+    B.Resize(A.Height(), A.Width());
+    int* sourceA = A.SourceBuffer();
+    int* targetA = A.TargetBuffer();
+    int nnzA = A.NumEntries();
+    for (int t = 0; t < nnzA; t++)
     {
-        for (int j = 0; j < B.Width(); j++)
+        B.Set(sourceA[t], targetA[t], Scalar(1));
+        if (sourceA[t] == targetA[t])
         {
-            if (A.Get(i, j) != 0)
-            {
-                B.Set(i, j, Scalar(1));
-            }
-            if (i == j)
-            {
-                B.Set(i, j, B.Get(i, j) - 1);
-            }
+            B.Set(sourceA[t], targetA[t], B.Get(sourceA[t], targetA[t]) - 1);
         }
     }
-    for (int i = 0; i < B.Height(); i++)
+    for (int t = 0; t < nnzA; t++)
     {
-        for (int j = 0; j < B.Width(); j++)
+        if (B.Get(sourceA[t], targetA[t]) != 0)
         {
-            if (B.Get(i, j) != 0)
-            {
-                B.Set(i, j, Scalar(1));
-            }
+            B.Set(sourceA[t], targetA[t], Scalar(1));
         }
     }
     vector<int> degree(B.Width(), 0);
-    for (int col = 0; col < degree.size(); col++)
+    for (int t = 0; t < nnzA; t++)
     {
-        for (int row = 0; row < B.Height(); row++) 
+        if (B.Get(sourceA[t], targetA[t]) != 0)
         {
-            degree[col] += B.Get(row, col);
+            degree[targetA[t]] += 1;
         }
     }
     vector<int> singleidx;
@@ -122,12 +116,20 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 {
     // nvtxs.
     idx_t nvtxs = A.Height();
+    int* sourceA = A.SourceBuffer();
+    int* targetA = A.TargetBuffer();
+    int nnzA = A.NumEntries();
     // xadj.
     idx_t* xadj;
-    vector<int> rowindex, colindex;
-    FindAllNonzeroIndexMat(A, rowindex, colindex);
+    vector<int> rowindex(nnzA, 0);
+    vector<int> colindex(nnzA, 0);
+    for (int t = 0; t < nnz; t++)
+    {
+        rowindex[t] = sourceA[t];
+        colindex[t] = targetA[t];
+    }
     vector<int> ijindex;
-    FindEqualIndex(roindex, colindex, ijindex);
+    FindEqualIndex(rowindex, colindex, ijindex);
     for (int k = 0; k < ijindex.size(); k++)
     {
         rowindex.erase(ijindex[k]);
@@ -157,7 +159,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     {
         adjncy[i] = rowindex[i];
     }
-    // idx_t* adjncy;
     idx_t* vwgt;
     idx_t options[METIS_NOPTIONS];
     
