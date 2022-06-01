@@ -258,7 +258,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		copymtx.Empty();
 		copymtxT.Empty();
 		// Ac2c1 = Ac2c1 - Ac2h1 * Th1c1 - Th2c2^{T} * Ah2c1 + Th2c2^{T} * Ah2h1 * Th1c1.
-		copymtx = ANS_(myindex_p22, myindex_p12)
+		copymtx = ANS_(myindex_p22, myindex_p12);
 		Gemm(NORMAL, NORMAL,
 			Scalar(-1), ANS_(myindex_p22, myindex_p11), T1,
 			Scalar(1), copymtx);
@@ -306,8 +306,8 @@ void HIFGraph<Scalar>::Skel(double tol)
 			Scalar(-1), T2, (nodek->ASS_)(nodekindex_p21, nodekindex_p22),
 			Scalar(1), copymtx);
 		Gemm(NORMAL, NORMAL,
-			Scalar(1), (nodek->ASS_)(nodekindex_p21, nodekindex_p21),
-			Scalar(1), tmpmtx);
+			Scalar(1), (nodek->ASS_)(nodekindex_p21, nodekindex_p21),T2,
+			Scalar(0), tmpmtx);
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(1), T2, tmpmtx,
 			Scalar(1), copymtx);

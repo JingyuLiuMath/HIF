@@ -62,7 +62,7 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 	}
 
 	// Set numlevels.
-	numlevels_ = max(children_[0].numlevels_, children_[1].numlevels_);
+	numlevels_ = std::max(children_[0]->numlevels_, children_[1]->numlevels_);
 }
 
 // Pass parent's sep, nb to children.
@@ -90,7 +90,7 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrix<Scalar>& A)
 				}
 				// Pass nb.				
 				vector<int> index_addnb;
-				for (int col = 0; col < nbA.size(); col++)
+				for (int col = 0; col < nbA.Width(); col++)
 				{
 					if (nbA.Get(i, col) != 0)
 					{
