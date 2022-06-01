@@ -28,7 +28,7 @@ void HIFGraph<Scalar>::ApplySparseElimUp()
 {
 	// xS = xS - (AII^{-1} * ASI^{T})^{T} * xI.
 	Gemm(TRANSPOSE, NORMAL,
-		Scalar(-1), AIIinvAIS, xI_,
+		Scalar(-1), AIIinvAIS_, xI_,
 		Scalar(1), xS_);
 	// xI = LI^{-1} * xI.
 	Trmm(ELLR::LEFT, LOWER, NORMAL, UNIT, Scalar(1), AIIinv_, xI_);

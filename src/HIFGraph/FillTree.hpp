@@ -17,7 +17,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		vector<int> rangeintr;
 		RangeVec(0, intr_.size(), rangeintr);
 		FullMat(A(intr_, intr_), Aneed);
-		SubMatrixUpdate(AII, rangeintr, rangeintr, Aneed);
+		SubMatrixUpdate(AII_, rangeintr, rangeintr, Aneed);
 		Aneed.Empty();
 
 		El::Zeros(ASI_, sep_.size(), intr_.size());

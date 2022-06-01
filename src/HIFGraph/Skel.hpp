@@ -140,9 +140,9 @@ void HIFGraph<Scalar>::Skel(double tol)
 		}
 		MatrixS skelmtx1;
 		MatrixS skelmtx2;
-		El::zeros(skelmtx1,
+		El::Zeros(skelmtx1,
 			myindex_sep1C.size() + myindex_mysep2C.size(), myindex_sep1.size());
-		El::zeros(skelmtx2,
+		El::Zeros(skelmtx2,
 			nodekindex_sep2C.size() + nodekindex_nodeksep1C.size(), nodekindex_sep2.size());
 		MatrixS viewmtx;
 		View(viewmtx, skelmtx1, 
@@ -321,7 +321,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 			Scalar(1), copymtx);
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p22, copymtx);
 		Transpose(copymtx, copymtxT);
-		SubMatrixUpdate(nodekindex->ASS_, nodekindex_p22, nodekindex_p21, copymtxT);
+		SubMatrixUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p21, copymtxT);
 		copymtx.Empty();
 		copymtxT.Empty();
 
@@ -404,7 +404,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), ANS_(myindex_p22, myindex_p11), nbinfo_[k].Ac1c1invAc2h1,
 			Scalar(1), copymtx);
-		SubMatrixUpdate(ASS_, myindex_p11, nyindex_p11, copymtx);
+		SubMatrixUpdate(ASS_, myindex_p11, myindex_p11, copymtx);
 		copymtx.Empty();
 		// Ah2h1 = Ah2h1 - Ah2c2 * Ac2c2^{-1} * Ac2h1.
 		copymtx = ANS_(myindex_p21, myindex_p11);
@@ -428,7 +428,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 
 	sort(re_.begin(), re_.end());
 	Diff_Sort(sep_, re_, sk_);
-	sort(nbre_begin(), nbre.end());
+	sort(nbre_.begin(), nbre_.end());
 }
 
 // No skeletonization.

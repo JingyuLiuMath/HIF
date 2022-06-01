@@ -16,7 +16,7 @@ void HIFGraph<Scalar>::SetSeparatorType()
 		vector<int> tmpindex;
 		Intersect_Sort(sep_, nodek->nb_, tmpindex, 1);
 		singlesep_[k] = tmpindex;
-		for (int i = 0; i < tmp.size(); i++)
+		for (int i = 0; i < tmpindex.size(); i++)
 		{
 			ordersep[tmpindex[i]] += 1;
 		}

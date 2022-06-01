@@ -17,7 +17,7 @@ void MultiplySolve(Matrix<Scalar>& Ainv, Matrix<Scalar>& X);
 
 template <typename Scalar>
 void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
-    vector<int>& p1, vector<int>& p2, const QRCtrl<Base<F>>& ctrl);
+    vector<int>& p1, vector<int>& p2, const QRCtrl<Base<Scalar>>& ctrl);
 
 template <typename Scalar>
 void SubMatrixUpdate(Matrix<Scalar>& A, vector<int>& rowindex, vector<int>colindex,

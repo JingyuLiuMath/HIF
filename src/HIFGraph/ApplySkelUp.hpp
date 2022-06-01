@@ -30,7 +30,7 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 	for (int k = 0; k < nbnode_.size(); k++)
 	{
 		HIFGraph* nbnodek = nbnode_[k];
-		SkelInfo& nbinfok = nbinfo_[k];
+		SkelInfo<Scalar>& nbinfok = nbinfo_[k];
 		if (nbinfok.skip == 1)
 		{
 			continue;

@@ -50,7 +50,7 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
     int k = T.Height();
     p1.resize(T.Height());
     p2.resize(T.Width());
-    Matrix<int> pmat(1, skelmtx.Width())
+    Matrix<int> pmat(1, skelmtx.Width());
     for (int i = 0; i < pmat.Width(); i++)
     {
         pmat.Set(0, i, i);
