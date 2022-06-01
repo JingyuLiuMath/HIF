@@ -108,4 +108,26 @@ void FullMat(const SparseMatrix<Scalar>& sparseA, Matrix<Scalar>& A)
     }
 }
 
+
+#define PROTOTYPE(Scalar) \
+template void LDLSolve( Matrix<Scalar>& A ); \
+template void LDLSolve( Matrix<Scalar>& A, \
+        Matrix<Scalar>& Ainv ); \
+template void MultiplySolve( Matrix<Scalar>& A, \
+        Matrix<Scalar>& X );
+template void IDSolve(Matrix<Scalar>& skelmtx, \
+    Matrix<Scalar>& T, \
+    vector<int>& p1, \
+    vector<int>& p2, \
+    const QRCtrl<Base<Scalar>>& ctrl); \
+template void SubMatrixUpdate(Matrix<Scalar>& A, \
+    vector<int>& rowindex, \
+    vector<int>colindex, \
+    Matrix<Scalar>& newsubA); \
+template void FullMat(const SparseMatrix<Scalar>& sparseA, \
+    Matrix<Scalar>& A);
+
+PROTOTYPE(float)
+PROTOTYPE(double)
+
 } // namespace HIF.
