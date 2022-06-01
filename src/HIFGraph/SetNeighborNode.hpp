@@ -71,6 +71,4 @@ void HIFGraph<Scalar>::SetNeighborNode()
 	}
 }
 
-}
-
 } // namespace HIF.

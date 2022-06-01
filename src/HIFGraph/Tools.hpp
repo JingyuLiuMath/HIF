@@ -43,7 +43,7 @@ void MultiplySolve(Matrix<Scalar>& Ainv, Matrix<Scalar>& X)
 // Skeletonization we need.
 template <typename Scalar>
 void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T, 
-    vector<int>& p1, vector<int>& p2, const QRCtrl<Base<F>>& ctrl)
+    vector<int>& p1, vector<int>& p2, const QRCtrl<Base<Scalar>>& ctrl)
 {
     Permutation P;
     ID(skelmtx, P, T, ctrl);
@@ -94,7 +94,7 @@ void RangeVec(int start, int end, vector<int>& vec)
     }
 }
 
-//
+// Full mat.
 template <typename Scalar>
 void FullMat(const SparseMatrix<Scalar>& sparseA, Matrix<Scalar>& A)
 {
