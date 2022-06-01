@@ -45,6 +45,7 @@ using complex = El::Complex<Scalar>;
 // El Matrix and Grid
 using El::ElementalMatrix;
 using El::Matrix;
+using El::SparseMatrix;
 using El::Permutation;
 using El::Grid;
 using El::ValueInt;

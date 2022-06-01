@@ -7,7 +7,7 @@ template <typename Scalar>
 void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 {
 	// We only fill the leaf nodes.
-	if (endflag_ == 1£©
+	if (endflag_ == 1)
 	{
 		Diff_Sort(vtx_, sep_, intr_);
 		
