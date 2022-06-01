@@ -109,11 +109,11 @@ void FullMat(const SparseMatrix<Scalar>& sparseA, Matrix<Scalar>& A)
 
 
 #define PROTOTYPE(Scalar) \
-template void LDLSolve(Matrix<Scalar>& A); \
-template void LDLSolve(Matrix<Scalar>& A, \
-        Matrix<Scalar>& Ainv); \
-template void MultiplySolve(Matrix<Scalar>& A, \
-        Matrix<Scalar>& X); \
+template void LDLSolve( Matrix<Scalar>& A ); \
+template void LDLSolve( Matrix<Scalar>& A, \
+        Matrix<Scalar>& Ainv ); \
+template void MultiplySolve( Matrix<Scalar>& A, \
+        Matrix<Scalar>& X ); \
 template void IDSolve(Matrix<Scalar>& skelmtx, \
     Matrix<Scalar>& T, \
     vector<int>& p1, \

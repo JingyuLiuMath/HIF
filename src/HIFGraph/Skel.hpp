@@ -327,7 +327,8 @@ void HIFGraph<Scalar>::Skel(double tol)
 
 		// Step 2.
 		// Ac1c1 = Lc1 * Dc1 * Lc1^{T}.
-		LDLSolve(ASS_(myindex_p12, myindex_p12), nbinfo_[k].Ac1c1inv);
+		copymtx = ASS_(myindex_p12, myindex_p12);
+		LDLSolve(copymtx, nbinfo_[k].Ac1c1inv);
 		copymtx.Empty();
 		// Ac1c1invAc1h1 = Ac1c1^{-1} * Ah1c1^{T}.
 		Transpose(ASS_(myindex_p11, myindex_p12), nbinfo_[k].Ac1c1invAc1h1);
@@ -393,7 +394,8 @@ void HIFGraph<Scalar>::Skel(double tol)
 
 		// Step 3.
 		// Ac2c2 = Lc2 * Dc2 * Lc2^{T}.
-		LDLSolve((nodek->ASS_)(nodekindex_p22, nodekindex_p22), nbinfo_[k].Ac2c2inv);
+		copymtx = (nodek->ASS_)(nodekindex_p22, nodekindex_p22);
+		LDLSolve(copymtx, nbinfo_[k].Ac2c2inv);
 		copymtx.Empty();
 		// Ac2c2invAc2h1 = Ac2c2^{-1} * Ac2h1.
 		nbinfo_[k].Ac2c2invAc2h1 = ANS_(myindex_p22, myindex_p11);
