@@ -120,8 +120,8 @@ template void IDSolve(Matrix<Scalar>& skelmtx, \
     vector<int>& p2, \
     const QRCtrl<Base<Scalar>>& ctrl); \
 template void SubMatrixUpdate(Matrix<Scalar>& A, \
-    vector<int>& rowindex, \
-    vector<int>& colindex, \
+    const vector<int>& rowindex, \
+    const vector<int>& colindex, \
     Matrix<Scalar>& newsubA); \
 template void FullMat(const SparseMatrix<Scalar>& sparseA, \
     Matrix<Scalar>& A);
