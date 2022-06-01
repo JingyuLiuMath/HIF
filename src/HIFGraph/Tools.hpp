@@ -72,7 +72,7 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
 
 // A(rowindex, colindex) = newsubA.
 template <typename Scalar>
-void SubMatrixUpdate(Matrix<Scalar>& A, vector<int>& rowindex, vector<int>colindex,
+void SubMatrixUpdate(Matrix<Scalar>& A, vector<int>& rowindex, vector<int>& colindex,
     Matrix<Scalar>& newsubA)
 {
     for (int i = 0; i < rowindex.size(); i++)
@@ -114,7 +114,7 @@ template void LDLSolve( Matrix<Scalar>& A ); \
 template void LDLSolve( Matrix<Scalar>& A, \
         Matrix<Scalar>& Ainv ); \
 template void MultiplySolve( Matrix<Scalar>& A, \
-        Matrix<Scalar>& X );
+        Matrix<Scalar>& X ); \
 template void IDSolve(Matrix<Scalar>& skelmtx, \
     Matrix<Scalar>& T, \
     vector<int>& p1, \

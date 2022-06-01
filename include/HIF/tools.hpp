@@ -20,7 +20,7 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
     vector<int>& p1, vector<int>& p2, const QRCtrl<Base<Scalar>>& ctrl);
 
 template <typename Scalar>
-void SubMatrixUpdate(Matrix<Scalar>& A, vector<int>& rowindex, vector<int>colindex,
+void SubMatrixUpdate(Matrix<Scalar>& A, vector<int>& rowindex, vector<int>& colindex,
     Matrix<Scalar>& newsubA);
 
 void RangeVec(int start, int end, vector<int>& vec);
