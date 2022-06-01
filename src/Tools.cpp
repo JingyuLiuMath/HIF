@@ -71,7 +71,7 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
 
 // A(rowindex, colindex) = newsubA.
 template <typename Scalar>
-void SubMatrixUpdate(Matrix<Scalar>& A, vector<int>& rowindex, vector<int>& colindex,
+void SubMatrixUpdate(Matrix<Scalar>& A, const vector<int>& rowindex, const vector<int>& colindex,
     Matrix<Scalar>& newsubA)
 {
     for (int i = 0; i < rowindex.size(); i++)
