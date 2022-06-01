@@ -22,8 +22,6 @@
 #include "./ApplySparseElimDown.hpp"
 #include "./GetSolution.hpp"
 
-#include "./Tools.hpp"
-
 namespace HIF {
 
 // Create a HIFGraph class.
