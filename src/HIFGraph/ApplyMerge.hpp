@@ -42,12 +42,17 @@ void HIFGraph<Scalar>::ApplyMerge(const vector<int>& xcol)
 	// We assign xS from the child's xS.
 	El::Zeros(xI_, intr_.size(), xcol.size());
 	El::Zeros(xS_, sep_.size(), xcol.size());
+	MatrixS copymtx;
 	for (int iter = 0; iter < 2; iter++)
 	{
+		copymtx = (children_[iter]->xS_)(childreninfo_[iter].cindex_intr, xcol);
 		SubMatrixUpdate(xI_, childreninfo_[iter].myindex_intr, xcol, 
-			(children_[iter]->xS_)(childreninfo_[iter].cindex_intr, xcol));
+			copymtx);
+		copymtx.Empty();
+		copymtx = (children_[iter]->xS_)(childreninfo_[iter].cindex_sep, xcol);
 		SubMatrixUpdate(xS_, childreninfo_[iter].myindex_sep, xcol,
-			(children_[iter]->xS_)(childreninfo_[iter].cindex_sep, xcol));
+			copymtx);
+		copymtx.Empty();
 	}
 }
 
