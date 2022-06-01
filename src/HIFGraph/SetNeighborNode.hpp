@@ -15,9 +15,9 @@ void HIFGraph<Scalar>::SetNeighborNode()
 	for (int iter = 0; iter < 2; iter++)
 	{
 		HIFGraph* childnode = children_[iter];
-		(childnode->nbnode_).push_pack(children_[1 - iter]);
-		(childnode->nbnodeseqnum_).push_pack(children_[1 - iter]->seqnum_);
-		(childnode->nbnodelevel_).push_pack(children_[1 - iter]->level_);
+		(childnode->nbnode_).push_back(children_[1 - iter]);
+		(childnode->nbnodeseqnum_).push_back(children_[1 - iter]->seqnum_);
+		(childnode->nbnodelevel_).push_back(children_[1 - iter]->level_);
 		if (!nbnode_.empty())
 		{
 			for (int i = 0; i < nbnode_.size(); i++)
@@ -40,8 +40,8 @@ void HIFGraph<Scalar>::SetNeighborNode()
 							break;
 						}
 						(childnode->nbnode_).push_back(nbnodei);
-						(childnode->nbnodeseqnum_).push_pack(nbnodei->seqnum_);
-						(childnode->nbnodelevel_).push_pack(nbnodei->level_);
+						(childnode->nbnodeseqnum_).push_back(nbnodei->seqnum_);
+						(childnode->nbnodelevel_).push_back(nbnodei->level_);
 						(nbnodei->nbnode_).push_back(childnode);
 						(nbnodei->nbnodeseqnum_).push_back(childnode->seqnum_);
 						(nbnodei->nbnodelevel_).push_back(childnode->level_);

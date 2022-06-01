@@ -90,7 +90,7 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrix<Scalar>& A)
 				}
 				// Pass nb.				
 				vector<int> index_addnb;
-				for (int col = 0; col < nbA_sepi_all.size(); col++)
+				for (int col = 0; col < nbA.size(); col++)
 				{
 					if (nbA.Get(i, col) != 0)
 					{

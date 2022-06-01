@@ -81,7 +81,7 @@ private:
     vector<HIFGraph*> nbnode_; // Neighbor nodes.
     vector<int> nbnodeseqnum_; // Neighbor nodes' seqnum.
     vector<int> nbnodelevel_; // Neighbor nodes' level.
-    vector<SkelInfo> nbinfo_; // Information between a node and its nbNode when skeletonization.
+    vector<SkelInfo<Scalar>> nbinfo_; // Information between a node and its nbNode when skeletonization.
     vector<IndexInfo> childreninfo_; // Index information when merge and split.
     // Matrices data.
     // For the following matrices, the fist index is row, and the second index is col.
