@@ -79,7 +79,7 @@ void HIFGraph<Scalar>::Merge()
 	// An intr of the parent only belongs to the sep of one of its children.
 	// If two intrs belong to the same child, we assign AII from the child's ASS. 
 	// Otherwise, we assign AII from one child's ANS or 0.
-	El::Zeros(AII_, intr_.size(), intr_.size);
+	El::Zeros(AII_, intr_.size(), intr_.size());
 	vector<int> intr1;
 	vector<int>& myindex_intr1 = childreninfo_[0].myindex_intr;
 	vector<int>& cindex_intr1 = childreninfo_[0].cindex_intr;
@@ -110,7 +110,7 @@ void HIFGraph<Scalar>::Merge()
 	// A sep of the parent only belongs to the sep of one of its children.
 	// If an intr and a sep belongs to the same child, we assign ASI from the child's ASS.
 	// Otherwise, we assign ASI from one child's ANS or 0.
-	El::Zeros(ASI_, sep_.size(), intr_.size);
+	El::Zeros(ASI_, sep_.size(), intr_.size());
 	vector<int> myindex_sep1x;
 	vector<int> cindex_sep1x;
 	Intersect_Sort(sep_, children_[0]->sep_, myindex_sep1x, cindex_sep1x);
@@ -139,7 +139,7 @@ void HIFGraph<Scalar>::Merge()
 	// ASS
 	// If two seps belongs to the same child, we assign ASS from the child's ASS. 
 	// Otherwise, we assign ASS from one child's ANS or 0.
-	El::Zeros(ASS_, sep_.size(), sep_.size);
+	El::Zeros(ASS_, sep_.size(), sep_.size());
 	vector<int> sep1;
 	vector<int>& myindex_sep1 = childreninfo_[0].myindex_sep;
 	vector<int>& cindex_sep1 = childreninfo_[0].cindex_sep;
@@ -169,7 +169,7 @@ void HIFGraph<Scalar>::Merge()
 	// ANS
 	// If a nb and a sep in the same child, we assign ANS from the child's ANS.
 	// Otherwise, ANS= 0.
-	El::Zeros(ANS_, nb_.size(), sep_.size);
+	El::Zeros(ANS_, nb_.size(), sep_.size());
 	vector<int> myindex_nb1x;
 	vector<int> cindex_nb1x;
 	Intersect_Sort(nb_, children_[0]->nb_, myindex_nb1x, cindex_nb1x);
