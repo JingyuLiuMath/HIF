@@ -28,14 +28,14 @@ int main(int argc, char* argv[])
 
 		string fileA = "./" + inputfileA;
 		std::ifstream finA;
-		finA.open(fileA, ios::in);
+		finA.open(fileA, std::ios::in);
 		if (!finA)
 		{
 			std::cerr << "cannot open the file";
 		}
 		int n;
 		finA >> n;
-		SparseMatrix A(n, n);
+		SparseMatrix<Scalar> A(n, n);
 		int i, j;
 		double value;
 		while (finA >> i >> j >> value)
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
 		string fileb = "./" + inputfileb;
 		std::ifstream finb;
-		finb.open(fileb, ios::in);
+		finb.open(fileb, std::ios::in);
 		if (!finb)
 		{
 			std::cerr << "cannot open the file";
@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 
 		string filex = "./sol.txt";
 		std::ofstream foutx;
-		foutx.open(filex, ios::out);
+		foutx.open(filex, std::ios::out);
 		for (int k = 0; k < b.Height(); k++)
 		{
 			foutx << b.Get(k, 1) << endl;
