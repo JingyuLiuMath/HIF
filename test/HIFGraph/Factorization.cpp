@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
 		El::PrintInputReport();
 
 		string fileA = "./" + inputfileA;
-		ifstream finA;
+		std::ifstream finA;
 		finA.open(fileA, ios::in);
 		if (!finA)
 		{
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 		finA.close();
 
 		string fileb = "./" + inputfileb;
-		ifstream finb;
+		std::ifstream finb;
 		finb.open(fileb, ios::in);
 		if (!finb)
 		{
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
 		HIF.Apply(b);
 
 		string filex = "./sol.txt";
-		ofstream foutx;
+		std::ofstream foutx;
 		foutx.open(filex, ios::out);
 		for (int k = 0; k < b.Height(); k++)
 		{
