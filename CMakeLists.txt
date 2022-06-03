@@ -35,7 +35,7 @@ install(FILES ${PROJECT_BINARY_DIR}/include/HIF/config.h
 
 # Grab all of the .c, .cpp, .h, and .hpp HIF files
 file(GLOB_RECURSE HIF_CPP RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
-     "src/*.c" "src/*.cpp" "src/*-incl.hpp")
+     "src/*.c" "src/*.cpp" "src/*.hpp")
 file(GLOB_RECURSE HIF_HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
      "include/*.h" "include/*.hpp")
 set(HIF_SRC "${HIF_CPP};${HIF_HEADERS}")
