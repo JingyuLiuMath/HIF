@@ -268,7 +268,7 @@ void Accumarray(const vector<int>& vec, vector<int>& count)
 {
     auto maxPosition = max_element(a.begin(), a.end());
     count = vector(*maxPosition, 0);
-    for (int i = 0; i < vec; i++)
+    for (int i = 0; i < vec.size(); i++)
     {
         count[vec[i]] += 1;
     }
