@@ -1,5 +1,4 @@
 #include "HIF.hpp"
-#include <matrix.h>
 #include <metislib.h>
 #include <metis.h>
 
