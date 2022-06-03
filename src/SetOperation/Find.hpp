@@ -60,7 +60,7 @@ FindEqualIndex(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<in
 	{
 		if (vec1[i] == vec2[i])
 		{
-			index.push_back[i];
+			index.push_back(i);
 		}
 	}
 }
