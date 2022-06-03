@@ -106,7 +106,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     {
         sep[i] = idx[sepidx[i]];
     }
-    sep.insert(sep.end(), singleidx);
+    sep.insert(sep.end(), singleidx.begin(), singleidx.end());
 }
 
 // Metis separator partition.
@@ -123,17 +123,22 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     idx_t* xadj;
     vector<int> rowindex(nnzA, 0);
     vector<int> colindex(nnzA, 0);
-    for (int t = 0; t < nnz; t++)
+    for (int t = 0; t < nnzA; t++)
     {
         rowindex[t] = sourceA[t];
         colindex[t] = targetA[t];
     }
     vector<int> ijindex;
     FindEqualIndex(rowindex, colindex, ijindex);
-    for (int k = 0; k < ijindex.size(); k++)
+    /*for (int k = 0; k < ijindex.size(); k++)
     {
         rowindex.erase(ijindex[k]);
         colindex.erase(ijindex[k]);
+    }*/
+    for (int k = ijindex.size() - 1; k >= 0; k--)
+    {
+        rowindex.erase(rowindex.begin() + ijindex[k]);
+        colindex.erase(colindex.begin() + ijindex[k]);
     }
     if (colindex.size() == 0)
     {
