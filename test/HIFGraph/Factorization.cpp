@@ -16,47 +16,72 @@ int main(int argc, char* argv[])
 	El::Initialize(argc, argv);
 	typedef double Scalar;
 
-	const string inputfileA = Input("--input_b", "input filename of A");
-	const string inputfileb = Input("--input_A", "input filename of b");
-	const int cutoff = Input("--cutoff", "cutoff", 64);
-	const double tol = Input("--tol", "tolerance", 1e-3);
-	
-	string fileA = "./" + inputfileA;
-	ifstream finA;
-	finA.open(fileA, ios::in);
-	if (!finA)
+	try
 	{
-		std::cerr << "cannot open the file";
+		const string inputfileA = Input("--input_b", "input filename of A", "A.txt");
+		const string inputfileb = Input("--input_A", "input filename of b", "b.txt");
+		const int cutoff = Input("--cutoff", "cutoff", 64);
+		const double tol = Input("--tol", "tolerance", 1e-3);
+
+		El::ProcessInput();
+		El::PrintInputReport();
+
+		string fileA = "./" + inputfileA;
+		ifstream finA;
+		finA.open(fileA, ios::in);
+		if (!finA)
+		{
+			std::cerr << "cannot open the file";
+		}
+		int n;
+		finA >> n;
+		SparseMatrix A(n, n);
+		int i, j;
+		double value;
+		while (finA >> i >> j >> value)
+		{
+			A.Set(i, j, value);
+		}
+		finA.close();
+
+		string fileb = "./" + inputfileb;
+		ifstream finb;
+		finb.open(fileb, ios::in);
+		if (!finb)
+		{
+			std::cerr << "cannot open the file";
+		}
+		Matrix<Scalar> b(n, 1);
+		int k = 0;
+		while (finb >> value)
+		{
+			b.Set(k, 0, value);
+			k++;
+		}
+		finb.close();
+
+		HIFGraph<Scalar> HIF(A, cutoff);
+
+		HIF.Factorization(tol);
+
+		HIF.Apply(b);
+
+		string filex = "./sol.txt";
+		ofstream foutx;
+		foutx.open(filex, ios::out);
+		for (int k = 0; k < b.Height(); k++)
+		{
+			foutx << b.Get(k, 1) << endl;
+		}
+		foutx.close();
 	}
-	int n;
-	finA >> n;
-	SparseMatrix A(n, n);
-	int i, j, value;
-	while (finA >> i >> j >> value)
+	catch (std::exception& e)
 	{
-		A.Set(i, j, value);
+		EL_DEBUG_ONLY(El::DumpCallStack())
+			DEBUG_HIF(DumpCallStack())
 	}
-
-	string fileb = "./" + inputfileb;
-	ifstream finb;
-	finb.open(fileb, ios::in);
-	if (!finb)
-	{
-		std::cerr << "cannot open the file";
-	}
-	Matrix<Scalar> b(n, 1);
-	int k = 0;
-	while (finb >> value)
-	{
-		b.Set(k, 0, value);
-		k++;
-	}
-
-	HIFGraph<Scalar> HIF(A, cutoff);
-
-	HIF.Factorization(tol);
-
-	HIF.Apply(b);
+	El::Finalize();
+	return 0;
 }
 
 } // namespace HIF.
