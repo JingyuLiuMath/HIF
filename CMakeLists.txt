@@ -55,6 +55,7 @@ if(NOT METIS_LIB_DIR)
 endif()
 link_directories(${METIS_LIB_DIR})
 include_directories(${METIS_INCLUDE_DIR})
+target_link_libraries(HIF libmetis)
 
 
 # Build the HIF source
