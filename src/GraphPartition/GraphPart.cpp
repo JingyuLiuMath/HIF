@@ -1,7 +1,8 @@
 #include "HIF.hpp"
 
 #include <metis.h>
-#include "/opt/local/metis/5.1.0/libmetis/*.h"
+// #include "/opt/local/metis/5.1.0/libmetis/metislib.h"
+// #include <metislib.h>
 
 namespace HIF {
 
