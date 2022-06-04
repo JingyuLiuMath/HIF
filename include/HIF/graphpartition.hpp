@@ -4,7 +4,7 @@
 
 #include "HIF.hpp"
 
-#include "metis.hpp"
+#include "metis.h"
 
 namespace HIF{
 
