@@ -1,3 +1,5 @@
+#include "HIF.hpp"
+
 #include "./Diff.hpp"
 #include "./Find.hpp"
 #include "./Intersect.hpp"
