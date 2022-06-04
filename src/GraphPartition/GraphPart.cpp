@@ -267,7 +267,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 // count = accumarray(vec, 1).
 void Accumarray(const vector<int>& vec, vector<int>& count)
 {
-    auto maxPosition = max_element(a.begin(), a.end());
+    auto maxPosition = std::max_element(vec.begin(), vec.end());
     count = vector(*maxPosition, 0);
     for (int i = 0; i < vec.size(); i++)
     {

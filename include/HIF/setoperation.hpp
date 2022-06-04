@@ -17,7 +17,8 @@ template <typename Scalar>
 void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<int>& index);
 
 template <typename Scalar>
-void FindEqualIndex(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<int>& index);
+void FindEqualIndex(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
+	vector<int>& index);
 
 // ---------------------------------------Intersect---------------------------------------
 template <typename Scalar>

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef GRAPHPARTITION_HPP
 #define GRAPHPARTITION_HPP 1
 
