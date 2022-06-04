@@ -4,6 +4,8 @@
 
 #include "HIF.hpp"
 
+#include "metis.hpp"
+
 namespace HIF{
 
 template <typename Scalar>
