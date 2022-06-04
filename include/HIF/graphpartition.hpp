@@ -2,6 +2,8 @@
 #ifndef GRAPHPARTITION_HPP
 #define GRAPHPARTITION_HPP 1
 
+#include "HIF.hpp"
+
 namespace HIF{
 
 template <typename Scalar>
