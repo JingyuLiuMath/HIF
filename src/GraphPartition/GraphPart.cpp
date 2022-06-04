@@ -2,7 +2,7 @@
 
 #include <metis.h>
 // #include "/opt/local/metis/5.1.0/libmetis/*.h"
-#include <libmetis.a>
+// #include <libmetis.a>
 
 namespace HIF {
 
