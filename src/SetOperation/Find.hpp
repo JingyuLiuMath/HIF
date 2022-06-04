@@ -54,7 +54,7 @@ void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, v
 
 // vec1[index] = vec2[index] where vec1 and vec2 are two vectors of the same length.
 template <typename Scalar>
-FindEqualIndex(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<int>& index)
+void FindEqualIndex(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<int>& index)
 {
 	for (int i = 0; i < vec1.size(); i++)
 	{
