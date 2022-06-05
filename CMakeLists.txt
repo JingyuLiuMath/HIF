@@ -96,7 +96,7 @@ foreach(TYPE ${TEST_TYPES})
   set(OUTPUT_DIR "${PROJECT_BINARY_DIR}/bin/${TYPE}")
   foreach(TEST ${${TYPE}_TESTS})
     add_executable(${TYPE}-${TEST} ${TEST_DIR}/${TYPE}/${TEST}.cpp)
-    target_link_libraries(${TYPE}-${TEST} El metis HIF ${MPI_LIBRARIES} stdc++fs)
+    target_link_libraries(${TYPE}-${TEST} metis El HIF ${MPI_LIBRARIES} stdc++fs)
     # linking stdc++fs for filesystem on gnu 7 & 8
     set_target_properties(${TYPE}-${TEST}
                           PROPERTIES
