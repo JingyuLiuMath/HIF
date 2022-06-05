@@ -13,6 +13,7 @@ set(MPI_Fortran_COMPILER ${MPI_COMPILER_DIR}/mpif90)
 set(EL_INCLUDE_DIR /home/jyliu/packages/elemental/master/include)
 set(EL_LIB_DIR /home/jyliu/packages/elemental/master/lib64)
 
+set(METIS_COMPILER_DIR  /opt/local/metis/5.1.0/bin)
 set(METIS_INCLUDE_DIR /opt/local/metis/5.1.0/include)
 set(METIS_LIBMETIS_DIR /opt/local/metis/5.1.0/libmetis)
 set(METIS_GKLIB_DIR /opt/local/metis/5.1.0/GKlib)
