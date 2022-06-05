@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 		HIFGraph<Scalar> HIF(A, cutoff);
 
-		HIF.Factorization(tol);
+		/*HIF.Factorization(tol);
 
 		HIF.Apply(b);
 
@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
 		{
 			foutx << b.Get(k, 1) << endl;
 		}
-		foutx.close();
+		foutx.close();*/
 	}
 	catch (std::exception& e)
 	{
