@@ -37,8 +37,10 @@ int main(int argc, char* argv[])
 		finA >> n;
 		std::cout << n << endl;
 		SparseMatrix<Scalar> A(n, n);
+		std::cout << A.Height() << std::endl;
+		std::cout << A.Width() << std::endl;
 		int i, j;
-		double value;
+		Scalar value;
 		while (finA >> i >> j >> value)
 		{
 			std::cout << i << j << value << endl;
