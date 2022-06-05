@@ -9,7 +9,7 @@ namespace HIF{
 extern "C"
 {
     void gk_free(void**, ...);
-    void MlevelNodeBisectionMultiple(ctrl_t*, graph_t*);
+    // void MlevelNodeBisectionMultiple(ctrl_t*, graph_t*);
 }
 
 template <typename Scalar>
