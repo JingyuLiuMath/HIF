@@ -1,9 +1,5 @@
 #include "HIF.hpp"
 
-#include <metis.h>
-// #include "/opt/local/metis/5.1.0/lib/libmetis.a"
-#include "libmetis.h"
-
 namespace HIF {
 
 // Graph partition.
