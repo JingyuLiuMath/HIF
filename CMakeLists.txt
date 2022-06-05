@@ -33,12 +33,6 @@ configure_file(${PROJECT_SOURCE_DIR}/cmake/config.h.cmake
 install(FILES ${PROJECT_BINARY_DIR}/include/HIF/config.h
         DESTINATION include/HIF)
 
-        if(NOT EL_LIB_DIR)
-    find_package(El REQUIRED)
-endif()
-link_directories(${EL_LIB_DIR})
-include_directories(${EL_INCLUDE_DIR})
-
 if(NOT METIS_LIB_DIR)
     find_package(METIS REQUIRED)
 endif()
@@ -55,6 +49,12 @@ include_directories(${METIS_INCLUDE_DIR})
 include_directories(${METIS_LIBMETIS_DIR})
 include_directories(${METIS_GKLIB_DIR})
 #include_directories(${METIS_BUILD_INCLUDE_DIR})
+
+if(NOT EL_LIB_DIR)
+    find_package(El REQUIRED)
+endif()
+link_directories(${EL_LIB_DIR})
+include_directories(${EL_INCLUDE_DIR})
 
 # Grab all of the .c, .cpp, .h, and .hpp HIF files
 file(GLOB_RECURSE HIF_CPP RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
