@@ -67,14 +67,18 @@ int main(int argc, char* argv[])
 
 		HIF.Apply(b);
 
-		string filex = "./sol.txt";
-		std::ofstream foutx;
-		foutx.open(filex, std::ios::out);
-		for (int k = 0; k < b.Height(); k++)
+		for (int k = 0; k < n; k++)
 		{
-			foutx << b.Get(k, 1) << endl;
+			std::cout << b.Get(k, 0) << std::endl;
 		}
-		foutx.close();
+		//string filex = "./sol.txt";
+		//std::ofstream foutx;
+		//foutx.open(filex, std::ios::out);
+		//for (int k = 0; k < b.Height(); k++)
+		//{
+		//	foutx << b.Get(k, 1) << endl;
+		//}
+		//foutx.close();
 	}
 	catch (std::exception& e)
 	{
