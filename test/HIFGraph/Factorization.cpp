@@ -18,15 +18,15 @@ int main(int argc, char* argv[])
 
 	try
 	{
-		const string inputfileA = Input("--input_b", "input filename of A", "A.txt");
-		const string inputfileb = Input("--input_A", "input filename of b", "b.txt");
+		const string inputfileA = Input("--input_b", "input filename of A", "./A.txt");
+		const string inputfileb = Input("--input_A", "input filename of b", "./b.txt");
 		const int cutoff = Input("--cutoff", "cutoff", 64);
 		const double tol = Input("--tol", "tolerance", 1e-3);
 
 		El::ProcessInput();
 		El::PrintInputReport();
 
-		string fileA = "./" + inputfileA;
+		string fileA = inputfileA;
 		std::ifstream finA;
 		finA.open(fileA, std::ios::in);
 		if (!finA)
@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
 		}
 		finA.close();
 
-		string fileb = "./" + inputfileb;
+		string fileb = inputfileb;
 		std::ifstream finb;
 		finb.open(fileb, std::ios::in);
 		if (!finb)
