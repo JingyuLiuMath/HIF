@@ -6,6 +6,12 @@
 
 namespace HIF{
 
+extern "C"
+{
+    void gk_free(void**, ...);
+    void MlevelNodeBisectionMultiple(ctrl_t*, graph_t*);
+}
+
 template <typename Scalar>
 void GraphPart(const SparseMatrix<Scalar>& A,
     vector<int>& p1, vector<int>& p2,
