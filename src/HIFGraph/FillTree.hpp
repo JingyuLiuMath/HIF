@@ -6,7 +6,6 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 {
-	DEBUG_HIF(CallStackEntry cse("HIFGraph:FillTree"))
 	// We only fill the leaf nodes.
 	if (endflag_ == 1)
 	{

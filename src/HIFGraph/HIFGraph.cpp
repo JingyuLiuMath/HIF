@@ -29,7 +29,7 @@ template <typename Scalar>
 HIFGraph<Scalar>::HIFGraph
 (const SparseMatrix<Scalar>& A, int minvtx)
 {
-	DEBUG_HIF(CallStackEntry cse("HIFGraph:HIFGraph"))
+	std::cout << "Start initialization" << std::endl;
 	vtx_.resize(A.Height());
 	for (int i = 0; i < vtx_.size(); i++)
 	{
@@ -39,8 +39,8 @@ HIFGraph<Scalar>::HIFGraph
 	seqnum_ = 0;
 
 	BuildTree(A, minvtx);
-	SetNeighborNode();
-	FillTree(A);
+	//SetNeighborNode();
+	//FillTree(A);
 }
 
 // Create a HIFGraph class.
@@ -49,7 +49,7 @@ HIFGraph<Scalar>::HIFGraph
 (int level, int seqnum,
 vector<int>& vtx, vector<int>& sep, vector<int>& nb)
 {
-	DEBUG_HIF(CallStackEntry cse("HIFGraph:HIFGraph"))
+	std::cout << "current build tree level: " << level << std::endl;
 	level_ = level;
 	seqnum_ = seqnum;
 	vtx_.assign(vtx.begin(), vtx.end());
