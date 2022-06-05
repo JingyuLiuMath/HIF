@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
 		Scalar value;
 		while (finA >> i >> j >> value)
 		{
-			A.Set(i, j, value);
+			A.QueueUpdate(i, j, value);
 		}
 		finA.close();
 
