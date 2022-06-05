@@ -11,7 +11,7 @@
 
 namespace HIF {
 
-int main(int argc, char* argv[])
+void main(int argc, char* argv[])
 {
 	El::Initialize(argc, argv);
 	typedef double Scalar;
