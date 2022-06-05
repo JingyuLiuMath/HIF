@@ -12,7 +12,7 @@ void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Sc
 	{
 		if (vec1[i] < vec2[j])
 		{
-			vec.push_back[vec1[i]];
+			vec.push_back(vec1[i]);
 			i++;
 		}
 		else if (vec1[i] > vec2[j])
@@ -27,7 +27,7 @@ void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Sc
 	}
 	while (i < vec1.size())
 	{
-		vec.push_back[vec1[i]];
+		vec.push_back(vec1[i]);
 	}
 }
 
