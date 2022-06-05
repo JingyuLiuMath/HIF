@@ -118,8 +118,8 @@ void Log( Args... args )
 
 DEBUG_HIF(
     void PushCallStack( string s );
-    void PopCallStack();
-    void DumpCallStack();
+    /*void PopCallStack();
+    void DumpCallStack();*/
 
     class CallStackEntry
     {
