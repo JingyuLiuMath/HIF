@@ -175,6 +175,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 
     // test
     METIS_SetDefaultOptions(piperm);
+
     // set up the run time parameters
     ctrl = SetupCtrl(METIS_OP_OMETIS, options, 1, 3, NULL, NULL);
 

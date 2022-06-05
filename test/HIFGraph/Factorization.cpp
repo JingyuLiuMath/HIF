@@ -18,8 +18,8 @@ int main(int argc, char* argv[])
 
 	try
 	{
-		const string inputfileA = Input("--input_b", "input filename of A", "./A.txt");
-		const string inputfileb = Input("--input_A", "input filename of b", "./b.txt");
+		const string inputfileA = Input("--input_A", "input filename of A", "./A.txt");
+		const string inputfileb = Input("--input_b", "input filename of b", "./b.txt");
 		const int cutoff = Input("--cutoff", "cutoff", 64);
 		const double tol = Input("--tol", "tolerance", 1e-3);
 
