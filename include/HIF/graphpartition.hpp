@@ -9,7 +9,7 @@ namespace HIF{
 extern "C"
 {
     // void gk_free(void**, ...);
-    ctrl_t* libmetis__SetupCtrl(moptype_et, int*, int, int, float*, float*);
+    ctrl_t* SetupCtrl(moptype_et, int*, int, int, float*, float*);
     // void MlevelNodeBisectionMultiple(ctrl_t*, graph_t*);
 }
 
