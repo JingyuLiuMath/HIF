@@ -12,11 +12,11 @@ void GraphPart(const SparseMatrix<Scalar>& A,
     vector<int>& sep1, vector<int>& sep2);
 
 template <typename Scalar>
-void MetisPart(const SparseMatrix<Scalar>& A,
+void MetisPart(SparseMatrix<Scalar>& A,
     vector<int>& p1, vector<int>& p2, vector<int>& sep);
 
 template <typename Scalar>
-void MetisSepPart(const SparseMatrix<Scalar>& A,
+void MetisSepPart(SparseMatrix<Scalar>& A,
     vector<int>& p1, vector<int>& p2, vector<int>& sep);
 
 void Accumarray(const vector<int>& vec, vector<int>& count);

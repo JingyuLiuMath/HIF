@@ -38,7 +38,7 @@ void GraphPart(const SparseMatrix<Scalar>& A,
 
 // Metis partition.
 template <typename Scalar>
-void MetisPart(const SparseMatrix<Scalar>& A,
+void MetisPart(SparseMatrix<Scalar>& A,
     vector<int>& p1, vector<int>& p2, vector<int>& sep)
 {
     // degree = sum((spones(nvtxs) - speye(size(nvtxs))) > 0);
@@ -108,7 +108,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
 
 // Metis separator partition.
 template <typename Scalar>
-void MetisSepPart(const SparseMatrix<Scalar>& A, 
+void MetisSepPart(SparseMatrix<Scalar>& A, 
     vector<int>& p1, vector<int>& p2, vector<int>& sep)
 {
     // nvtxs.
@@ -291,9 +291,9 @@ void Cumsum(const vector<int>& vec, vector<int>& a)
 template void GraphPart(const SparseMatrix<Scalar>& A, \
     vector<int>& p1, vector<int>& p2, \
     vector<int>& sep1, vector<int>& sep2); \
-template void MetisPart(const SparseMatrix<Scalar>& A, \
+template void MetisPart(SparseMatrix<Scalar>& A, \
     vector<int>& p1, vector<int>& p2, vector<int>& sep); \
-template void MetisSepPart(const SparseMatrix<Scalar>& A, \ 
+template void MetisSepPart(SparseMatrix<Scalar>& A, \ 
     vector<int>& p1, vector<int>& p2, vector<int>& sep);
 
 PROTOTYPE_PART(float)
