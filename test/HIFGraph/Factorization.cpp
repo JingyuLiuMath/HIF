@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 		while (finA >> i >> j >> value)
 		{
 			std::cout << i << j << value << endl;
-			A.Set(i, j, value);
+			// A.Set(i, j, value);
 		}
 		finA.close();
 
