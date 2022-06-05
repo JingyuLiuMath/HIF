@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
 		double value;
 		while (finA >> i >> j >> value)
 		{
-			std::codecvt_utf8 << i << j << value << endl;
+			std::cout << i << j << value << endl;
 			A.Set(i, j, value);
 		}
 		finA.close();
