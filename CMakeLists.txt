@@ -33,9 +33,9 @@ configure_file(${PROJECT_SOURCE_DIR}/cmake/config.h.cmake
 install(FILES ${PROJECT_BINARY_DIR}/include/HIF/config.h
         DESTINATION include/HIF)
 
-if(NOT METIS_LIB_DIR)
-    find_package(METIS REQUIRED)
-endif()
+#if(NOT METIS_LIB_DIR)
+#    find_package(METIS REQUIRED)
+#endif()
 #message(${METIS_BUILD_LIBMETIS_DIR})
 message(${METIS_INCLUDE_DIR})
 message(${METIS_LIBMETIS_DIR})
