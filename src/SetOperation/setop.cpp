@@ -7,8 +7,7 @@
 
 namespace HIF{
 
-#define PROTOTYPE(Scalar) \
-
+#define PROTOTYPE_SET(Scalar) \
 template int FindFirstIndex(const vector<Scalar>& vec, Scalar value); \
 template void FindAllIndex(const vector<Scalar>& vec, Scalar value, vector<int>& index); \
 template void FindAllIndex_Sort(const vector<Scalar>& vec1, \
@@ -28,9 +27,9 @@ template void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, 
 	vector<Scalar>& vec); \
 template void Unique_Sort(vector<Scalar>& vec);
 
-PROTOTYPE(int)
-PROTOTYPE(float)
-PROTOTYPE(double)
+PROTOTYPE_SET(int)
+PROTOTYPE_SET(float)
+PROTOTYPE_SET(double)
 
 } // namespace HIF.
 
