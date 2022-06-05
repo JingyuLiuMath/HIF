@@ -20,4 +20,4 @@ set(METIS_GKLIB_DIR /home/jyliu/metis-5.1.0/GKlib)
 set(METIS_BUILD_LIBMETIS_DIR /home/jyliu/metis-5.1.0/build/Linux-x86_64/libmetis)
 set(METIS_BUILD_INCLUDE_DIR /home/jyliu/metis-5.1.0/build/Linux-x86_64/include)
 
-set (CMAKE_SHARED_LINKER_FLAGS "--copy-dt-needed-entries")
+set (CMAKE_EXE_LINKER_FLAGS "--copy-dt-needed-entries")
