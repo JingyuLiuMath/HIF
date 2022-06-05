@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
 		Scalar value;
 		while (finA >> i >> j >> value)
 		{
-			A.Set(i, j, value);
+			A.QueueUpdate(i, j, value);
 		}
 		finA.close();
 
@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
 		int k = 0;
 		while (finb >> value)
 		{
-			b.Set(k, 0, value);
+			b.Update(k, 0, value);
 			k++;
 		}
 		finb.close();
