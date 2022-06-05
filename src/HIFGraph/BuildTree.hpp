@@ -6,6 +6,7 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:BuildTree"))
 	sort(vtx_.begin(), vtx_.end());
 	sort(sep_.begin(), sep_.end());
 	sort(nb_.begin(), nb_.end());
@@ -69,6 +70,7 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 template <typename Scalar>
 void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrix<Scalar>& A)
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:PassSeparatorNeighbor"))
 	SparseMatrix<Scalar> nbA = A(sep_, nb_);
 
 	for (int i = 0; i < sep_.size(); i++)

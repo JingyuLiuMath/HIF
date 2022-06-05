@@ -63,14 +63,14 @@ int main(int argc, char* argv[])
 
 		HIFGraph<Scalar> HIF(A, cutoff);
 
-		HIF.Factorization(tol);
+		// HIF.Factorization(tol);
 
-		HIF.Apply(b);
+		// HIF.Apply(b);
 
-		for (int k = 0; k < n; k++)
-		{
-			std::cout << b.Get(k, 0) << std::endl;
-		}
+		//for (int k = 0; k < n; k++)
+		//{
+		//	std::cout << b.Get(k, 0) << std::endl;
+		//}
 		//string filex = "./sol.txt";
 		//std::ofstream foutx;
 		//foutx.open(filex, std::ios::out);
