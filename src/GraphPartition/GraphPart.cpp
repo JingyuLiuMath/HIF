@@ -4,7 +4,7 @@ namespace HIF {
 
 // Graph partition.
 template <typename Scalar>
-void GraphPart(SparseMatrix<Scalar>& A, 
+void GraphPart(const SparseMatrix<Scalar>& A, 
     vector<int>& p1, vector<int>& p2, 
     vector<int>& sep1, vector<int>& sep2)
 {
@@ -38,7 +38,7 @@ void GraphPart(SparseMatrix<Scalar>& A,
 
 // Metis partition.
 template <typename Scalar>
-void MetisPart(SparseMatrix<Scalar>& A,
+void MetisPart(const SparseMatrix<Scalar>& A,
     vector<int>& p1, vector<int>& p2, vector<int>& sep)
 {
     // degree = sum((spones(nvtxs) - speye(size(nvtxs))) > 0);
@@ -46,8 +46,8 @@ void MetisPart(SparseMatrix<Scalar>& A,
     // idx = find(degree > 0);
     SparseMatrix<int> B;
     B.Resize(A.Height(), A.Width());
-    int* sourceA = A.SourceBuffer();
-    int* targetA = A.TargetBuffer();
+    const int* sourceA = A.LockedSourceBuffer();
+    const int* targetA = A.LockedTargetBuffer();
     int nnzA = A.NumEntries();
     for (int t = 0; t < nnzA; t++)
     {
@@ -108,13 +108,13 @@ void MetisPart(SparseMatrix<Scalar>& A,
 
 // Metis separator partition.
 template <typename Scalar>
-void MetisSepPart(SparseMatrix<Scalar>& A, 
+void MetisSepPart(const SparseMatrix<Scalar>& A, 
     vector<int>& p1, vector<int>& p2, vector<int>& sep)
 {
     // nvtxs.
     idx_t nvtxs = A.Height();
-    int* sourceA = A.SourceBuffer();
-    int* targetA = A.TargetBuffer();
+    const int* sourceA = A.LockedSourceBuffer();
+    const int* targetA = A.LockedTargetBuffer();
     int nnzA = A.NumEntries();
     // xadj.
     idx_t* xadj;
@@ -288,12 +288,12 @@ void Cumsum(const vector<int>& vec, vector<int>& a)
 }
 
 #define PROTOTYPE_PART(Scalar) \
-template void GraphPart(SparseMatrix<Scalar>& A, \
+template void GraphPart(const SparseMatrix<Scalar>& A, \
     vector<int>& p1, vector<int>& p2, \
     vector<int>& sep1, vector<int>& sep2); \
-template void MetisPart(SparseMatrix<Scalar>& A, \
+template void MetisPart(const SparseMatrix<Scalar>& A, \
     vector<int>& p1, vector<int>& p2, vector<int>& sep); \
-template void MetisSepPart(SparseMatrix<Scalar>& A, \ 
+template void MetisSepPart(const SparseMatrix<Scalar>& A, \ 
     vector<int>& p1, vector<int>& p2, vector<int>& sep);
 
 PROTOTYPE_PART(float)
