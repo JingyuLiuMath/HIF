@@ -8,6 +8,9 @@ namespace HIF{
 
 extern "C"
 {
+    idx_t;
+    graph_t;
+    ctrl_t;
     // void gk_free(void**, ...);
     ctrl_t* SetupCtrl(moptype_et, int*, int, int, float*, float*);
     // void MlevelNodeBisectionMultiple(ctrl_t*, graph_t*);
