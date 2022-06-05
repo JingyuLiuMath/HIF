@@ -56,6 +56,7 @@ endif()
 link_directories(${METIS_LIB_DIR})
 include_directories(${METIS_INCLUDE_DIR})
 include_directories(${METIS_LIBMETIS_DIR})
+include_directories(${METIS_GKLIB_DIR})
 
 # Build the HIF source
 add_library(HIF STATIC ${HIF_SRC})

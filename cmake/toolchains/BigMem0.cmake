@@ -15,4 +15,5 @@ set(EL_LIB_DIR /home/jyliu/packages/elemental/master/lib64)
 
 set(METIS_INCLUDE_DIR /opt/local/metis/5.1.0/include)
 set(METIS_LIBMETIS_DIR /opt/local/metis/5.1.0/libmetis)
+set(METIS_GKLIB_DIR /opt/local/metis/5.1.0/GKlib)
 set(METIS_LIB_DIR /opt/local/metis/5.1.0/lib)
