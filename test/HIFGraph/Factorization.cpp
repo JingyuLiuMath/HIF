@@ -9,7 +9,7 @@
 // bi
 // ...
 
-namespace HIF {
+using namespace HIF;
 
 void main(int argc, char* argv[])
 {
@@ -82,5 +82,3 @@ void main(int argc, char* argv[])
 	El::Finalize();
 	return 0;
 }
-
-} // namespace HIF.
