@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
 		}
 		finb.close();
 
-		HIFGraph<Scalar> HIF(A, cutoff);
+		// HIFGraph<Scalar> HIF(A, cutoff);
 
 		/*HIF.Factorization(tol);
 
