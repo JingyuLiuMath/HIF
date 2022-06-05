@@ -71,9 +71,6 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrix<Scalar>& A)
 {
 	SparseMatrix<Scalar> nbA = A(sep_, nb_);
 
-	Matrix<Scalar> testA;
-	FullMat(nbA, testA);
-
 	for (int i = 0; i < sep_.size(); i++)
 	{
 		int sepi = sep_[i];
