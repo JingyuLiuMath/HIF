@@ -4,7 +4,7 @@ namespace HIF {
 
 // Graph partition.
 template <typename Scalar>
-void GraphPart(const SparseMatrix<Scalar>& A, 
+void GraphPart(SparseMatrix<Scalar>& A, 
     vector<int>& p1, vector<int>& p2, 
     vector<int>& sep1, vector<int>& sep2)
 {
@@ -288,7 +288,7 @@ void Cumsum(const vector<int>& vec, vector<int>& a)
 }
 
 #define PROTOTYPE_PART(Scalar) \
-template void GraphPart(const SparseMatrix<Scalar>& A, \
+template void GraphPart(SparseMatrix<Scalar>& A, \
     vector<int>& p1, vector<int>& p2, \
     vector<int>& sep1, vector<int>& sep2); \
 template void MetisPart(SparseMatrix<Scalar>& A, \

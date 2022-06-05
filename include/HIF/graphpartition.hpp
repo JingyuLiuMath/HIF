@@ -7,7 +7,7 @@
 namespace HIF{
 
 template <typename Scalar>
-void GraphPart(const SparseMatrix<Scalar>& A,
+void GraphPart(SparseMatrix<Scalar>& A,
     vector<int>& p1, vector<int>& p2,
     vector<int>& sep1, vector<int>& sep2);
 
