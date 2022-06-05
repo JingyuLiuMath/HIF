@@ -33,18 +33,7 @@ configure_file(${PROJECT_SOURCE_DIR}/cmake/config.h.cmake
 install(FILES ${PROJECT_BINARY_DIR}/include/HIF/config.h
         DESTINATION include/HIF)
 
-# Grab all of the .c, .cpp, .h, and .hpp HIF files
-file(GLOB_RECURSE HIF_CPP RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
-     "src/*.c" "src/*.cpp" "src/*.hpp")
-file(GLOB_RECURSE HIF_HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
-     "include/*.h" "include/*.hpp")
-set(HIF_SRC "${HIF_CPP};${HIF_HEADERS}")
-
-find_package(MPI REQUIRED)
-include_directories(${MPI_C_INCLUDE_PATH})
-include_directories(${MPI_CXX_INCLUDE_PATH})
-
-if(NOT EL_LIB_DIR)
+        if(NOT EL_LIB_DIR)
     find_package(El REQUIRED)
 endif()
 link_directories(${EL_LIB_DIR})
@@ -66,6 +55,17 @@ include_directories(${METIS_INCLUDE_DIR})
 include_directories(${METIS_LIBMETIS_DIR})
 include_directories(${METIS_GKLIB_DIR})
 #include_directories(${METIS_BUILD_INCLUDE_DIR})
+
+# Grab all of the .c, .cpp, .h, and .hpp HIF files
+file(GLOB_RECURSE HIF_CPP RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+     "src/*.c" "src/*.cpp" "src/*.hpp")
+file(GLOB_RECURSE HIF_HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+     "include/*.h" "include/*.hpp")
+set(HIF_SRC "${HIF_CPP};${HIF_HEADERS}")
+
+find_package(MPI REQUIRED)
+include_directories(${MPI_C_INCLUDE_PATH})
+include_directories(${MPI_CXX_INCLUDE_PATH})
 
 # Build the HIF source
 add_library(HIF STATIC ${HIF_SRC})
