@@ -45,21 +45,21 @@ int main(int argc, char* argv[])
 		}
 		finA.close();
 
-		//string fileb = inputfileb;
-		//std::ifstream finb;
-		//finb.open(fileb, std::ios::in);
-		//if (!finb)
-		//{
-		//	std::cerr << "cannot open the file";
-		//}
-		//Matrix<Scalar> b(n, 1);
-		//int k = 0;
-		//while (finb >> value)
-		//{
-		//	b.Set(k, 0, value);
-		//	k++;
-		//}
-		//finb.close();
+		string fileb = inputfileb;
+		std::ifstream finb;
+		finb.open(fileb, std::ios::in);
+		if (!finb)
+		{
+			std::cerr << "cannot open the file";
+		}
+		Matrix<Scalar> b(n, 1);
+		int k = 0;
+		while (finb >> value)
+		{
+			b.QueueUpdate(k, 0, value);
+			k++;
+		}
+		finb.close();
 
 		// HIFGraph<Scalar> HIF(A, cutoff);
 
