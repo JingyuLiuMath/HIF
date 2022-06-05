@@ -287,4 +287,16 @@ void Cumsum(const vector<int>& vec, vector<int>& a)
     }
 }
 
+#define PROTOTYPE_PART(Scalar) \
+template void GraphPart(const SparseMatrix<Scalar>& A, \
+    vector<int>& p1, vector<int>& p2, \
+    vector<int>& sep1, vector<int>& sep2); \
+template void MetisPart(const SparseMatrix<Scalar>& A, \
+    vector<int>& p1, vector<int>& p2, vector<int>& sep); \
+template void MetisSepPart(const SparseMatrix<Scalar>& A, \ 
+    vector<int>& p1, vector<int>& p2, vector<int>& sep);
+
+PROTOTYPE_PART(float)
+PROTOTYPE_PART(double)
+
 } // namespace HIF.
