@@ -22,7 +22,10 @@
 #include "HIF/config.h"
 #include "El.hpp"
 #include "metis.h"
-#include "metislib.h"
+extern "C"
+{
+	#include "metislib.h"
+}
 
 #include "HIF/core/environment.hpp"
 #include "HIF/hifgraph.hpp"
