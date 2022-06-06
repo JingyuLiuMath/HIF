@@ -35,12 +35,12 @@ int main(int argc, char* argv[])
 		}
 		int n;
 		finA >> n;
-		const SparseMatrix<Scalar> A(n, n);
+		SparseMatrix<Scalar> A(n, n);
 		int i, j;
 		Scalar value;
 		while (finA >> i >> j >> value)
 		{
-			A.Set(i, j, value);
+			A.QueueUpdate(i, j, value);
 		}
 		finA.close();
 
@@ -62,13 +62,14 @@ int main(int argc, char* argv[])
 
 		std::cout << A.Height() << std::endl;
 		std::cout << A.NumEntries() << std::endl;
+		std::cout << A.Get(6, 6) << std::endl;
 		vector<int> index;
 		for (i = 0; i < 256; i += 2)
 		{
 			index.push_back(i);
 		}
 		std::cout << "asdfg" << std::endl;
-		const SparseMatrix<Scalar> tmpA = A(index, index);
+		SparseMatrix<Scalar> tmpA = A(index, index);
 		std::cout << tmpA.Height() << std::endl;
 
 
