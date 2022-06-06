@@ -61,6 +61,8 @@ int main(int argc, char* argv[])
 		}
 		finb.close();
 
+		std::cout << A.Height() << std::endl;
+		std::cout << A.NumEntries() << std::endl;
 		vector<int> index;
 		for (i = 0; i < 256; i += 2)
 		{
