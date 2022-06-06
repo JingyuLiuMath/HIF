@@ -64,6 +64,8 @@ int main(int argc, char* argv[])
 		std::cout << A.Height() << std::endl;
 		std::cout << A.NumEntries() << std::endl;
 		std::cout << A.Get(6, 6) << std::endl;
+		A.Set(6, 6, -2);
+		std::cout << A.Get(6, 6) << std::endl;
 		vector<int> index;
 		for (i = 0; i < 256; i += 2)
 		{
