@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
 		}
 		int n;
 		finA >> n;
-		SparseMatrix<Scalar> A(n, n);
+		const SparseMatrix<Scalar> A(n, n);
 		int i, j;
 		Scalar value;
 		while (finA >> i >> j >> value)
@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 			index.push_back(i);
 		}
 		std::cout << "asdfg" << std::endl;
-		auto tmpA = A(index, index);
+		const SparseMatrix<Scalar> tmpA = A(index, index);
 		std::cout << tmpA.Height() << std::endl;
 
 
