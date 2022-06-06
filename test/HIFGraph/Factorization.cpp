@@ -40,6 +40,7 @@ int main(int argc, char* argv[])
 		Scalar value;
 		while (finA >> i >> j >> value)
 		{
+			std::cout << " i " << i " j " << j << " value " << value << std::endl;
 			A.QueueUpdate(i, j, value);
 		}
 		finA.close();
