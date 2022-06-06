@@ -71,10 +71,9 @@ int main(int argc, char* argv[])
 			index.push_back(i);
 		}
 		std::cout << "asdfg" << std::endl;
-		SparseMatrix<Scalar> tmpA(A);
-		tmpA += A;
+		// SparseMatrix<Scalar> tmpA = A(index, index);
+		auto tmp = A(index, index);
 		std::cout << tmpA.Height() << std::endl;
-		std::cout << tmpA.Get(6, 6) << std::endl;
 
 
 		// HIFGraph<Scalar> HIF(A, cutoff);
