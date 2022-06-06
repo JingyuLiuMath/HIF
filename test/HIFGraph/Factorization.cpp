@@ -35,7 +35,6 @@ int main(int argc, char* argv[])
 		}
 		int n;
 		finA >> n;
-		std::cout << n << endl;
 		SparseMatrix<Scalar> A(n, n);
 		int i, j;
 		Scalar value;
@@ -69,11 +68,11 @@ int main(int argc, char* argv[])
 			index.push_back(i);
 		}
 		std::cout << "asdfg" << std::endl;
-		SparseMatrix<Scalar> tmpA = A(index, index);
+		const SparseMatrix<Scalar> tmpA = A(index, index);
 		std::cout << tmpA.Height() << std::endl;
 
 
-		HIFGraph<Scalar> HIF(A, cutoff);
+		// HIFGraph<Scalar> HIF(A, cutoff);
 
 		// HIF.Factorization(tol);
 
