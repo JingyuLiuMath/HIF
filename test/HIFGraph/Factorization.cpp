@@ -66,13 +66,13 @@ int main(int argc, char* argv[])
 		std::cout << A.NumEntries() << std::endl;
 		std::cout << A.Get(6, 6) << std::endl;
 		vector<int> index;
-		for (i = 0; i < 256; i += 2)
+		for (int i = 0; i < 256; i += 2)
 		{
 			index.push_back(i);
 		}
 		std::cout << "asdfg" << std::endl;
-		// SparseMatrix<Scalar> tmpA = A(index, index);
-		auto tmpA = A(index, index);
+		SparseMatrix<Scalar> tmpA = A(index, index);
+		// auto tmpA = A(index, index);
 		std::cout << tmpA.Height() << std::endl;
 		std::cout << "uoooy" << std::endl;
 
