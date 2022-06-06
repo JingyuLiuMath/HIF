@@ -70,6 +70,8 @@ int main(int argc, char* argv[])
 		{
 			index.push_back(i);
 		}
+		cout << "index size: " << index.size() <<
+			" index0: " << index[0] << " index1: " << index[1] << std::endl;
 		std::cout << "asdfg" << std::endl;
 		SparseMatrix<Scalar> tmpA = A(index, index);
 		// auto tmpA = A(index, index);
