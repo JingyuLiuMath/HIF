@@ -74,6 +74,7 @@ int main(int argc, char* argv[])
 		// SparseMatrix<Scalar> tmpA = A(index, index);
 		auto tmpA = A(index, index);
 		std::cout << tmpA.Height() << std::endl;
+		std::cout << "uoooy" << std::endl;
 
 
 		// HIFGraph<Scalar> HIF(A, cutoff);
