@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
 		}
 		std::cout << "asdfg" << std::endl;
 		// SparseMatrix<Scalar> tmpA = A(index, index);
-		auto tmp = A(index, index);
+		auto tmpA = A(index, index);
 		std::cout << tmpA.Height() << std::endl;
 
 
