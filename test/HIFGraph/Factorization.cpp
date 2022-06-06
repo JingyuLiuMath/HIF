@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
 		}
 		std::cout << "asdfg" << std::endl;
 		SparseMatrix<Scalar> tmpA(A);
-		tmp += A;
+		tmpA += A;
 		std::cout << tmpA.Height() << std::endl;
 		std::cout << tmpA.Get(6, 6) << std::endl;
 
