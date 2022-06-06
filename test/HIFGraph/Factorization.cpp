@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
 		while (finA >> i >> j >> value)
 		{
 			std::cout << " i " << i << " j " << j << " value " << value << std::endl;
-			A.QueueUpdate(i, j, value);
+			A.Set(i, j, value);
 		}
 		finA.close();
 
