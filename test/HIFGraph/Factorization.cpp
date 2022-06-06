@@ -61,6 +61,16 @@ int main(int argc, char* argv[])
 		}
 		finb.close();
 
+		vector<int> index;
+		for (i = 0; i < 256; i += 2)
+		{
+			index.push_back(i)
+		}
+		std::cout << "asdfg" << std::endl;
+		SparseMatrix<Scalar> tmpA = A(index, index);
+		std::cout << tmpA.NumEntries() << std::endl;
+
+
 		HIFGraph<Scalar> HIF(A, cutoff);
 
 		// HIF.Factorization(tol);
