@@ -203,20 +203,19 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
             ctrl->compress = 0;
         }
     }
-
+    std::cout << "Jyliu 2" << std::endl;
     // compress the graph
-    if (ctrl->compress)
-        ctrl->compress = 0;
+    /*if (ctrl->compress)
+        ctrl->compress = 0;*/
 
     // if no prunning and no compression, setup the graph in the normal way.
-    if (ctrl->pfactor == 0.0 && ctrl->compress == 0)
-        graph = SetupGraph(ctrl, nvtxs, 1, xadj, adjncy, vwgt, NULL, NULL);
+    /*if (ctrl->pfactor == 0.0 && ctrl->compress == 0)
+        graph = SetupGraph(ctrl, nvtxs, 1, xadj, adjncy, vwgt, NULL, NULL);*/
 
-    ASSERT(CheckGraph(graph, ctrl->numflag, 1));
+    // ASSERT(CheckGraph(graph, ctrl->numflag, 1));
 
     /* allocate workspace memory */
-    AllocateWorkSpace(ctrl, graph);
-    std::cout << "Jyliu 1" << std::endl;
+    // AllocateWorkSpace(ctrl, graph);
 
     // MlevelNodeBisectionMultiple(ctrl, graph);
 
