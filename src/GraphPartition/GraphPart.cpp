@@ -152,6 +152,10 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         Accumarray(colindex, cumsum_accumj);
         Cumsum(cumsum_accumj);
         std::cout << cumsum_accumj.size() << std::endl;
+        for (int w = 0; w < cumsum_accumj.size(); w++)
+        {
+            std::cout << cumsum_accumj[w] << std::endl;
+        }
         xadj = new idx_t[cumsum_accumj.size() + 1];
         xadj[0] = 0;
         for (int i = 0; i < cumsum_accumj.size(); i++)
