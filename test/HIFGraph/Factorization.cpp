@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 
 		//HIFGraph<double> HIF(A, cutoff);
 
-		Matrix<int> testA(2, 2);
+		SparseMatrix<int> testA(2, 2);
 		testA.Set(0, 0, 1);
 		std::cout << testA.Get(0, 0) << std::endl;
 		testA.Update(0, 0, 2);
