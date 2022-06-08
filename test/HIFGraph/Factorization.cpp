@@ -63,9 +63,11 @@ int main(int argc, char* argv[])
 		//HIFGraph<double> HIF(A, cutoff);
 
 		Matrix<int> testA(2, 2);
-		A.Update(0, 0, 1);
+		testA.Update(0, 0, 1);
 		std::cout << A.Get(0, 0) << std::endl;
-		A.Update(0, 0, 2);
+		testA.Update(0, 0, 2);
+		std::cout << A.Get(0, 0) << std::endl;
+		testA.Set(0, 0, 2);
 		std::cout << A.Get(0, 0) << std::endl;
 		/*HIF.Factorization(tol);
 
