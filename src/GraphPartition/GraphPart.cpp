@@ -225,8 +225,10 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     std::cout << "Jyliu 1" << std::endl;
     // if no prunning and no compression, setup the graph in the normal way.
     if (ctrl->pfactor == 0.0 && ctrl->compress == 0)
+    {
+        std::cout << "Jyliu +" << std::endl;
         graph = SetupGraph(ctrl, nvtxs, 1, xadj, adjncy, vwgt, NULL, NULL);
-
+    }
     ASSERT(CheckGraph(graph, ctrl->numflag, 1));
 
     std::cout << "Jyliu 2" << std::endl;
