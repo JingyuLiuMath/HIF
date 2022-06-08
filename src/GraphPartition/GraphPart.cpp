@@ -8,7 +8,7 @@ void GraphPart(const SparseMatrix<Scalar>& A,
     vector<int>& p1, vector<int>& p2, 
     vector<int>& sep1, vector<int>& sep2)
 {
-    std::cout << "We are in GraphPart" << std::endl;
+    std::cout << "GraphPart" << std::endl;
     MetisPart(A, p1, p2, sep1);
     // p1 = p1 + sep, p2 = p2, sep1 = sep, sep2 need to be assigned.
     p1.insert(p1.end(), sep1.begin(), sep1.end());
@@ -42,7 +42,7 @@ template <typename Scalar>
 void MetisPart(const SparseMatrix<Scalar>& A,
     vector<int>& p1, vector<int>& p2, vector<int>& sep)
 {
-    std::cout << "We are in MetisPart" << std::endl;
+    std::cout << "MetisPart" << std::endl;
     // degree = sum((spones(nvtxs) - speye(size(nvtxs))) > 0);
     // singleidx = find(degree == 0);
     // idx = find(degree > 0);
@@ -113,12 +113,13 @@ template <typename Scalar>
 void MetisSepPart(const SparseMatrix<Scalar>& A, 
     vector<int>& p1, vector<int>& p2, vector<int>& sep)
 {
-    std::cout << "We are in MetisSepPart" << std::endl;
+    std::cout << "MetisSepPart" << std::endl;
     // nvtxs.
     idx_t nvtxs = A.Height();
     const int* sourceA = A.LockedSourceBuffer();
     const int* targetA = A.LockedTargetBuffer();
     int nnzA = A.NumEntries();
+    std::cout << " nvtxs " << std::endl;
     // xadj.
     idx_t* xadj;
     vector<int> rowindex(nnzA, 0);
@@ -157,6 +158,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
             xadj[i] = cumsumj[i];
         }
     }
+    std::cout << " xadj " << std::endl;
     // adjncy.
     idx_t* adjncy;
     adjncy = new idx_t[rowindex.size()];
