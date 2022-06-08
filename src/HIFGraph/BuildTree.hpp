@@ -6,7 +6,6 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 {
-	std::cout << "Start BuildTree on level " << level_ << std::endl;
 	sort(vtx_.begin(), vtx_.end());
 	sort(sep_.begin(), sep_.end());
 	sort(nb_.begin(), nb_.end());
