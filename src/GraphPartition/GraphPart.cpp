@@ -166,7 +166,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     {
         adjncy[i] = rowindex[i];
     }
-    idx_t* vwgt;
+    idx_t* vwgt = NULL;
     idx_t options[METIS_NOPTIONS];
     METIS_SetDefaultOptions(options);
     
