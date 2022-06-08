@@ -60,8 +60,13 @@ int main(int argc, char* argv[])
 		}
 		finb.close();
 
-		HIFGraph<double> HIF(A, cutoff);
+		//HIFGraph<double> HIF(A, cutoff);
 
+		Matrix<int> testA(2, 2);
+		A.Update(0, 0, 1);
+		std::cout << A.Get(0, 0) << std::endl;
+		A.Update(0, 0, 2);
+		std::cout << A.Get(0, 0) << std::endl;
 		/*HIF.Factorization(tol);
 
 		HIF.Apply(b);
