@@ -67,6 +67,7 @@ int main(int argc, char* argv[])
 			testindex.push_back(k);
 		}
 		SparseMatrix<double> testA = B(testindex, testindex);
+		std::cout << testA.Get(0, 0) << std::endl;
 		std::cout << testA.Height() << std::endl;
 		std::cout << testA.NumEntries() << std::endl;
 		
