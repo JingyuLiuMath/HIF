@@ -229,7 +229,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         std::cout << "Jyliu +" << std::endl;
         graph = SetupGraph(ctrl, nvtxs, 1, xadj, adjncy, vwgt, NULL, NULL);
     }
-    ASSERT(CheckGraph(graph, ctrl->numflag, 1));
+    // ASSERT(CheckGraph(graph, ctrl->numflag, 1));
 
     std::cout << "Jyliu 2" << std::endl;
     /* allocate workspace memory */
