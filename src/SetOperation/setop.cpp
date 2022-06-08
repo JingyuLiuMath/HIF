@@ -12,8 +12,6 @@ template int FindFirstIndex(const vector<Scalar>& vec, Scalar value); \
 template void FindAllIndex(const vector<Scalar>& vec, Scalar value, vector<int>& index); \
 template void FindAllIndex_Sort(const vector<Scalar>& vec1, \
 	const vector<Scalar>& vec2, vector<int>& index); \
-template void FindEqualIndex(const vector<Scalar>& vec1, const vector<Scalar>& vec2, \
-	vector<int>& index); \
 template bool Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2); \
 template void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, \
 	vector<int>& index1, vector<int>& index2); \

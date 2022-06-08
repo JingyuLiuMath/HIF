@@ -132,29 +132,13 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         rowindex[t] = sourceA[t];
         colindex[t] = targetA[t];
     }
-    vector<int> ijindex;
-    FindEqualIndex(rowindex, colindex, ijindex);
-    // rowindex[ijindex] = [], colindex[ijindex] = []
     vector<int> rowindex_copy(rowindex);
     vector<int> colindex_copy(colindex);
     rowindex.clear();
     colindex.clear();
-    int ijid = 0;
     for (int k = 0; k < rowindex_copy.size(); k++)
     {
-        if (ijid < ijindex.size())
-        {
-            if (k < ijindex[ijid])
-            {
-                rowindex.push_back(rowindex_copy[k]);
-                colindex.push_back(colindex_copy[k]);
-            }
-            else
-            {
-                ijid++;
-            }
-        }
-        else
+        if (rowindex_copy[k] == colindex_copy[k])
         {
             rowindex.push_back(rowindex_copy[k]);
             colindex.push_back(colindex_copy[k]);
@@ -231,7 +215,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         std::cout << "Jyliu +" << std::endl;
         graph = SetupGraph(ctrl, nvtxs, 1, xadj, adjncy, vwgt, NULL, NULL);
     }
-    // ASSERT(CheckGraph(graph, ctrl->numflag, 1));
+    ASSERT(CheckGraph(graph, ctrl->numflag, 1));
 
     std::cout << "Jyliu 2" << std::endl;
     /* allocate workspace memory */

@@ -16,10 +16,6 @@ void FindAllIndex(const vector<Scalar>& vec, Scalar value, vector<int>& index);
 template <typename Scalar>
 void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<int>& index);
 
-template <typename Scalar>
-void FindEqualIndex(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
-	vector<int>& index);
-
 // ---------------------------------------Intersect---------------------------------------
 template <typename Scalar>
 bool Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2);

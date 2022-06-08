@@ -52,17 +52,4 @@ void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, v
 	}
 }
 
-// vec1[index] = vec2[index] where vec1 and vec2 are two vectors of the same length.
-template <typename Scalar>
-void FindEqualIndex(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<int>& index)
-{
-	for (int i = 0; i < vec1.size(); i++)
-	{
-		if (vec1[i] == vec2[i])
-		{
-			index.push_back(i);
-		}
-	}
-}
-
 } // namespace HIF.
