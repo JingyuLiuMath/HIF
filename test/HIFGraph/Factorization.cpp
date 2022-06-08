@@ -64,9 +64,11 @@ int main(int argc, char* argv[])
 		std::cout << A.NumEntries() << std::endl;
 		std::cout << A.Get(6, 6) << std::endl;
 		vector<int> index;
+		vector<int> id;
 		for (int i = 1; i < 5; i += 2)
 		{
 			index.push_back(i);
+			id.psuh_back(i);
 		}
 		for (int j = 0; j < index.size(); j++)
 		{
@@ -78,7 +80,7 @@ int main(int argc, char* argv[])
 		Matrix<double> tmpb = b(index, zero);
 		std::cout << tmpb.Height() << std::endl;
 		std::cout << "asdfg" << std::endl;
-		SparseMatrix<double> tmpA = A(index, index);
+		SparseMatrix<double> tmpA = A(index, id);
 		std::cout << tmpA.Height() << std::endl;
 		std::cout << "uoooy" << std::endl;
 
