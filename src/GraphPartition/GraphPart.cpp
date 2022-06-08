@@ -138,7 +138,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     rowindex.clear();
     colindex.clear();
     int ijid = 0;
-    for (int k = 0; k < rowindex.size(); k++)
+    for (int k = 0; k < rowindex_copy.size(); k++)
     {
         if (ijid < ijindex.size())
         {
