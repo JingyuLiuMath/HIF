@@ -182,7 +182,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     // set up the run time parameters
     ctrl = SetupCtrl(METIS_OP_OMETIS, options, 1, 3, NULL, NULL);
 
-    std::cout << "Jyliu 1" << std::endl;
     // prune the dense columns
     if (ctrl->pfactor > 0.0)
     {
@@ -203,14 +202,16 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
             ctrl->compress = 0;
         }
     }
-    std::cout << "Jyliu 2" << std::endl;
-    // compress the graph
-    /*if (ctrl->compress)
-        ctrl->compress = 0;*/
 
+    // compress the graph
+    if (ctrl->compress)
+        ctrl->compress = 0;
+
+    std::cout << "Jyliu 1" << std::endl;
     // if no prunning and no compression, setup the graph in the normal way.
-    /*if (ctrl->pfactor == 0.0 && ctrl->compress == 0)
-        graph = SetupGraph(ctrl, nvtxs, 1, xadj, adjncy, vwgt, NULL, NULL);*/
+    if (ctrl->pfactor == 0.0 && ctrl->compress == 0)
+        graph = SetupGraph(ctrl, nvtxs, 1, xadj, adjncy, vwgt, NULL, NULL);
+    std::cout << "Jyliu 2" << std::endl;
 
     // ASSERT(CheckGraph(graph, ctrl->numflag, 1));
 
