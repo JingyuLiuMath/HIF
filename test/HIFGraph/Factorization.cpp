@@ -60,6 +60,14 @@ int main(int argc, char* argv[])
 		}
 		finb.close();
 
+		vector<int> testindex;
+		for (int k = 0; k < 10; k++)
+		{
+			testindex.push_back(k);
+		}
+		SparseMatrix<double> testA = A(testindex, testindex);
+		std::cout << testA.Height() << std::endl;
+		std::cout << testA.NumEntries() << std::endl;
 		HIFGraph<double> HIF(A, cutoff);
 
 		/*HIF.Factorization(tol);
