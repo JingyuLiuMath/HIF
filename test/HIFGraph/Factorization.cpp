@@ -14,7 +14,6 @@ using namespace HIF;
 int main(int argc, char* argv[])
 {
 	El::Initialize(argc, argv);
-	typedef double Scalar;
 
 	try
 	{
@@ -35,9 +34,9 @@ int main(int argc, char* argv[])
 		}
 		int n;
 		finA >> n;
-		SparseMatrix<Scalar> A(n, n);
+		SparseMatrix<double> A(n, n);
 		int i, j;
-		Scalar value;
+		double value;
 		while (finA >> i >> j >> value)
 		{
 			A.QueueUpdate(i, j, value);
@@ -52,7 +51,7 @@ int main(int argc, char* argv[])
 		{
 			std::cerr << "cannot open the file";
 		}
-		Matrix<Scalar> b(n, 1);
+		Matrix<double> b(n, 1);
 		int k = 0;
 		while (finb >> value)
 		{
@@ -73,8 +72,13 @@ int main(int argc, char* argv[])
 		{
 			std::cout << " index[j] " << index[j] << std::endl;
 		}
+		std::cout << "asdfhskf" << std::endl;
+		vector<int> zero;
+		zero.push_back(0);
+		Matrix<double> tmpb = b(index, zero);
+		std::cout << tmpb.Height() << std::endl;
 		std::cout << "asdfg" << std::endl;
-		SparseMatrix<Scalar> tmpA = A(index, index);
+		SparseMatrix<double> tmpA = A(index, index);
 		std::cout << tmpA.Height() << std::endl;
 		std::cout << "uoooy" << std::endl;
 
