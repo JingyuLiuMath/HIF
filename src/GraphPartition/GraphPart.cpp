@@ -219,9 +219,9 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     //    }
     //}
 
-    // compress the graph
-    if (ctrl->compress)
-        ctrl->compress = 0;
+    //// compress the graph
+    //if (ctrl->compress)
+    //    ctrl->compress = 0;
 
     std::cout << "Jyliu 1" << std::endl;
     // if no prunning and no compression, setup the graph in the normal way.
