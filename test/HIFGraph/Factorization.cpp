@@ -35,13 +35,6 @@ int main(int argc, char* argv[])
 		int n;
 		finA >> n;
 		SparseMatrix<double> A(n, n);
-		for (int row = 0; row < n; row++)
-		{
-			for (int col = 0; col < n; col++)
-			{
-				A.QueueUpdate(row, col, 0);
-			}
-		}
 		int i, j;
 		double value;
 		while (finA >> i >> j >> value)
@@ -71,15 +64,9 @@ int main(int argc, char* argv[])
 		std::cout << A.NumEntries() << std::endl;
 		std::cout << A.Get(6, 6) << std::endl;
 		vector<int> index;
-		vector<int> id;
 		for (int i = 1; i < 5; i += 2)
 		{
 			index.push_back(i);
-			id.push_back(i);
-		}
-		for (int j = 0; j < index.size(); j++)
-		{
-			std::cout << " index[j] " << index[j] << std::endl;
 		}
 		std::cout << "asdfhskf" << std::endl;
 		vector<int> zero;
