@@ -118,10 +118,10 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     std::cout << "MetisSepPart" << std::endl;
     // nvtxs.
     idx_t nvtxs = A.Height();
+    // xadj.
     const int* sourceA = A.LockedSourceBuffer();
     const int* targetA = A.LockedTargetBuffer();
     int nnzA = A.NumEntries();
-    // xadj.
     idx_t* xadj;
     vector<int> rowindex(nnzA, 0);
     vector<int> colindex(nnzA, 0);
@@ -132,19 +132,35 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     }
     vector<int> ijindex;
     FindEqualIndex(rowindex, colindex, ijindex);
-    /*for (int k = 0; k < ijindex.size(); k++)
+    // rowindex[ijindex] = [], colindex[ijindex] = []
+    vector<int> rowindex_copy(rowindex);
+    vector<int> colindex_copy(colindex);
+    rowindex.clear();
+    colindex.clear();
+    int ijid = 0;
+    for (int k = 0; k < rowindex.size(); k++)
     {
-        rowindex.erase(ijindex[k]);
-        colindex.erase(ijindex[k]);
-    }*/
-    for (int k = ijindex.size() - 1; k >= 0; k--)
-    {
-        rowindex.erase(rowindex.begin() + ijindex[k]);
-        colindex.erase(colindex.begin() + ijindex[k]);
+        if (ijid < ijindex.size())
+        {
+            if (k < ijindex[ijid])
+            {
+                rowindex.push_back(rowindex_copy[k]);
+                colindex.push_back(colindex_copy[k]);
+            }
+            else
+            {
+                ijid++;
+            }
+        }
+        else
+        {
+            rowindex.push_back(rowindex_copy[k]);
+            colindex.push_back(colindex_copy[k]);
+        }
     }
     if (colindex.size() == 0)
     {
-        // nothing to do.
+        xadj = NULL;
     }
     else
     {
@@ -214,7 +230,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     ASSERT(CheckGraph(graph, ctrl->numflag, 1));
 
     /* allocate workspace memory */
-    AllocateWorkSpace(ctrl, graph);
+    // AllocateWorkSpace(ctrl, graph);
 
     std::cout << "Jyliu 1" << std::endl;
     // MlevelNodeBisectionMultiple(ctrl, graph);
