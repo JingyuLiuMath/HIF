@@ -209,7 +209,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     // if no prunning and no compression, setup the graph in the normal way.
     if (ctrl->pfactor == 0.0 && ctrl->compress == 0)
     {
-        std::cout << "Jyliu +" << std::endl;
         graph = SetupGraph(ctrl, nvtxs, 1, xadj, adjncy, vwgt, NULL, NULL);
     }
     ASSERT(CheckGraph(graph, ctrl->numflag, 1));
@@ -278,8 +277,8 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 // count = accumarray(vec, 1).
 void Accumarray(const vector<int>& vec, vector<int>& count)
 {
-    auto maxPosition = std::max_element(vec.begin(), vec.end());
-    count = vector<int> ((*maxPosition) + 1, 0);
+    int maxvec = *(std::max_element(vec.begin(), vec.end()));
+    count = vector<int> (maxvec + 1, 0);
     for (int i = 0; i < vec.size(); i++)
     {
         count[vec[i]] += 1;
