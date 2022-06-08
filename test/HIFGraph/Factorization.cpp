@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 		double value;
 		while (finA >> i >> j >> value)
 		{
-			A.QueueUpdate(i, j, value);
+			A.QueueUpdate(j, i, value);
 		}
 		A.ProcessQueues();
 		finA.close();
