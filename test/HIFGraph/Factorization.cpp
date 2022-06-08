@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
 		}
 		finb.close();
 
-		const SparseMatrix<double> B(A);
+		/*const SparseMatrix<double> B(A);
 		vector<int> testindex;
 		for (int k = 0; k < 10; k++)
 		{
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
 		SparseMatrix<double> testA = B(testindex, testindex);
 		std::cout << testA.Get(0, 0) << std::endl;
 		std::cout << testA.Height() << std::endl;
-		std::cout << testA.NumEntries() << std::endl;
+		std::cout << testA.NumEntries() << std::endl;*/
 		
 		HIFGraph<double> HIF(A, cutoff);
 

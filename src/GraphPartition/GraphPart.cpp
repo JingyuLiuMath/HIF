@@ -89,10 +89,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
             idx.push_back(i);
         }
     }
-    std::cout << "JyLiu1" << std::endl;
     SparseMatrix<Scalar> A1 = A(idx, idx);
-    std::cout << A1.Height() << std::endl;
-    std::cout << "JyLiu2" << std::endl;
     vector<int> lidx, ridx, sepidx;
     MetisSepPart(A1, lidx, ridx, sepidx);
     p1.resize(lidx.size());
@@ -124,7 +121,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     const int* sourceA = A.LockedSourceBuffer();
     const int* targetA = A.LockedTargetBuffer();
     int nnzA = A.NumEntries();
-    std::cout << " nvtxs " << std::endl;
     // xadj.
     idx_t* xadj;
     vector<int> rowindex(nnzA, 0);
@@ -163,7 +159,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
             xadj[i] = cumsumj[i];
         }
     }
-    std::cout << " xadj " << std::endl;
     // adjncy.
     idx_t* adjncy;
     adjncy = new idx_t[rowindex.size()];
@@ -174,6 +169,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     idx_t* vwgt;
     idx_t options[METIS_NOPTIONS];
     
+    std::cout << "Jyliu 1" << std::endl;
     // Metis main function
     idx_t i, nnvtxs = 0;
     idx_t ptlgraph, ptrgraph, ptsep;
@@ -186,6 +182,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     // set up the run time parameters
     ctrl = SetupCtrl(METIS_OP_OMETIS, options, 1, 3, NULL, NULL);
 
+    std::cout << "Jyliu 2" << std::endl;
     // prune the dense columns
     if (ctrl->pfactor > 0.0)
     {
