@@ -150,7 +150,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     }
     for (int k = 0; k < rowindex.size(); k++)
     {
-        if (rowindex[k] == collindex[k])
+        if (rowindex[k] == colindex[k])
         {
             std::cout << "JyLiu -" << std::endl;
         }
