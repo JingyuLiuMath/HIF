@@ -53,7 +53,6 @@ HIFGraph<Scalar>::HIFGraph
 (int level, int seqnum,
 vector<int>& vtx, vector<int>& sep, vector<int>& nb)
 {
-	std::cout << "current build tree level: " << level << std::endl;
 	level_ = level;
 	seqnum_ = seqnum;
 	vtx_.assign(vtx.begin(), vtx.end());
