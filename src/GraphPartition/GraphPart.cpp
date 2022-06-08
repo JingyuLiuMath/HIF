@@ -90,7 +90,12 @@ void MetisPart(const SparseMatrix<Scalar>& A,
             idx.push_back(i);
         }
     }
+    for (int w = 0; w < idx.size(); w++)
+    {
+        std::cout << idx[w] << std::endl;
+    }
     std::cout << "JyLiu2" << std::endl;
+    std::cout << degree[degree.size()-1] << std::endl;
     SparseMatrix<Scalar> A1 = A(idx, idx);
     std::cout << A1.Height() << std::endl;
     std::cout << "JyLiu3" << std::endl;
