@@ -176,8 +176,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         }
     }
     // adjncy.
-    idx_t* adjncy;
-    adjncy = new idx_t[rowindex.size()];
+    idx_t* adjncy new idx_t[rowindex.size()];
     for (int i = 0; i < rowindex.size(); i++)
     {
         adjncy[i] = rowindex[i];
