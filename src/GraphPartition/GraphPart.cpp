@@ -127,8 +127,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     vector<int> colindex(nnzA, 0);
     for (int t = 0; t < nnzA; t++)
     {
-        std::cout << " sourceA[t] " << sourceA[t] << 
-            " targetA[t] " << targetA[t] << std::endl;
         rowindex[t] = targetA[t];
         colindex[t] = sourceA[t];
     }
@@ -153,11 +151,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         vector<int> cumsum_accumj;
         Accumarray(colindex, cumsum_accumj);
         Cumsum(cumsum_accumj);
-        std::cout << cumsum_accumj.size() << std::endl;
-        for (int w = 0; w < cumsum_accumj.size(); w++)
-        {
-            std::cout << cumsum_accumj[w] << std::endl;
-        }
         xadj = new idx_t[cumsum_accumj.size() + 1];
         xadj[0] = 0;
         for (int i = 0; i < cumsum_accumj.size(); i++)
@@ -174,7 +167,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     idx_t* adjncy = new idx_t[rowindex.size()];
     for (int i = 0; i < rowindex.size(); i++)
     {
-        std::cout << "rowindex[i] " << rowindex[i] << std::endl;
         adjncy[i] = rowindex[i];
     }
 
