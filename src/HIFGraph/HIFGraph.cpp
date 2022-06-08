@@ -39,8 +39,8 @@ HIFGraph<Scalar>::HIFGraph
 	seqnum_ = 0;
 
 	BuildTree(A, minvtx);
-	SetNeighborNode();
-	FillTree(A);
+	// SetNeighborNode();
+	// FillTree(A);
 }
 
 // Create a HIFGraph class.

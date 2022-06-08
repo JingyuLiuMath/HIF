@@ -60,27 +60,9 @@ int main(int argc, char* argv[])
 		}
 		finb.close();
 
-		std::cout << A.Height() << std::endl;
-		std::cout << A.NumEntries() << std::endl;
-		std::cout << A.Get(6, 6) << std::endl;
-		vector<int> index;
-		for (int i = 1; i < 7; i += 2)
-		{
-			index.push_back(i);
-		}
-		std::cout << "asdfhskf" << std::endl;
-		vector<int> zero;
-		zero.push_back(0);
-		Matrix<double> tmpb = b(index, zero);
-		std::cout << tmpb.Height() << std::endl;
-		std::cout << "asdfg" << std::endl;
-		SparseMatrix<double> tmpA = A(index, index);
-		std::cout << tmpA.Height() << std::endl;
-		std::cout << "uoooy" << std::endl;
+		HIFGraph<Scalar> HIF(A, cutoff);
 
-		/*HIFGraph<Scalar> HIF(A, cutoff);
-
-		HIF.Factorization(tol);
+		/*HIF.Factorization(tol);
 
 		HIF.Apply(b);
 
