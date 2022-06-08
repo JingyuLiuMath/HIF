@@ -129,8 +129,8 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     {
         std::cout << " sourceA[t] " << sourceA[t] << 
             " targetA[t] " << targetA[t] << std::endl;
-        rowindex[t] = sourceA[t];
-        colindex[t] = targetA[t];
+        rowindex[t] = targetA[t];
+        colindex[t] = sourceA[t];
     }
     vector<int> rowindex_copy(rowindex);
     vector<int> colindex_copy(colindex);
