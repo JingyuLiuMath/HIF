@@ -41,6 +41,7 @@ HIFGraph<Scalar>::HIFGraph
 	BuildTree(A, minvtx);
 	SetNeighborNode();
 	FillTree(A);
+	std::cout << "Finish initialization" << std::endl;
 }
 
 // Create a HIFGraph class.
