@@ -169,7 +169,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     idx_t* vwgt;
     idx_t options[METIS_NOPTIONS];
     
-    std::cout << "Jyliu 1" << std::endl;
     // Metis main function
     idx_t i, nnvtxs = 0;
     idx_t ptlgraph, ptrgraph, ptsep;
@@ -179,6 +178,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     idx_t snvtxs[3];
     idx_t* where;
 
+    std::cout << "Jyliu 1" << std::endl;
     // set up the run time parameters
     ctrl = SetupCtrl(METIS_OP_OMETIS, options, 1, 3, NULL, NULL);
 
