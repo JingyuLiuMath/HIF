@@ -12,7 +12,7 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 	sort(nb_.begin(), nb_.end());
 
 	// Don't partition if the number of vtx is less than minvtx.
-	if (vtx_.size() <= minvtx) || (level_ > 0)
+	if ((vtx_.size() <= minvtx) || (level_ > 0))
 	{
 		numlevels_ = level_;
 		endflag_ = 1;
