@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
 		Matrix<double> tmpb = b(index, zero);
 		std::cout << tmpb.Height() << std::endl;
 		std::cout << "asdfg" << std::endl;
-		SparseMatrix<double> tmpA = A(index, id);
+		SparseMatrix<double> tmpA = A(index, index);
 		std::cout << tmpA.Height() << std::endl;
 		std::cout << "uoooy" << std::endl;
 
