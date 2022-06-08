@@ -53,12 +53,13 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     int nnzA = A.NumEntries();
     for (int t = 0; t < nnzA; t++)
     {
-        B.Set(sourceA[t], targetA[t], Scalar(1));
+        B.QueueUpdate(sourceA[t], targetA[t], Scalar(1));
         if (sourceA[t] == targetA[t])
         {
-            B.Set(sourceA[t], targetA[t], B.Get(sourceA[t], targetA[t]) - 1);
+            B.QueueUpdate(sourceA[t], targetA[t], B.Get(sourceA[t], targetA[t]) - 1);
         }
     }
+    B.ProcessQueues();
     std::cout << "asdjaodhoahdi" << std::endl;
     for (int t = 0; t < nnzA; t++)
     {
