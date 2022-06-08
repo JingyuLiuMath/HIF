@@ -49,6 +49,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     SparseMatrix<int> B;
     B.Resize(A.Height(), A.Width());
     const int* sourceA = A.LockedSourceBuffer();
+    std::cout << " const int* sourceA = A.LockedSourceBuffer() " << std::endl;
     const int* targetA = A.LockedTargetBuffer();
     int nnzA = A.NumEntries();
     for (int t = 0; t < nnzA; t++)
