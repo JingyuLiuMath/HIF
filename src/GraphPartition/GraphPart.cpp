@@ -177,8 +177,10 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     idx_t snvtxs[3];
     idx_t* where;
 
-    switch (METIS_ERROR_MEMORY)
+    if (!gk_malloc_init())
     {
+        switch (METIS_ERROR_MEMORY)
+        {
         case METIS_OK:
             return;
         case METIS_ERROR_INPUT:
@@ -190,7 +192,9 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         default:
             std::cout << "Unknown Metis error" << std::endl;
             break;
+        }
     }
+
     // set up the run time parameters
     ctrl = SetupCtrl(METIS_OP_OMETIS, options, 1, 3, NULL, NULL);
 
