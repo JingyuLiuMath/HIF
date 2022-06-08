@@ -144,6 +144,17 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
             colindex.push_back(colindex_copy[k]);
         }
     }
+    if (rowindex.size() != colindex.size())
+    {
+        std::cout << "JyLiu +" << std::endl;
+    }
+    for (int k = 0; k < rowindex.size(); k++)
+    {
+        if (rowindex[k] == collindex[k])
+        {
+            std::cout << "JyLiu -" << std::endl;
+        }
+    }
     if (colindex.size() == 0)
     {
         xadj = NULL;
