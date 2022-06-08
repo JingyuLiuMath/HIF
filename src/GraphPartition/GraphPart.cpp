@@ -198,26 +198,26 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     // set up the run time parameters
     ctrl = SetupCtrl(METIS_OP_OMETIS, options, 1, 3, NULL, NULL);
 
-    // prune the dense columns
-    if (ctrl->pfactor > 0.0)
-    {
-        piperm = imalloc(nvtxs, "OMETIS: piperm");
+    //// prune the dense columns
+    //if (ctrl->pfactor > 0.0)
+    //{
+    //    piperm = imalloc(nvtxs, "OMETIS: piperm");
 
-        graph = PruneGraph(ctrl, nvtxs, xadj, adjncy, vwgt,
-            piperm, ctrl->pfactor);
-        if (graph == NULL)
-        {
-            // if there was no prunning, cleanup the pfactor
-            gk_free((void**)&piperm, LTERM);
-            ctrl->pfactor = 0.0;
-        }
-        else
-        {
-            nnvtxs = graph->nvtxs;
-            // disable compression if prunning took place
-            ctrl->compress = 0;
-        }
-    }
+    //    graph = PruneGraph(ctrl, nvtxs, xadj, adjncy, vwgt,
+    //        piperm, ctrl->pfactor);
+    //    if (graph == NULL)
+    //    {
+    //        // if there was no prunning, cleanup the pfactor
+    //        gk_free((void**)&piperm, LTERM);
+    //        ctrl->pfactor = 0.0;
+    //    }
+    //    else
+    //    {
+    //        nnvtxs = graph->nvtxs;
+    //        // disable compression if prunning took place
+    //        ctrl->compress = 0;
+    //    }
+    //}
 
     // compress the graph
     if (ctrl->compress)
