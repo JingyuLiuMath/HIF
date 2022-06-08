@@ -198,44 +198,44 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     // set up the run time parameters
     ctrl = SetupCtrl(METIS_OP_OMETIS, options, 1, 3, NULL, NULL);
 
-    //// prune the dense columns
-    //if (ctrl->pfactor > 0.0)
-    //{
-    //    piperm = imalloc(nvtxs, "OMETIS: piperm");
+    // prune the dense columns
+    if (ctrl->pfactor > 0.0)
+    {
+        piperm = imalloc(nvtxs, "OMETIS: piperm");
 
-    //    graph = PruneGraph(ctrl, nvtxs, xadj, adjncy, vwgt,
-    //        piperm, ctrl->pfactor);
-    //    if (graph == NULL)
-    //    {
-    //        // if there was no prunning, cleanup the pfactor
-    //        gk_free((void**)&piperm, LTERM);
-    //        ctrl->pfactor = 0.0;
-    //    }
-    //    else
-    //    {
-    //        nnvtxs = graph->nvtxs;
-    //        // disable compression if prunning took place
-    //        ctrl->compress = 0;
-    //    }
-    //}
+        graph = PruneGraph(ctrl, nvtxs, xadj, adjncy, vwgt,
+            piperm, ctrl->pfactor);
+        if (graph == NULL)
+        {
+            // if there was no prunning, cleanup the pfactor
+            gk_free((void**)&piperm, LTERM);
+            ctrl->pfactor = 0.0;
+        }
+        else
+        {
+            nnvtxs = graph->nvtxs;
+            // disable compression if prunning took place
+            ctrl->compress = 0;
+        }
+    }
 
-    //// compress the graph
-    //if (ctrl->compress)
-    //    ctrl->compress = 0;
+    // compress the graph
+    if (ctrl->compress)
+        ctrl->compress = 0;
 
     std::cout << "Jyliu 1" << std::endl;
     // if no prunning and no compression, setup the graph in the normal way.
-   /* if (ctrl->pfactor == 0.0 && ctrl->compress == 0)
-        graph = SetupGraph(ctrl, nvtxs, 1, xadj, adjncy, vwgt, NULL, NULL);*/
+    if (ctrl->pfactor == 0.0 && ctrl->compress == 0)
+        graph = SetupGraph(ctrl, nvtxs, 1, xadj, adjncy, vwgt, NULL, NULL);
 
     ASSERT(CheckGraph(graph, ctrl->numflag, 1));
 
     /* allocate workspace memory */
-    // AllocateWorkSpace(ctrl, graph);
+    AllocateWorkSpace(ctrl, graph);
 
-    // MlevelNodeBisectionMultiple(ctrl, graph);
+    MlevelNodeBisectionMultiple(ctrl, graph);
 
-    /*snvtxs[0] = 0;
+    snvtxs[0] = 0;
     snvtxs[1] = 0;
     snvtxs[2] = 0;
 
@@ -244,9 +244,9 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 
     where = graph->where;
     for (i = 0; i < graph->nvtxs; i++)
-        snvtxs[where[i]]++;*/
+        snvtxs[where[i]]++;
 
-    /*p1.resize(snvtxs[0]);
+    p1.resize(snvtxs[0]);
     p2.resize(snvtxs[1]);
     sep.resize(snvtxs[2]);
 
@@ -278,10 +278,10 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
                 p2[ptrgraph++] = i;
             else
                 sep[ptsep++] = i;
-    }*/
+    }
 
     /* clean up */
-    // FreeCtrl(&ctrl);
+    FreeCtrl(&ctrl);
 }
 
 // count = accumarray(vec, 1).
