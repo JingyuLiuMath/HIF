@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 		for (int i = 1; i < 5; i += 2)
 		{
 			index.push_back(i);
-			id.psuh_back(i);
+			id.push_back(i);
 		}
 		for (int j = 0; j < index.size(); j++)
 		{
