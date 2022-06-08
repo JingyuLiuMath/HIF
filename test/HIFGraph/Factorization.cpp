@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 		{
 			for (int col = 0; col < n; col++)
 			{
-				A.Set(row, col, 0);
+				A.QueueUpdate(row, col, 0);
 			}
 		}
 		int i, j;
