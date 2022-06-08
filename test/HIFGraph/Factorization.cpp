@@ -35,6 +35,13 @@ int main(int argc, char* argv[])
 		int n;
 		finA >> n;
 		SparseMatrix<double> A(n, n);
+		for (int row = 0; row < n; row++)
+		{
+			for (int col = 0; col < n; col++)
+			{
+				A.Set(row, col, 0);
+			}
+		}
 		int i, j;
 		double value;
 		while (finA >> i >> j >> value)
