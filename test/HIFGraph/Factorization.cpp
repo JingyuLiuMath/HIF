@@ -60,16 +60,8 @@ int main(int argc, char* argv[])
 		}
 		finb.close();
 
-		//HIFGraph<double> HIF(A, cutoff);
+		HIFGraph<double> HIF(A, cutoff);
 
-		SparseMatrix<int> testA(2, 2);
-		testA.QueueUpdate(0, 0, 1);
-		testA.ProcessQueues();
-		std::cout << testA.Get(0, 0) << std::endl;
-		testA.Update(0, 0, 2);
-		std::cout << testA.Get(0, 0) << std::endl;
-		testA.Set(0, 0, 2);
-		std::cout << testA.Get(0, 0) << std::endl;
 		/*HIF.Factorization(tol);
 
 		HIF.Apply(b);

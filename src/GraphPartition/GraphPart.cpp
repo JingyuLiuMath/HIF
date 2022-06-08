@@ -53,14 +53,14 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     int nnzA = A.NumEntries();
     for (int t = 0; t < nnzA; t++)
     {
-        B.QueueUpdate(sourceA[t], targetA[t], Scalar(1));
+        B.QueueUpdate(sourceA[t], targetA[t], int(1));
     }
     B.ProcessQueues();
     for (int t = 0; t < nnzA; t++ )
     {
         if (sourceA[t] == targetA[t])
         {
-            B.QueueUpdate(sourceA[t], targetA[t], B.Get(sourceA[t], targetA[t]) - 1);
+            B.QueueUpdate(sourceA[t], targetA[t], - 1);
         }
     }
     B.ProcessQueues();
@@ -69,7 +69,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     {
         if (B.Get(sourceA[t], targetA[t]) != 0)
         {
-            B.Set(sourceA[t], targetA[t], Scalar(1));
+            B.Set(sourceA[t], targetA[t], int(1));
         }
     }
     vector<int> degree(B.Width(), 0);
@@ -95,6 +95,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     }
     SparseMatrix<Scalar> A1 = A(idx, idx);
     vector<int> lidx, ridx, sepidx;
+    std::cout << " qedqweahdi" << std::endl;
     MetisSepPart(A1, lidx, ridx, sepidx);
     p1.resize(lidx.size());
     p2.resize(ridx.size());
