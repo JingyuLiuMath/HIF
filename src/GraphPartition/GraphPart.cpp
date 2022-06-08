@@ -116,6 +116,8 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     vector<int>& p1, vector<int>& p2, vector<int>& sep)
 {
     std::cout << "MetisSepPart" << std::endl;
+    std::cout << A.Height() << std::endl;
+    std::cout << A.NumEntries() << std::endl;
     // nvtxs.
     idx_t nvtxs = A.Height();
     // xadj.
@@ -232,7 +234,8 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     ASSERT(CheckGraph(graph, ctrl->numflag, 1));
 
     std::cout << "Jyliu 2" << std::endl;
-    /* allocate workspace memory */
+    
+    // allocate workspace memory.
     AllocateWorkSpace(ctrl, graph);
 
     std::cout << "Jyliu 3" << std::endl;
