@@ -164,11 +164,18 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         }
     }
     // adjncy.
+    if (rowindex.size() == 0)
+    {
+        RangeVec(0, nvtxs, sep);
+        return;
+    }
     idx_t* adjncy = new idx_t[rowindex.size()];
     for (int i = 0; i < rowindex.size(); i++)
     {
+        std::cout << "rowindex[i] " << rowindex[i] << std::endl;
         adjncy[i] = rowindex[i];
     }
+
     idx_t* vwgt = NULL;
     idx_t options[METIS_NOPTIONS];
     METIS_SetDefaultOptions(options);
