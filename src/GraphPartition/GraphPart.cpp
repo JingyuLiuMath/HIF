@@ -287,9 +287,9 @@ void Accumarray(const vector<int>& vec, vector<int>& count)
 }
 
 // a = cumsum(vec)
-void Cumsum(const vector<int>& vec)
+void Cumsum(vector<int>& vec)
 {
-    for (int i = 1; i < a.size(); i++)
+    for (int i = 1; i < vec.size(); i++)
     {
         vec[i] += vec[i - 1];
     }

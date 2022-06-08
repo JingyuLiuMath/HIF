@@ -28,7 +28,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 
 void Accumarray(const vector<int>& vec, vector<int>& count);
 
-void Cumsum(const vector<int>& vec);
+void Cumsum(vector<int>& vec);
 
 } // namespace HIF.
 
