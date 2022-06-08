@@ -92,6 +92,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     }
     std::cout << "JyLiu2" << std::endl;
     SparseMatrix<Scalar> A1 = A(idx, idx);
+    std::cout << A1.Height() << std::endl;
     std::cout << "JyLiu3" << std::endl;
     vector<int> lidx, ridx, sepidx;
     MetisSepPart(A1, lidx, ridx, sepidx);
