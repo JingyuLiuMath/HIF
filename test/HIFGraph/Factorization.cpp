@@ -64,11 +64,11 @@ int main(int argc, char* argv[])
 
 		Matrix<int> testA(2, 2);
 		testA.Update(0, 0, 1);
-		std::cout << A.Get(0, 0) << std::endl;
+		std::cout << testA.Get(0, 0) << std::endl;
 		testA.Update(0, 0, 2);
-		std::cout << A.Get(0, 0) << std::endl;
+		std::cout << testA.Get(0, 0) << std::endl;
 		testA.Set(0, 0, 2);
-		std::cout << A.Get(0, 0) << std::endl;
+		std::cout << testA.Get(0, 0) << std::endl;
 		/*HIF.Factorization(tol);
 
 		HIF.Apply(b);
