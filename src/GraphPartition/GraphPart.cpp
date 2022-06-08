@@ -127,8 +127,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     vector<int> colindex(nnzA, 0);
     for (int t = 0; t < nnzA; t++)
     {
-        std::cout << " sourceA[t] " << sourceA[t] << std::endl;
-        std::cout << " targetA[t] " << targetA[t] << std::endl;
         rowindex[t] = sourceA[t];
         colindex[t] = targetA[t];
     }
@@ -150,15 +148,14 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     }
     else
     {
-        vector<int> accumj;
-        Accumarray(colindex, accumj);
-        vector<int> cumsumj;
-        Cumsum(accumj, cumsumj);
-        xadj = new idx_t[cumsumj.size() + 1];
+        vector<int> cumsum_accumj;
+        Accumarray(colindex, cumsum_accumj);
+        Cumsum(cumsum_accumj);
+        xadj = new idx_t[cumsum_accumj.size() + 1];
         xadj[0] = 0;
-        for (int i = 1; i < cumsumj.size() + 1; i++)
+        for (int i = 0; i < cumsum_accumj.size(); i++)
         {
-            xadj[i] = cumsumj[i];
+            xadj[i + 1] = cumsum_accumj[i];
         }
     }
     // adjncy.
@@ -290,17 +287,11 @@ void Accumarray(const vector<int>& vec, vector<int>& count)
 }
 
 // a = cumsum(vec)
-void Cumsum(const vector<int>& vec, vector<int>& a)
+void Cumsum(const vector<int>& vec)
 {
-    if (vec.size() == 0)
-    {
-        return;
-    }
-    a.resize(vec.size());
-    a[0] = vec[0];
     for (int i = 1; i < a.size(); i++)
     {
-        a[i] = a[i - 1] + vec[i];
+        vec[i] += vec[i - 1];
     }
 }
 
