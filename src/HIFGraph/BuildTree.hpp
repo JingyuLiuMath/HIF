@@ -6,7 +6,7 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 {
-	std::cout << "BuildTree" << std::endl;
+	std::cout << "Start BuildTree on level " << level_ << std::endl;
 	sort(vtx_.begin(), vtx_.end());
 	sort(sep_.begin(), sep_.end());
 	sort(nb_.begin(), nb_.end());
@@ -23,8 +23,6 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 	SparseMatrix<Scalar> tmpA = A(vtx_, vtx_);
 	vector<int> p1, p2, sp1, sp2;
 	GraphPart(tmpA, p1, p2, sp1, sp2);
-
-	std::cout << "End GraphPart" << std::endl;
 	
 	for (int t1 = 0; t1 < p1.size(); t1++)
 	{
@@ -77,7 +75,6 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 template <typename Scalar>
 void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrix<Scalar>& A)
 {
-	std::cout << "PassSeparatorNeighbor";
 	SparseMatrix<Scalar> nbA = A(sep_, nb_);
 
 	for (int i = 0; i < sep_.size(); i++)
