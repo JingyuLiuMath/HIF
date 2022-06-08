@@ -180,94 +180,93 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     idx_t* where;
 
     // set up the run time parameters
-    std::cout << "Jyliu 1" << std::endl;
-
     ctrl = SetupCtrl(METIS_OP_OMETIS, options, 1, 3, NULL, NULL);
 
-    std::cout << "Jyliu 2" << std::endl;
-    //// prune the dense columns
-    //if (ctrl->pfactor > 0.0)
-    //{
-    //    piperm = imalloc(nvtxs, "OMETIS: piperm");
+    std::cout << "Jyliu 1" << std::endl;
+    // prune the dense columns
+    if (ctrl->pfactor > 0.0)
+    {
+        piperm = imalloc(nvtxs, "OMETIS: piperm");
 
-    //    graph = PruneGraph(ctrl, nvtxs, xadj, adjncy, vwgt,
-    //        piperm, ctrl->pfactor);
-    //    if (graph == NULL)
-    //    {
-    //        // if there was no prunning, cleanup the pfactor
-    //        gk_free((void**)&piperm, LTERM);
-    //        ctrl->pfactor = 0.0;
-    //    }
-    //    else
-    //    {
-    //        nnvtxs = graph->nvtxs;
-    //        // disable compression if prunning took place
-    //        ctrl->compress = 0;
-    //    }
-    //}
+        graph = PruneGraph(ctrl, nvtxs, xadj, adjncy, vwgt,
+            piperm, ctrl->pfactor);
+        if (graph == NULL)
+        {
+            // if there was no prunning, cleanup the pfactor
+            gk_free((void**)&piperm, LTERM);
+            ctrl->pfactor = 0.0;
+        }
+        else
+        {
+            nnvtxs = graph->nvtxs;
+            // disable compression if prunning took place
+            ctrl->compress = 0;
+        }
+    }
 
-    //// compress the graph
-    //if (ctrl->compress)
-    //    ctrl->compress = 0;
+    // compress the graph
+    if (ctrl->compress)
+        ctrl->compress = 0;
 
-    //// if no prunning and no compression, setup the graph in the normal way.
-    //if (ctrl->pfactor == 0.0 && ctrl->compress == 0)
-    //    graph = SetupGraph(ctrl, nvtxs, 1, xadj, adjncy, vwgt, NULL, NULL);
+    // if no prunning and no compression, setup the graph in the normal way.
+    if (ctrl->pfactor == 0.0 && ctrl->compress == 0)
+        graph = SetupGraph(ctrl, nvtxs, 1, xadj, adjncy, vwgt, NULL, NULL);
 
-    //ASSERT(CheckGraph(graph, ctrl->numflag, 1));
+    ASSERT(CheckGraph(graph, ctrl->numflag, 1));
 
-    ///* allocate workspace memory */
-    //AllocateWorkSpace(ctrl, graph);
+    /* allocate workspace memory */
+    AllocateWorkSpace(ctrl, graph);
+    std::cout << "Jyliu 1" << std::endl;
 
-    //MlevelNodeBisectionMultiple(ctrl, graph);
+    // MlevelNodeBisectionMultiple(ctrl, graph);
 
-    //snvtxs[0] = 0;
-    //snvtxs[1] = 0;
-    //snvtxs[2] = 0;
+    /*snvtxs[0] = 0;
+    snvtxs[1] = 0;
+    snvtxs[2] = 0;
 
-    //if (ctrl->pfactor > 0.0)
-    //    snvtxs[2] += nvtxs - nnvtxs;
+    if (ctrl->pfactor > 0.0)
+        snvtxs[2] += nvtxs - nnvtxs;
 
-    //where = graph->where;
-    //for (i = 0; i < graph->nvtxs; i++)
-    //    snvtxs[where[i]]++;
+    where = graph->where;
+    for (i = 0; i < graph->nvtxs; i++)
+        snvtxs[where[i]]++;*/
 
-    //p1.resize(snvtxs[0]);
-    //p2.resize(snvtxs[1]);
-    //sep.resize(snvtxs[2]);
+    /*p1.resize(snvtxs[0]);
+    p2.resize(snvtxs[1]);
+    sep.resize(snvtxs[2]);
 
-    //ptlgraph = 0;
-    //ptrgraph = 0;
-    //ptsep = 0;
+    ptlgraph = 0;
+    ptrgraph = 0;
+    ptsep = 0;
 
-    //if (ctrl->pfactor > 0.0)
-    //{
-    //    for (i = 0; i < graph->nvtxs; i++)
-    //        if (where[i] == 0)
-    //            p1[ptlgraph++] = piperm[i];
-    //        else if (where[i] == 1)
-    //            p2[ptrgraph++] = piperm[i];
-    //        else
-    //            sep[ptsep++] = piperm[i];
+    if (ctrl->pfactor > 0.0)
+    {
+        for (i = 0; i < graph->nvtxs; i++)
+            if (where[i] == 0)
+                p1[ptlgraph++] = piperm[i];
+            else if (where[i] == 1)
+                p2[ptrgraph++] = piperm[i];
+            else
+                sep[ptsep++] = piperm[i];
 
-    //    for (i = nnvtxs; i < nvtxs; i++)
-    //        sep[ptsep++] = piperm[i];
+        for (i = nnvtxs; i < nvtxs; i++)
+            sep[ptsep++] = piperm[i];
 
-    //    gk_free((void**)&piperm, LTERM);
-    //}
-    //else
-    //{
-    //    for (i = 0; i < graph->nvtxs; i++)
-    //        if (where[i] == 0)
-    //            p1[ptlgraph++] = i;
-    //        else if (where[i] == 1)
-    //            p2[ptrgraph++] = i;
-    //        else
-    //            sep[ptsep++] = i;
-    //}
+        gk_free((void**)&piperm, LTERM);
+    }
+    else
+    {
+        for (i = 0; i < graph->nvtxs; i++)
+            if (where[i] == 0)
+                p1[ptlgraph++] = i;
+            else if (where[i] == 1)
+                p2[ptrgraph++] = i;
+            else
+                sep[ptsep++] = i;
+    }*/
 
-    ///* clean up */
-    //FreeCtrl(&ctrl);
+    /* clean up */
+    // FreeCtrl(&ctrl);
 }
 
 // count = accumarray(vec, 1).
