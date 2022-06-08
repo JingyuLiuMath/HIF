@@ -24,16 +24,18 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		std::cout << "Jyliu 2" << std::endl;
 		El::Zeros(ASI_, sep_.size(), intr_.size());
 		vector<int> rangesep;
-		RangeVec(0, sep_.size(), rangeintr);
+		RangeVec(0, sep_.size(), rangesep);
 		FullMat(A(sep_, intr_), Aneed);
 		SubMatrixUpdate(ASI_, rangesep, rangeintr, Aneed);
 		Aneed.Empty();
 
+		std::cout << "Jyliu 3" << std::endl;
 		El::Zeros(ASS_, sep_.size(), sep_.size());
 		FullMat(A(sep_, sep_), Aneed);
 		SubMatrixUpdate(ASS_, rangesep, rangesep, Aneed);
 		Aneed.Empty();
 
+		std::cout << "Jyliu 4" << std::endl;
 		El::Zeros(ANS_, nb_.size(), sep_.size());
 		vector<int> rangenb;
 		RangeVec(0, nb_.size(), rangenb);
