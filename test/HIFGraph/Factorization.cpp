@@ -40,7 +40,6 @@ int main(int argc, char* argv[])
 		Scalar value;
 		while (finA >> i >> j >> value)
 		{
-			std::cout << " i " << i << " j " << j << " value " << value << std::endl;
 			A.QueueUpdate(i, j, value);
 		}
 		A.ProcessQueues();
@@ -70,33 +69,30 @@ int main(int argc, char* argv[])
 		{
 			index.push_back(i);
 		}
-		std::cout << "index size: " << index.size() <<
-			" index0: " << index[0] << " index1: " << index[1] << std::endl;
 		std::cout << "asdfg" << std::endl;
 		SparseMatrix<Scalar> tmpA = A(index, index);
-		// auto tmpA = A(index, index);
 		std::cout << tmpA.Height() << std::endl;
 		std::cout << "uoooy" << std::endl;
 
 
-		// HIFGraph<Scalar> HIF(A, cutoff);
+		/*HIFGraph<Scalar> HIF(A, cutoff);
 
-		// HIF.Factorization(tol);
+		HIF.Factorization(tol);
 
-		// HIF.Apply(b);
+		HIF.Apply(b);
 
-		//for (int k = 0; k < n; k++)
-		//{
-		//	std::cout << b.Get(k, 0) << std::endl;
-		//}
-		//string filex = "./sol.txt";
-		//std::ofstream foutx;
-		//foutx.open(filex, std::ios::out);
-		//for (int k = 0; k < b.Height(); k++)
-		//{
-		//	foutx << b.Get(k, 1) << endl;
-		//}
-		//foutx.close();
+		for (int k = 0; k < n; k++)
+		{
+			std::cout << b.Get(k, 0) << std::endl;
+		}
+		string filex = "./sol.txt";
+		std::ofstream foutx;
+		foutx.open(filex, std::ios::out);
+		for (int k = 0; k < b.Height(); k++)
+		{
+			foutx << b.Get(k, 1) << endl;
+		}
+		foutx.close();*/
 	}
 	catch (std::exception& e)
 	{

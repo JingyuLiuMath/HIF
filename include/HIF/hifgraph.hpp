@@ -45,6 +45,7 @@ template <typename Scalar>
 class HIFGraph
 {
 public:
+
     typedef Matrix<Scalar> MatrixS;
 
     // Initialization.
@@ -83,6 +84,7 @@ private:
     vector<int> nbnodelevel_; // Neighbor nodes' level.
     vector<SkelInfo<Scalar>> nbinfo_; // Information between a node and its nbNode when skeletonization.
     vector<IndexInfo> childreninfo_; // Index information when merge and split.
+    
     // Matrices data.
     // For the following matrices, the fist index is row, and the second index is col.
     MatrixS AII_; // Interaction between int and int.
@@ -93,6 +95,7 @@ private:
     MatrixS AIIinvAIS_; // AIIinvAIS = AII^ { -1 } *ASI^ { T }.
 
     // Vectors data.
+    // We deal a matrix by its columns.
     MatrixS xI_; // The intr part of a vector x.
     MatrixS xS_; // The sep part of a vector x.
 
