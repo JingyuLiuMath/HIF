@@ -69,11 +69,14 @@ int main(int argc, char* argv[])
 		{
 			index.push_back(i);
 		}
+		for (int j = 0; j < index.size(); j++)
+		{
+			std::cout << " index[j] " << index[j] << std::endl;
+		}
 		std::cout << "asdfg" << std::endl;
 		SparseMatrix<Scalar> tmpA = A(index, index);
 		std::cout << tmpA.Height() << std::endl;
 		std::cout << "uoooy" << std::endl;
-
 
 		/*HIFGraph<Scalar> HIF(A, cutoff);
 
