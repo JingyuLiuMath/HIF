@@ -51,11 +51,12 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     const int* sourceA = A.LockedSourceBuffer();
     const int* targetA = A.LockedTargetBuffer();
     int nnzA = A.NumEntries();
+    std::cout << sourceA[0] << std::endl;
     for (int t = 0; t < nnzA; t++)
     {
         B.QueueUpdate(sourceA[t], targetA[t], Scalar(1));
         if (sourceA[t] == targetA[t])
-        {
+           {
             B.QueueUpdate(sourceA[t], targetA[t], B.Get(sourceA[t], targetA[t]) - 1);
         }
     }
