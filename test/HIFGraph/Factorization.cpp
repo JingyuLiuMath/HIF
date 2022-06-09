@@ -74,9 +74,9 @@ int main(int argc, char* argv[])
 		
 		HIFGraph<double> HIF(A, cutoff);
 
-		/*HIF.Factorization(tol);
+		HIF.Factorization(tol);
 
-		HIF.Apply(b);
+		/*HIF.Apply(b);
 
 		for (int k = 0; k < n; k++)
 		{
