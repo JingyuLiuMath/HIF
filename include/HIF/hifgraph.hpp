@@ -47,6 +47,7 @@ class HIFGraph
 public:
 
     typedef Matrix<Scalar> MatrixS;
+    typedef SparseMatrix<Scalar> SparseMatrixS;
 
     // Initialization.
     HIFGraph(const SparseMatrix<Scalar>& A, int minvtx);

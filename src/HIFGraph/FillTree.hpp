@@ -13,7 +13,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		
 		std::cout << " level " << level_ << std::endl;
 		std::cout << " seqnum " << seqnum_ << std::endl;
-		for (int i = 0; i < intr_.size(); i++)
+		/*for (int i = 0; i < intr_.size(); i++)
 		{
 			std::cout << " intr_[i] " << intr_[i] << std::endl;
 		}
@@ -25,25 +25,34 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		{
 			std::cout << " nb_[i] " << nb_[i] << std::endl;
 		}
+		*/
+
+		SparseMatrixS Aneed;
 		
-		MatrixS Aneed;
-
 		std::cout << "Jyliu 1" << std::endl;
+		
 		El::Zeros(AII_, intr_.size(), intr_.size());
+		Aneed = A(intr_, intr_);
+		Aneed.QueueUpdate(Aneed.Height() - 1, Aneed.Width() - 1, Scalar(0));
+		Aneed.QueueProcess;
+		FullMat(Aneed, AII_);
 
-		FullMat(A(intr_, intr_), AII_);
-
-		/*vector<int> rangeintr;
-		RangeVec(0, intr_.size(), rangeintr);
-		FullMat(A(intr_, intr_), Aneed);
-		SubMatrixUpdate(AII_, rangeintr, rangeintr, Aneed);
-		Aneed.Empty();*/
+		//vector<int> rangeintr;
+		//RangeVec(0, intr_.size(), rangeintr);
+		//FullMat(A(intr_, intr_), Aneed);
+		//SubMatrixUpdate(AII_, rangeintr, rangeintr, Aneed);
+		//Aneed.Empty();
 
 		std::cout << "Jyliu 2" << std::endl;
-		El::Zeros(ASI_, sep_.size(), intr_.size());
 		
+		El::Zeros(ASI_, sep_.size(), intr_.size());
+		Aneed = A(sep_, intr_);
+		Aneed.QueueUpdate(Aneed.Height() - 1, Aneed.Width() - 1, Scalar(0));
+		Aneed.QueueProcess;
+
 		std::cout << "Jyliu 2.1" << std::endl;
-		FullMat(A(sep_, intr_), ASI_);
+
+		FullMat(Aneed, ASI_);
 		std::cout << "Jyliu 2.2" << std::endl;
 
 		/*vector<int> rangesep;
