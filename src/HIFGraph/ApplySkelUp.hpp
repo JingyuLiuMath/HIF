@@ -31,7 +31,7 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 	std::cout << "current level " << level_ << std::endl;
 	std::cout << "current seqnum " << seqnum_ << std::endl;
 
-	for (int k = 0; k < nbnode_.size(); k++)
+	for (int k = 0; k < nbinfo_.size(); k++)
 	{
 		HIFGraph* nbnodek = nbnode_[k];
 		SkelInfo<Scalar>& nbinfok = nbinfo_[k];
