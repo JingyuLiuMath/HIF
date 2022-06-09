@@ -34,28 +34,6 @@ void GraphPart(const SparseMatrix<Scalar>& A,
             Unique_Sort(sep2);
         }
     }
-    std::cout << " level " << level_ << std::endl;
-    std::cout << " seqnum " << seqnum_ << std::endl;
-    std::cout << " p1 " << std::endl;
-    for (int i = 0; i < p1.size(); i++)
-    {
-        std::cout << p1[i] << std::endl;
-    }
-    std::cout << " sep1 " << std::endl;
-    for (int i = 0; i < sep1.size(); i++)
-    {
-        std::cout << sep1[i] << std::endl;
-    }
-    std::cout << " p2 " << std::endl;
-    for (int i = 0; i < p2.size(); i++)
-    {
-        std::cout << p2[i] << std::endl;
-    }
-    std::cout << " sep2 " << std::endl;
-    for (int i = 0; i < sep2.size(); i++)
-    {
-        std::cout << sep2[i] << std::endl;
-    }
 }
 
 // Metis partition.

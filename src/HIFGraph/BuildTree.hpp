@@ -22,7 +22,28 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 	SparseMatrix<Scalar> tmpA = A(vtx_, vtx_);
 	vector<int> p1, p2, sp1, sp2;
 	GraphPart(tmpA, p1, p2, sp1, sp2);
-	
+	std::cout << " level " << level_ << std::endl;
+	std::cout << " seqnum " << seqnum_ << std::endl;
+	std::cout << " p1 " << std::endl;
+	for (int i = 0; i < p1.size(); i++)
+	{
+		std::cout << p1[i] << std::endl;
+	}
+	std::cout << " sp1 " << std::endl;
+	for (int i = 0; i < sp1.size(); i++)
+	{
+		std::cout << sp1[i] << std::endl;
+	}
+	std::cout << " p2 " << std::endl;
+	for (int i = 0; i < p2.size(); i++)
+	{
+		std::cout << p2[i] << std::endl;
+	}
+	std::cout << " sp2 " << std::endl;
+	for (int i = 0; i < sp2.size(); i++)
+	{
+		std::cout << sp2[i] << std::endl;
+	}
 	vector<int> vtx1, vtx2, sep1, sep2;
 	vtx1.resize(p1.size());
 	for (int i = 0; i < vtx1.size(); i++)
