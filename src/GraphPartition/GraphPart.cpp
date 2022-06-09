@@ -178,7 +178,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         for (int i = 0; i < cumsum_accumj.size(); i++)
         {
             xadj[i + 1] = cumsum_accumj[i];
-            std::cout << xadj[i + 1] << std::endl;
+            std::cout << xadj[i + 1] << ";" << std::endl;
         }
         std::cout << " ] " << std::endl;
     }
