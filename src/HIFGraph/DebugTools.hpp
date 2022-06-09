@@ -51,6 +51,8 @@ void HIFGraph<Scalar>::ShowMatrix(const MatrixS& A)
 	}
 }
 
+// Show vector.
+template <typename Scalar>
 void HIFGraph<Scalar>::ShowMatrix(const vector<int> v)
 {
 	std::cout << "Size " << v.size() << std::endl;
