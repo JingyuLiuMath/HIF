@@ -21,7 +21,9 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 	// Partition.
 	SparseMatrix<Scalar> tmpA = A(vtx_, vtx_);
 	vector<int> p1, p2, sp1, sp2;
+	std::cout << "adadad" << std::endl;
 	GraphPart(tmpA, p1, p2, sp1, sp2);
+	std::cout << "hhkh" << std::endl;
 	/*std::cout << " level " << level_ << std::endl;
 	std::cout << " seqnum " << seqnum_ << std::endl;
 	std::cout << " p1 " << std::endl;
