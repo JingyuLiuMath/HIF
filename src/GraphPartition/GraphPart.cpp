@@ -9,6 +9,11 @@ void GraphPart(const SparseMatrix<Scalar>& A,
     vector<int>& sep1, vector<int>& sep2)
 {
     MetisPart(A, p1, p2, sep1);
+    std::cout << "p1" << std::endl;
+    for (int i = 0; i < p1.size(); i++)
+    {
+        std::cout << p1[i] << std::endl;
+    }
     // p1 = p1 + sep, p2 = p2, sep1 = sep, sep2 need to be assigned.
     p1.insert(p1.end(), sep1.begin(), sep1.end());
     sort(p1.begin(), p1.end());
