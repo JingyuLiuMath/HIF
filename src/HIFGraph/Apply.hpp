@@ -5,6 +5,7 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::Apply(Matrix<Scalar>& b)
 {
+	std::cout << "Start apply" << std::endl;
 	vector<int> xcol;
 	RangeVec(0, b.Width(), xcol);
 	
@@ -30,6 +31,7 @@ void HIFGraph<Scalar>::Apply(Matrix<Scalar>& b)
 	
 	GetSolution(b, xcol);
 
+	std::cout << "Finish apply" << std::endl;
 }
 
 } // namespace HIF.

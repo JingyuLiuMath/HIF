@@ -26,10 +26,6 @@ void HIFGraph<Scalar>::RecursiveMerge(int whatlevel)
 template <typename Scalar>
 void HIFGraph<Scalar>::Merge()
 {
-	std::cout << "Merge" << std::endl;
-	std::cout << "current level " << level_ << std::endl;
-	std::cout << "current seqnum " << seqnum_ << std::endl;
-
 	// We stand on the parent level.
 
 	if (endflag_ == 1)
@@ -38,8 +34,6 @@ void HIFGraph<Scalar>::Merge()
 	}
 
 	childreninfo_.resize(2);
-
-	std::cout << "JyLiu 1" << std::endl;
 
 	// First we tell the parent what its intr, sep, nb is after we eliminate the children's vtx.
 	// intr: children's sk - sep.
@@ -81,8 +75,6 @@ void HIFGraph<Scalar>::Merge()
 
 	MatrixS copymtx; // Copy of assigned matrix. 
 
-	std::cout << "JyLiu 2" << std::endl;
-
 	// AII
 	// An intr of the parent only belongs to the sep of one of its children.
 	// If two intrs belong to the same child, we assign AII from the child's ASS. 
@@ -93,17 +85,11 @@ void HIFGraph<Scalar>::Merge()
 	vector<int>& cindex_intr1 = childreninfo_[0].cindex_intr;
 	Intersect_Sort(intr_, children_[0]->vtx_, intr1, myindex_intr1, 1);
 	FindAllIndex_Sort(intr1, children_[0]->sep_, cindex_intr1);
-	
-	std::cout << "JyLiu 2.1" << std::endl;
-	
 	vector<int> intr2;
 	vector<int>& myindex_intr2 = childreninfo_[1].myindex_intr;
 	vector<int>& cindex_intr2 = childreninfo_[1].cindex_intr;
 	Intersect_Sort(intr_, children_[1]->vtx_, intr2, myindex_intr2, 1);
-	FindAllIndex_Sort(intr2, children_[1]->sep_, cindex_intr2);
-	
-	std::cout << "JyLiu 2.2" << std::endl;
-	
+	FindAllIndex_Sort(intr2, children_[1]->sep_, cindex_intr2);	
 	vector<int> myindex_intr21;
 	vector<int> cindex_intr21;
 	Intersect_Sort(intr_, children_[0]->nb_, myindex_intr21, cindex_intr21);
@@ -112,23 +98,15 @@ void HIFGraph<Scalar>::Merge()
 	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr1, copymtx);
 	std::cout << "JyLiu 2.2.2" << std::endl;
 	copymtx.Empty();
-
-	std::cout << "JyLiu 2.3" << std::endl;
-	
 	copymtx = (children_[1]->ASS_)(cindex_intr2, cindex_intr2);
 	SubMatrixUpdate(AII_, myindex_intr2, myindex_intr2, copymtx);
 	copymtx.Empty();
 	copymtx = (children_[0]->ANS_)(cindex_intr21, cindex_intr1);
 	SubMatrixUpdate(AII_, myindex_intr21, myindex_intr1, copymtx);
 	copymtx.Empty();
-	
-	std::cout << "JyLiu 2.4" << std::endl;
-
 	Transpose(AII_(myindex_intr2, myindex_intr1), copymtx);
 	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr2, copymtx);
 	copymtx.Empty();
-
-	std::cout << "JyLiu 3" << std::endl;
 
 	// ASI
 	// A sep of the parent only belongs to the sep of one of its children.
@@ -160,8 +138,6 @@ void HIFGraph<Scalar>::Merge()
 	SubMatrixUpdate(ASI_, myindex_sep2y, myindex_intr2, copymtx);
 	copymtx.Empty();
 
-	std::cout << "JyLiu 4" << std::endl;
-
 	// ASS
 	// If two seps belongs to the same child, we assign ASS from the child's ASS. 
 	// Otherwise, we assign ASS from one child's ANS or 0.
@@ -192,8 +168,6 @@ void HIFGraph<Scalar>::Merge()
 	SubMatrixUpdate(ASS_, myindex_sep1, myindex_sep2, copymtx);
 	copymtx.Empty();
 
-	std::cout << "JyLiu 5" << std::endl;
-
 	// ANS
 	// If a nb and a sep in the same child, we assign ANS from the child's ANS.
 	// Otherwise, ANS= 0.
@@ -211,10 +185,6 @@ void HIFGraph<Scalar>::Merge()
 	SubMatrixUpdate(ANS_, myindex_nb2x, myindex_sep2, copymtx);
 	copymtx.Empty();
 
-
-	std::cout << "JyLiu 6" << std::endl;
-
-
 	// Clear children's unnecessary information.
 	for (int iter = 0; iter < 2; iter++)
 	{
@@ -223,8 +193,6 @@ void HIFGraph<Scalar>::Merge()
 
 	// Set separator type.
 	SetSeparatorType();
-
-	std::cout << "JyLiu 7" << std::endl;
 }
 
 // Clear unnecessary information.
