@@ -71,7 +71,22 @@ int main(int argc, char* argv[])
 		std::cout << testA.Height() << std::endl;
 		std::cout << testA.NumEntries() << std::endl;*/
 		
-		HIFGraph<double> HIF(A, cutoff);
+		vector<int> rowindex;
+		vector<int> colindex;
+		for (int i = 0; i < 5; i++)
+		{
+			rowindex.push_back(i);
+		}
+		for (int j = 1; j < 9; j++) 
+		{
+			colindex.push_back(j);
+		}
+		SparseMatrix<double> testA = A(rowindex, colindex);
+		std::cout << testA.Get(0, 0) << std::endl;
+		std::cout << testA.Height() << std::endl;
+		std::cout << testA.NumEntries() << std::endl;
+
+		// HIFGraph<double> HIF(A, cutoff);
 
 		/*HIF.Factorization(tol);
 
