@@ -5,6 +5,7 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::RootFactorization()
 {
+	std::cout << "RootFactorization" << std::endl;
 	LDLSolve(AII_, AIIinv_);
 }
 

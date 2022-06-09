@@ -10,8 +10,6 @@ void HIFGraph<Scalar>::SetSeparatorType()
 
 	vector<int> ordersep(sep_.size(), 0);
 	
-	std::cout << "Jyliu 5.1" << std::endl;
-	
 	for (int k = 0; k < nbnode_.size(); k++)
 	{
 		HIFGraph* nodek = nbnode_[k];
@@ -23,8 +21,6 @@ void HIFGraph<Scalar>::SetSeparatorType()
 			ordersep[tmpindex[i]] += 1;
 		}
 	}
-
-	std::cout << "Jyliu 5.2" << std::endl;
 
 	for (int k = 0; k < nbnode_.size(); k++)
 	{
@@ -40,8 +36,6 @@ void HIFGraph<Scalar>::SetSeparatorType()
 		}
 	}
 	
-	std::cout << "Jyliu 5.3" << std::endl;
-
 	for (int i = 0; i < sep_.size(); i++)
 	{
 		if (ordersep[i] > 1)
@@ -49,8 +43,6 @@ void HIFGraph<Scalar>::SetSeparatorType()
 			complexsep_.push_back(sep_[i]);
 		}
 	}
-
-	std::cout << "Jyliu 5.4" << std::endl;
 }
 
 } // namespace HIF.

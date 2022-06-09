@@ -26,6 +26,9 @@ void HIFGraph<Scalar>::RecursiveMerge(int whatlevel)
 template <typename Scalar>
 void HIFGraph<Scalar>::Merge()
 {
+	std::cout << "Merge" << std::endl;
+	std::cout << "current level " << level_ << std::endl;
+	std::cout << "current seqnum " << seqnum_ << std::endl;
 	// We stand on the parent level.
 
 	if (endflag_ == 1)
