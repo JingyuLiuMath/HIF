@@ -14,7 +14,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		
 		El::Zeros(AII_, intr_.size(), intr_.size());
 		Aneed = A(intr_, intr_);
-		if ((Aneed.Height() > 0) && (Anned.Width()> 0))
+		if ((Aneed.Height() > 0) && (Aneed.Width()> 0))
 		{
 			Aneed.QueueUpdate(Aneed.Height() - 1, Aneed.Width() - 1, Scalar(0));
 			Aneed.ProcessQueues();
@@ -24,7 +24,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		
 		El::Zeros(ASI_, sep_.size(), intr_.size());
 		Aneed = A(sep_, intr_);
-		if ((Aneed.Height() > 0) && (Anned.Width() > 0))
+		if ((Aneed.Height() > 0) && (Aneed.Width() > 0))
 		{
 			Aneed.QueueUpdate(Aneed.Height() - 1, Aneed.Width() - 1, Scalar(0));
 			Aneed.ProcessQueues();
@@ -34,7 +34,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 
 		El::Zeros(ASS_, sep_.size(), sep_.size());
 		Aneed = A(sep_, sep_);
-		if ((Aneed.Height() > 0) && (Anned.Width() > 0))
+		if ((Aneed.Height() > 0) && (Aneed.Width() > 0))
 		{
 			Aneed.QueueUpdate(Aneed.Height() - 1, Aneed.Width() - 1, Scalar(0));
 			Aneed.ProcessQueues();
@@ -44,7 +44,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		
 		El::Zeros(ANS_, nb_.size(), sep_.size());
 		Aneed = A(nb_, sep_);
-		if ((Aneed.Height() > 0) && (Anned.Width() > 0))
+		if ((Aneed.Height() > 0) && (Aneed.Width() > 0))
 		{
 			Aneed.QueueUpdate(Aneed.Height() - 1, Aneed.Width() - 1, Scalar(0));
 			Aneed.ProcessQueues();
