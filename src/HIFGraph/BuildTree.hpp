@@ -44,6 +44,15 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 		sep2[i] = vtx_[sp2[i]];
 	}
 
+	std::cout << "vtx1" << std::endl;
+	ShowVector(vtx1);
+	std::cout << "vtx2" << std::endl;
+	ShowVector(vtx2);
+	std::cout << "sep1" << std::endl;
+	ShowVector(sep1);
+	std::cout << "sep2" << std::endl;
+	ShowVector(sep2);
+	
 	// Create children HIFGraph.
 	children_.resize(2);
 	children_[0] = new HIFGraph(level_ + 1, 2 * seqnum_,

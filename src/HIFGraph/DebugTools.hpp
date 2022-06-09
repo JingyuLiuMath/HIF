@@ -51,4 +51,14 @@ void HIFGraph<Scalar>::ShowMatrix(const MatrixS& A)
 	}
 }
 
+void HIFGraph<Scalar>::ShowMatrix(const vector<int> v)
+{
+	std::cout << "Size " << v.size() << std::endl;
+	for (int i = 0; i < v.size(); i++)
+	{
+		std::cout << v[i] << " ";
+	}
+	std::cout << std::endl;
+}
+
 } // namespace HIF.
