@@ -21,9 +21,7 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 	// Partition.
 	SparseMatrix<Scalar> tmpA = A(vtx_, vtx_);
 	vector<int> p1, p2, sp1, sp2;
-	std::cout << "adadad" << std::endl;
 	GraphPart(tmpA, p1, p2, sp1, sp2);
-	std::cout << "hhkh" << std::endl;
 	/*std::cout << " level " << level_ << std::endl;
 	std::cout << " seqnum " << seqnum_ << std::endl;
 	std::cout << " p1 " << std::endl;
@@ -94,7 +92,6 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrix<Scalar>& A)
 {
 	std::cout << "PassSeparatorNeighbor" << std::endl;
 	SparseMatrix<Scalar> nbA = A(sep_, nb_);
-	std::cout << "Pasdasdasdr" << std::endl;
 	for (int i = 0; i < sep_.size(); i++)
 	{
 		int sepi = sep_[i];
@@ -121,7 +118,6 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrix<Scalar>& A)
 						index_addnb.push_back(col);
 					}
 				}
-				std::cout << "7788" << std::endl;
 				for (int j = 0; j < index_addnb.size(); j++)
 				{
 					int addnbj = nb_[index_addnb[j]];

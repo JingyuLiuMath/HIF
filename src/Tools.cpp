@@ -97,7 +97,6 @@ void RangeVec(int start, int end, vector<int>& vec)
 template <typename Scalar>
 void FullMat(const SparseMatrix<Scalar>& sparseA, Matrix<Scalar>& A)
 {
-    // A.Resize(sparseA.Height(), sparseA.Width());
     std::cout << sparseA.Height() << " " << sparseA.Width() << std::endl;
     std::cout << A.Height() << " " << A.Width() << std::endl;
     for (int i = 0; i < A.Height(); i++)
