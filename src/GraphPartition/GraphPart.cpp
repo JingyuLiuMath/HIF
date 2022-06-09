@@ -185,10 +185,10 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     }
     idx_t* adjncy = new idx_t[rowindex.size()];
     // std::cout << " adjncy " << std::endl;
-    for (int i = 0; i < rowindex.size(); i++)
+    for (int t = 0; t < rowindex.size(); t++)
     {
-        adjncy[i] = rowindex[i];
-        // std::cout << adjncy[i] << std::endl;
+        adjncy[t] = rowindex[t];
+        // std::cout << adjncy[t] << std::endl;
     }
 
     idx_t* vwgt = NULL;
