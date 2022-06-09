@@ -15,8 +15,8 @@ int main(int argc, char* argv[])
 {
 	El::Initialize(argc, argv);
 
-	try
-	{
+	//try
+	//{
 		const string inputfileA = Input("--input_A", "input filename of A", "./A.txt");
 		const string inputfileb = Input("--input_b", "input filename of b", "./b.txt");
 		const int cutoff = Input("--cutoff", "cutoff", 64);
@@ -89,11 +89,11 @@ int main(int argc, char* argv[])
 			foutx << b.Get(k, 1) << endl;
 		}
 		foutx.close();*/
-	}
-	catch (std::exception& e)
-	{
+	//}
+	//catch (std::exception& e)
+	//{
 
-	}
+	//}
 	El::Finalize();
 	return 0;
 }
