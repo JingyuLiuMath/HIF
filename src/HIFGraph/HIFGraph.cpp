@@ -40,7 +40,7 @@ HIFGraph<Scalar>::HIFGraph
 
 	std::cout << "Start BuildTree" << std::endl;
 	BuildTree(A, minvtx);
-	std::cout << "numlevels" << << numlevels_ << std::endl;
+	std::cout << "numlevels" << numlevels_ << std::endl;
 	std::cout << "Start SetNeighborNode" << std::endl;
 	SetNeighborNode();
 	std::cout << "Start FillTree" << std::endl;
