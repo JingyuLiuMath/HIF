@@ -121,6 +121,7 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrix<Scalar>& A)
 						index_addnb.push_back(col);
 					}
 				}
+				std::cout << "7788" << std::endl;
 				for (int j = 0; j < index_addnb.size(); j++)
 				{
 					int addnbj = nb_[index_addnb[j]];
