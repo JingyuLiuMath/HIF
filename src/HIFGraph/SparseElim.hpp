@@ -27,10 +27,6 @@ void HIFGraph<Scalar>::RecursiveSparseElim(int whatlevel)
 template <typename Scalar>
 void HIFGraph<Scalar>::SparseElim()
 {
-	std::cout << "SparseElim" << std::endl;
-	std::cout << "current level " << level_ << std::endl;
-	std::cout << "current seqnum " << seqnum_ << std::endl;
-
 	// AII = LI * DI * LI^{T}.
 	LDLSolve(AII_, AIIinv_);
 	// AIIinvAIS = AII^{-1} * ASI^{T}.

@@ -439,9 +439,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 template <typename Scalar>
 void HIFGraph<Scalar>::NoSkel()
 {
-	std::cout << "NoSkel" << std::endl;
-	std::cout << "current level " << level_ << std::endl;
-	std::cout << "current seqnum " << seqnum_ << std::endl;
 	sk_.assign(sep_.begin(), sep_.end());
 }
 

@@ -59,18 +59,6 @@ int main(int argc, char* argv[])
 			k++;
 		}
 		finb.close();
-
-		/*const SparseMatrix<double> B(A);
-		vector<int> testindex;
-		for (int k = 0; k < 10; k++)
-		{
-			testindex.push_back(k);
-		}
-		SparseMatrix<double> testA = B(testindex, testindex);
-		std::cout << B.Get(9, 9) << std::endl;
-		std::cout << testA.Get(9, 9) << std::endl;
-		std::cout << testA.Height() << std::endl;
-		std::cout << testA.NumEntries() << std::endl;*/
 		
 		HIFGraph<double> HIF(A, cutoff);
 

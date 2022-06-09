@@ -75,7 +75,7 @@ private:
     vector<int> complexsep_; // Sep which interact with more than one nodes.
 
     // Tree data.
-    int numlevels_; // Total number of levels.
+    int numlevels_ = 0; // Total number of levels.
     int level_; // Current level, start from 0.
     int seqnum_; // A node's order in its level.
     int endflag_ = 0; // Whether the partition ends.
