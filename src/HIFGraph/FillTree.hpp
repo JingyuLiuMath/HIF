@@ -12,16 +12,19 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		std::cout << " level " << level_ << std::endl;
 		std::cout << " seqnum " << seqnum_ << std::endl;
 
+		std:: cout << " vtx " << vtx_.size() << std::endl;
 		for (int i = 0; i < vtx_.size(); i++)
 		{
-			std::cout << " vtx_[i] " << vtx_[i] << std::endl;
+			std::cout << vtx_[i] << std::endl;
 		}
 
+		std::cout << " sep " << sep_.size() << std::endl;
 		for (int i = 0; i < sep_.size(); i++)
 		{
-			std::cout << " sep_[i] " << sep_[i] << std::endl;
+			std::cout << sep_[i] << std::endl;
 		}
 
+		std::cout << " Diff_Sort " << std::endl;
 		Diff_Sort(vtx_, sep_, intr_);
 
 		for (int i = 0; i < intr_.size(); i++)
