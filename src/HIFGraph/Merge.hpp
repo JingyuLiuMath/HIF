@@ -29,6 +29,7 @@ void HIFGraph<Scalar>::Merge()
 	std::cout << "Merge" << std::endl;
 	std::cout << "current level " << level_ << std::endl;
 	std::cout << "current seqnum " << seqnum_ << std::endl;
+
 	// We stand on the parent level.
 
 	if (endflag_ == 1)
@@ -37,6 +38,8 @@ void HIFGraph<Scalar>::Merge()
 	}
 
 	childreninfo_.resize(2);
+
+	std::cout << "JyLiu 1" << std::endl;
 
 	// First we tell the parent what its intr, sep, nb is after we eliminate the children's vtx.
 	// intr: children's sk - sep.
@@ -78,6 +81,8 @@ void HIFGraph<Scalar>::Merge()
 
 	MatrixS copymtx; // Copy of assigned matrix. 
 
+	std::cout << "JyLiu 2" << std::endl;
+
 	// AII
 	// An intr of the parent only belongs to the sep of one of its children.
 	// If two intrs belong to the same child, we assign AII from the child's ASS. 
@@ -109,6 +114,8 @@ void HIFGraph<Scalar>::Merge()
 	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr2, copymtx);
 	copymtx.Empty();
 
+	std::cout << "JyLiu 3" << std::endl;
+
 	// ASI
 	// A sep of the parent only belongs to the sep of one of its children.
 	// If an intr and a sep belongs to the same child, we assign ASI from the child's ASS.
@@ -138,6 +145,8 @@ void HIFGraph<Scalar>::Merge()
 	copymtx = (children_[1]->ANS_)(cindex_sep2y, cindex_intr2);
 	SubMatrixUpdate(ASI_, myindex_sep2y, myindex_intr2, copymtx);
 	copymtx.Empty();
+
+	std::cout << "JyLiu 4" << std::endl;
 
 	// ASS
 	// If two seps belongs to the same child, we assign ASS from the child's ASS. 
@@ -169,6 +178,8 @@ void HIFGraph<Scalar>::Merge()
 	SubMatrixUpdate(ASS_, myindex_sep1, myindex_sep2, copymtx);
 	copymtx.Empty();
 
+	std::cout << "JyLiu 5" << std::endl;
+
 	// ANS
 	// If a nb and a sep in the same child, we assign ANS from the child's ANS.
 	// Otherwise, ANS= 0.
@@ -186,6 +197,10 @@ void HIFGraph<Scalar>::Merge()
 	SubMatrixUpdate(ANS_, myindex_nb2x, myindex_sep2, copymtx);
 	copymtx.Empty();
 
+
+	std::cout << "JyLiu 6" << std::endl;
+
+
 	// Clear children's unnecessary information.
 	for (int iter = 0; iter < 2; iter++)
 	{
@@ -194,6 +209,8 @@ void HIFGraph<Scalar>::Merge()
 
 	// Set separator type.
 	SetSeparatorType();
+
+	std::cout << "JyLiu 7" << std::endl;
 }
 
 // Clear unnecessary information.
