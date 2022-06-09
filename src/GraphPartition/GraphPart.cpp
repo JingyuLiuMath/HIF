@@ -90,7 +90,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     SparseMatrix<Scalar> A1 = A(idx, idx);
     vector<int> lidx, ridx, sepidx;
     MetisSepPart(A1, lidx, ridx, sepidx);
-    std::cout << " lidx " << std::endl;
+    /*std::cout << " lidx " << std::endl;
     for (int i = 0; i < lidx.size(); i++)
     {
         std::cout << lidx[i] << std::endl;
@@ -104,7 +104,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     for (int i = 0; i < sepidx.size(); i++)
     {
         std::cout << sepidx[i] << std::endl;
-    }
+    }*/
     p1.resize(lidx.size());
     p2.resize(ridx.size());
     sep.resize(sepidx.size());
@@ -130,6 +130,8 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 {
     // nvtxs.
     idx_t nvtxs = A.Height();
+    std::cout << " nvtxs " << std::endl;
+    std::cout << nvtxs << std::endl;
     // xadj.
     const int* sourceA = A.LockedSourceBuffer();
     const int* targetA = A.LockedTargetBuffer();
@@ -164,10 +166,13 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         Accumarray(colindex, cumsum_accumj);
         Cumsum(cumsum_accumj);
         xadj = new idx_t[cumsum_accumj.size() + 1];
+        std::cout << " xadj " << std::endl;
         xadj[0] = 0;
+        std::cout << 0 << std::endl;
         for (int i = 0; i < cumsum_accumj.size(); i++)
         {
             xadj[i + 1] = cumsum_accumj[i];
+            std::cout << xadj[i + 1] << std::endl;
         }
     }
     // adjncy.
@@ -177,9 +182,11 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         return;
     }
     idx_t* adjncy = new idx_t[rowindex.size()];
+    std::cout << " adjncy " << std::endl;
     for (int i = 0; i < rowindex.size(); i++)
     {
         adjncy[i] = rowindex[i];
+        std::cout << adjncy[i] << std::endl;
     }
 
     idx_t* vwgt = NULL;
