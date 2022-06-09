@@ -149,7 +149,7 @@ private:
 
     // Debug functions.
     void ShowPartition();
-    void ShowMatrix(const MatrixS& A)
+    void ShowMatrix(const MatrixS& A);
 };
 
 } // namespace HIF.
