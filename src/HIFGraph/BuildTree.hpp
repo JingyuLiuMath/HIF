@@ -44,7 +44,7 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 		sep2[i] = vtx_[sp2[i]];
 	}
 
-	// Debug: vtx1, vtx2, sep1, sep2 are totally different from MATLAB. 
+	// DebugLiu: vtx1, vtx2, sep1, sep2 are totally different from MATLAB. 
 	
 	// Create children HIFGraph.
 	children_.resize(2);
