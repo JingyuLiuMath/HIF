@@ -66,7 +66,10 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		Aneed.Empty();
 
 		std::cout << "Jyliu 5" << std::endl;
+		
 		SetSeparatorType();
+
+		std::cout << "Jyliu 6" << std::endl;
 	}
 	else
 	{
