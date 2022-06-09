@@ -35,4 +35,20 @@ void HIFGraph<Scalar>::ShowPartition()
 	}
 }
 
+// Show matrix.
+template <typename Scalar>
+void HIFGraph<Scalar>::ShowMatrix(const MatrixS& A)
+{
+	std::cout << "Height " << A.Height() << std::endl;
+	std::cout << "Width " << A.Width() << std::endl;
+	for (int i = 0; i < A.Height(); i++)
+	{
+		for (int j = 0; j < A.Width(); j++)
+		{
+			std::cout << A.Get(i, j) << " ";
+		}
+		std::cout << std::endl;
+	}
+}
+
 } // namespace HIF.
