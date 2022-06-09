@@ -92,6 +92,7 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 template <typename Scalar>
 void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrix<Scalar>& A)
 {
+	std::cout << "PassSeparatorNeighbor" << std::endl;
 	SparseMatrix<Scalar> nbA = A(sep_, nb_);
 
 	for (int i = 0; i < sep_.size(); i++)
