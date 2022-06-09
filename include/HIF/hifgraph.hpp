@@ -147,6 +147,8 @@ private:
 
     void GetSolution(Matrix<Scalar>& b, const vector<int>& xcol);
 
+    // Debug functions.
+    void ShowPartition();
 };
 
 } // namespace HIF.

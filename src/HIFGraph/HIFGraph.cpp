@@ -22,6 +22,8 @@
 #include "./ApplySparseElimDown.hpp"
 #include "./GetSolution.hpp"
 
+#include "./DebugTools.hpp"
+
 namespace HIF {
 
 // Create a HIFGraph class.
@@ -41,11 +43,12 @@ HIFGraph<Scalar>::HIFGraph
 	std::cout << "Start BuildTree" << std::endl;
 	BuildTree(A, minvtx);
 	std::cout << "numlevels" << numlevels_ << std::endl;
-	std::cout << "Start SetNeighborNode" << std::endl;
+	ShowPartition();
+	/*std::cout << "Start SetNeighborNode" << std::endl;
 	SetNeighborNode();
 	std::cout << "Start FillTree" << std::endl;
 	FillTree(A);
-	std::cout << "Finish initialization" << std::endl;
+	std::cout << "Finish initialization" << std::endl;*/
 }
 
 // Create a HIFGraph class.
