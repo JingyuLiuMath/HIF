@@ -26,6 +26,10 @@ void HIFGraph<Scalar>::RecursiveApplySparseElimUp(int whatlevel)
 template <typename Scalar>
 void HIFGraph<Scalar>::ApplySparseElimUp()
 {
+	std::cout << "ApplySparseElimUp" << std::endl;
+	std::cout << "current level " << level_ << std::endl;
+	std::cout << "current seqnum " << seqnum_ << std::endl;
+
 	// xS = xS - (AII^{-1} * ASI^{T})^{T} * xI.
 	Gemm(TRANSPOSE, NORMAL,
 		Scalar(-1), AIIinvAIS_, xI_,

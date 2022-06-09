@@ -27,6 +27,10 @@ void HIFGraph<Scalar>::RecursiveApplySkelUp(int whatlevel, const vector<int>& xc
 template <typename Scalar>
 void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 {
+	std::cout << "ApplySkelUp" << std::endl;
+	std::cout << "current level " << level_ << std::endl;
+	std::cout << "current seqnum " << seqnum_ << std::endl;
+
 	for (int k = 0; k < nbnode_.size(); k++)
 	{
 		HIFGraph* nbnodek = nbnode_[k];
