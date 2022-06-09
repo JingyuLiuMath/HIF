@@ -109,7 +109,7 @@ void HIFGraph<Scalar>::Merge()
 	Intersect_Sort(intr_, children_[0]->nb_, myindex_intr21, cindex_intr21);
 	std::cout << "JyLiu 2.2.1" << std::endl;
 	copymtx = (children_[0]->ASS_)(cindex_intr1, cindex_intr1);
-	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr2, copymtx);
+	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr1, copymtx);
 	std::cout << "JyLiu 2.2.2" << std::endl;
 	copymtx.Empty();
 
