@@ -93,23 +93,35 @@ void HIFGraph<Scalar>::Merge()
 	vector<int>& cindex_intr1 = childreninfo_[0].cindex_intr;
 	Intersect_Sort(intr_, children_[0]->vtx_, intr1, myindex_intr1, 1);
 	FindAllIndex_Sort(intr1, children_[0]->sep_, cindex_intr1);
+	
+	std::cout << "JyLiu 2.1" << std::endl;
+	
 	vector<int> intr2;
 	vector<int>& myindex_intr2 = childreninfo_[1].myindex_intr;
 	vector<int>& cindex_intr2 = childreninfo_[1].cindex_intr;
 	Intersect_Sort(intr_, children_[1]->vtx_, intr2, myindex_intr2, 1);
 	FindAllIndex_Sort(intr2, children_[1]->sep_, cindex_intr2);
+	
+	std::cout << "JyLiu 2.2" << std::endl;
+	
 	vector<int> myindex_intr21;
 	vector<int> cindex_intr21;
 	Intersect_Sort(intr_, children_[0]->nb_, myindex_intr21, cindex_intr21);
 	copymtx = (children_[0]->ASS_)(cindex_intr1, cindex_intr1);
 	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr2, copymtx);
 	copymtx.Empty();
+
+	std::cout << "JyLiu 2.3" << std::endl;
+	
 	copymtx = (children_[1]->ASS_)(cindex_intr2, cindex_intr2);
 	SubMatrixUpdate(AII_, myindex_intr2, myindex_intr2, copymtx);
 	copymtx.Empty();
 	copymtx = (children_[0]->ANS_)(cindex_intr21, cindex_intr1);
 	SubMatrixUpdate(AII_, myindex_intr21, myindex_intr1, copymtx);
 	copymtx.Empty();
+	
+	std::cout << "JyLiu 2.4" << std::endl;
+
 	Transpose(AII_(myindex_intr2, myindex_intr1), copymtx);
 	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr2, copymtx);
 	copymtx.Empty();
