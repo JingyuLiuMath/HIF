@@ -13,7 +13,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		
 		std::cout << " level " << level_ << std::endl;
 		std::cout << " seqnum " << seqnum_ << std::endl;
-		/*for (int i = 0; i < intr_.size(); i++)
+		for (int i = 0; i < intr_.size(); i++)
 		{
 			std::cout << " intr_[i] " << intr_[i] << std::endl;
 		}
@@ -25,7 +25,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		{
 			std::cout << " nb_[i] " << nb_[i] << std::endl;
 		}
-		*/
+		
 
 		SparseMatrixS Aneed;
 		
