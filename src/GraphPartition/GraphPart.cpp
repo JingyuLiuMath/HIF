@@ -20,7 +20,7 @@ void GraphPart(const SparseMatrix<Scalar>& A,
         vector<int> sep2i_tmp;
         for (int col = 0; col < A.Width(); col++)
         {
-            if (A.Get(sep1i, col) != 0)
+            if (A.Get(sep1i, col) != Scalar(0))
             {
                 sep2i_tmp.push_back(col);
             }
@@ -33,6 +33,28 @@ void GraphPart(const SparseMatrix<Scalar>& A,
             sort(sep2.begin(), sep2.end());
             Unique_Sort(sep2);
         }
+    }
+    cout << " level " << level_ << std::endl;
+    cout << " seqnum " << seqnum_ << std::endl;
+    std::cout << " p1 " << std::endl;
+    for (int i = 0; i < p1.size(); i++)
+    {
+        std::cout << p1[i] << std::endl;
+    }
+    std::cout << " sep1 " << std::endl;
+    for (int i = 0; i < sep1.size(); i++)
+    {
+        std::cout << sep1[i] << std::endl;
+    }
+    std::cout << " p2 " << std::endl;
+    for (int i = 0; i < p2.size(); i++)
+    {
+        std::cout << p2[i] << std::endl;
+    }
+    std::cout << " sep2 " << std::endl;
+    for (int i = 0; i < sep2.size(); i++)
+    {
+        std::cout << sep2[i] << std::endl;
     }
 }
 
