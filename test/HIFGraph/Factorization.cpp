@@ -84,6 +84,7 @@ int main(int argc, char* argv[])
 		SparseMatrix<double> testA = A(rowindex, colindex);
 		std::cout << testA.Get(0, 0) << std::endl;
 		std::cout << testA.Height() << std::endl;
+		std::cout << testA.Width() << std::endl;
 		std::cout << testA.NumEntries() << std::endl;
 
 		// HIFGraph<double> HIF(A, cutoff);
