@@ -90,6 +90,21 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     SparseMatrix<Scalar> A1 = A(idx, idx);
     vector<int> lidx, ridx, sepidx;
     MetisSepPart(A1, lidx, ridx, sepidx);
+    std::cout << " lidx " << std::endl;
+    for (int i = 0; i < lidx.size(); i++)
+    {
+        std::cout << lidx[i] << std::endl;
+    }
+    std::cout << " ridx " << std::endl;
+    for (int i = 0; i < ridx.size(); i++)
+    {
+        std::cout << ridx[i] << std::endl;
+    }
+    std::cout << " sepidx " << std::endl;
+    for (int i = 0; i < sepidx.size(); i++)
+    {
+        std::cout << sepidx[i] << std::endl;
+    }
     p1.resize(lidx.size());
     p2.resize(ridx.size());
     sep.resize(sepidx.size());
