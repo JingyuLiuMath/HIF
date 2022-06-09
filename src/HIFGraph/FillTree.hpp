@@ -34,7 +34,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		El::Zeros(AII_, intr_.size(), intr_.size());
 		Aneed = A(intr_, intr_);
 		Aneed.QueueUpdate(Aneed.Height() - 1, Aneed.Width() - 1, Scalar(0));
-		Aneed.QueueProcess;
+		Aneed.ProcessQueues();
 		FullMat(Aneed, AII_);
 
 		//vector<int> rangeintr;
@@ -48,7 +48,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		El::Zeros(ASI_, sep_.size(), intr_.size());
 		Aneed = A(sep_, intr_);
 		Aneed.QueueUpdate(Aneed.Height() - 1, Aneed.Width() - 1, Scalar(0));
-		Aneed.QueueProcess;
+		Aneed.ProcessQueues();
 
 		std::cout << "Jyliu 2.1" << std::endl;
 
