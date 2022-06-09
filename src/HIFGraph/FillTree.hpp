@@ -25,36 +25,49 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		{
 			std::cout << " nb_[i] " << nb_[i] << std::endl;
 		}
+		
 		MatrixS Aneed;
 
 		std::cout << "Jyliu 1" << std::endl;
 		El::Zeros(AII_, intr_.size(), intr_.size());
-		vector<int> rangeintr;
+
+		FullMat(A(intr_, intr_), AII_);
+
+		/*vector<int> rangeintr;
 		RangeVec(0, intr_.size(), rangeintr);
 		FullMat(A(intr_, intr_), Aneed);
 		SubMatrixUpdate(AII_, rangeintr, rangeintr, Aneed);
-		Aneed.Empty();
+		Aneed.Empty();*/
 
 		std::cout << "Jyliu 2" << std::endl;
 		El::Zeros(ASI_, sep_.size(), intr_.size());
-		vector<int> rangesep;
+		
+		FullMat(A(sep_, intr_), ASI_);
+		
+		/*vector<int> rangesep;
 		RangeVec(0, sep_.size(), rangesep);
 		FullMat(A(sep_, intr_), Aneed);
 		SubMatrixUpdate(ASI_, rangesep, rangeintr, Aneed);
-		Aneed.Empty();
+		Aneed.Empty();*/
 
 		std::cout << "Jyliu 3" << std::endl;
 		El::Zeros(ASS_, sep_.size(), sep_.size());
-		FullMat(A(sep_, sep_), Aneed);
+		
+		FullMat(A(sep_, sep_), ASS_);
+
+		/*FullMat(A(sep_, sep_), Aneed);
 		SubMatrixUpdate(ASS_, rangesep, rangesep, Aneed);
-		Aneed.Empty();
+		Aneed.Empty();*/
 
 		std::cout << "Jyliu 4" << std::endl;
 		El::Zeros(ANS_, nb_.size(), sep_.size());
-		vector<int> rangenb;
+		
+		FullMat(A(nb_, sep_), ANS_);
+		
+		/*vector<int> rangenb;
 		RangeVec(0, nb_.size(), rangenb);
 		FullMat(A(nb_, sep_), Aneed);
-		SubMatrixUpdate(ANS_, rangenb, rangesep, Aneed);
+		SubMatrixUpdate(ANS_, rangenb, rangesep, Aneed);*/
 
 		SetSeparatorType();
 	}
