@@ -10,7 +10,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 	if (endflag_ == 1)
 	{	
 		Diff_Sort(vtx_, sep_, intr_);
-		
+		std::cout << "asdadad" << std::endl;
 		SparseMatrixS Aneed;
 		
 		El::Zeros(AII_, intr_.size(), intr_.size());
