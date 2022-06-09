@@ -8,11 +8,12 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 {
 	// We only fill the leaf nodes.
 	if (endflag_ == 1)
-	{
-		Diff_Sort(vtx_, sep_, intr_);
-		
+	{	
 		std::cout << " level " << level_ << std::endl;
 		std::cout << " seqnum " << seqnum_ << std::endl;
+
+		Diff_Sort(vtx_, sep_, intr_);
+
 		for (int i = 0; i < intr_.size(); i++)
 		{
 			std::cout << " intr_[i] " << intr_[i] << std::endl;
