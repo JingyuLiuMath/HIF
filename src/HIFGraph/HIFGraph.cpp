@@ -42,12 +42,12 @@ HIFGraph<Scalar>::HIFGraph
 
 	std::cout << "Start BuildTree" << std::endl;
 	BuildTree(A, minvtx);
-	// ShowPartition();
-	/*std::cout << "Start SetNeighborNode" << std::endl;
+	ShowPartition();
+	std::cout << "Start SetNeighborNode" << std::endl;
 	SetNeighborNode();
 	std::cout << "Start FillTree" << std::endl;
 	FillTree(A);
-	std::cout << "Finish initialization" << std::endl;*/
+	std::cout << "Finish initialization" << std::endl;
 }
 
 // Create a HIFGraph class.
