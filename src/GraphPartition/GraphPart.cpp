@@ -279,7 +279,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 
     if (ctrl->pfactor > 0.0)
     {
-        std::cout << " ctrl->pfactor > 0.0 " << std::endl;
         for (i = 0; i < graph->nvtxs; i++)
             if (where[i] == 0)
                 p1[ptlgraph++] = piperm[i];
@@ -295,7 +294,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     }
     else
     {
-        std::cout << " else " << std::endl;
         for (i = 0; i < graph->nvtxs; i++)
             if (where[i] == 0)
                 p1[ptlgraph++] = i;
