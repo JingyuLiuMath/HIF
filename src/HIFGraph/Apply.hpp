@@ -11,8 +11,6 @@ void HIFGraph<Scalar>::Apply(Matrix<Scalar>& b)
 	
 	// Fill vector in the tree.
 	FillVecTree(b, xcol);
-
-	std::cout << "Jyliu 1" << std::endl;
 	
 	for (int tmplevel = numlevels_; tmplevel >= 1; tmplevel--)
 	{
@@ -20,8 +18,6 @@ void HIFGraph<Scalar>::Apply(Matrix<Scalar>& b)
 		RecursiveApplySkelUp(tmplevel, xcol);
 		RecursiveApplyMerge(tmplevel - 1, xcol);
 	}
-
-	std::cout << "Jyliu 2" << std::endl;
 	
 	// Root apply.
 	RootApply();

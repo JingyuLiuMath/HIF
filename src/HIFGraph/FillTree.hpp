@@ -12,6 +12,11 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		Diff_Sort(vtx_, sep_, intr_);
 		SparseMatrixS Aneed;
 		
+		std::cout << "intr" << std::endl;
+		ShowVector(intr_);
+		std::cout << "sep" << std::endl;
+		ShowVector(sep_);
+
 		El::Zeros(AII_, intr_.size(), intr_.size());
 		Aneed = A(intr_, intr_);
 		if ((Aneed.Height() > 0) && (Aneed.Width()> 0))
@@ -52,6 +57,15 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		FullMat(Aneed, ANS_);
 		Aneed.Empty();
 		
+		std::cout << "AII" << std::endl;
+		ShowMatrix(AII_);
+		std::cout << "ASI" << std::endl;
+		ShowMatrix(ASI_);
+		std::cout << "ASS" << std::endl;
+		ShowMatrix(ASS_);
+		std::cout << "ANS" << std::endl;
+		ShowMatrix(ANS_);
+
 		SetSeparatorType();
 	}
 	else
