@@ -249,10 +249,10 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         }
     }
 
-    // set up the run time parameters.
+    // Set up the run time parameters.
     ctrl = SetupCtrl(METIS_OP_OMETIS, options, 1, 3, NULL, NULL);
 
-    // prune the dense columns.
+    // Prune the dense columns.
     if (ctrl->pfactor > 0.0)
     {
         piperm = imalloc(nvtxs, "OMETIS: piperm");
@@ -261,25 +261,25 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
             piperm, ctrl->pfactor);
         if (graph == NULL)
         {
-            // if there was no prunning, cleanup the pfactor.
+            // If there was no prunning, cleanup the pfactor.
             gk_free((void**)&piperm, LTERM);
             ctrl->pfactor = 0.0;
         }
         else
         {
             nnvtxs = graph->nvtxs;
-            // disable compression if prunning took place.
+            // Disable compression if prunning took place.
             ctrl->compress = 0;
         }
     }
 
-    // compress the graph.
+    // Compress the graph.
     if (ctrl->compress)
     {
         ctrl->compress = 0;
     }
 
-    // if no prunning and no compression, setup the graph in the normal way.
+    // If no prunning and no compression, setup the graph in the normal way.
     if (ctrl->pfactor == 0.0 && ctrl->compress == 0)
     {
         graph = SetupGraph(ctrl, nvtxs, 1, xadj, adjncy, vwgt, NULL, NULL);
@@ -287,7 +287,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     ASSERT(CheckGraph(graph, ctrl->numflag, 1));
 
     
-    // allocate workspace memory.
+    // Allocate workspace memory.
     AllocateWorkSpace(ctrl, graph);
 
     MlevelNodeBisectionMultiple(ctrl, graph);
@@ -341,7 +341,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
                 sep[ptsep++] = i;
     }
 
-    /* clean up */
+    // Clean up
     FreeCtrl(&ctrl);
 }
 
