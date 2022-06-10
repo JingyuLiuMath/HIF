@@ -35,7 +35,8 @@ void HIFGraph<Scalar>::SetSeparatorType()
 			singlesep_[k][i] = sep_[index_sep[i]];
 		}
 	}
-	
+
+	complexsep_.resize(sep_.size());
 	int actual_complexsep = 0;
 	for (int i = 0; i < sep_.size(); i++)
 	{
