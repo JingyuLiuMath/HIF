@@ -60,18 +60,7 @@ int main(int argc, char* argv[])
 		}
 		finb.close();
 		
-		std::cout << " [ " << std::endl;
-		for (int i = 0; i < A.Height(); i++)
-		{
-			for (int j = 0; j < A.Width(); j++)
-			{
-				std::cout << A.Get(i, j) << ",";
-			}
-			std::cout << ";" << std::endl;
-		}
-		std::cout << " ] " << std::endl;
-
-		// HIFGraph<double> HIF(A, cutoff);
+		HIFGraph<double> HIF(A, cutoff);
 
 		/*HIF.Factorization(tol);
 

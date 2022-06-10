@@ -29,6 +29,31 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 			Aneed.QueueUpdate(Aneed.Height() - 1, Aneed.Width() - 1, Scalar(0));
 			Aneed.ProcessQueues();
 		}
+		// DebugLiu
+		std::cout << " Aneed " << std::endl;
+		std::cout << " [ " << std::endl;
+		for (int i = 0; i < sep_.size(); i++)
+		{
+			for (int j = 0; j < intr_.size(); j++)
+			{
+				std::cout << Aneed.Get(i, j) << ",";
+			}
+			std::cout << ";" << std::endl;
+		}
+		std::cout << " ] " << std::endl;
+
+		std::cout << " Asub " << std::endl;
+		std::cout << " [ " << std::endl;
+		for (int i = 0; i < sep_.size(); i++)
+		{
+			for (int j = 0; j < intr_.size(); j++)
+			{
+				std::cout << A.Get(sep_[i], intr_[j]) << ",";
+			}
+			std::cout << ";" << std::endl;
+		}
+		std::cout << " ] " << std::endl;
+
 		FullMat(Aneed, ASI_);
 		Aneed.Empty();
 
@@ -53,7 +78,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		Aneed.Empty();
 		
 		// DebugLiu
-		std::cout << "intr" << std::endl;
+		/*std::cout << "intr" << std::endl;
 		ShowVector(intr_);
 		std::cout << "sep" << std::endl;
 		ShowVector(sep_);
@@ -66,7 +91,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		std::cout << "ASS" << std::endl;
 		ShowMatrix(ASS_);
 		std::cout << "ANS" << std::endl;
-		ShowMatrix(ANS_);
+		ShowMatrix(ANS_);*/
 
 		SetSeparatorType();
 	}
