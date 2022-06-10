@@ -202,6 +202,8 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     idx_t options[METIS_NOPTIONS];
     METIS_SetDefaultOptions(options);
     
+    // DebugLiu: correct until this line
+
     // Metis main function
     idx_t i, nnvtxs = 0;
     idx_t ptlgraph, ptrgraph, ptsep;
@@ -255,7 +257,9 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 
     // compress the graph
     if (ctrl->compress)
+    {
         ctrl->compress = 0;
+    }
 
     // if no prunning and no compression, setup the graph in the normal way.
     if (ctrl->pfactor == 0.0 && ctrl->compress == 0)
@@ -276,11 +280,15 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     snvtxs[2] = 0;
 
     if (ctrl->pfactor > 0.0)
+    {
         snvtxs[2] += nvtxs - nnvtxs;
+    }
 
     where = graph->where;
     for (i = 0; i < graph->nvtxs; i++)
+    {
         snvtxs[where[i]]++;
+    }
 
     p1.resize(snvtxs[0]);
     p2.resize(snvtxs[1]);
