@@ -41,7 +41,6 @@ int main(int argc, char* argv[])
 		{
 			A.QueueUpdate(i, j, value);
 		}
-		A.QueueUpdate(0, 0, 2);
 		A.ProcessQueues();
 		finA.close();
 
@@ -61,8 +60,7 @@ int main(int argc, char* argv[])
 		}
 		finb.close();
 		
-		std::cout << A.Get(0, 0) << std::endl;
-		// HIFGraph<double> HIF(A, cutoff);
+		HIFGraph<double> HIF(A, cutoff);
 
 		/*HIF.Factorization(tol);
 
