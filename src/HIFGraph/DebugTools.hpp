@@ -58,4 +58,25 @@ void HIFGraph<Scalar>::ShowVector(const vector<int>& v)
 	std::cout << " ] " << std::endl;
 }
 
+// Give A.
+template <typename Scalar>
+void HIFGraph<Scalar>::GiveMeA(MatrixS& myA)
+{
+	if (endflag_ == 1)
+	{
+		SubMatrixUpdate(myA, intr_, intr_, AII_);
+		SubMatrixUpdate(myA, sep_, intr_, ASI_);
+		SubMatrixUpdate(myA, sep_, sep_, ASS_);
+		SubMatrixUpdate(myA, nb_, sep_, ANS_);
+	}
+	else
+	{
+		for (int iter = 0; iter < 2; iter++)
+		{
+			children_[iter]->GiveMeA(myA);
+		}
+	}
+
+}
+
 } // namespace HIF.

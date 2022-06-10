@@ -101,14 +101,6 @@ void FullMat(const SparseMatrix<Scalar>& sparseA, Matrix<Scalar>& A)
     {
         for (int j = 0; j < A.Width(); j++)
         {
-           /* std::cout << " i " << i << " j " << j << std::endl;
-            int offset = sparseA.Offset(i, j);
-            std::cout << offset << std::endl;
-            std::cout << sparseA.NumEntries() << std::endl;
-            std::cout << sparseA.Row(offset) << std::endl;
-            std::cout << sparseA.Col(offset) << std::endl;
-            std::cout << sparseA.Size() << std::endl;
-            std::cout << "sparseA.Get(i, j) " << sparseA.Get(i, j) << std::endl;*/
             A.Set(i, j, sparseA.Get(i, j));
         }
     }

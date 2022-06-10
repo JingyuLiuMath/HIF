@@ -29,37 +29,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 			Aneed.QueueUpdate(Aneed.Height() - 1, Aneed.Width() - 1, Scalar(0));
 			Aneed.ProcessQueues();
 		}
-		// DebugLiu
-		std::cout << " Aneed " << std::endl;
-		std::cout << " [ " << std::endl;
-		for (int i = 0; i < sep_.size(); i++)
-		{
-			for (int j = 0; j < intr_.size(); j++)
-			{
-				std::cout << Aneed.Get(i, j) << ",";
-			}
-			std::cout << ";" << std::endl;
-		}
-		std::cout << " ] " << std::endl;
-
-		std::cout << " Asub " << std::endl;
-		std::cout << " [ " << std::endl;
-		for (int i = 0; i < sep_.size(); i++)
-		{
-			for (int j = 0; j < intr_.size(); j++)
-			{
-				std::cout << A.Get(sep_[i], intr_[j]) << ",";
-			}
-			std::cout << ";" << std::endl;
-		}
-		std::cout << " ] " << std::endl;
-
 		FullMat(Aneed, ASI_);
-		
-		//DebugLiu
-		std::cout << "ASI" << std::endl;
-		ShowMatrix(ASI_);
-
 		Aneed.Empty();
 
 		El::Zeros(ASS_, sep_.size(), sep_.size());

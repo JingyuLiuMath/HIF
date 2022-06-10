@@ -151,6 +151,7 @@ private:
     void ShowPartition();
     void ShowMatrix(const MatrixS& A);
     void ShowVector(const vector<int>& v);
+    void GiveMeA(MatrixS& myA);
 };
 
 } // namespace HIF.

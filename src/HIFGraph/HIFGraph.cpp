@@ -44,6 +44,9 @@ HIFGraph<Scalar>::HIFGraph
 	BuildTree(A, minvtx);
 	SetNeighborNode();
 	FillTree(A);
+	MatrixS myA(A.Height(), A.Width());
+	GiveMeA(myA);
+	ShowMatrix(myA);
 	std::cout << "Finish initialization" << std::endl;
 }
 
