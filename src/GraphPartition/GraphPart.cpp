@@ -105,20 +105,26 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     // DebugLiu: lidx, ridx, sepidx are totally different from MATLAB. 
     
     std::cout << " lidx " << std::endl;
+    std::cout << " [ " << std::endl;
     for (int i = 0; i < lidx.size(); i++)
     {
-        std::cout << lidx[i] << std::endl;
+        std::cout << lidx[i] << ";" << std::endl;
     }
+    std::cout << " ] " << std::endl;
     std::cout << " ridx " << std::endl;
+    std::cout << " [ " << std::endl;
     for (int i = 0; i < ridx.size(); i++)
     {
-        std::cout << ridx[i] << std::endl;
+        std::cout << ridx[i] << ";" << std::endl;
     }
+    std::cout << " ] " << std::endl;
     std::cout << " sepidx " << std::endl;
+    std::cout << " [ " << std::endl;
     for (int i = 0; i < sepidx.size(); i++)
     {
-        std::cout << sepidx[i] << std::endl;
+        std::cout << sepidx[i] << ";" << std::endl;
     }
+    std::cout << " ] " << std::endl;
     
     p1.resize(lidx.size());
     p2.resize(ridx.size());
