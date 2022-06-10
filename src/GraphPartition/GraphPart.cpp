@@ -156,8 +156,8 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     {
         if (rowindex_copy[k] != colindex_copy[k])
         {
-            rowindex.push_back(rowindex_copy[k]);
-            colindex.push_back(colindex_copy[k]);
+            rowindex[actualsize] = rowindex_copy[k];
+            colindex[actualsize] = colindex_copy[k];
             actualsize++;
         }
     }
