@@ -18,14 +18,17 @@ void GraphPart(const SparseMatrix<Scalar>& A,
     for (int i = 0; i < sep1.size(); i++)
     {
         int sep1i = sep1[i];
-        vector<int> sep2i_tmp;
+        vector<int> sep2i_tmp(A.Width());
+        int actualsize_sep2i_tmp = 0;
         for (int col = 0; col < A.Width(); col++)
         {
             if (A.Get(sep1i, col) != Scalar(0))
             {
-                sep2i_tmp.push_back(col);
+                sep2i_tmp[actualsize_sep2i_tmp] = col;
+                actualsize_sep2i_tmp++;
             }
         }
+        sep2i_tmp.erase(sep2i_tmp.begin() + actualsize_sep2i_tmp, sep2i_tmp.end());
         if (sep2i_tmp.size() > 0)
         {
             vector<int> sep2i;
@@ -75,19 +78,26 @@ void MetisPart(const SparseMatrix<Scalar>& A,
             degree[targetA[t]] += 1;
         }
     }
-    vector<int> singleidx;
-    vector<int> idx;
+    vector<int> singleidx(degree.size());
+    vector<int> idx(degree.size());
+    int actualsize_singleidx = 0;
+    int actualsize_idx = 0;
     for (int i = 0; i < degree.size(); i++)
     {
         if (degree[i] == 0)
         {
-            singleidx.push_back(i);
+            singleidx[actualsize_singleidx] = i;
+            actualsize_singleidx++;
         }
         else
         {
-            idx.push_back(i);
+            idx[actualsize_idx] = i;
+            actualsize_idx++;
         }
     }
+    singleidx.erase(singleidx.begin() + actualsize_singleidx, singleidx.end());
+    idx.erase(idx.begin() + actualsize_idx, idx.end());
+    
     SparseMatrix<Scalar> A1 = A(idx, idx);
     vector<int> lidx, ridx, sepidx;
     MetisSepPart(A1, lidx, ridx, sepidx);
