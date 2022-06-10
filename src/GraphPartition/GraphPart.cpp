@@ -9,8 +9,7 @@ void GraphPart(const SparseMatrix<Scalar>& A,
     vector<int>& sep1, vector<int>& sep2)
 {
     MetisPart(A, p1, p2, sep1);
-    // DebugLiu: p1, p2, sep1 are totally different from MATLAB. 
-    // p1 = p1 + sep, p2 = p2, sep1 = sep, sep2 need to be assigned.
+    // p1 = p1 + sep1, p2 = p2, sep2 need to be assigned.
     p1.insert(p1.end(), sep1.begin(), sep1.end());
     sort(p1.begin(), p1.end());
     sort(sep1.begin(), sep1.end());
@@ -101,31 +100,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     SparseMatrix<Scalar> A1 = A(idx, idx);
     vector<int> lidx, ridx, sepidx;
     MetisSepPart(A1, lidx, ridx, sepidx);
-    
-    // DebugLiu: lidx, ridx, sepidx are totally different from MATLAB. 
-    
-    /*std::cout << " lidx " << std::endl;
-    std::cout << " [ " << std::endl;
-    for (int i = 0; i < lidx.size(); i++)
-    {
-        std::cout << lidx[i] << ";" << std::endl;
-    }
-    std::cout << " ] " << std::endl;
-    std::cout << " ridx " << std::endl;
-    std::cout << " [ " << std::endl;
-    for (int i = 0; i < ridx.size(); i++)
-    {
-        std::cout << ridx[i] << ";" << std::endl;
-    }
-    std::cout << " ] " << std::endl;
-    std::cout << " sepidx " << std::endl;
-    std::cout << " [ " << std::endl;
-    for (int i = 0; i < sepidx.size(); i++)
-    {
-        std::cout << sepidx[i] << ";" << std::endl;
-    }
-    std::cout << " ] " << std::endl;*/
-    
+        
     p1.resize(lidx.size());
     p2.resize(ridx.size());
     sep.resize(sepidx.size());
@@ -151,8 +126,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 {
     // nvtxs.
     idx_t nvtxs = A.Height();
-    /*std::cout << " nvtxs " << std::endl;
-    std::cout << nvtxs << std::endl;*/
     // xadj.
     const int* sourceA = A.LockedSourceBuffer();
     const int* targetA = A.LockedTargetBuffer();
@@ -189,16 +162,11 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         Accumarray(colindex, cumsum_accumj);
         Cumsum(cumsum_accumj);
         xadj = new idx_t[cumsum_accumj.size() + 1];
-        /*std::cout << " xadj " << std::endl;
-        std::cout << " [ " << std::endl;
-        std::cout << 0 << std::endl;*/
         xadj[0] = 0;
         for (int i = 0; i < cumsum_accumj.size(); i++)
         {
             xadj[i + 1] = cumsum_accumj[i];
-            // std::cout << xadj[i + 1] << ";" << std::endl;
         }
-        // std::cout << " ] " << std::endl;
     }
     // adjncy.
     if (rowindex.size() == 0)
@@ -207,20 +175,14 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         return;
     }
     idx_t* adjncy = new idx_t[rowindex.size()];
-    /*std::cout << " adjncy " << std::endl;
-    std::cout << " [ " << std::endl;*/
     for (int t = 0; t < rowindex.size(); t++)
     {
         adjncy[t] = rowindex[t];
-        // std::cout << adjncy[t] << ";" << std::endl;
     }
-    // std::cout << " ] " << std::endl;
 
     idx_t* vwgt = NULL;
     idx_t options[METIS_NOPTIONS];
     METIS_SetDefaultOptions(options);
-    
-    // DebugLiu: correct until this line
 
     // Metis main function.
     idx_t i, nnvtxs = 0;
