@@ -36,13 +36,16 @@ void HIFGraph<Scalar>::SetSeparatorType()
 		}
 	}
 	
+	int actual_complexsep = 0;
 	for (int i = 0; i < sep_.size(); i++)
 	{
 		if (ordersep[i] > 1)
 		{
-			complexsep_.push_back(sep_[i]);
+			complexsep_[actual_complexsep] = sep_[i];
+			actual_complexsep++;
 		}
 	}
+	complexsep_.erase(complexsep_.begin() + actual_complexsep, complexsep_.end());
 }
 
 } // namespace HIF.

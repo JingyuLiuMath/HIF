@@ -10,8 +10,9 @@ void Unique_Sort(vector<Scalar>& vec)
 	{
 		return;
 	}
-	vector<Scalar> veccopy;
-	veccopy.push_back(vec[0]);
+	vector<Scalar> veccopy(vec.size());
+	veccopy[0] = vec[0];
+	int actualsize_veccopy = 1;
 	int i = 1; // index of vec.
 	int j = 0; // index of veccopy.
 	while (i < vec.size())
@@ -22,11 +23,13 @@ void Unique_Sort(vector<Scalar>& vec)
 		}
 		else
 		{
-			veccopy.push_back(vec[i]);
+			veccopy[actualsize_veccopy] = vec[i];
+			actualsize_veccopy++;
 			i++;
 			j++;
 		}
 	}
+	veccopy.erase(veccopy.begin() + actualsize_veccopy, veccopy.end());
 	vec.clear();
 	vec.assign(veccopy.begin(), veccopy.end());
 }

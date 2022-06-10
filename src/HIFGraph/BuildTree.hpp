@@ -89,14 +89,17 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrix<Scalar>& A)
 					(childnode->sep_).push_back(sepi);
 				}
 				// Pass nb.				
-				vector<int> index_addnb;
+				vector<int> index_addnb(nbA.Width());
+				int actualsize_index_addnb = 0;
 				for (int col = 0; col < nbA.Width(); col++)
 				{
 					if (nbA.Get(i, col) != Scalar(0))
 					{
-						index_addnb.push_back(col);
+						index_addnb[actualsize_index_addnb] = col;
+						actualsize_index_addnb++;
 					}
 				}
+				index_addnb.erase(index_addnb.begin() + actualsize_index_addnb, index_addnb.end());
 				for (int j = 0; j < index_addnb.size(); j++)
 				{
 					int addnbj = nb_[index_addnb[j]];
