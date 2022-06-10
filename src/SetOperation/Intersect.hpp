@@ -146,6 +146,7 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	vector<Scalar>& vec, vector<int>& index, int who)
 {
 	vec.resize(vec1.size());
+	if (who == 1)
 	index.resize(vec1.size());
 	int actualsize_vec_index = 0;
 	int i = 0;
@@ -176,6 +177,8 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 			j++;
 		}
 	}
+	vec.erase(vec.begin() + actualsize_vec_index, vec.end());
+	index.erase(index.begin() + actualsize_vec_index, index.end());
 }
 
 } // namespace HIF.

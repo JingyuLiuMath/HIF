@@ -4,7 +4,7 @@ namespace HIF {
 
 // Find the first index of value in vec. If no index is found, return -1. 
 template <typename Scalar>
-int FindFirstIndex(const vector<Scalar>& vec, Scalar value)
+int FindFirstIndex(const vector<Scalar>& vec, const Scalar value)
 {
 	int index = -1;
 	for (int i = 0; i < vec.size(); i++)
@@ -20,7 +20,7 @@ int FindFirstIndex(const vector<Scalar>& vec, Scalar value)
 
 // vec[index] = value.
 template <typename Scalar>
-void FindAllIndex(const vector<Scalar>& vec, Scalar value, vector<int>& index)
+void FindAllIndex(const vector<Scalar>& vec, const Scalar value, vector<int>& index)
 {
 	index.resize(vec.size());
 	int actualsize_index = 0;

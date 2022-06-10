@@ -238,13 +238,13 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         case METIS_OK:
             return;
         case METIS_ERROR_INPUT:
-            std::cout << "Metis input error" << std::endl;
+            std::cerr << "Metis input error" << std::endl;
             break;
         case METIS_ERROR_MEMORY:
-            std::cout << "Metis memory error" << std::endl;
+            std::cerr << "Metis memory error" << std::endl;
             break;
         default:
-            std::cout << "Unknown Metis error" << std::endl;
+            std::cerr << "Unknown Metis error" << std::endl;
             break;
         }
     }
