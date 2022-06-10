@@ -94,21 +94,21 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     
     // DebugLiu: lidx, ridx, sepidx are totally different from MATLAB. 
     
-    //std::cout << " lidx " << std::endl;
-    //for (int i = 0; i < lidx.size(); i++)
-    //{
-    //    std::cout << lidx[i] << std::endl;
-    //}
-    //std::cout << " ridx " << std::endl;
-    //for (int i = 0; i < ridx.size(); i++)
-    //{
-    //    std::cout << ridx[i] << std::endl;
-    //}
-    //std::cout << " sepidx " << std::endl;
-    //for (int i = 0; i < sepidx.size(); i++)
-    //{
-    //    std::cout << sepidx[i] << std::endl;
-    //}
+    std::cout << " lidx " << std::endl;
+    for (int i = 0; i < lidx.size(); i++)
+    {
+        std::cout << lidx[i] << std::endl;
+    }
+    std::cout << " ridx " << std::endl;
+    for (int i = 0; i < ridx.size(); i++)
+    {
+        std::cout << ridx[i] << std::endl;
+    }
+    std::cout << " sepidx " << std::endl;
+    for (int i = 0; i < sepidx.size(); i++)
+    {
+        std::cout << sepidx[i] << std::endl;
+    }
     
     p1.resize(lidx.size());
     p2.resize(ridx.size());
@@ -151,16 +151,18 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     }
     vector<int> rowindex_copy(rowindex);
     vector<int> colindex_copy(colindex);
-    rowindex.clear();
-    colindex.clear();
+    int actualsize = 0;
     for (int k = 0; k < rowindex_copy.size(); k++)
     {
         if (rowindex_copy[k] != colindex_copy[k])
         {
             rowindex.push_back(rowindex_copy[k]);
             colindex.push_back(colindex_copy[k]);
+            actualsize++;
         }
     }
+    rowindex.erase(rowindex.begin() + actualsize, rowindex.end());
+    colindex.erase(colindex.begin() + actualsize, colindex.end());
     if (colindex.size() == 0)
     {
         xadj = NULL;
@@ -299,7 +301,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 
     if (ctrl->pfactor > 0.0)
     {
-        std::cout << "asdada" << std::endl;
         for (i = 0; i < graph->nvtxs; i++)
             if (where[i] == 0)
                 p1[ptlgraph++] = piperm[i];
@@ -315,7 +316,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     }
     else
     {
-        std::cout << "123123123" << std::endl;
         for (i = 0; i < graph->nvtxs; i++)
             if (where[i] == 0)
                 p1[ptlgraph++] = i;
