@@ -33,7 +33,7 @@ void HIFGraph<Scalar>::ApplySparseElimUp()
 	// xI = LI^{-1} * xI.
 	Trmm(ELLR::LEFT, LOWER, NORMAL, UNIT, Scalar(1), AIIinv_, xI_);
 	// xI = DI^{-1} * xI. We only apply D once.
-	MatrixS D = GetDiagonal(AIIinv_);
+	auto D = GetDiagonal(AIIinv_);
 	DiagonalScale(ELLR::LEFT, NORMAL, D, xI_);
 }
 

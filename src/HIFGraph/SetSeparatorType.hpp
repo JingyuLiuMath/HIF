@@ -2,7 +2,7 @@
 
 namespace HIF {
 
-// Set sepearator vertices' type.
+// Set separator vertices' type.
 template <typename Scalar>
 void HIFGraph<Scalar>::SetSeparatorType()
 {
