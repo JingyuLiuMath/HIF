@@ -52,7 +52,9 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		FullMat(Aneed, ANS_);
 		Aneed.Empty();
 		
+		std::cout << "adad" << std::endl;
 		SetSeparatorType();
+		std::cout << "cdad" << std::endl;
 	}
 	else
 	{
