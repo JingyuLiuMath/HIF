@@ -104,7 +104,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     
     // DebugLiu: lidx, ridx, sepidx are totally different from MATLAB. 
     
-    std::cout << " lidx " << std::endl;
+    /*std::cout << " lidx " << std::endl;
     std::cout << " [ " << std::endl;
     for (int i = 0; i < lidx.size(); i++)
     {
@@ -124,7 +124,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     {
         std::cout << sepidx[i] << ";" << std::endl;
     }
-    std::cout << " ] " << std::endl;
+    std::cout << " ] " << std::endl;*/
     
     p1.resize(lidx.size());
     p2.resize(ridx.size());
@@ -255,7 +255,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     // Prune the dense columns.
     if (ctrl->pfactor > 0.0)
     {
-        std::cout << " Prune the dense columns. " << std::endl;
         piperm = imalloc(nvtxs, "OMETIS: piperm");
 
         graph = PruneGraph(ctrl, nvtxs, xadj, adjncy, vwgt,
@@ -277,14 +276,12 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     // Compress the graph.
     if (ctrl->compress)
     {
-        std::cout << " Compress the graph. " << std::endl;
         ctrl->compress = 0;
     }
 
     // If no prunning and no compression, setup the graph in the normal way.
     if (ctrl->pfactor == 0.0 && ctrl->compress == 0)
     {
-        std::cout << " If no prunning and no compression, setup the graph in the normal way. " << std::endl;
         graph = SetupGraph(ctrl, nvtxs, 1, xadj, adjncy, vwgt, NULL, NULL);
     }
     ASSERT(CheckGraph(graph, ctrl->numflag, 1));
