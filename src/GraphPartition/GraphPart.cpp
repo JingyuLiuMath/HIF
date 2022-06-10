@@ -151,8 +151,8 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 {
     // nvtxs.
     idx_t nvtxs = A.Height();
-    std::cout << " nvtxs " << std::endl;
-    std::cout << nvtxs << std::endl;
+    /*std::cout << " nvtxs " << std::endl;
+    std::cout << nvtxs << std::endl;*/
     // xadj.
     const int* sourceA = A.LockedSourceBuffer();
     const int* targetA = A.LockedTargetBuffer();
@@ -189,16 +189,16 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         Accumarray(colindex, cumsum_accumj);
         Cumsum(cumsum_accumj);
         xadj = new idx_t[cumsum_accumj.size() + 1];
-        std::cout << " xadj " << std::endl;
+        /*std::cout << " xadj " << std::endl;
         std::cout << " [ " << std::endl;
+        std::cout << 0 << std::endl;*/
         xadj[0] = 0;
-        std::cout << 0 << std::endl;
         for (int i = 0; i < cumsum_accumj.size(); i++)
         {
             xadj[i + 1] = cumsum_accumj[i];
-            std::cout << xadj[i + 1] << ";" << std::endl;
+            // std::cout << xadj[i + 1] << ";" << std::endl;
         }
-        std::cout << " ] " << std::endl;
+        // std::cout << " ] " << std::endl;
     }
     // adjncy.
     if (rowindex.size() == 0)
@@ -207,14 +207,14 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         return;
     }
     idx_t* adjncy = new idx_t[rowindex.size()];
-    std::cout << " adjncy " << std::endl;
-    std::cout << " [ " << std::endl;
+    /*std::cout << " adjncy " << std::endl;
+    std::cout << " [ " << std::endl;*/
     for (int t = 0; t < rowindex.size(); t++)
     {
         adjncy[t] = rowindex[t];
-        std::cout << adjncy[t] << ";" << std::endl;
+        // std::cout << adjncy[t] << ";" << std::endl;
     }
-    std::cout << " ] " << std::endl;
+    // std::cout << " ] " << std::endl;
 
     idx_t* vwgt = NULL;
     idx_t options[METIS_NOPTIONS];
