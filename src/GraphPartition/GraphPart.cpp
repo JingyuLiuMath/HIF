@@ -204,7 +204,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     
     // DebugLiu: correct until this line
 
-    // Metis main function
+    // Metis main function.
     idx_t i, nnvtxs = 0;
     idx_t ptlgraph, ptrgraph, ptsep;
     graph_t* graph = NULL;
@@ -231,10 +231,10 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         }
     }
 
-    // set up the run time parameters
+    // set up the run time parameters.
     ctrl = SetupCtrl(METIS_OP_OMETIS, options, 1, 3, NULL, NULL);
 
-    // prune the dense columns
+    // prune the dense columns.
     if (ctrl->pfactor > 0.0)
     {
         piperm = imalloc(nvtxs, "OMETIS: piperm");
@@ -243,19 +243,19 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
             piperm, ctrl->pfactor);
         if (graph == NULL)
         {
-            // if there was no prunning, cleanup the pfactor
+            // if there was no prunning, cleanup the pfactor.
             gk_free((void**)&piperm, LTERM);
             ctrl->pfactor = 0.0;
         }
         else
         {
             nnvtxs = graph->nvtxs;
-            // disable compression if prunning took place
+            // disable compression if prunning took place.
             ctrl->compress = 0;
         }
     }
 
-    // compress the graph
+    // compress the graph.
     if (ctrl->compress)
     {
         ctrl->compress = 0;
@@ -273,7 +273,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     AllocateWorkSpace(ctrl, graph);
 
     MlevelNodeBisectionMultiple(ctrl, graph);
-
 
     snvtxs[0] = 0;
     snvtxs[1] = 0;
@@ -300,6 +299,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 
     if (ctrl->pfactor > 0.0)
     {
+        std::cout << "asdada" << std::endl;
         for (i = 0; i < graph->nvtxs; i++)
             if (where[i] == 0)
                 p1[ptlgraph++] = piperm[i];
@@ -315,6 +315,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     }
     else
     {
+        std::cout << "123123123" << std::endl;
         for (i = 0; i < graph->nvtxs; i++)
             if (where[i] == 0)
                 p1[ptlgraph++] = i;
