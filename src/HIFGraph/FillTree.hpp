@@ -55,6 +55,11 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		std::cout << " ] " << std::endl;
 
 		FullMat(Aneed, ASI_);
+		
+		//DebugLiu
+		std::cout << "ASI" << std::endl;
+		ShowMatrix(ASI_);
+
 		Aneed.Empty();
 
 		El::Zeros(ASS_, sep_.size(), sep_.size());
