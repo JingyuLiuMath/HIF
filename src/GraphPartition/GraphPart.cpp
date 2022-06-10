@@ -255,6 +255,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     // Prune the dense columns.
     if (ctrl->pfactor > 0.0)
     {
+        std::cout << " Prune the dense columns. " << std::endl;
         piperm = imalloc(nvtxs, "OMETIS: piperm");
 
         graph = PruneGraph(ctrl, nvtxs, xadj, adjncy, vwgt,
@@ -276,12 +277,14 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     // Compress the graph.
     if (ctrl->compress)
     {
+        std::cout << " Compress the graph. " << std::endl;
         ctrl->compress = 0;
     }
 
     // If no prunning and no compression, setup the graph in the normal way.
     if (ctrl->pfactor == 0.0 && ctrl->compress == 0)
     {
+        std::cout << " If no prunning and no compression, setup the graph in the normal way. " << std::endl;
         graph = SetupGraph(ctrl, nvtxs, 1, xadj, adjncy, vwgt, NULL, NULL);
     }
     ASSERT(CheckGraph(graph, ctrl->numflag, 1));
@@ -317,6 +320,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 
     if (ctrl->pfactor > 0.0)
     {
+        std::cout << " ctrl->pfactor > 0.0 " << std::endl;
         for (i = 0; i < graph->nvtxs; i++)
             if (where[i] == 0)
                 p1[ptlgraph++] = piperm[i];
@@ -332,6 +336,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     }
     else
     {
+        std::cout << " else " << std::endl;
         for (i = 0; i < graph->nvtxs; i++)
             if (where[i] == 0)
                 p1[ptlgraph++] = i;
