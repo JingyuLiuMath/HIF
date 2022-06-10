@@ -16,6 +16,8 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		ShowVector(intr_);
 		std::cout << "sep" << std::endl;
 		ShowVector(sep_);
+		std::cout << "nb" << std::endl;
+		ShowVector(nb_);
 
 		El::Zeros(AII_, intr_.size(), intr_.size());
 		Aneed = A(intr_, intr_);
