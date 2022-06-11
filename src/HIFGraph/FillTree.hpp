@@ -53,8 +53,8 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 		Aneed.Empty();
 		
 		// DebugLiu
-		std::cout << "level"  << level << std::endl;
-		std::cout << "seqnum" << seqnum << std::endl;
+		std::cout << "level"  << level_ << std::endl;
+		std::cout << "seqnum" << seqnum_ << std::endl;
 		std::cout << "intr" << std::endl;
 		ShowVector(intr_);
 		std::cout << "sep" << std::endl;
