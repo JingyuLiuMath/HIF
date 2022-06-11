@@ -27,7 +27,7 @@ void LDLSolve(Matrix<Scalar>& A, Matrix<Scalar>& Ainv)
     LDLSolve(Ainv);
 }
 
-// X = A^{-1} * X where A^{-1} is stored in Ainv.
+// X = A^{-1} * X where A^{-1} is stored in Ainv via its LDL factorization.
 template <typename Scalar>
 void MultiplySolve(Matrix<Scalar>& Ainv, Matrix<Scalar>& X)
 {

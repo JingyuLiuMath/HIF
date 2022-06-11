@@ -93,6 +93,10 @@ void HIFGraph<Scalar>::Merge()
 	Intersect_Sort(intr_, children_[1]->vtx_, intr2, myindex_intr2, 1);
 	FindAllIndex_Sort(intr2, children_[1]->sep_, cindex_intr2);	
 	
+	//DebugLiu:
+	std::cout << "asdads" << std::endl;
+	std::cout << (childreninfo_[0].myindex_intr).size() << std::endl;
+
 	vector<int> myindex_intr21;
 	vector<int> cindex_intr21;
 	Intersect_Sort(intr_, children_[0]->nb_, myindex_intr21, cindex_intr21);

@@ -27,7 +27,7 @@ void HIFGraph<Scalar>::RecursiveSparseElim(int whatlevel)
 template <typename Scalar>
 void HIFGraph<Scalar>::SparseElim()
 {
-	// AII = LI * DI * LI^{T}.
+	// AII = LI * DI * LI^{T}. We store LI^{-1} and DI^{-1} in AIIinv_.
 	LDLSolve(AII_, AIIinv_);
 	// AIIinvAIS = AII^{-1} * ASI^{T}.
 	Transpose(ASI_, AIIinvAIS_);

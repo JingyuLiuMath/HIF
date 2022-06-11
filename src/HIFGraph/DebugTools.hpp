@@ -17,6 +17,20 @@ void HIFGraph<Scalar>::ShowPartition()
 			std::cout << vtx_[i] << ";" << std::endl;
 		}
 		std::cout << "]" << std::endl;
+		std::cout << " sep " << sep_.size() << std::endl;
+		std::cout << "[" << std::endl;
+		for (int i = 0; i < sep_.size(); i++)
+		{
+			std::cout << sep_[i] << ";" << std::endl;
+		}
+		std::cout << "]" << std::endl;
+		std::cout << " nb " << nb_.size() << std::endl;
+		std::cout << "[" << std::endl;
+		for (int i = 0; i < nb_.size(); i++)
+		{
+			std::cout << nb_[i] << ";" << std::endl;
+		}
+		std::cout << "]" << std::endl;
 	}
 	else 
 	{

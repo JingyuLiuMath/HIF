@@ -29,6 +29,9 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 {
 	for (int k = 0; k < nbinfo_.size(); k++)
 	{
+		// DebugLiu:
+		std::cout << "asdasdasd" << std::endl;
+
 		HIFGraph* nbnodek = nbnode_[k];
 		SkelInfo<Scalar>& nbinfok = nbinfo_[k];
 		if (nbinfok.skip == 1)
