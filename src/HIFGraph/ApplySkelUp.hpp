@@ -97,6 +97,7 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 			Scalar(1), copyvec);
 		SubMatrixUpdate(xS_, nbinfok.myindex_p11, xcol, copyvec);
 		copyvec.Empty();
+		std::cout << "Jyliu 3.1" << std::endl;
 		// xh2 = xh2 - (Ac2c2^{-1} * Ah2c2^{T})^{T} * xc2.
 		copyvec = (nbnodek->xS_)(nbinfok.nodekindex_p21, xcol);
 		Gemm(TRANSPOSE, NORMAL,
@@ -104,12 +105,14 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 			Scalar(1), copyvec);
 		SubMatrixUpdate(nbnodek->xS_, nbinfok.nodekindex_p21, xcol, copyvec);
 		copyvec.Empty();
+		std::cout << "Jyliu 3.2" << std::endl;
 		// xc2 = Lc2^{-1} * xc2.
 		copyvec = (nbnodek->xS_)(nbinfok.nodekindex_p22, xcol);
 		Trmm(ELLR::LEFT, LOWER, NORMAL, UNIT, Scalar(1), nbinfok.Ac2c2inv, copyvec);
 		SubMatrixUpdate(nbnodek->xS_, nbinfok.myindex_p22, xcol, copyvec);
 		copyvec.Empty();
-
+		std::cout << "Jyliu 3.3" << std::endl;
+		
 		// xc1 = Dc1^{-1} * xc1. xc2 = Dc2^{-1} * xc2. We only apply D once.
 		auto D1 = GetDiagonal(nbinfok.Ac1c1inv);
 		copyvec = xS_(nbinfok.myindex_p12, xcol);
@@ -121,6 +124,7 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 		DiagonalScale(ELLR::LEFT, NORMAL, D2, copyvec);
 		SubMatrixUpdate(nbnodek->xS_, nbinfok.nodekindex_p22, xcol, copyvec);
 		copyvec.Empty();
+		std::cout << "Jyliu 3.4" << std::endl;
 	}
 }
 
