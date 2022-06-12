@@ -26,6 +26,7 @@ void HIFGraph<Scalar>::RecursiveApplyMerge(int whatlevel, const vector<int>& xco
 template <typename Scalar>
 void HIFGraph<Scalar>::ApplyMerge(const vector<int>& xcol)
 {
+	std::cout << "ApplyMerge" << std::endl;
 	// We stand on the parent level.
 
 	if (endflag_ == 1)

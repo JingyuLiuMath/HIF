@@ -27,6 +27,8 @@ void HIFGraph<Scalar>::RecursiveApplySkelUp(int whatlevel, const vector<int>& xc
 template <typename Scalar>
 void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 {
+	std::cout << "ApplySkelUp" << std::endl;
+
 	for (int k = 0; k < nbinfo_.size(); k++)
 	{
 		HIFGraph* nbnodek = nbnode_[k];
@@ -35,6 +37,8 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 		{
 			continue;
 		}
+
+		std::cout << "Jyliu 1" << std::endl;
 
 		MatrixS copyvec; // Copy of updated vector.
 		// Step 1.
@@ -52,6 +56,8 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 			Scalar(1), copyvec);
 		SubMatrixUpdate(nbnodek->xS_, nbinfok.nodekindex_p22, xcol, copyvec);
 		copyvec.Empty();
+
+		std::cout << "Jyliu 2" << std::endl;
 
 		// Step 2.
 		// xh1 = xh1 - (Ac1c1^{-1} * Ah1c1^{T})^{T} * xc1.
@@ -80,6 +86,8 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 		Trmm(ELLR::LEFT, LOWER, NORMAL, UNIT, Scalar(1), nbinfok.Ac1c1inv, copyvec);
 		SubMatrixUpdate(xS_, nbinfok.myindex_p12, xcol, copyvec);
 		copyvec.Empty();
+
+		std::cout << "Jyliu 3" << std::endl;
 
 		// Step 3.
 		// xh1 = xh1 - (Ac2c2^{-1} * Ac2h1)^{T} * xc2.

@@ -27,6 +27,8 @@ void HIFGraph<Scalar>::RecursiveApplySkelDown(int whatlevel, const vector<int>& 
 template <typename Scalar>
 void HIFGraph<Scalar>::ApplySkelDown(const vector<int>& xcol)
 {
+	std::cout << "ApplySkelDown" << std::endl;
+
 	for (int k = 0; k < nbinfo_.size(); k++)
 	{
 		HIFGraph* nbnodek = nbnode_[k];

@@ -116,9 +116,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		vector<int> nodekindex_sep2;
 		FindAllIndex_Sort(sep2, nodek->sep_, nodekindex_sep2);
 		
-		std::cout << "nodekindex_sep2" << std::endl;
-		ShowVector(nodekindex_sep2);
-		
 		vector<int> myindex_sep2;
 		FindAllIndex_Sort(sep2, nb_, myindex_sep2);
 		vector<int> nodekindex_sep2C;
@@ -169,7 +166,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		vector<int> p11;
 		vector<int> p12;
 		MatrixS& T1 = nbinfo_[k].Th1c1;
-		IDSolve(skelmtx1, T1, p11, p12, ctrl); // skelmtx(:, p12) = skelmtx(:, p11) * T.
+		IDSolve(skelmtx1, T1, p11, p12, ctrl); // skelmtx1(:, p12) = skelmtx1(:, p11) * T1.
 		vector<int>& myindex_p11 = nbinfo_[k].myindex_p11;
 		vector<int>& myindex_p12 = nbinfo_[k].myindex_p12;
 		vector<int>& nodekindex_p11 = nbinfo_[k].nodekindex_p11;
@@ -200,15 +197,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		vector<int> p21;
 		vector<int> p22;
 		MatrixS& T2 = nbinfo_[k].Th2c2;
-		IDSolve(skelmtx2, T2, p21, p22, ctrl); // skelmtx(:, p22) = skelmtx(:, p21) * T.
-		
-		std::cout << "skelmtx1" << std::endl;
-		ShowMatrix(skelmtx1);
-		std::cout << "p21" << std::endl;
-		ShowVector(p21);
-		std::cout << "p22" << std::endl;
-		ShowVector(p22);
-		
+		IDSolve(skelmtx2, T2, p21, p22, ctrl); // skelmtx2(:, p22) = skelmtx2(:, p21) * T2.		
 		vector<int>& myindex_p21 = nbinfo_[k].myindex_p21;
 		vector<int>& myindex_p22 = nbinfo_[k].myindex_p22;
 		vector<int>& nodekindex_p21 = nbinfo_[k].nodekindex_p21;
@@ -244,8 +233,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		MatrixS copymtxT; // copymtx^{T}.
 		MatrixS tmpmtx;
 
-		std::cout << "Jyliu 1" << std::endl;
-
 		// Step 1.
 		// Ac1c1 = Ac1c1 - Ah1c1^{T} * Th1c1 - Th1c1^{T} * Ah1c1 + Th1c1^{T} * Ah1h1 * Th1c1.
 		copymtx = ASS_(myindex_p12, myindex_p12);	
@@ -265,9 +252,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(ASS_, myindex_p12, myindex_p12, copymtx);
 		tmpmtx.Empty();
 		copymtx.Empty();
-
-		std::cout << "Jyliu 1.1" << std::endl;
-
 		// Ah1c1 = Ah1c1 - Ah1h1 * Th1c1.
 		copymtx = ASS_(myindex_p11, myindex_p12);
 		Gemm(NORMAL, NORMAL,
@@ -278,9 +262,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(ASS_, myindex_p12, myindex_p11, copymtxT);
 		copymtx.Empty();
 		copymtxT.Empty();
-
-		std::cout << "Jyliu 1.2" << std::endl;
-
 		// Ac2c1 = Ac2c1 - Ac2h1 * Th1c1 - Th2c2^{T} * Ah2c1 + Th2c2^{T} * Ah2h1 * Th1c1.
 		copymtx = ANS_(myindex_p22, myindex_p12);
 		Gemm(NORMAL, NORMAL,
@@ -302,40 +283,16 @@ void HIFGraph<Scalar>::Skel(double tol)
 		tmpmtx.Empty();
 		copymtx.Empty();
 		copymtxT.Empty();
-
-		std::cout << "Jyliu 1.3" << std::endl;
-
 		// Ah2c1 = Ah2c1 - Ah2h1 * Th1c1.
 		copymtx = ANS_(myindex_p21, myindex_p12);
-		std::cout << "Jyliu 1.3.1" << std::endl;
 		Gemm(NORMAL, NORMAL,
 			Scalar(-1), ANS_(myindex_p21, myindex_p11), T1,
 			Scalar(1), copymtx);
-		std::cout << "Jyliu 1.3.2" << std::endl;
 		SubMatrixUpdate(ANS_, myindex_p21, myindex_p12, copymtx);
-		std::cout << "Jyliu 1.3.3" << std::endl;
 		Transpose(copymtx, copymtxT);
-		std::cout << "Jyliu 1.3.4" << std::endl;
-
-		/*std::cout << "nodek_nb" << std::endl;
-		ShowVector(nodek->nb_);
-		std::cout << "nodek_sep" << std::endl;
-		ShowVector(nodek->sep_);
-		std::cout << "nodek->ANS_" << std::endl;
-		ShowMatrix(nodek->ANS_);
-		std::cout << "nodekindex_p12" << std::endl;
-		ShowVector(nodekindex_p12);
-		std::cout << "nodekindex_p21" << std::endl;
-		ShowVector(nodekindex_p21);
-		std::cout << "copymtxT" << std::endl;
-		ShowMatrix(copymtxT);*/
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p12, nodekindex_p21, copymtxT);
-		std::cout << "Jyliu 1.3.5" << std::endl;
 		copymtx.Empty();
 		copymtxT.Empty();
-
-		std::cout << "Jyliu 1.4" << std::endl;
-
 		// Ac2h1 = Ac2h1 - Th2c2^{T} * Ah2h1.
 		copymtx = ANS_(myindex_p22, myindex_p11);
 		Gemm(TRANSPOSE, NORMAL,
@@ -346,9 +303,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p11, nodekindex_p22, copymtxT);
 		copymtx.Empty();
 		copymtxT.Empty();
-
-		std::cout << "Jyliu 1.5" << std::endl;
-
 		// Ac2c2 = Ac2c2 - Ah2c2^{T} * Th2c2 - Th2c2^{T} * Ah2c2 + Th2c2^{T} * Ah2h2 * Th2c2.
 		copymtx = (nodek->ASS_)(nodekindex_p22, nodekindex_p22);
 		Gemm(TRANSPOSE, NORMAL,
@@ -367,9 +321,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p22, copymtx);
 		copymtx.Empty();
 		tmpmtx.Empty();
-
-		std::cout << "Jyliu 1.6" << std::endl;
-
 		// Ah2c2 = Ah2c2 - Ah2h2 * Th2c2.
 		copymtx = (nodek->ASS_)(nodekindex_p21, nodekindex_p22);
 		Gemm(NORMAL, NORMAL,
@@ -380,8 +331,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p21, copymtxT);
 		copymtx.Empty();
 		copymtxT.Empty();
-
-		std::cout << "Jyliu 2" << std::endl;
 
 		// Step 2.
 		// Ac1c1 = Lc1 * Dc1 * Lc1^{T}.
@@ -450,8 +399,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		copymtx.Empty();
 		// Ah1c1 = Ac2c1 = Ah2c1 = 0.
 
-		std::cout << "Jyliu 3" << std::endl;
-
 		// Step 3.
 		// Ac2c2 = Lc2 * Dc2 * Lc2^{T}.
 		copymtx = (nodek->ASS_)(nodekindex_p22, nodekindex_p22);
@@ -488,8 +435,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p21, copymtx);
 		copymtx.Empty();
 		// Ah2c2 = Ac2h1 = 0.
-
-		std::cout << "Jyliu 4" << std::endl;
 	}
 
 	sort(re_.begin(), re_.end());
