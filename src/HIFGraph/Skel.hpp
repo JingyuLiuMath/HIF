@@ -216,6 +216,10 @@ void HIFGraph<Scalar>::Skel(double tol)
 			myindex_p21[i] = myindex_sep2[p11[i]];
 			nodekindex_p21[i] = nodekindex_sep2[p11[i]];
 		}
+
+		std::cout << "nodekindex_p21" << std::endl;
+		ShowVector(nodekindex_p21);
+		
 		for (int i = 0; i < p22.size(); i++)
 		{
 			myindex_p22[i] = myindex_sep2[p12[i]];
@@ -306,14 +310,14 @@ void HIFGraph<Scalar>::Skel(double tol)
 		/*std::cout << "nodek_nb" << std::endl;
 		ShowVector(nodek->nb_);
 		std::cout << "nodek_sep" << std::endl;
-		ShowVector(nodek->sep_);*/
+		ShowVector(nodek->sep_);
 		std::cout << "nodek->ANS_" << std::endl;
 		ShowMatrix(nodek->ANS_);
 		std::cout << "nodekindex_p12" << std::endl;
 		ShowVector(nodekindex_p12);
 		std::cout << "nodekindex_p21" << std::endl;
 		ShowVector(nodekindex_p21);
-		/*std::cout << "copymtxT" << std::endl;
+		std::cout << "copymtxT" << std::endl;
 		ShowMatrix(copymtxT);*/
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p12, nodekindex_p21, copymtxT);
 		std::cout << "Jyliu 1.3.5" << std::endl;
