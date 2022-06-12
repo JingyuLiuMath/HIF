@@ -202,6 +202,8 @@ void HIFGraph<Scalar>::Skel(double tol)
 		MatrixS& T2 = nbinfo_[k].Th2c2;
 		IDSolve(skelmtx1, T2, p21, p22, ctrl); // skelmtx(:, p22) = skelmtx(:, p21) * T.
 		
+		std::cout << "skelmtx1" << std::endl;
+		ShowMatrix(skelmtx1);
 		std::cout << "p21" << std::endl;
 		ShowVector(p21);
 		std::cout << "p22" << std::endl;
