@@ -27,8 +27,7 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel, double tol)
 // Skeletonization.
 template<typename Scalar>
 void HIFGraph<Scalar>::Skel(double tol)
-{
-	std::cout << "Start skel" << std::endl;
+{	
 	QRCtrl<Base<Scalar>> ctrl;
 	ctrl.boundRank = false;
 	ctrl.maxRank = 1000;
@@ -231,6 +230,8 @@ void HIFGraph<Scalar>::Skel(double tol)
 		MatrixS copymtxT; // copymtx^{T}.
 		MatrixS tmpmtx;
 
+		std::cout << "Jyliu 1" << std::endl;
+
 		// Step 1.
 		// Ac1c1 = Ac1c1 - Ah1c1^{T} * Th1c1 - Th1c1^{T} * Ah1c1 + Th1c1^{T} * Ah1h1 * Th1c1.
 		copymtx = ASS_(myindex_p12, myindex_p12);
@@ -330,6 +331,8 @@ void HIFGraph<Scalar>::Skel(double tol)
 		copymtx.Empty();
 		copymtxT.Empty();
 
+		std::cout << "Jyliu 2" << std::endl;
+
 		// Step 2.
 		// Ac1c1 = Lc1 * Dc1 * Lc1^{T}.
 		copymtx = ASS_(myindex_p12, myindex_p12);
@@ -397,6 +400,8 @@ void HIFGraph<Scalar>::Skel(double tol)
 		copymtx.Empty();
 		// Ah1c1 = Ac2c1 = Ah2c1 = 0.
 
+		std::cout << "Jyliu 3" << std::endl;
+
 		// Step 3.
 		// Ac2c2 = Lc2 * Dc2 * Lc2^{T}.
 		copymtx = (nodek->ASS_)(nodekindex_p22, nodekindex_p22);
@@ -433,7 +438,8 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p21, copymtx);
 		copymtx.Empty();
 		// Ah2c2 = Ac2h1 = 0.
-		std::cout << "Finish skel" << std::endl;
+
+		std::cout << "Jyliu 4" << std::endl;
 	}
 
 	sort(re_.begin(), re_.end());
