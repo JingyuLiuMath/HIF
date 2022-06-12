@@ -396,9 +396,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		copymtx.Empty();
 		// Ah1c1 = Ac2c1 = Ah2c1 = 0.
 
-		// DebugLiu
-		std::cout << "JyLiu 4" << std::endl;
-
 		// Step 3.
 		// Ac2c2 = Lc2 * Dc2 * Lc2^{T}.
 		copymtx = (nodek->ASS_)(nodekindex_p22, nodekindex_p22);
@@ -435,6 +432,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p21, copymtx);
 		copymtx.Empty();
 		// Ah2c2 = Ac2h1 = 0.
+		std::cout << "Finish skel" << std::endl;
 	}
 
 	sort(re_.begin(), re_.end());
