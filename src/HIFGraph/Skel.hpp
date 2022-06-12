@@ -126,6 +126,9 @@ void HIFGraph<Scalar>::Skel(double tol)
 		// In the following process, the first "1" or "2" denotes my or nodek, 
 		// the second "1" or "2" denotes sk or re.
 
+	    // DebugLiu
+		std::cout << "JyLiu 1" << std::endl;
+
 		/*skelmtx1 = [obj.ASS(myindex_sep1C, myindex_sep1);
 			obj.ANS(myindex_mysep2C, myindex_sep1)];
 		skelmtx2 = [nodek.ASS(nodekindex_sep2C, nodekindex_sep2);
@@ -229,6 +232,10 @@ void HIFGraph<Scalar>::Skel(double tol)
 		MatrixS copymtx; // Copy of updated matrix. 
 		MatrixS copymtxT; // copymtx^{T}.
 		MatrixS tmpmtx;
+
+		// DebugLiu
+		std::cout << "JyLiu 2" << std::endl;
+
 		// Step 1.
 		// Ac1c1 = Ac1c1 - Ah1c1^{T} * Th1c1 - Th1c1^{T} * Ah1c1 + Th1c1^{T} * Ah1h1 * Th1c1.
 		copymtx = ASS_(myindex_p12, myindex_p12);
@@ -325,6 +332,9 @@ void HIFGraph<Scalar>::Skel(double tol)
 		copymtx.Empty();
 		copymtxT.Empty();
 
+		// DebugLiu
+		std::cout << "JyLiu 3" << std::endl;
+
 		// Step 2.
 		// Ac1c1 = Lc1 * Dc1 * Lc1^{T}.
 		copymtx = ASS_(myindex_p12, myindex_p12);
@@ -392,6 +402,9 @@ void HIFGraph<Scalar>::Skel(double tol)
 		copymtx.Empty();
 		// Ah1c1 = Ac2c1 = Ah2c1 = 0.
 
+		// DebugLiu
+		std::cout << "JyLiu 4" << std::endl;
+
 		// Step 3.
 		// Ac2c2 = Lc2 * Dc2 * Lc2^{T}.
 		copymtx = (nodek->ASS_)(nodekindex_p22, nodekindex_p22);
@@ -428,6 +441,9 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p21, copymtx);
 		copymtx.Empty();
 		// Ah2c2 = Ac2h1 = 0.
+
+		// DebugLiu
+		std::cout << "JyLiu 5" << std::endl;
 	}
 
 	sort(re_.begin(), re_.end());
