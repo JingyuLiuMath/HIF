@@ -255,10 +255,11 @@ void HIFGraph<Scalar>::Skel(double tol)
 			Scalar(-1), ASS_(myindex_p11, myindex_p11), T1,
 			Scalar(1), copymtx);
 		SubMatrixUpdate(ASS_, myindex_p11, myindex_p12, copymtx);
-		Transpose(copymtx,copymtxT);
+		Transpose(copymtx, copymtxT);
 		SubMatrixUpdate(ASS_, myindex_p12, myindex_p11, copymtxT);
 		copymtx.Empty();
 		copymtxT.Empty();
+		std::cout << "JyLiu 2.2" << std::endl;
 		// Ac2c1 = Ac2c1 - Ac2h1 * Th1c1 - Th2c2^{T} * Ah2c1 + Th2c2^{T} * Ah2h1 * Th1c1.
 		copymtx = ANS_(myindex_p22, myindex_p12);
 		Gemm(NORMAL, NORMAL,
@@ -442,9 +443,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p21, copymtx);
 		copymtx.Empty();
 		// Ah2c2 = Ac2h1 = 0.
-
-		// DebugLiu
-		std::cout << "JyLiu 5" << std::endl;
 	}
 
 	sort(re_.begin(), re_.end());
