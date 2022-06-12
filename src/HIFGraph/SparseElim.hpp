@@ -35,14 +35,7 @@ void HIFGraph<Scalar>::SparseElim()
 	// ASS = ASS - ASI * AII^ {-1} * ASI^ {T}.
 	Gemm(NORMAL, NORMAL,
 		Scalar(-1), ASI_, AIIinvAIS_,
-		Scalar(1), ASS_);
-
-	// DebugLiu:
-	std::cout << "level" << level_ << std::endl;
-	std::cout << "seqnum" << seqnum_ << std::endl;
-	std::cout << "AIIinvAIS" << std::endl;
-	ShowMatrix(AIIinvAIS_);
-	
+		Scalar(1), ASS_);	
 	// AII = 0, ASI = 0.
 	AII_.Empty();
 	ASI_.Empty();

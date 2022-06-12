@@ -8,8 +8,8 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel, double tol)
 {
 	if (level_ == whatlevel)
 	{
-		// Skel(tol);
-		NoSkel();
+		Skel(tol);
+		// NoSkel();
 	}
 	else
 	{
