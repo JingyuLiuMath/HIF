@@ -108,8 +108,11 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 		std::cout << "Jyliu 3.2" << std::endl;
 		// xc2 = Lc2^{-1} * xc2.
 		copyvec = (nbnodek->xS_)(nbinfok.nodekindex_p22, xcol);
+		std::cout << "Jyliu 3.2.1" << std::endl;
 		Trmm(ELLR::LEFT, LOWER, NORMAL, UNIT, Scalar(1), nbinfok.Ac2c2inv, copyvec);
+		std::cout << "Jyliu 3.2.2" << std::endl;
 		SubMatrixUpdate(nbnodek->xS_, nbinfok.myindex_p22, xcol, copyvec);
+		std::cout << "Jyliu 3.2.3" << std::endl;
 		copyvec.Empty();
 		std::cout << "Jyliu 3.3" << std::endl;
 		
