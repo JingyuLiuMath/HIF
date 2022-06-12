@@ -259,22 +259,25 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(ASS_, myindex_p12, myindex_p11, copymtxT);
 		copymtx.Empty();
 		copymtxT.Empty();
-		std::cout << "JyLiu 2.2" << std::endl;
 		// Ac2c1 = Ac2c1 - Ac2h1 * Th1c1 - Th2c2^{T} * Ah2c1 + Th2c2^{T} * Ah2h1 * Th1c1.
 		copymtx = ANS_(myindex_p22, myindex_p12);
 		Gemm(NORMAL, NORMAL,
 			Scalar(-1), ANS_(myindex_p22, myindex_p11), T1,
 			Scalar(1), copymtx);
+		std::cout << "JyLiu 2.3.1" << std::endl;
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), T2, ANS_(myindex_p21, myindex_p12),
 			Scalar(1), copymtx);
+		std::cout << "JyLiu 2.3.2" << std::endl;
 		tmpmtx.Resize(myindex_p21.size(), T1.Height());
 		Gemm(NORMAL, NORMAL,
 			Scalar(1), ANS_(myindex_p21, myindex_p11), T1,
 			Scalar(0), tmpmtx);
+		std::cout << "JyLiu 2.3.3" << std::endl;
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(1), T2, tmpmtx,
 			Scalar(1), copymtx);
+		std::cout << "JyLiu 2.3.4" << std::endl;
 		SubMatrixUpdate(ANS_, myindex_p22, myindex_p12, copymtx);
 		Transpose(copymtx, copymtxT);
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p12, nodekindex_p22, copymtxT);
