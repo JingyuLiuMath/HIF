@@ -247,7 +247,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 			Scalar(-1), T1, ASS_(myindex_p11, myindex_p12),
 			Scalar(1), copymtx);
 		std::cout << "JyLiu 2.1.2" << std::endl;
-		El::Zeros(tmpmtx, ASS_.Height(), T1.Width());
+		El::Zeros(tmpmtx, myindex_p11.size(), T1.Width());
 		Gemm(NORMAL, NORMAL,
 			Scalar(1), ASS_(myindex_p11, myindex_p11), T1,
 			Scalar(0), tmpmtx);
