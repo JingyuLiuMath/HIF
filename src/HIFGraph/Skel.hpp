@@ -114,11 +114,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		FindAllIndex_Sort(mysep2C, nb_, myindex_mysep2C);
 		
 		vector<int> nodekindex_sep2;
-		FindAllIndex_Sort(sep2, nodek->sep_, nodekindex_sep2);
-		
-		std::cout << "nodekindex_sep2" << std::endl;
-		ShowVector(nodekindex_sep2);
-		
+		FindAllIndex_Sort(sep2, nodek->sep_, nodekindex_sep2);		
 		vector<int> myindex_sep2;
 		FindAllIndex_Sort(sep2, nb_, myindex_sep2);
 		vector<int> nodekindex_sep2C;
@@ -217,19 +213,15 @@ void HIFGraph<Scalar>::Skel(double tol)
 		nodekindex_p22.resize(p22.size());
 		for (int i = 0; i < p21.size(); i++)
 		{
-			myindex_p21[i] = myindex_sep2[p11[i]];
-			nodekindex_p21[i] = nodekindex_sep2[p11[i]];
+			myindex_p21[i] = myindex_sep2[p21[i]];
+			nodekindex_p21[i] = nodekindex_sep2[p21[i]];
 
-			std::cout << nodekindex_sep2[p11[i]] << std::endl;
-		}
-
-		std::cout << "nodekindex_p21" << std::endl;
-		ShowVector(nodekindex_p21);
-		
+			std::cout << nodekindex_sep2[p21[i]] << std::endl;
+		}	
 		for (int i = 0; i < p22.size(); i++)
 		{
-			myindex_p22[i] = myindex_sep2[p12[i]];
-			nodekindex_p22[i] = nodekindex_sep2[p12[i]];
+			myindex_p22[i] = myindex_sep2[p22[i]];
+			nodekindex_p22[i] = nodekindex_sep2[p22[i]];
 			nbre_.push_back(sep2[p22[i]]);
 			(nodek->re_).push_back(sep2[p22[i]]);
 		}
