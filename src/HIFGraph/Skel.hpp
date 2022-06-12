@@ -303,12 +303,12 @@ void HIFGraph<Scalar>::Skel(double tol)
 		Transpose(copymtx, copymtxT);
 		std::cout << "Jyliu 1.3.4" << std::endl;
 
-		std::cout << "nodek_nb" << std::endl;
+		/*std::cout << "nodek_nb" << std::endl;
 		ShowVector(nodek->nb_);
 		std::cout << "nodek_sep" << std::endl;
-		ShowVector(nodek->sep_);
-		/*std::cout << "nodek->ANS_" << std::endl;
-		ShowMatrix(nodek->ANS_);*/
+		ShowVector(nodek->sep_);*/
+		std::cout << "nodek->ANS_" << std::endl;
+		ShowMatrix(nodek->ANS_);
 		std::cout << "nodekindex_p12" << std::endl;
 		ShowVector(nodekindex_p12);
 		std::cout << "nodekindex_p21" << std::endl;
