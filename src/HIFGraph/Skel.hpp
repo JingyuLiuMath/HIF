@@ -28,6 +28,7 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel, double tol)
 template<typename Scalar>
 void HIFGraph<Scalar>::Skel(double tol)
 {
+	std::cout << "Start skel" << std::endl;
 	QRCtrl<Base<Scalar>> ctrl;
 	ctrl.boundRank = false;
 	ctrl.maxRank = 1000;
