@@ -204,6 +204,8 @@ void HIFGraph<Scalar>::Skel(double tol)
 		
 		std::cout << "p21" << std::endl;
 		ShowVector(p21);
+		std::cout << "p22" << std::endl;
+		ShowVector(p22);
 		
 		vector<int>& myindex_p21 = nbinfo_[k].myindex_p21;
 		vector<int>& myindex_p22 = nbinfo_[k].myindex_p22;
