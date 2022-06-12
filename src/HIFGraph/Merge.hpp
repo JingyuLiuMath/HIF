@@ -28,6 +28,8 @@ void HIFGraph<Scalar>::Merge()
 {
 	// We stand on the parent level.
 
+	std::cout << "Merge" << std::endl;
+
 	if (endflag_ == 1)
 	{
 		return;
