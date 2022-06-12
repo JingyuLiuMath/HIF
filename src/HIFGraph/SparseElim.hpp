@@ -32,7 +32,11 @@ void HIFGraph<Scalar>::SparseElim()
 	// AIIinvAIS = AII^{-1} * ASI^{T}.
 	Transpose(ASI_, AIIinvAIS_);
 	MultiplySolve(AIIinv_, AIIinvAIS_);
-	
+	// ASS = ASS - ASI * AII^ {-1} * ASI^ {T}.
+	Gemm(NORMAL, NORMAL,
+		Scalar(-1), ASI_, AIIinvAIS_,
+		Scalar(1), ASS_);
+
 	// DebugLiu:
 	std::cout << "level" << level_ << std::endl;
 	std::cout << "seqnum" << seqnum_ << std::endl;
