@@ -264,12 +264,11 @@ void HIFGraph<Scalar>::Skel(double tol)
 		Gemm(NORMAL, NORMAL,
 			Scalar(-1), ANS_(myindex_p22, myindex_p11), T1,
 			Scalar(1), copymtx);
-		std::cout << "JyLiu 2.3.1" << std::endl;
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), T2, ANS_(myindex_p21, myindex_p12),
 			Scalar(1), copymtx);
 		std::cout << "JyLiu 2.3.2" << std::endl;
-		tmpmtx.Resize(myindex_p21.size(), T1.Height());
+		tmpmtx.Resize(myindex_p21.size(), T1.Width());
 		Gemm(NORMAL, NORMAL,
 			Scalar(1), ANS_(myindex_p21, myindex_p11), T1,
 			Scalar(0), tmpmtx);
