@@ -242,15 +242,19 @@ void HIFGraph<Scalar>::Skel(double tol)
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), ASS_(myindex_p11,myindex_p12), T1,
 			Scalar(1), copymtx);
+		std::cout << "JyLiu 2.1.1" << std::endl;
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), T1, ASS_(myindex_p11, myindex_p12),
 			Scalar(1), copymtx);
+		std::cout << "JyLiu 2.1.2" << std::endl;
 		Gemm(NORMAL, NORMAL,
 			Scalar(1), ASS_(myindex_p11, myindex_p11), T1,
 			Scalar(0), tmpmtx);
+		std::cout << "JyLiu 2.1.3" << std::endl;
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(1), T1, tmpmtx,
 			Scalar(1), copymtx);
+		std::cout << "JyLiu 2.1.4" << std::endl;
 		SubMatrixUpdate(ASS_, myindex_p12, myindex_p12, copymtx);
 		tmpmtx.Empty();
 		copymtx.Empty();
