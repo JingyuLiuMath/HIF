@@ -115,6 +115,10 @@ void HIFGraph<Scalar>::Skel(double tol)
 		
 		vector<int> nodekindex_sep2;
 		FindAllIndex_Sort(sep2, nodek->sep_, nodekindex_sep2);
+		
+		std::cout << "nodekindex_sep2" << std::endl;
+		ShowVector(nodekindex_sep2);
+		
 		vector<int> myindex_sep2;
 		FindAllIndex_Sort(sep2, nb_, myindex_sep2);
 		vector<int> nodekindex_sep2C;
