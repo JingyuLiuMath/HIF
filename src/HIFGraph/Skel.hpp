@@ -126,9 +126,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		// In the following process, the first "1" or "2" denotes my or nodek, 
 		// the second "1" or "2" denotes sk or re.
 
-	    // DebugLiu
-		std::cout << "JyLiu 1" << std::endl;
-
 		/*skelmtx1 = [obj.ASS(myindex_sep1C, myindex_sep1);
 			obj.ANS(myindex_mysep2C, myindex_sep1)];
 		skelmtx2 = [nodek.ASS(nodekindex_sep2C, nodekindex_sep2);
@@ -233,34 +230,25 @@ void HIFGraph<Scalar>::Skel(double tol)
 		MatrixS copymtxT; // copymtx^{T}.
 		MatrixS tmpmtx;
 
-		// DebugLiu
-		std::cout << "JyLiu 2" << std::endl;
-
 		// Step 1.
 		// Ac1c1 = Ac1c1 - Ah1c1^{T} * Th1c1 - Th1c1^{T} * Ah1c1 + Th1c1^{T} * Ah1h1 * Th1c1.
 		copymtx = ASS_(myindex_p12, myindex_p12);
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), ASS_(myindex_p11,myindex_p12), T1,
 			Scalar(1), copymtx);
-		std::cout << "JyLiu 2.1.1" << std::endl;
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), T1, ASS_(myindex_p11, myindex_p12),
 			Scalar(1), copymtx);
-		std::cout << "JyLiu 2.1.2" << std::endl;
 		tmpmtx.Resize(myindex_p11.size(), T1.Width());
-		//El::Zeros(tmpmtx, myindex_p11.size(), T1.Width());
 		Gemm(NORMAL, NORMAL,
 			Scalar(1), ASS_(myindex_p11, myindex_p11), T1,
 			Scalar(0), tmpmtx);
-		std::cout << "JyLiu 2.1.3" << std::endl;
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(1), T1, tmpmtx,
 			Scalar(1), copymtx);
-		std::cout << "JyLiu 2.1.4" << std::endl;
 		SubMatrixUpdate(ASS_, myindex_p12, myindex_p12, copymtx);
 		tmpmtx.Empty();
 		copymtx.Empty();
-		std::cout << "JyLiu 2.1" << std::endl;
 		// Ah1c1 = Ah1c1 - Ah1h1 * Th1c1.
 		copymtx = ASS_(myindex_p11, myindex_p12);
 		Gemm(NORMAL, NORMAL,
@@ -271,7 +259,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(ASS_, myindex_p12, myindex_p11, copymtxT);
 		copymtx.Empty();
 		copymtxT.Empty();
-		std::cout << "JyLiu 2.2" << std::endl;
 		// Ac2c1 = Ac2c1 - Ac2h1 * Th1c1 - Th2c2^{T} * Ah2c1 + Th2c2^{T} * Ah2h1 * Th1c1.
 		copymtx = ANS_(myindex_p22, myindex_p12);
 		Gemm(NORMAL, NORMAL,
@@ -280,6 +267,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), T2, ANS_(myindex_p21, myindex_p12),
 			Scalar(1), copymtx);
+		tmpmtx.Resize(myindex_p21.size(), T1.Height());
 		Gemm(NORMAL, NORMAL,
 			Scalar(1), ANS_(myindex_p21, myindex_p11), T1,
 			Scalar(0), tmpmtx);
@@ -322,6 +310,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), T2, (nodek->ASS_)(nodekindex_p21, nodekindex_p22),
 			Scalar(1), copymtx);
+		tmpmtx.Resize(nodekindex_p21.size(), T2.Height());
 		Gemm(NORMAL, NORMAL,
 			Scalar(1), (nodek->ASS_)(nodekindex_p21, nodekindex_p21),T2,
 			Scalar(0), tmpmtx);
