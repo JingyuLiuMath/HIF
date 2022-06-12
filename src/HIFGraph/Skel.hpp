@@ -318,7 +318,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p22, copymtx);
 		copymtx.Empty();
 		tmpmtx.Empty();
-		std::cout << "JyLiu 2.5" << std::endl;
 		// Ah2c2 = Ah2c2 - Ah2h2 * Th2c2.
 		copymtx = (nodek->ASS_)(nodekindex_p21, nodekindex_p22);
 		Gemm(NORMAL, NORMAL,
@@ -329,10 +328,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p21, copymtxT);
 		copymtx.Empty();
 		copymtxT.Empty();
-		std::cout << "JyLiu 2.6" << std::endl;
-
-		// DebugLiu
-		std::cout << "JyLiu 3" << std::endl;
 
 		// Step 2.
 		// Ac1c1 = Lc1 * Dc1 * Lc1^{T}.
@@ -409,12 +404,21 @@ void HIFGraph<Scalar>::Skel(double tol)
 		copymtx = (nodek->ASS_)(nodekindex_p22, nodekindex_p22);
 		LDLSolve(copymtx, nbinfo_[k].Ac2c2inv);
 		copymtx.Empty();
+
+		std::cout << "JyLiu 4.1" << std::endl;
+		
 		// Ac2c2invAc2h1 = Ac2c2^{-1} * Ac2h1.
 		nbinfo_[k].Ac2c2invAc2h1 = ANS_(myindex_p22, myindex_p11);
 		MultiplySolve(nbinfo_[k].Ac2c2inv, nbinfo_[k].Ac2c2invAc2h1);
+
+		std::cout << "JyLiu 4.2" << std::endl;
+
 		// Ac2c2invAc2h2 = Ac2c2^{-1} * Ah2c2^{T}.
 		Transpose((nodek->ASS_)(nodekindex_p21, nodekindex_p22), nbinfo_[k].Ac2c2invAc2h2);
 		MultiplySolve(nbinfo_[k].Ac2c2inv, nbinfo_[k].Ac2c2invAc2h2);
+
+		std::cout << "JyLiu 4.3" << std::endl;
+
 		// Ah1h1 = Ah1h1 - Ac2h1^{T} * Ac2c2^{-1} * Ac2h1.
 		copymtx = ASS_(myindex_p11, myindex_p11);
 		Gemm(TRANSPOSE, NORMAL,
@@ -422,6 +426,9 @@ void HIFGraph<Scalar>::Skel(double tol)
 			Scalar(1), copymtx);
 		SubMatrixUpdate(ASS_, myindex_p11, myindex_p11, copymtx);
 		copymtx.Empty();
+
+		std::cout << "JyLiu 4.4" << std::endl;
+
 		// Ah2h1 = Ah2h1 - Ah2c2 * Ac2c2^{-1} * Ac2h1.
 		copymtx = ANS_(myindex_p21, myindex_p11);
 		Gemm(NORMAL, NORMAL,
@@ -432,6 +439,9 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p11, nodekindex_p21, copymtxT);
 		copymtx.Empty();
 		copymtxT.Empty();
+		
+		std::cout << "JyLiu 4.5" << std::endl;
+
 		// Ah2h2 = Ah2h2 - Ah2c2 * Ac2c2^{-1} * Ah2c2^{T}.
 		copymtx = (nodek->ASS_)(nodekindex_p21, nodekindex_p21);
 		Gemm(NORMAL, NORMAL,
@@ -439,6 +449,9 @@ void HIFGraph<Scalar>::Skel(double tol)
 			Scalar(1), copymtx);
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p21, copymtx);
 		copymtx.Empty();
+
+		std::cout << "JyLiu 4.6" << std::endl;
+
 		// Ah2c2 = Ac2h1 = 0.
 	}
 
