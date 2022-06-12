@@ -293,12 +293,17 @@ void HIFGraph<Scalar>::Skel(double tol)
 
 		// Ah2c1 = Ah2c1 - Ah2h1 * Th1c1.
 		copymtx = ANS_(myindex_p21, myindex_p12);
+		std::cout << "Jyliu 1.3.1" << std::endl;
 		Gemm(NORMAL, NORMAL,
 			Scalar(-1), ANS_(myindex_p21, myindex_p11), T1,
 			Scalar(1), copymtx);
+		std::cout << "Jyliu 1.3.2" << std::endl;
 		SubMatrixUpdate(ANS_, myindex_p21, myindex_p12, copymtx);
+		std::cout << "Jyliu 1.3.3" << std::endl;
 		Transpose(copymtx, copymtxT);
+		std::cout << "Jyliu 1.3.4" << std::endl;
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p12, nodekindex_p21, copymtxT);
+		std::cout << "Jyliu 1.3.5" << std::endl;
 		copymtx.Empty();
 		copymtxT.Empty();
 
