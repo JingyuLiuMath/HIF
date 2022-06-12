@@ -216,8 +216,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		{
 			myindex_p21[i] = myindex_sep2[p21[i]];
 			nodekindex_p21[i] = nodekindex_sep2[p21[i]];
-
-			std::cout << nodekindex_sep2[p21[i]] << std::endl;
 		}	
 		for (int i = 0; i < p22.size(); i++)
 		{

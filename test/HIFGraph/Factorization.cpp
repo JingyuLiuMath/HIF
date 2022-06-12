@@ -66,10 +66,13 @@ int main(int argc, char* argv[])
 
 		HIF.Apply(b);
 
+		std::cout << " b " << std::endl;
+		std::cout << " [ " << std::endl;
 		for (int k = 0; k < n; k++)
 		{
-			std::cout << b.Get(k, 0) << std::endl;
+			std::cout << b.Get(k, 0) << ";" << std::endl;
 		}
+		std::cout << " ] " << std::endl;
 
 		/*string filex = "./sol.txt";
 		std::ofstream foutx;
