@@ -149,9 +149,8 @@ private:
 
     // Debug functions.
     void ShowPartition();
-    void ShowMatrix(const MatrixS& A);
-    void ShowVector(const vector<int>& v);
-    void GiveMeA(MatrixS& myA);
+    void ShowMatrix(const MatrixS& A, const string discription);
+    void ShowVector(const vector<int>& v, const string discription);
 };
 
 } // namespace HIF.

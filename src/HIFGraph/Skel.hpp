@@ -52,7 +52,11 @@ void HIFGraph<Scalar>::Skel(double tol)
 		}
 		
 		// The following data are vertices.
-		vector<int> sep1 = singlesep_[k];
+		vector<int> sep1(singlesep_[k]);
+		
+		//DebugLiu:
+		ShowVector(sep1, "sep1");
+		
 		vector<int> mysep1C;
 		for (int nok = 0; nok < nbnode_.size(); nok++)
 		{

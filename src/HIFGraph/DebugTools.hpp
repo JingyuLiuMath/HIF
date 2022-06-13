@@ -43,8 +43,9 @@ void HIFGraph<Scalar>::ShowPartition()
 
 // Show matrix.
 template <typename Scalar>
-void HIFGraph<Scalar>::ShowMatrix(const MatrixS& A)
+void HIFGraph<Scalar>::ShowMatrix(const MatrixS& A, const string discription)
 {
+	std::cout << discription << std::endl;
 	std::cout << "Height " << A.Height() << std::endl;
 	std::cout << "Width " << A.Width() << std::endl;
 	std::cout << " [ " << std::endl;
@@ -61,8 +62,9 @@ void HIFGraph<Scalar>::ShowMatrix(const MatrixS& A)
 
 // Show vector.
 template <typename Scalar>
-void HIFGraph<Scalar>::ShowVector(const vector<int>& v)
+void HIFGraph<Scalar>::ShowVector(const vector<int>& v, const string discription)
 {
+	std::cout << discription << std::endl;
 	std::cout << " Size " << v.size() << std::endl;
 	std::cout << " [ " << std::endl;
 	for (int i = 0; i < v.size(); i++)
@@ -70,27 +72,6 @@ void HIFGraph<Scalar>::ShowVector(const vector<int>& v)
 		std::cout << v[i] << ";" << std::endl;
 	}
 	std::cout << " ] " << std::endl;
-}
-
-// Give A.
-template <typename Scalar>
-void HIFGraph<Scalar>::GiveMeA(MatrixS& myA)
-{
-	if (endflag_ == 1)
-	{
-		SubMatrixUpdate(myA, intr_, intr_, AII_);
-		SubMatrixUpdate(myA, sep_, intr_, ASI_);
-		SubMatrixUpdate(myA, sep_, sep_, ASS_);
-		SubMatrixUpdate(myA, nb_, sep_, ANS_);
-	}
-	else
-	{
-		for (int iter = 0; iter < 2; iter++)
-		{
-			children_[iter]->GiveMeA(myA);
-		}
-	}
-
 }
 
 } // namespace HIF.
