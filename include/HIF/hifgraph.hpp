@@ -56,7 +56,7 @@ public:
     ~HIFGraph();
 
     // Factorization.
-    void Factorization(int HIFbutton = 1, double tol = 1e-3);
+    void Factorization(int HIFbutton, double tol);
 
     // Application.
     void Apply(Matrix<Scalar>& b);
