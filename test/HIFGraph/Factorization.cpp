@@ -20,6 +20,7 @@ int main(int argc, char* argv[])
 		const string inputfileA = Input("--input_A", "input filename of A", "./A.txt");
 		const string inputfileb = Input("--input_b", "input filename of b", "./b.txt");
 		const int cutoff = Input("--cutoff", "cutoff", 64);
+		const int HIFbutton = Input("--HIFbutton", "1 for HIF, 0 for MF", 1);
 		const double tol = Input("--tol", "tolerance", 1e-3);
 
 		El::ProcessInput();
@@ -66,10 +67,13 @@ int main(int argc, char* argv[])
 
 		HIF.Apply(b);
 
+		std::cout << " b " << std::endl;
+		std::cout << " [ " << std::endl;
 		for (int k = 0; k < n; k++)
 		{
-			std::cout << b.Get(k, 0) << std::endl;
+			std::cout << b.Get(k, 0) << ";" << std::endl;
 		}
+		std::cout << " ] " << std::endl;
 
 		/*string filex = "./sol.txt";
 		std::ofstream foutx;
