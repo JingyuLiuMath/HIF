@@ -4,7 +4,7 @@ namespace HIF {
 
 // Factorization
 template <typename Scalar>
-void HIFGraph<Scalar>::Factorization(int HIFbutton, double tol)
+void HIFGraph<Scalar>::Factorization(double tol)
 {
 	std::cout << "Start factorization" << std::endl;
 	for (int tmplevel = numlevels_; tmplevel >= 1; tmplevel--)
