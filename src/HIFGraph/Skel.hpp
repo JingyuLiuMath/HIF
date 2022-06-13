@@ -8,14 +8,14 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel, int HIFbutton, double tol)
 {
 	if (level_ == whatlevel)
 	{
-		if (HIFbutton == 1)
+		/*if (HIFbutton == 1)
 		{
 			Skel(tol);
 		}
 		else
-		{
+		{*/
 			NoSkel();
-		}
+		// }
 	}
 	else
 	{
