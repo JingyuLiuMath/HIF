@@ -4,18 +4,18 @@ namespace HIF {
 
 // Recursively skeletonization.
 template <typename Scalar>
-void HIFGraph<Scalar>::RecursiveSkel(int whatlevel, int HIFbutton, double tol)
+void HIFGraph<Scalar>::RecursiveSkel(int whatlevel, double tol)
 {
 	if (level_ == whatlevel)
 	{
-		if (HIFbutton == 1)
+		/*if (HIFbutton == 1)
 		{
 			Skel(tol);
 		}
 		else
-		{
+		{*/
 			NoSkel();
-		}
+		// }
 	}
 	else
 	{
@@ -23,7 +23,7 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel, int HIFbutton, double tol)
 		{
 			for (int iter = 0; iter < 2; iter++)
 			{
-				children_[iter]->RecursiveSkel(whatlevel, HIFbutton, tol);
+				children_[iter]->RecursiveSkel(whatlevel, tol);
 			}
 		}
 	}

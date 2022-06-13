@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 		
 		HIFGraph<double> HIF(A, cutoff);
 
-		HIF.Factorization(HIFbutton, tol);
+		HIF.Factorization(tol);
 
 		HIF.Apply(b);
 
