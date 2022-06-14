@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
 		const string inputfileA = Input("--input_A", "input filename of A", "./A.txt");
 		const string inputfileb = Input("--input_b", "input filename of b", "./b.txt");
 		const int cutoff = Input("--cutoff", "cutoff", 64);
-		// const int button = Input("--HIFbutton", "1 for HIF, 0 for MF", 1);
+		const int HIFbutton = Input("--HIFbutton", "1 for HIF, 0 for MF", 1);
 		const double tol = Input("--tol", "tolerance", 1e-3);
 
 		El::ProcessInput();
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 		
 		HIFGraph<double> HIF(A, cutoff);
 
-		HIF.Factorization(tol);
+		HIF.Factorization(HIFbutton, tol);
 
 		HIF.Apply(b);
 
