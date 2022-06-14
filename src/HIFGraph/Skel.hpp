@@ -296,6 +296,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(ASS_, myindex_p12, myindex_p11, copymtxT);
 
 		ShowMatrix(copymtx, "Ah1c1");
+		ShowMatrix(copymtxT, "Ah1c1T");
 
 		copymtx.Empty();
 		copymtxT.Empty();
@@ -319,7 +320,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p12, nodekindex_p22, copymtxT);
 		
 		ShowMatrix(copymtx, "Ac2c1");
-		ShowMatrix(nodek->ANS_, "nodek->ANS_");
+		ShowMatrix(copymtxT, "Ac2c1T");
 
 		tmpmtx.Empty();
 		copymtx.Empty();
@@ -334,6 +335,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p12, nodekindex_p21, copymtxT);
 		
 		ShowMatrix(copymtx, "Ah2c1");
+		ShowMatrix(copymtxT, "Ah2c1T");
 
 		copymtx.Empty();
 		copymtxT.Empty();
@@ -347,6 +349,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p11, nodekindex_p22, copymtxT);
 		
 		ShowMatrix(copymtx, "Ac2h1");
+		ShowMatrix(copymtxT, "Ac2h1T");
 
 		copymtx.Empty();
 		copymtxT.Empty();
@@ -372,6 +375,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p21, copymtxT);
 		
 		ShowMatrix(copymtx, "Ah2c2");
+		ShowMatrix(copymtxT, "Ah2c2T");
 
 		copymtx.Empty();
 		copymtxT.Empty();
@@ -410,6 +414,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p11, nodekindex_p22, copymtxT);
 
 		ShowMatrix(copymtx, "Ac2h1");
+		ShowMatrix(copymtxT, "Ac2h1T");
 
 		copymtx.Empty();
 		copymtxT.Empty();
@@ -423,6 +428,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p11, nodekindex_p21, copymtxT);
 		
 		ShowMatrix(copymtx, "Ah2h1");
+		ShowMatrix(copymtxT, "Ah2h1T");
 
 		copymtx.Empty();
 		copymtxT.Empty();
@@ -446,7 +452,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p21, copymtxT);
 		
 		ShowMatrix(copymtx, "Ah2c2");
-
+		ShowMatrix(copymtxT, "Ah2c2T");
 		
 		copymtx.Empty();
 		copymtxT.Empty();
@@ -458,7 +464,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p21, copymtx);
 		
 		ShowMatrix(copymtx, "Ah2h2");
-
 
 		copymtx.Empty();
 		// Ah1c1 = Ac2c1 = Ah2c1 = 0.
@@ -478,8 +483,11 @@ void HIFGraph<Scalar>::Skel(double tol)
 		copymtx = ASS_(myindex_p11, myindex_p11);
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), ANS_(myindex_p22, myindex_p11), nbinfo_[k].Ac2c2invAc2h1,
-			Scalar(1), copymtx);
+			Scalar(1), copymtx);		
 		SubMatrixUpdate(ASS_, myindex_p11, myindex_p11, copymtx);
+
+		ShowMatrix(copymtx, "Ah1h1");
+
 		copymtx.Empty();
 		// Ah2h1 = Ah2h1 - Ah2c2 * Ac2c2^{-1} * Ac2h1.
 		copymtx = ANS_(myindex_p21, myindex_p11);
@@ -489,6 +497,10 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(ANS_, myindex_p21, myindex_p11, copymtx);
 		Transpose(copymtx, copymtxT);
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p11, nodekindex_p21, copymtxT);
+
+		ShowMatrix(copymtx, "Ah1h1");
+		ShowMatrix(copymtxT, "Ah1h1T");
+
 		copymtx.Empty();
 		copymtxT.Empty();
 		// Ah2h2 = Ah2h2 - Ah2c2 * Ac2c2^{-1} * Ah2c2^{T}.
@@ -497,6 +509,9 @@ void HIFGraph<Scalar>::Skel(double tol)
 			Scalar(-1), (nodek->ASS_)(myindex_p21, myindex_p22), nbinfo_[k].Ac2c2invAc2h2,
 			Scalar(1), copymtx);
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p21, copymtx);
+
+		ShowMatrix(copymtx, "Ah2h2");
+
 		copymtx.Empty();
 		// Ah2c2 = Ac2h1 = 0.
 	}
