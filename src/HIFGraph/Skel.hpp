@@ -498,7 +498,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		Transpose((nodek->ASS_)(nodekindex_p21, nodekindex_p22), nbinfo_[k].Ac2c2invAc2h2);
 		MultiplySolve(nbinfo_[k].Ac2c2inv, nbinfo_[k].Ac2c2invAc2h2);
 		
-		ShowMatrix(nnbinfo_[k].Ac2c2invAc2h2, "nbinfo_[k].Ac2c2invAc2h2");
+		ShowMatrix(nbinfo_[k].Ac2c2invAc2h2, "nbinfo_[k].Ac2c2invAc2h2");
 		
 		// Ah1h1 = Ah1h1 - Ac2h1^{T} * Ac2c2^{-1} * Ac2h1.
 		copymtx = ASS_(myindex_p11, myindex_p11);
