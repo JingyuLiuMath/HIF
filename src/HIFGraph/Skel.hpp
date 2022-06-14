@@ -10,14 +10,14 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel, double tol)
 	{
 		/*if (HIFbutton == 1)
 		{
-			std::cout << "skel" << endl;
 			Skel(tol);
 		}
 		else
 		{
 			NoSkel();
 		}*/
-		NoSkel();
+		// NoSkel();
+		Skel(tol);
 	}
 	else
 	{
