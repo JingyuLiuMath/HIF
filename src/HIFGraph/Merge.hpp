@@ -98,18 +98,30 @@ void HIFGraph<Scalar>::Merge()
 	
 	copymtx = (children_[0]->ASS_)(cindex_intr1, cindex_intr1);
 	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr1, copymtx);
+
+	ShowMatrix(copymtx, "copy1");
+
 	copymtx.Empty();
 	
 	copymtx = (children_[1]->ASS_)(cindex_intr2, cindex_intr2);
 	SubMatrixUpdate(AII_, myindex_intr2, myindex_intr2, copymtx);
+
+	ShowMatrix(copymtx, "copy2");
+
 	copymtx.Empty();
 	
 	copymtx = (children_[0]->ANS_)(cindex_intr21, cindex_intr1);
 	SubMatrixUpdate(AII_, myindex_intr21, myindex_intr1, copymtx);
+	
+	ShowMatrix(copymtx, "copy3");
+
 	copymtx.Empty();
 	
 	Transpose(AII_(myindex_intr2, myindex_intr1), copymtx);
 	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr2, copymtx);
+	
+	ShowMatrix(copymtx, "copy4");
+
 	copymtx.Empty();
 
 	ShowMatrix(AII_, "AII");

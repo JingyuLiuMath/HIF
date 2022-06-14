@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
 		}
 		finb.close();
 		
-		Matrix<double> B(3, 3);
+		/*Matrix<double> B(3, 3);
 		for (int i = 0; i < B.Height(); i++)
 		{
 			for (int j = 0; j < B.Width(); j++)
@@ -96,22 +96,22 @@ int main(int argc, char* argv[])
 			}
 			std::cout << ";" << std::endl;
 		}
+		std::cout << " ] " << std::endl;*/
+
+		HIFGraph<double> HIF(A, cutoff);
+
+		// HIF.Factorization(HIFbutton, tol);
+		HIF.Factorization(tol);
+		
+		HIF.Apply(b);
+
+		std::cout << " b " << std::endl;
+		std::cout << " [ " << std::endl;
+		for (int k = 0; k < n; k++)
+		{
+			std::cout << b.Get(k, 0) << ";" << std::endl;
+		}
 		std::cout << " ] " << std::endl;
-
-		//HIFGraph<double> HIF(A, cutoff);
-
-		//// HIF.Factorization(HIFbutton, tol);
-		//HIF.Factorization(tol);
-		//
-		//HIF.Apply(b);
-
-		//std::cout << " b " << std::endl;
-		//std::cout << " [ " << std::endl;
-		//for (int k = 0; k < n; k++)
-		//{
-		//	std::cout << b.Get(k, 0) << ";" << std::endl;
-		//}
-		//std::cout << " ] " << std::endl;
 
 		/*string filex = "./sol.txt";
 		std::ofstream foutx;
