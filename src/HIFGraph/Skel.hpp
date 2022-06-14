@@ -319,6 +319,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p12, nodekindex_p22, copymtxT);
 		
 		ShowMatrix(copymtx, "Ac2c1");
+		ShowMatrix(nodek->ANS_, "nodek->ANS_");
 
 		tmpmtx.Empty();
 		copymtx.Empty();
