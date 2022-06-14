@@ -529,6 +529,8 @@ void HIFGraph<Scalar>::Skel(double tol)
 
 		ShowMatrix(copymtx, "Ah2h2");
 
+		ShowMatrix((nodek->ASS_)(myindex_p21, myindex_p22), "(nodek->ASS_)(myindex_p21, myindex_p22)");
+
 		Gemm(NORMAL, NORMAL,
 			Scalar(-1), (nodek->ASS_)(myindex_p21, myindex_p22), nbinfo_[k].Ac2c2invAc2h2,
 			Scalar(1), copymtx);
