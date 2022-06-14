@@ -61,20 +61,44 @@ int main(int argc, char* argv[])
 		}
 		finb.close();
 		
-		HIFGraph<double> HIF(A, cutoff);
-
-		// HIF.Factorization(HIFbutton, tol);
-		HIF.Factorization(tol);
-		
-		HIF.Apply(b);
-
-		std::cout << " b " << std::endl;
-		std::cout << " [ " << std::endl;
-		for (int k = 0; k < n; k++)
+		Matrix<double> A(2, 2);
+		for (int i = 0; i < A.Height(); i++)
 		{
-			std::cout << b.Get(k, 0) << ";" << std::endl;
+			for (int j = 0; j < A.Width(); j++)
+			{
+				A.Set(i, j, i + j);
+			}
+		}
+		vector<int> row;
+		vector<int> col;
+		row.push_back(0);
+		col.resize(0);
+		Matrix<double> mtx = A(row, col);
+		std::cout << " [ " << std::endl;
+		for (int i = 0; i < mtx.Height(); i++)
+		{
+			for (int j = 0; j < mtx.Width(); j++)
+			{
+				std::cout << mtx.Get(i, j) << "," << std::endl;
+			}
+			std::cout << ";" << std::endl;
 		}
 		std::cout << " ] " << std::endl;
+		
+		//HIFGraph<double> HIF(A, cutoff);
+
+		//// HIF.Factorization(HIFbutton, tol);
+		//HIF.Factorization(tol);
+		//
+		//HIF.Apply(b);
+
+		//std::cout << " b " << std::endl;
+		//std::cout << " [ " << std::endl;
+		//for (int k = 0; k < n; k++)
+		//{
+		//	std::cout << b.Get(k, 0) << ";" << std::endl;
+		//}
+		//std::cout << " ] " << std::endl;
 
 		/*string filex = "./sol.txt";
 		std::ofstream foutx;
