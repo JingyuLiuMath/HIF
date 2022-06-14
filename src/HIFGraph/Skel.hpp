@@ -384,16 +384,28 @@ void HIFGraph<Scalar>::Skel(double tol)
 		// Ac1c1 = Lc1 * Dc1 * Lc1^{T}.
 		copymtx = ASS_(myindex_p12, myindex_p12);
 		LDLSolve(copymtx, nbinfo_[k].Ac1c1inv);
+
+		ShowMatrix(nbinfo_[k].Ac1c1inv, "nbinfo_[k].Ac1c1inv");
+
 		copymtx.Empty();
 		// Ac1c1invAc1h1 = Ac1c1^{-1} * Ah1c1^{T}.
 		Transpose(ASS_(myindex_p11, myindex_p12), nbinfo_[k].Ac1c1invAc1h1);
 		MultiplySolve(nbinfo_[k].Ac1c1inv, nbinfo_[k].Ac1c1invAc1h1);
+
+		ShowMatrix(nbinfo_[k].Ac1c1invAc1h1, "nbinfo_[k].Ac1c1invAc1h1");
+
 		// Ac1c1invAc1c2 = Ac1c1^{-1} * Ac2c1^{T}.
 		Transpose(ANS_(myindex_p22, myindex_p12), nbinfo_[k].Ac1c1invAc1c2);
 		MultiplySolve(nbinfo_[k].Ac1c1inv, nbinfo_[k].Ac1c1invAc1c2);
+
+		ShowMatrix(nbinfo_[k].Ac1c1invAc1c2, "nbinfo_[k].Ac1c1invAc1c2");
+
 		// Ac1c1invAc1h2 = Ac1c1^{-1} * Ah2c1^{T}.
 		Transpose(ANS_(myindex_p21, myindex_p12), nbinfo_[k].Ac1c1invAc1h2);
 		MultiplySolve(nbinfo_[k].Ac1c1inv, nbinfo_[k].Ac1c1invAc1h2);
+
+		ShowMatrix(nbinfo_[k].Ac1c1invAc1h2, "nbinfo_[k].Ac1c1invAc1h2");
+
 		// Ah1h1 = Ah1h1 - Ah1c1 * Ac1c1^ { -1 } *Ah1c1^ { T }.
 		copymtx = ASS_(myindex_p11, myindex_p11);
 		Gemm(NORMAL, NORMAL,
@@ -472,13 +484,22 @@ void HIFGraph<Scalar>::Skel(double tol)
 		// Ac2c2 = Lc2 * Dc2 * Lc2^{T}.
 		copymtx = (nodek->ASS_)(nodekindex_p22, nodekindex_p22);
 		LDLSolve(copymtx, nbinfo_[k].Ac2c2inv);
+
+		ShowMatrix(nbinfo_[k].Ac2c2inv, "nbinfo_[k].Ac2c2inv");
+
 		copymtx.Empty();
 		// Ac2c2invAc2h1 = Ac2c2^{-1} * Ac2h1.
 		nbinfo_[k].Ac2c2invAc2h1 = ANS_(myindex_p22, myindex_p11);
 		MultiplySolve(nbinfo_[k].Ac2c2inv, nbinfo_[k].Ac2c2invAc2h1);
+
+		ShowMatrix(nbinfo_[k].Ac2c2invAc2h1, "nbinfo_[k].Ac2c2invAc2h1");
+
 		// Ac2c2invAc2h2 = Ac2c2^{-1} * Ah2c2^{T}.
 		Transpose((nodek->ASS_)(nodekindex_p21, nodekindex_p22), nbinfo_[k].Ac2c2invAc2h2);
 		MultiplySolve(nbinfo_[k].Ac2c2inv, nbinfo_[k].Ac2c2invAc2h2);
+		
+		ShowMatrix(nnbinfo_[k].Ac2c2invAc2h2, "nbinfo_[k].Ac2c2invAc2h2");
+		
 		// Ah1h1 = Ah1h1 - Ac2h1^{T} * Ac2c2^{-1} * Ac2h1.
 		copymtx = ASS_(myindex_p11, myindex_p11);
 		Gemm(TRANSPOSE, NORMAL,
