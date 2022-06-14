@@ -272,7 +272,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 			Scalar(1), T1, tmpmtx,
 			Scalar(1), copymtx);*/
 		copymtx -= Ac1h1T1;
-		Tranpose(Ac1h1T1, tmpmtx);
+		Transpose(Ac1h1T1, tmpmtx);
 		copymtx -= tmpmtx;
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(1), T1, Ah1h1T1,
@@ -348,7 +348,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 			Scalar(1), T2, tmpmtx,
 			Scalar(1), copymtx);*/
 		copymtx -= Ac2h2T2;
-		Tranpose(Ac2h2T2, tmpmtx);
+		Transpose(Ac2h2T2, tmpmtx);
 		copymtx -= tmpmtx;
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(1), T2, Ah2h2T2,
