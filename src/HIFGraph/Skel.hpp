@@ -240,10 +240,10 @@ void HIFGraph<Scalar>::Skel(double tol)
 		MatrixS tmpmtx;
 
 		// Step 1.
-		MatrixS Ac1h1T1(myindex_p12.size(),T.Height());
-		MatrixS Ah1h1T1(myindex_p11.size(), T.Height());
-		MatrixS Ac2h2T2(nodekindex_p22.size(), T.Height());
-		MatrixS Ah2h2T2(nodekindex_p21.size(), T.Height());
+		MatrixS Ac1h1T1(myindex_p12.size(),T1.Height());
+		MatrixS Ah1h1T1(myindex_p11.size(), T1.Height());
+		MatrixS Ac2h2T2(nodekindex_p22.size(), T2.Height());
+		MatrixS Ah2h2T2(nodekindex_p21.size(), T2.Height());
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(1), ASS_(myindex_p11, myindex_p12), T1,
 			Scalar(0), Ac1h1T1);
