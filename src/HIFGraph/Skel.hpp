@@ -17,7 +17,6 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel, int HIFbutton, double tol)
 		{
 			NoSkel();
 		}
-		// NoSkel();
 	}
 	else
 	{

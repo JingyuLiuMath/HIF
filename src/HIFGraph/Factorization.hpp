@@ -13,7 +13,6 @@ void HIFGraph<Scalar>::Factorization(int HIFbutton, double tol)
 		RecursiveSparseElim(tmplevel);
 
 		// Skeletonization.
-		// RecursiveSkel(tmplevel, tol);
 		RecursiveSkel(tmplevel, HIFbutton, tol);
 		// Merge.
 		RecursiveMerge(tmplevel - 1);
