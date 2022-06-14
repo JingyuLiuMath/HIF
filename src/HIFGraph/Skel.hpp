@@ -23,7 +23,7 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel, int HIFbutton, double tol)
 		{
 			for (int iter = 0; iter < 2; iter++)
 			{
-				children_[iter]->RecursiveSkel(whatlevel, tol);
+				children_[iter]->RecursiveSkel(whatlevel, HIFbutton, tol);
 			}
 		}
 	}
