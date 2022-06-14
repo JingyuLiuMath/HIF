@@ -37,6 +37,7 @@ void HIFGraph<Scalar>::ApplySkelDown(const vector<int>& xcol)
 		}
 
 		MatrixS copyvec; // Copy of updated vector.
+		
 		// Step 3.
 		// xc2 = Lc2^{-T} * xc2 - (Ac2c2^{-1} * Ac2h1) * xh1 - (Ac2c2^{-1} * Ah2c2^{T}) * xh2.
 		copyvec = (nbnodek->xS_)(nbinfok.nodekindex_p22, xcol);

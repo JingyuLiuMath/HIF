@@ -37,6 +37,7 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 		}
 
 		MatrixS copyvec; // Copy of updated vector.
+
 		// Step 1.
 		// xc1 = xc1 - Th1c1^{T} * xh1.
 		copyvec = xS_(nbinfok.myindex_p12, xcol);

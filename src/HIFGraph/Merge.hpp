@@ -98,33 +98,19 @@ void HIFGraph<Scalar>::Merge()
 	
 	copymtx = (children_[0]->ASS_)(cindex_intr1, cindex_intr1);
 	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr1, copymtx);
-
-	ShowMatrix(copymtx, "copy1");
-
 	copymtx.Empty();
 	
 	copymtx = (children_[1]->ASS_)(cindex_intr2, cindex_intr2);
 	SubMatrixUpdate(AII_, myindex_intr2, myindex_intr2, copymtx);
-
-	ShowMatrix(copymtx, "copy2");
-
 	copymtx.Empty();
 	
 	copymtx = (children_[0]->ANS_)(cindex_intr21, cindex_intr1);
 	SubMatrixUpdate(AII_, myindex_intr21, myindex_intr1, copymtx);
-	
-	ShowMatrix(copymtx, "copy3");
-
 	copymtx.Empty();
 	
 	Transpose(AII_(myindex_intr2, myindex_intr1), copymtx);
 	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr2, copymtx);
-	
-	ShowMatrix(copymtx, "copy4");
-
 	copymtx.Empty();
-
-	ShowMatrix(AII_, "AII");
 
 	// ASI
 	// A sep of the parent only belongs to the sep of one of its children.
@@ -164,8 +150,6 @@ void HIFGraph<Scalar>::Merge()
 	SubMatrixUpdate(ASI_, myindex_sep2y, myindex_intr2, copymtx);
 	copymtx.Empty();
 
-	ShowMatrix(ASI_, "ASI");
-
 	// ASS
 	// If two seps belongs to the same child, we assign ASS from the child's ASS. 
 	// Otherwise, we assign ASS from one child's ANS or 0.
@@ -203,8 +187,6 @@ void HIFGraph<Scalar>::Merge()
 	SubMatrixUpdate(ASS_, myindex_sep1, myindex_sep2, copymtx);
 	copymtx.Empty();
 
-	ShowMatrix(ASS_, "ASS");
-
 	// ANS
 	// If a nb and a sep in the same child, we assign ANS from the child's ANS.
 	// Otherwise, ANS= 0.
@@ -225,8 +207,6 @@ void HIFGraph<Scalar>::Merge()
 	copymtx = (children_[1]->ANS_)(cindex_nb2x, cindex_sep2);
 	SubMatrixUpdate(ANS_, myindex_nb2x, myindex_sep2, copymtx);
 	copymtx.Empty();
-
-	ShowMatrix(ANS_, "ANS");
 
 	// Clear children's unnecessary information.
 	for (int iter = 0; iter < 2; iter++)
