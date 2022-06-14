@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
 		std::cout << " ] " << std::endl;
 		Matrix<double> tmpT;
 		Transpose(tmp, tmpT);
-		td::cout << " [ " << std::endl;
+		std::cout << " [ " << std::endl;
 		for (int i = 0; i < tmpT.Height(); i++)
 		{
 			for (int j = 0; j < tmpT.Width(); j++)
