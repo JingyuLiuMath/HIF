@@ -178,12 +178,12 @@ void HIFGraph<Scalar>::Skel(double tol)
 		
 		vector<int> debugrow1;
 		RangeVec(0, skelmtx1.Height(), debugrow1);
-		MatrixS debugmtx1 = skelmtx1(debugrow1,p12);
+		MatrixS debugmtx1 = skelmtx1(debugrow1, p12);
 		Gemm(NORMAL, NORMAL,
 			Scalar(-1), skelmtx1(debugrow1, p11), T1,
 			Scalar(1), debugmtx1);
 		ShowMatrix(debugmtx1, "ID of skelmtx1");
-		
+
 		vector<int>& myindex_p11 = nbinfo_[k].myindex_p11;
 		vector<int>& myindex_p12 = nbinfo_[k].myindex_p12;
 		vector<int>& nodekindex_p11 = nbinfo_[k].nodekindex_p11;
@@ -336,7 +336,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		copymtxT.Empty();
 		// Ac2c2 = Ac2c2 - Ah2c2^{T} * Th2c2 - Th2c2^{T} * Ah2c2 + Th2c2^{T} * Ah2h2 * Th2c2.
 		copymtx = (nodek->ASS_)(nodekindex_p22, nodekindex_p22);
-			Scalar(1), copymtx);*/
 		copymtx -= Ac2h2T2;
 		Transpose(Ac2h2T2, tmpmtx);
 		copymtx -= tmpmtx;
