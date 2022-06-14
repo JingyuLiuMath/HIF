@@ -175,14 +175,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		vector<int> p12;
 		MatrixS& T1 = nbinfo_[k].Th1c1;
 		IDSolve(skelmtx1, T1, p11, p12, ctrl); // skelmtx1(:, p12) = skelmtx1(:, p11) * T1.
-		
-		vector<int> debugrow1;
-		RangeVec(0, skelmtx1.Height(), debugrow1);
-		MatrixS debugmtx1 = skelmtx1(debugrow1, p12);
-		Gemm(NORMAL, NORMAL,
-			Scalar(-1), skelmtx1(debugrow1, p11), T1,
-			Scalar(1), debugmtx1);
-		ShowMatrix(debugmtx1, "ID of skelmtx1");
 
 		vector<int>& myindex_p11 = nbinfo_[k].myindex_p11;
 		vector<int>& myindex_p12 = nbinfo_[k].myindex_p12;
@@ -215,14 +207,6 @@ void HIFGraph<Scalar>::Skel(double tol)
 		vector<int> p22;
 		MatrixS& T2 = nbinfo_[k].Th2c2;
 		IDSolve(skelmtx2, T2, p21, p22, ctrl); // skelmtx2(:, p22) = skelmtx2(:, p21) * T2.		
-		
-		vector<int> debugrow2;
-		RangeVec(0, skelmtx2.Height(), debugrow2);
-		MatrixS debugmtx2 = skelmtx2(debugrow2, p22);
-		Gemm(NORMAL, NORMAL,
-			Scalar(-1), skelmtx2(debugrow2, p21), T2,
-			Scalar(1), debugmtx2);
-		ShowMatrix(debugmtx2, "ID of skelmtx2");
 
 		vector<int>& myindex_p21 = nbinfo_[k].myindex_p21;
 		vector<int>& myindex_p22 = nbinfo_[k].myindex_p22;
