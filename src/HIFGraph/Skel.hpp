@@ -364,7 +364,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		MultiplySolve(nbinfo_[k].Ac1c1inv, nbinfo_[k].Ac1c1invAc1h1);
 		// Ac1c1invAc1c2 = Ac1c1^{-1} * Ac2c1^{T}.
 		Transpose(ANS_(myindex_p22, myindex_p12), nbinfo_[k].Ac1c1invAc1c2);
-		MultiplySolve(nbinfo_[k].Ac1c1inv, nbinfo_[k].Ac1c1invAc1c2);c1c2");
+		MultiplySolve(nbinfo_[k].Ac1c1inv, nbinfo_[k].Ac1c1invAc1c2);
 		// Ac1c1invAc1h2 = Ac1c1^{-1} * Ah2c1^{T}.
 		Transpose(ANS_(myindex_p21, myindex_p12), nbinfo_[k].Ac1c1invAc1h2);
 		MultiplySolve(nbinfo_[k].Ac1c1inv, nbinfo_[k].Ac1c1invAc1h2);
