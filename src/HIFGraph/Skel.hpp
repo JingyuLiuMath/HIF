@@ -240,9 +240,25 @@ void HIFGraph<Scalar>::Skel(double tol)
 		MatrixS tmpmtx;
 
 		// Step 1.
+		MatrixS Ac1h1T1(myindex_p12.size(),T.Height());
+		MatrixS Ah1h1T1(myindex_p11.size(), T.Height());
+		MatrixS Ac2h2T2(nodekindex_p22.size(), T.Height());
+		MatrixS Ah2h2T2(nodekindex_p21.size(), T.Height());
+		Gemm(TRANSPOSE, NORMAL,
+			Scalar(1), ASS_(myindex_p11, myindex_p12), T1,
+			Scalar(0), Ac1h1T1);
+		Gemm(NORMAL, NORMAL,
+			Scalar(1), ASS_(myindex_p11, myindex_p11), T1,
+			Scalar(0), Ah1h1T1);
+		Gemm(TRANSPOSE, NORMAL,
+			Scalar(1), (nodek->ASS_)(nodekindex_p21, nodekindex_p22), T2,
+			Scalar(0), Ac2h2T2);
+		Gemm(NORMAL, NORMAL,
+			Scalar(1), (nodek->ASS_)(nodekindex_p21, nodekindex_p21), T2,
+			Scalar(0), Ah2h2T2);
 		// Ac1c1 = Ac1c1 - Ah1c1^{T} * Th1c1 - Th1c1^{T} * Ah1c1 + Th1c1^{T} * Ah1h1 * Th1c1.
 		copymtx = ASS_(myindex_p12, myindex_p12);	
-		Gemm(TRANSPOSE, NORMAL,
+		/*Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), ASS_(myindex_p11,myindex_p12), T1,
 			Scalar(1), copymtx);		
 		Gemm(TRANSPOSE, NORMAL,
@@ -254,15 +270,22 @@ void HIFGraph<Scalar>::Skel(double tol)
 			Scalar(0), tmpmtx);
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(1), T1, tmpmtx,
+			Scalar(1), copymtx);*/
+		copymtx -= Ac1h1T1;
+		Tranpose(Ac1h1T1, tmpmtx);
+		copymtx -= tmpmtx;
+		Gemm(TRANSPOSE, NORMAL,
+			Scalar(1), T1, Ah1h1T1,
 			Scalar(1), copymtx);
 		SubMatrixUpdate(ASS_, myindex_p12, myindex_p12, copymtx);
 		tmpmtx.Empty();
 		copymtx.Empty();
 		// Ah1c1 = Ah1c1 - Ah1h1 * Th1c1.
 		copymtx = ASS_(myindex_p11, myindex_p12);
-		Gemm(NORMAL, NORMAL,
+		/*Gemm(NORMAL, NORMAL,
 			Scalar(-1), ASS_(myindex_p11, myindex_p11), T1,
-			Scalar(1), copymtx);
+			Scalar(1), copymtx);*/
+		copymtx -= Ah1h1T1;
 		SubMatrixUpdate(ASS_, myindex_p11, myindex_p12, copymtx);
 		Transpose(copymtx, copymtxT);
 		SubMatrixUpdate(ASS_, myindex_p12, myindex_p11, copymtxT);
@@ -311,7 +334,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 		copymtxT.Empty();
 		// Ac2c2 = Ac2c2 - Ah2c2^{T} * Th2c2 - Th2c2^{T} * Ah2c2 + Th2c2^{T} * Ah2h2 * Th2c2.
 		copymtx = (nodek->ASS_)(nodekindex_p22, nodekindex_p22);
-		Gemm(TRANSPOSE, NORMAL,
+		/*Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), (nodek->ASS_)(nodekindex_p21, nodekindex_p22), T2,
 			Scalar(1), copymtx);
 		Gemm(TRANSPOSE, NORMAL,
@@ -323,15 +346,22 @@ void HIFGraph<Scalar>::Skel(double tol)
 			Scalar(0), tmpmtx);
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(1), T2, tmpmtx,
+			Scalar(1), copymtx);*/
+		copymtx -= Ac2h2T2;
+		Tranpose(Ac2h2T2, tmpmtx);
+		copymtx -= tmpmtx;
+		Gemm(TRANSPOSE, NORMAL,
+			Scalar(1), T2, Ah2h2T2,
 			Scalar(1), copymtx);
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p22, copymtx);
 		copymtx.Empty();
 		tmpmtx.Empty();
 		// Ah2c2 = Ah2c2 - Ah2h2 * Th2c2.
 		copymtx = (nodek->ASS_)(nodekindex_p21, nodekindex_p22);
-		Gemm(NORMAL, NORMAL,
+		/*Gemm(NORMAL, NORMAL,
 			Scalar(-1), (nodek->ASS_)(nodekindex_p21, nodekindex_p21), T2,
-			Scalar(1), copymtx);
+			Scalar(1), copymtx);*/
+		copymtx -= Ah2h2T2;
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p22, copymtx);
 		Transpose(copymtx, copymtxT);
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p21, copymtxT);
