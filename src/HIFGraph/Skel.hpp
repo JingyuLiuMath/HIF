@@ -526,6 +526,9 @@ void HIFGraph<Scalar>::Skel(double tol)
 		copymtxT.Empty();
 		// Ah2h2 = Ah2h2 - Ah2c2 * Ac2c2^{-1} * Ah2c2^{T}.
 		copymtx = (nodek->ASS_)(nodekindex_p21, nodekindex_p21);
+
+		ShowMatrix(copymtx, "Ah2h2");
+
 		Gemm(NORMAL, NORMAL,
 			Scalar(-1), (nodek->ASS_)(myindex_p21, myindex_p22), nbinfo_[k].Ac2c2invAc2h2,
 			Scalar(1), copymtx);
