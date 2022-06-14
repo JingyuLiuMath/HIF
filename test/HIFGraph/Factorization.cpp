@@ -61,19 +61,19 @@ int main(int argc, char* argv[])
 		}
 		finb.close();
 		
-		Matrix<double> A(2, 2);
-		for (int i = 0; i < A.Height(); i++)
+		Matrix<double> B(2, 2);
+		for (int i = 0; i < B.Height(); i++)
 		{
-			for (int j = 0; j < A.Width(); j++)
+			for (int j = 0; j < B.Width(); j++)
 			{
-				A.Set(i, j, i + j);
+				B.Set(i, j, i + j);
 			}
 		}
 		vector<int> row;
 		vector<int> col;
 		row.push_back(0);
 		col.resize(0);
-		Matrix<double> mtx = A(row, col);
+		Matrix<double> mtx = B(row, col);
 		std::cout << " [ " << std::endl;
 		for (int i = 0; i < mtx.Height(); i++)
 		{
