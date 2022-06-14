@@ -519,8 +519,8 @@ void HIFGraph<Scalar>::Skel(double tol)
 		Transpose(copymtx, copymtxT);
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p11, nodekindex_p21, copymtxT);
 
-		ShowMatrix(copymtx, "Ah1h1");
-		ShowMatrix(copymtxT, "Ah1h1T");
+		ShowMatrix(copymtx, "Ah2h1");
+		ShowMatrix(copymtxT, "Ah2h1T");
 
 		copymtx.Empty();
 		copymtxT.Empty();
