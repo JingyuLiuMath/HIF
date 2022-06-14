@@ -395,6 +395,9 @@ void HIFGraph<Scalar>::Skel(double tol)
 			Scalar(-1), ASS_(myindex_p11, myindex_p12), nbinfo_[k].Ac1c1invAc1h1,
 			Scalar(1), copymtx);
 		SubMatrixUpdate(ASS_, myindex_p11, myindex_p11, copymtx);
+
+		ShowMatrix(copymtx, "Ah1h1");
+
 		copymtx.Empty();
 		// Ac2h1 = Ac2h1 - Ac2c1 * Ac1c1^{-1} * Ah1c1^{T}.
 		copymtx = ANS_(myindex_p22, myindex_p11);
@@ -404,6 +407,9 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(ANS_, myindex_p22, myindex_p11, copymtx);
 		Transpose(copymtx, copymtxT);
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p11, nodekindex_p22, copymtxT);
+
+		ShowMatrix(copymtx, "Ac2h1");
+
 		copymtx.Empty();
 		copymtxT.Empty();
 		// Ah2h1 = Ah2h1 - Ah2c1 * Ac1c1^{-1} * Ah1c1^{T}.
@@ -414,6 +420,9 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(ANS_, myindex_p21, myindex_p11, copymtx);
 		Transpose(copymtx, copymtxT);
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p11, nodekindex_p21, copymtxT);
+		
+		ShowMatrix(copymtx, "Ah2h1");
+
 		copymtx.Empty();
 		copymtxT.Empty();
 		// Ac2c2 = Ac2c2 - Ac2c1 * Ac1c1^{-1} * Ac2c1^{T}.
@@ -422,6 +431,9 @@ void HIFGraph<Scalar>::Skel(double tol)
 			Scalar(-1), ANS_(myindex_p22, myindex_p12), nbinfo_[k].Ac1c1invAc1c2,
 			Scalar(1), copymtx);
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p22, copymtx);
+		
+		ShowMatrix(copymtx, "Ac2c2");
+
 		copymtx.Empty();
 		// Ah2c2 = Ah2c2 - Ah2c1 * Ac1c1^{-1} * Ac2c1^{T}.
 		copymtx = (nodek->ASS_)(nodekindex_p21, nodekindex_p22);
@@ -431,6 +443,10 @@ void HIFGraph<Scalar>::Skel(double tol)
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p22, copymtx);
 		Transpose(copymtx, copymtxT);
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p21, copymtxT);
+		
+		ShowMatrix(copymtx, "Ah2c2");
+
+		
 		copymtx.Empty();
 		copymtxT.Empty();
 		// Ah2h2 = Ah2h2 - Ah2c1 * Ac1c1^{-1} * Ah2c1^{T}.
@@ -439,6 +455,10 @@ void HIFGraph<Scalar>::Skel(double tol)
 			Scalar(-1), ANS_(myindex_p21, myindex_p12), nbinfo_[k].Ac1c1invAc1h2,
 			Scalar(1), copymtx);
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p21, copymtx);
+		
+		ShowMatrix(copymtx, "Ah2h2");
+
+
 		copymtx.Empty();
 		// Ah1c1 = Ac2c1 = Ah2c1 = 0.
 
