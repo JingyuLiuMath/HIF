@@ -3,7 +3,7 @@
 namespace HIF {
 
 template <typename Scalar>
-void HIFGraph<Scalar>::Apply(Matrix<Scalar>& b)
+void HIFGraph<Scalar>::Apply(MatrixS& b)
 {
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:Apply"))
 
@@ -14,6 +14,7 @@ void HIFGraph<Scalar>::Apply(Matrix<Scalar>& b)
 	// Fill vector in the tree.
 	FillVecTree(b, xcol);
 	
+	// ApplyUp.
 	for (int tmplevel = numlevels_; tmplevel >= 1; tmplevel--)
 	{
 		RecursiveApplySparseElimUp(tmplevel);
@@ -24,6 +25,7 @@ void HIFGraph<Scalar>::Apply(Matrix<Scalar>& b)
 	// Root apply.
 	RootApply();
 
+	// ApplyDown.
 	for (int tmplevel = 1; tmplevel <= numlevels_; tmplevel++)
 	{
 		RecursiveApplySplit(tmplevel - 1, xcol);
@@ -31,10 +33,10 @@ void HIFGraph<Scalar>::Apply(Matrix<Scalar>& b)
 		RecursiveApplySparseElimDown(tmplevel);
 	}
 	
+	// GetSolution.
 	GetSolution(b, xcol);
 
 	std::cout << "Finish apply" << std::endl;
 }
 
 } // namespace HIF.
-

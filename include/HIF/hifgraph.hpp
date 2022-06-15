@@ -50,7 +50,7 @@ public:
     typedef SparseMatrix<Scalar> SparseMatrixS;
 
     // Initialization.
-    HIFGraph(const SparseMatrix<Scalar>& A, int minvtx);
+    HIFGraph(const SparseMatrixS& A, int minvtx);
     HIFGraph(int level, int seqnum,
         vector<int>& vtx, vector<int>& sep, vector<int>& nb);
     ~HIFGraph();
@@ -59,7 +59,7 @@ public:
     void Factorization();
 
     // Application.
-    void Apply(Matrix<Scalar>& b);
+    void Apply(MatrixS& b);
 
 private:    
 

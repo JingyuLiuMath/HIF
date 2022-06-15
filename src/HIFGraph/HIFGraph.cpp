@@ -29,7 +29,7 @@ namespace HIF {
 // Create a HIFGraph class.
 template <typename Scalar>
 HIFGraph<Scalar>::HIFGraph
-(const SparseMatrix<Scalar>& A, int minvtx)
+(const SparseMatrixS& A, int minvtx)
 {
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:HIFGraph"))
 

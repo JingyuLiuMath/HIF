@@ -8,6 +8,9 @@ void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Sc
 {
 	DEBUG_HIF(CallStackEntry cse("Diff_Sort"))
 
+	TIMER_HIF(TimerStart(TIMER_SETOP))
+	TIMER_HIF(TimerStart(TIMER_SETOP_DIFF))
+	
 	vec.resize(vec1.size());
 	int i = 0;
 	int j = 0;
@@ -37,6 +40,9 @@ void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Sc
 		i++;
 	}
 	vec.erase(vec.begin() + actualsize_vec, vec.end());
+
+	TIMER_HIF(TimerStop(TIMER_SETOP_DIFF))
+	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 
 } // namespace HIF.

@@ -11,6 +11,8 @@ void HIFGraph<Scalar>::GetSolution(Matrix<Scalar>& b, const vector<int>& xcol)
 	{
 		for (int iter = 0; iter < 2; iter++)
 		{
+			xI_.Empty();
+			xS_.Empty();
 			children_[iter]->GetSolution(b, xcol);
 		}
 	}
@@ -18,6 +20,8 @@ void HIFGraph<Scalar>::GetSolution(Matrix<Scalar>& b, const vector<int>& xcol)
 	{
 		SubMatrixUpdate(b, intr_, xcol, xI_);
 		SubMatrixUpdate(b, sep_, xcol, xS_);
+		xI_.Empty();
+		xS_.Empty();
 	}
 }
 
