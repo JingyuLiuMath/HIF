@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 		// Reading input.
 		El::Timer readTimer("ReadTimer");
 		readTimer.Start();
-		MasterCout("Reading input starts...")
+		MasterCout("Reading input starts...");
 
 		string fileA = inputfileA;
 		std::ifstream finA;
@@ -76,7 +76,7 @@ int main(int argc, char* argv[])
 		// Initialization.
 		El::Timer initTimer("InitTimer");
 		initTimer.Start();
-		MasterCout("Initialization starts...")
+		MasterCout("Initialization starts...");
 
 		HIFGraph<double> HIF(A, cutoff);
 
