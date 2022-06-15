@@ -4,7 +4,7 @@ namespace HIF {
 
 // Factorization
 template <typename Scalar>
-void HIFGraph<Scalar>::Factorization(double tol)
+void HIFGraph<Scalar>::Factorization()
 {
 	std::cout << "Start factorization" << std::endl;
 	for (int tmplevel = numlevels_; tmplevel >= 1; tmplevel--)
@@ -13,7 +13,7 @@ void HIFGraph<Scalar>::Factorization(double tol)
 		RecursiveSparseElim(tmplevel);
 
 		// Skeletonization.
-		RecursiveSkel(tmplevel, tol);
+		RecursiveSkel(tmplevel);
 		// Merge.
 		RecursiveMerge(tmplevel - 1);
 	}

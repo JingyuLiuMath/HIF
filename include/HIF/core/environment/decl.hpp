@@ -202,6 +202,9 @@ void MasterLog( Args... args )
 
 void SetTol(double tol);
 double Tol();
+
+void SetButton(int button);
+int Button();
 } // namespace HIF.
 
 #endif // ifndef HIF_CORE_ENVIRONMENT_DECL_HPP

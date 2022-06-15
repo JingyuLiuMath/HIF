@@ -7,6 +7,7 @@ bool logFileAppend = false;
 DEBUG_HIF(std::stack<std::string> callStack)
 TIMER_HIF(std::vector<El::Timer> timerQueue)
 double TOL;
+int BUTTON;
 }
 
 namespace HIF {
@@ -137,6 +138,16 @@ void SetTol(double tol)
 double Tol()
 {
     return ::TOL;
+}
+
+void SetButton(int button)
+{
+    ::BUTTON = button;
+}
+
+double Button()
+{
+    return ::BUTTON;
 }
 
 } // namespace HIF.

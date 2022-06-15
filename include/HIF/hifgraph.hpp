@@ -56,7 +56,7 @@ public:
     ~HIFGraph();
 
     // Factorization.
-    void Factorization(double tol = 1e-3);
+    void Factorization();
 
     // Application.
     void Apply(Matrix<Scalar>& b);
@@ -112,8 +112,8 @@ private:
     void RecursiveSparseElim(int whatlevel);
     void SparseElim();
 
-    void RecursiveSkel(int whatlevel, double tol);
-    void Skel(double tol);
+    void RecursiveSkel(int whatlevel);
+    void Skel();
     void NoSkel();
 
     void RecursiveMerge(int whatlevel);
