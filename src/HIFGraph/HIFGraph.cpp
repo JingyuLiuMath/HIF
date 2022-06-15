@@ -31,7 +31,7 @@ template <typename Scalar>
 HIFGraph<Scalar>::HIFGraph
 (const SparseMatrix<Scalar>& A, int minvtx)
 {
-	// DEBUG_HIF(CallStackEntry cse("HIFGraph:HIFGraph"))
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:HIFGraph"))
 
 	std::cout << "Start initialization" << std::endl;
 	vtx_.resize(A.Height());
@@ -54,7 +54,7 @@ HIFGraph<Scalar>::HIFGraph
 (int level, int seqnum,
 vector<int>& vtx, vector<int>& sep, vector<int>& nb)
 {
-	// DEBUG_HIF(CallStackEntry cse("HIFGraph:HIFGraph"))
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:HIFGraph"))
 
 	level_ = level;
 	seqnum_ = seqnum;
