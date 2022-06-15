@@ -175,10 +175,14 @@ void HIFGraph<Scalar>::Skel()
 			nodekindex_nodeksep1C.size(), nodekindex_sep2.size());
 		viewmtx = (nodek->ANS_)(nodekindex_nodeksep1C, nodekindex_sep2);
 
+		TIMER_HIF(TimerStart(TIMER_EL))
+		TIMER_HIF(TimerStart(TIMER_EL_ID))
 		vector<int> p11;
 		vector<int> p12;
 		MatrixS& T1 = nbinfo_[k].Th1c1;
 		IDSolve(skelmtx1, T1, p11, p12, ctrl); // skelmtx1(:, p12) = skelmtx1(:, p11) * T1.
+		TIMER_HIF(TimerStop(TIMER_EL_ID))
+		TIMER_HIF(TimerStop(TIMER_EL))
 
 		vector<int>& myindex_p11 = nbinfo_[k].myindex_p11;
 		vector<int>& myindex_p12 = nbinfo_[k].myindex_p12;
@@ -207,10 +211,14 @@ void HIFGraph<Scalar>::Skel()
 			(nodek->nbre_).push_back(sep1[p12[i]]);
 		}
 
+		TIMER_HIF(TimerStart(TIMER_EL))
+		TIMER_HIF(TimerStart(TIMER_EL_ID))
 		vector<int> p21;
 		vector<int> p22;
 		MatrixS& T2 = nbinfo_[k].Th2c2;
 		IDSolve(skelmtx2, T2, p21, p22, ctrl); // skelmtx2(:, p22) = skelmtx2(:, p21) * T2.		
+		TIMER_HIF(TimerStop(TIMER_EL_ID))
+		TIMER_HIF(TimerStop(TIMER_EL))
 
 		vector<int>& myindex_p21 = nbinfo_[k].myindex_p21;
 		vector<int>& myindex_p22 = nbinfo_[k].myindex_p22;
@@ -244,7 +252,9 @@ void HIFGraph<Scalar>::Skel()
 		MatrixS copymtx; // Copy of updated matrix. 
 		MatrixS copymtxT; // copymtx^{T}.
 		MatrixS tmpmtx;
-
+		
+		TIMER_HIF(TimerStart(TIMER_EL))
+		
 		// Step 1.
 		MatrixS Ac1h1T1(myindex_p12.size(),T1.Width());
 		MatrixS Ah1h1T1(myindex_p11.size(), T1.Width());
@@ -341,11 +351,13 @@ void HIFGraph<Scalar>::Skel()
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p21, copymtxT);
 		copymtx.Empty();
 		copymtxT.Empty();
-
+		
 		// Step 2.
 		// Ac1c1 = Lc1 * Dc1 * Lc1^{T}.
 		copymtx = ASS_(myindex_p12, myindex_p12);
+		TIMER_HIF(TimerStart(TIMER_EL_LDLSOLVE))
 		LDLSolve(copymtx, nbinfo_[k].Ac1c1inv);
+		TIMER_HIF(TimerStop(TIMER_EL_LDLSOLVE))
 		copymtx.Empty();
 		// Ac1c1invAc1h1 = Ac1c1^{-1} * Ah1c1^{T}.
 		Transpose(ASS_(myindex_p11, myindex_p12), nbinfo_[k].Ac1c1invAc1h1);
@@ -412,7 +424,9 @@ void HIFGraph<Scalar>::Skel()
 		// Step 3.
 		// Ac2c2 = Lc2 * Dc2 * Lc2^{T}.
 		copymtx = (nodek->ASS_)(nodekindex_p22, nodekindex_p22);
+		TIMER_HIF(TimerStart(TIMER_EL_LDLSOLVE))
 		LDLSolve(copymtx, nbinfo_[k].Ac2c2inv);
+		TIMER_HIF(TimerStop(TIMER_EL_LDLSOLVE))
 		copymtx.Empty();
 		// Ac2c2invAc2h1 = Ac2c2^{-1} * Ac2h1.
 		nbinfo_[k].Ac2c2invAc2h1 = ANS_(myindex_p22, myindex_p11);
@@ -445,6 +459,8 @@ void HIFGraph<Scalar>::Skel()
 		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p21, copymtx);
 		copymtx.Empty();
 		// Ah2c2 = Ac2h1 = 0.
+
+		TIMER_HIF(TimerStop(TIMER_EL))
 	}
 
 	sort(re_.begin(), re_.end());

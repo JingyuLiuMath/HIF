@@ -28,6 +28,13 @@ int main(int argc, char* argv[])
 		// SetButton(button);
 		El::PrintInputReport();
 
+		DEBUG_HIF(MasterCout("Debug Mode"));
+
+		// Reading input.
+		El::Timer readTimer("ReadTimer");
+		readTimer.Start();
+		MasterCout("Reading input starts...")
+
 		string fileA = inputfileA;
 		std::ifstream finA;
 		finA.open(fileA, std::ios::in);
@@ -62,12 +69,34 @@ int main(int argc, char* argv[])
 			k++;
 		}
 		finb.close();
-		
+
+		readTimer.Stop();
+		MasterCout("Reading input ends in ", readTimer.Total(), " sec.");
+
+		// Initialization.
+		El::Timer initTimer("InitTimer");
+		initTimer.Start();
+		MasterCout("Initialization starts...")
+
 		HIFGraph<double> HIF(A, cutoff);
 
-		// HIF.Factorization(HIFbutton, tol);
+		initTimer.Stop();
+		MasterCout("Initialization ends in ", initTimer.Total(), " sec.");
+
+		// Factorization.
+
+		El::Timer factTimer("FactTimer");
+		factTimer.Start();
+		MasterCout("Factorization starts...");
+
+		/*HIF.Factorization(HIFbutton, tol);*/
 		HIF.Factorization();
 		
+		factTimer.Stop();
+		MasterCout("Factorization ends in ", factTimer.Total(), " sec.");
+
+		// Application.
+
 		HIF.Apply(b);
 
 		std::cout << " b " << std::endl;

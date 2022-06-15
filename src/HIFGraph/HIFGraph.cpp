@@ -33,7 +33,6 @@ HIFGraph<Scalar>::HIFGraph
 {
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:HIFGraph"))
 
-	std::cout << "Start initialization" << std::endl;
 	vtx_.resize(A.Height());
 	for (int i = 0; i < vtx_.size(); i++)
 	{
@@ -42,10 +41,29 @@ HIFGraph<Scalar>::HIFGraph
 	level_ = 0;
 	seqnum_ = 0;
 
+	TIMER_HIF(TimerStart(TIMER_INIT_BUILD))
 	BuildTree(A, minvtx);
+	TIMER_HIF(TimerStop(TIMER_INIT_BUILD))
+
+	TIMER_HIF(TimerStart(TIMER_INIT_SETNB))
 	SetNeighborNode();
+	TIMER_HIF(TimerStop(TIMER_INIT_SETNB))
+
+	TIMER_HIF(TimerStart(TIMER_INIT_FILL))
 	FillTree(A);
-	std::cout << "Finish initialization" << std::endl;
+	TIMER_HIF(TimerStop(TIMER_INIT_FILL))
+
+	/*INFO_HIF
+	(
+		Log("=================================================",
+			"=========================");
+		Log("          ",
+			"  size  cutoff  numlevels       tol");
+		Log(setw(17), A.Height(),
+			setw(8), minvtx,
+			setw(8), numlevels_,
+			setw(10), scientific, setprecision(2), Tol());
+	)*/
 }
 
 // Create a HIFGraph class.

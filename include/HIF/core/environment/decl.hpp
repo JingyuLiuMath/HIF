@@ -140,19 +140,22 @@ DEBUG_HIF(
 enum TimerType
 {
     TIMER_FACTOR=0,
-    TIMER_SPARSE_ELIM,
+    TIMER_SPARSEELIM,
     TIMER_SKEL,
     TIMER_MERGE,
     TIMER_MEM_COLL,
-    TIMER_ROOT_MERGE,
-    TIMER_ROOT_FACTOR,
+    TIMER_ROOTFACTOR,
     TIMER_EL,
-    TIMER_EL_SOLVE,
+    TIMER_EL_LDLSOLVE,
     TIMER_EL_ID,
     TIMER_INIT_BUILD,
     TIMER_INIT_SETNB,
     TIMER_INIT_FILL,
-    TIMER_INIT_BLOCK,
+    TIMER_SETOP,
+    TIMER_DIFF,
+    TIMER_FIND,
+    TIMER_INTERSECT,
+    TIMER_UNIQUE,
     TIMER_DEBUG,
     NUM_OF_TIMER_TYPE
 };
@@ -205,6 +208,7 @@ double Tol();
 
 void SetButton(bool button);
 bool Button();
+
 } // namespace HIF.
 
 #endif // ifndef HIF_CORE_ENVIRONMENT_DECL_HPP
