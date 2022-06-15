@@ -18,8 +18,6 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel)
 		{
 			NoSkel();
 		}
-		// NoSkel();
-		// Skel();
 	}
 	else
 	{

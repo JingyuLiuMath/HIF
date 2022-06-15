@@ -21,8 +21,8 @@ int main(int argc, char* argv[])
 		const string inputfileb = Input("--input_b", "input filename of b", "./b.txt");
 		const int minvtx = Input("--minvtx", "minvtx", 64);
 		const bool button = Input("--HIFbutton", "true for HIF, false for MF", true);
-		const bool logApp = Input("--logApp", "Log File appending", false);
 		const double tol = Input("--tol", "tolerance", 1e-3);
+		const bool logApp = Input("--logApp", "Log File appending", false);
 
 		El::ProcessInput();
 		LogAppend(logApp);
