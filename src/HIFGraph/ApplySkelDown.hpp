@@ -53,7 +53,6 @@ void HIFGraph<Scalar>::ApplySkelDown(const vector<int>& xcol)
 			Scalar(-1), nbinfok.Ac2c2invAc2h2, (nbnodek->xS_)(nbinfok.nodekindex_p21, xcol),
 			Scalar(1), copyvec);
 		SubMatrixUpdate(nbnodek->xS_, nbinfok.nodekindex_p22, xcol, copyvec);
-		copyvec.Empty();
 
 		// Step 2.
 		// xc1 = Lc1^{-T} * xc1 - (Ac1c1^{-1} * Ah1c1^{T}) * xh1 - (Ac1c1^{-1} * Ac2c1^{T}) * xc2 - (Ac1c1^{-1} * Ah2c1^{T}) * xh2.
@@ -69,7 +68,6 @@ void HIFGraph<Scalar>::ApplySkelDown(const vector<int>& xcol)
 			Scalar(-1), nbinfok.Ac1c1invAc1h2, (nbnodek->xS_)(nbinfok.nodekindex_p21, xcol),
 			Scalar(1), copyvec);
 		SubMatrixUpdate(xS_, nbinfok.myindex_p12, xcol, copyvec);
-		copyvec.Empty();
 
 		// Step 1.
 		// xh1 = xh1 - Th1c1 * xc1.
@@ -78,14 +76,12 @@ void HIFGraph<Scalar>::ApplySkelDown(const vector<int>& xcol)
 			Scalar(-1), nbinfok.Th1c1, xS_(nbinfok.myindex_p12, xcol),
 			Scalar(1), copyvec);
 		SubMatrixUpdate(xS_, nbinfok.myindex_p11, xcol, copyvec);
-		copyvec.Empty();
 		// xh2 = xh2 - Th2c2 * xc2.
 		copyvec = (nbnodek->xS_)(nbinfok.nodekindex_p21, xcol);
 		Gemm(NORMAL, NORMAL,
 			Scalar(-1), nbinfok.Th2c2, (nbnodek->xS_)(nbinfok.nodekindex_p22, xcol),
 			Scalar(1), copyvec);
 		SubMatrixUpdate(nbnodek->xS_, nbinfok.nodekindex_p21, xcol, copyvec);
-		copyvec.Empty();
 	}
 }
 

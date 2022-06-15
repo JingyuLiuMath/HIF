@@ -7,7 +7,6 @@ void HIFGraph<Scalar>::Apply(MatrixS& b)
 {
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:Apply"))
 
-	std::cout << "Start apply" << std::endl;
 	vector<int> xcol;
 	RangeVec(0, b.Width(), xcol);
 	
@@ -35,8 +34,6 @@ void HIFGraph<Scalar>::Apply(MatrixS& b)
 	
 	// GetSolution.
 	GetSolution(b, xcol);
-
-	std::cout << "Finish apply" << std::endl;
 }
 
 } // namespace HIF.

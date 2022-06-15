@@ -51,11 +51,9 @@ void HIFGraph<Scalar>::ApplyMerge(const vector<int>& xcol)
 		copymtx = (children_[iter]->xS_)(childreninfo_[iter].cindex_intr, xcol);
 		SubMatrixUpdate(xI_, childreninfo_[iter].myindex_intr, xcol, 
 			copymtx);
-		copymtx.Empty();
 		copymtx = (children_[iter]->xS_)(childreninfo_[iter].cindex_sep, xcol);
 		SubMatrixUpdate(xS_, childreninfo_[iter].myindex_sep, xcol,
 			copymtx);
-		copymtx.Empty();
 	}
 }
 

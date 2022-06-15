@@ -44,11 +44,9 @@ void HIFGraph<Scalar>::ApplySplit(const vector<int>& xcol)
 		copymtx = xI_(childreninfo_[iter].myindex_intr, xcol);
 		SubMatrixUpdate(children_[iter]->xS_, childreninfo_[iter].cindex_intr, xcol,
 			copymtx);
-		copymtx.Empty();
 		copymtx = xS_(childreninfo_[iter].myindex_sep, xcol);
 		SubMatrixUpdate(children_[iter]->xS_, childreninfo_[iter].cindex_sep, xcol,
 			copymtx);
-		copymtx.Empty();
 	}
 }
 
