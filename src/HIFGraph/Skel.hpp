@@ -8,16 +8,16 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel, double tol)
 {
 	if (level_ == whatlevel)
 	{
-		/*if (HIFbutton == 1)
+		if (HIFbutton == 1)
 		{
 			Skel(tol);
 		}
 		else
 		{
 			NoSkel();
-		}*/
+		}
 		// NoSkel();
-		Skel(tol);
+		// Skel(tol);
 	}
 	else
 	{
@@ -25,7 +25,7 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel, double tol)
 		{
 			for (int iter = 0; iter < 2; iter++)
 			{
-				children_[iter]->RecursiveSkel(whatlevel, tol);
+				children_[iter]->RecursiveSkel(whatlevel, HIFbutton, tol);
 			}
 		}
 	}
