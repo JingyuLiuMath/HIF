@@ -40,7 +40,7 @@ void HIFGraph<Scalar>::Skel(double tol)
 	ctrl.boundRank = false;
 	ctrl.maxRank = 1000;
 	ctrl.adaptive = true;
-	ctrl.tol = tol;
+	ctrl.tol = Tol();
 	ctrl.smallestFirst = false;
 
 	nbinfo_.resize(nbnode_.size());

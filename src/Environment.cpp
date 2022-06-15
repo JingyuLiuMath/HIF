@@ -129,7 +129,6 @@ TIMER_HIF(
     }
 )
 
-<<<<<<< HEAD
 void SetTol(double tol)
 {
     ::TOL = tol;

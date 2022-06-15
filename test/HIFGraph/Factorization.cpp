@@ -24,6 +24,7 @@ int main(int argc, char* argv[])
 		const double tol = Input("--tol", "tolerance", 1e-3);
 
 		El::ProcessInput();
+		SetTol(tol);
 		El::PrintInputReport();
 
 		string fileA = inputfileA;
