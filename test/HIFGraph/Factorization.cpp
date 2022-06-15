@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 		finA.open(fileA, std::ios::in);
 		if (!finA)
 		{
-			std::cerr << "cannot open the file";
+			std::cerr << "cannot open the file" << std::endl;
 		}
 		int n;
 		finA >> n;
@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
 		finb.open(fileb, std::ios::in);
 		if (!finb)
 		{
-			std::cerr << "cannot open the file";
+			std::cerr << "cannot open the file" << std::endl;;
 		}
 		Matrix<double> b(n, 1);
 		int k = 0;
