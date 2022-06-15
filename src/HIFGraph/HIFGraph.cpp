@@ -53,7 +53,7 @@ HIFGraph<Scalar>::HIFGraph
 	FillTree(A);
 	TIMER_HIF(TimerStop(TIMER_INIT_FILL))
 
-	/*INFO_HIF
+	INFO_HIF
 	(
 		Log("=================================================",
 			"=========================");
@@ -63,7 +63,7 @@ HIFGraph<Scalar>::HIFGraph
 			setw(8), minvtx,
 			setw(8), numlevels_,
 			setw(10), scientific, setprecision(2), Tol());
-	)*/
+	)
 }
 
 // Create a HIFGraph class.
