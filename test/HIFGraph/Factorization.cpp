@@ -20,14 +20,14 @@ int main(int argc, char* argv[])
 		const string inputfileA = Input("--input_A", "input filename of A", "./A.txt");
 		const string inputfileb = Input("--input_b", "input filename of b", "./b.txt");
 		const int minvtx = Input("--minvtx", "minvtx", 64);
-		// const bool button = Input("--HIFbutton", "true for HIF, false for MF", true);
+		const bool button = Input("--HIFbutton", "true for HIF, false for MF", true);
 		const bool logApp = Input("--logApp", "Log File appending", false);
 		const double tol = Input("--tol", "tolerance", 1e-3);
 
 		El::ProcessInput();
 		LogAppend(logApp);
 		SetTol(tol);
-		// SetButton(button);
+		SetButton(button);
 		El::PrintInputReport();
 
 		DEBUG_HIF(MasterCout("Debug Mode"));
