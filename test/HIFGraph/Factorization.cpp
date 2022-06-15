@@ -30,6 +30,9 @@ int main(int argc, char* argv[])
 		SetButton(button);
 		El::PrintInputReport();
 
+		El::SetBlocksize(128);
+		El::SetLocalTrrkBlocksize<Scalar>(8);
+
 		DEBUG_HIF(MasterCout("Debug Mode"));
 
 		// Reading input.

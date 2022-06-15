@@ -11,8 +11,12 @@ void HIFGraph<Scalar>::Apply(MatrixS& b)
 	RangeVec(0, b.Width(), xcol);
 	
 	// Fill vector in the tree.
+	TIMER_HIF(TimerStart(TIMER_FILLVEC))
 	FillVecTree(b, xcol);
-	
+	TIMER_HIF(TimerStop(TIMER_FILLVEC))
+
+	TIMER_HIF(TimerStart(TIMER_APPLY))
+
 	// ApplyUp.
 	for (int tmplevel = numlevels_; tmplevel >= 1; tmplevel--)
 	{
@@ -34,6 +38,8 @@ void HIFGraph<Scalar>::Apply(MatrixS& b)
 	
 	// GetSolution.
 	GetSolution(b, xcol);
+
+	TIMER_HIF(TimerStop(TIMER_APPLY))
 }
 
 } // namespace HIF.
