@@ -57,8 +57,8 @@ HIFGraph<Scalar>::HIFGraph
 	(
 		Log("=================================================",
 			"=========================");
-		Log("          ",
-			"  size  cutoff  numlevels       tol");
+		Log("          ", 
+			"  MatrixSize    minvtx    numlevels    tol");
 		Log(setw(17), A.Height(),
 			setw(8), minvtx,
 			setw(8), numlevels_,
