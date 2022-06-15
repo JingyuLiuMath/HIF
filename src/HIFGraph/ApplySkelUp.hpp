@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::RecursiveApplySkelUp(int whatlevel, const vector<int>& xcol)
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:RecursiveApplySkelUp"))
+
 	if (level_ == whatlevel)
 	{
 		ApplySkelUp(xcol);
@@ -27,6 +29,8 @@ void HIFGraph<Scalar>::RecursiveApplySkelUp(int whatlevel, const vector<int>& xc
 template <typename Scalar>
 void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:ApplySkelUp"))
+
 	for (int k = 0; k < nbinfo_.size(); k++)
 	{
 		HIFGraph* nbnodek = nbnode_[k];

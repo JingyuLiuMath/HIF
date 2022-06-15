@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::ShowPartition()
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:ShowPartition"))
+
 	if (endflag_ == 1)
 	{
 		std::cout << " curren level " << level_ << std::endl;;
@@ -45,6 +47,8 @@ void HIFGraph<Scalar>::ShowPartition()
 template <typename Scalar>
 void HIFGraph<Scalar>::ShowMatrix(const MatrixS& A, const string discription)
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:ShowMatrix"))
+
 	std::cout << discription << std::endl;
 	std::cout << "Height " << A.Height() << std::endl;
 	std::cout << "Width " << A.Width() << std::endl;
@@ -64,6 +68,8 @@ void HIFGraph<Scalar>::ShowMatrix(const MatrixS& A, const string discription)
 template <typename Scalar>
 void HIFGraph<Scalar>::ShowVector(const vector<int>& v, const string discription)
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:ShowVector"))
+
 	std::cout << discription << std::endl;
 	std::cout << " Size " << v.size() << std::endl;
 	std::cout << " [ " << std::endl;

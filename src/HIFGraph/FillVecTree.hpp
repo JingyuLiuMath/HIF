@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::FillVecTree(const Matrix<Scalar>& b, const vector<int>& xcol)
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:FillVecTree"))
+
 	if (endflag_ == 0)
 	{
 		for (int iter = 0; iter < 2; iter++)

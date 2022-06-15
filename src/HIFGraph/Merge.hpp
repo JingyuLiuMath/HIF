@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::RecursiveMerge(int whatlevel)
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:RecursiveMerge"))
+
 	if (level_ == whatlevel)
 	{
 		Merge();
@@ -26,6 +28,8 @@ void HIFGraph<Scalar>::RecursiveMerge(int whatlevel)
 template <typename Scalar>
 void HIFGraph<Scalar>::Merge()
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:Merge"))
+
 	// We stand on the parent level.
 	if (endflag_ == 1)
 	{
@@ -222,6 +226,8 @@ void HIFGraph<Scalar>::Merge()
 template <typename Scalar>
 void HIFGraph<Scalar>::FactorClear()
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:FactorClear"))
+
 	ASS_.Empty();
 	ANS_.Empty();
 }

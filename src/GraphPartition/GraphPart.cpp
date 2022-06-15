@@ -8,6 +8,8 @@ void GraphPart(const SparseMatrix<Scalar>& A,
     vector<int>& p1, vector<int>& p2, 
     vector<int>& sep1, vector<int>& sep2)
 {
+    DEBUG_HIF(CallStackEntry cse("GraphPart"))
+
     MetisPart(A, p1, p2, sep1);
     // p1 = p1 + sep1, p2 = p2, sep2 need to be assigned.
     p1.insert(p1.end(), sep1.begin(), sep1.end());
@@ -44,6 +46,8 @@ template <typename Scalar>
 void MetisPart(const SparseMatrix<Scalar>& A,
     vector<int>& p1, vector<int>& p2, vector<int>& sep)
 {
+    DEBUG_HIF(CallStackEntry cse("MetisPart"))
+
     // degree = sum((spones(nvtxs) - speye(size(nvtxs))) > 0);
     // singleidx = find(degree == 0);
     // idx = find(degree > 0);
@@ -124,6 +128,8 @@ template <typename Scalar>
 void MetisSepPart(const SparseMatrix<Scalar>& A, 
     vector<int>& p1, vector<int>& p2, vector<int>& sep)
 {
+    DEBUG_HIF(CallStackEntry cse("MetisSepPart"))
+
     // nvtxs.
     idx_t nvtxs = A.Height();
     // xadj.
@@ -310,6 +316,8 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 // count = accumarray(vec, 1).
 void Accumarray(const vector<int>& vec, vector<int>& count)
 {
+    DEBUG_HIF(CallStackEntry cse("Accumarray"))
+
     int maxvec = *(std::max_element(vec.begin(), vec.end()));
     count = vector<int> (maxvec + 1, 0);
     for (int i = 0; i < vec.size(); i++)
@@ -321,6 +329,8 @@ void Accumarray(const vector<int>& vec, vector<int>& count)
 // a = cumsum(vec)
 void Cumsum(vector<int>& vec)
 {
+    DEBUG_HIF(CallStackEntry cse("Cumsum"))
+
     for (int i = 1; i < vec.size(); i++)
     {
         vec[i] += vec[i - 1];

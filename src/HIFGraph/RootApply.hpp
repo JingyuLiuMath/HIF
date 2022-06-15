@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::RootApply()
 {
+    DEBUG_HIF(CallStackEntry cse("HIFGraph:RootApply"))
+
     // xI = LI^{-1} * xI.
     Trmm(ELLR::LEFT, LOWER, NORMAL, UNIT, Scalar(1), AIIinv_, xI_);
     // xI = DI^{-1} * xI.

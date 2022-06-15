@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::Factorization()
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:Factorization"))
+
 	std::cout << "Start factorization" << std::endl;
 	for (int tmplevel = numlevels_; tmplevel >= 1; tmplevel--)
 	{

@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::RecursiveSparseElim(int whatlevel)
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:RecursiveSparseElim"))
+
 	if (level_ == whatlevel)
 	{
 		SparseElim();
@@ -27,6 +29,8 @@ void HIFGraph<Scalar>::RecursiveSparseElim(int whatlevel)
 template <typename Scalar>
 void HIFGraph<Scalar>::SparseElim()
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:SparseElim"))
+
 	// AII = LI * DI * LI^{T}. We store LI^{-1} and DI^{-1} in AIIinv_.
 	LDLSolve(AII_, AIIinv_);
 	// AIIinvAIS = AII^{-1} * ASI^{T}.

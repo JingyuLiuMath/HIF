@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 int FindFirstIndex(const vector<Scalar>& vec, const Scalar value)
 {
+	DEBUG_HIF(CallStackEntry cse("FindFirstIndex"))
+
 	int index = -1;
 	for (int i = 0; i < vec.size(); i++)
 	{
@@ -22,6 +24,8 @@ int FindFirstIndex(const vector<Scalar>& vec, const Scalar value)
 template <typename Scalar>
 void FindAllIndex(const vector<Scalar>& vec, const Scalar value, vector<int>& index)
 {
+	DEBUG_HIF(CallStackEntry cse("FindAllIndex"))
+
 	index.resize(vec.size());
 	int actualsize_index = 0;
 	for (int i = 0; i < vec.size(); i++)
@@ -39,6 +43,8 @@ void FindAllIndex(const vector<Scalar>& vec, const Scalar value, vector<int>& in
 template <typename Scalar>
 void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<int>& index)
 {
+	DEBUG_HIF(CallStackEntry cse("FindAllIndex_Sort"))
+
 	index.resize(vec1.size());
 	int actualsize_index = 0;
 	int i = 0;

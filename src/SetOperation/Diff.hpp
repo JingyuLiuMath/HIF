@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Scalar>& vec)
 {
+	DEBUG_HIF(CallStackEntry cse("Diff_Sort"))
+
 	vec.resize(vec1.size());
 	int i = 0;
 	int j = 0;

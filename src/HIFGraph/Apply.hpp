@@ -5,6 +5,8 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::Apply(Matrix<Scalar>& b)
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:Apply"))
+
 	std::cout << "Start apply" << std::endl;
 	vector<int> xcol;
 	RangeVec(0, b.Width(), xcol);
@@ -35,3 +37,4 @@ void HIFGraph<Scalar>::Apply(Matrix<Scalar>& b)
 }
 
 } // namespace HIF.
+

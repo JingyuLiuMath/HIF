@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 bool Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2)
 {
+	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
+
 	int i = 0;
 	int j = 0;
 	while (i < vec1.size() && j < vec2.size())
@@ -33,6 +35,8 @@ template <typename Scalar>
 void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	vector<int>& index1, vector<int>& index2)
 {
+	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
+
 	index1.resize(vec1.size());
 	index2.resize(vec2.size());
 	int actualsize_index1 = 0;
@@ -69,6 +73,8 @@ template <typename Scalar>
 void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	vector<int>& index, int who)
 {
+	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
+
 	if (who == 1)
 	{
 		index.resize(vec1.size());
@@ -113,6 +119,8 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 template <typename Scalar>
 void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Scalar>& vec)
 {
+	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
+
 	vec.resize(vec1.size());
 	int actualsize_vec = 0;
 	int i = 0;
@@ -145,6 +153,8 @@ template <typename Scalar>
 void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	vector<Scalar>& vec, vector<int>& index, int who)
 {
+	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
+
 	vec.resize(vec1.size());
 	if (who == 1)
 	index.resize(vec1.size());

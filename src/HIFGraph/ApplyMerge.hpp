@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::RecursiveApplyMerge(int whatlevel, const vector<int>& xcol)
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:RecursiveApplyMerge"))
+
 	if (level_ == whatlevel)
 	{
 		ApplyMerge(xcol);
@@ -26,8 +28,9 @@ void HIFGraph<Scalar>::RecursiveApplyMerge(int whatlevel, const vector<int>& xco
 template <typename Scalar>
 void HIFGraph<Scalar>::ApplyMerge(const vector<int>& xcol)
 {
-	// We stand on the parent level.
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:ApplyMerge"))
 
+	// We stand on the parent level.
 	if (endflag_ == 1)
 	{
 		return;

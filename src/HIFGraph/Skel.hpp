@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::RecursiveSkel(int whatlevel)
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:RecursiveSkel"))
+
 	if (level_ == whatlevel)
 	{
 		/*if (Button())
@@ -35,7 +37,9 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel)
 // Skeletonization.
 template<typename Scalar>
 void HIFGraph<Scalar>::Skel()
-{	
+{
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:Skel"))
+
 	QRCtrl<Base<Scalar>> ctrl;
 	ctrl.boundRank = false;
 	ctrl.maxRank = 1000;
@@ -452,6 +456,8 @@ void HIFGraph<Scalar>::Skel()
 template <typename Scalar>
 void HIFGraph<Scalar>::NoSkel()
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:NoSkel"))
+
 	sk_.assign(sep_.begin(), sep_.end());
 }
 

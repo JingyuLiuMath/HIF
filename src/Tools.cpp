@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 void LDLSolve(Matrix<Scalar>& A)
 {
+    DEBUG_HIF(CallStackEntry cse("LDLSolve"))
+
     LDL(A, false);
     TriangularInverse(LOWER, UNIT, A);
     auto d = GetDiagonal(A);
@@ -23,6 +25,8 @@ void LDLSolve(Matrix<Scalar>& A)
 template <typename Scalar>
 void LDLSolve(Matrix<Scalar>& A, Matrix<Scalar>& Ainv)
 {
+    DEBUG_HIF(CallStackEntry cse("LDLSolve"))
+
     Ainv = A;
     LDLSolve(Ainv);
 }
@@ -31,6 +35,8 @@ void LDLSolve(Matrix<Scalar>& A, Matrix<Scalar>& Ainv)
 template <typename Scalar>
 void MultiplySolve(Matrix<Scalar>& Ainv, Matrix<Scalar>& X)
 {
+    DEBUG_HIF(CallStackEntry cse("MultiplySolve"))
+
     Trmm(ELLR::LEFT, LOWER, NORMAL, UNIT, Scalar(1), Ainv, X);
 
     auto d = GetDiagonal(Ainv);
@@ -44,6 +50,8 @@ template <typename Scalar>
 void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T, 
     vector<int>& p1, vector<int>& p2, const QRCtrl<Base<Scalar>>& ctrl)
 {
+    DEBUG_HIF(CallStackEntry cse("IDSolve"))
+
     Permutation P;
     ID(skelmtx, P, T, ctrl);
     int k = T.Height();
@@ -74,6 +82,8 @@ template <typename Scalar>
 void SubMatrixUpdate(Matrix<Scalar>& A, const vector<int>& rowindex, const vector<int>& colindex,
     Matrix<Scalar>& newsubA)
 {
+    DEBUG_HIF(CallStackEntry cse("SubMatrixUpdate"))
+
     for (int i = 0; i < rowindex.size(); i++)
     {
         for (int j = 0; j < colindex.size(); j++)
@@ -86,6 +96,8 @@ void SubMatrixUpdate(Matrix<Scalar>& A, const vector<int>& rowindex, const vecto
 // vec = start:end-1.
 void RangeVec(int start, int end, vector<int>& vec)
 {
+    DEBUG_HIF(CallStackEntry cse("RangeVec"))
+
     vec.resize(end - start);
     for (int i = start; i < end; i++)
     {
@@ -97,6 +109,8 @@ void RangeVec(int start, int end, vector<int>& vec)
 template <typename Scalar>
 void FullMat(const SparseMatrix<Scalar>& sparseA, Matrix<Scalar>& A)
 {
+    DEBUG_HIF(CallStackEntry cse("FullMat"))
+
     for (int i = 0; i < A.Height(); i++)
     {
         for (int j = 0; j < A.Width(); j++)

@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::RecursiveApplySparseElimUp(int whatlevel)
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:RecursiveApplySparseElimUp"))
+
 	if (level_ == whatlevel)
 	{
 		ApplySparseElimUp();
@@ -26,6 +28,8 @@ void HIFGraph<Scalar>::RecursiveApplySparseElimUp(int whatlevel)
 template <typename Scalar>
 void HIFGraph<Scalar>::ApplySparseElimUp()
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:ApplySparseElimUp"))
+
 	// xS = xS - (AII^{-1} * ASI^{T})^{T} * xI.
 	Gemm(TRANSPOSE, NORMAL,
 		Scalar(-1), AIIinvAIS_, xI_,

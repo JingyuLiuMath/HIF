@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 void Unique_Sort(vector<Scalar>& vec)
 {
+	DEBUG_HIF(CallStackEntry cse("Unique_Sort"))
+
 	if (vec.size() == 0)
 	{
 		return;

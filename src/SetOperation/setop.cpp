@@ -30,4 +30,3 @@ PROTOTYPE_SET(float)
 PROTOTYPE_SET(double)
 
 } // namespace HIF.
-

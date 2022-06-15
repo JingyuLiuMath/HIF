@@ -6,6 +6,8 @@ namespace HIF {
 template<typename Scalar>
 void HIFGraph<Scalar>::SetNeighborNode()
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:SetNeighborNode"))
+
 	// We stand on the parent level to set its children's nbnode.
 	if (endflag_ == 1)
 	{

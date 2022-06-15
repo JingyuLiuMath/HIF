@@ -6,6 +6,8 @@ namespace HIF {
 template <typename Scalar>
 void HIFGraph<Scalar>::SetSeparatorType()
 {
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:SetSeparatorType"))
+
 	singlesep_.resize(nbnode_.size());
 
 	vector<int> ordersep(sep_.size(), 0);
