@@ -9,7 +9,6 @@ TIMER_HIF(std::vector<El::Timer> timerQueue)
 double TOL;
 }
 
-
 namespace HIF {
 
 void OpenLog(const char* filename)
@@ -40,8 +39,6 @@ std::ostream& LogOS()
         {
             fs::create_directory(filedir);
         }
-        fileOS << "/log.log";
-        OpenLog(fileOS.str().c_str());
     }
     return ::logFile;
 }
@@ -132,6 +129,7 @@ TIMER_HIF(
     }
 )
 
+<<<<<<< HEAD
 void SetTol(double tol)
 {
     ::TOL = tol;
@@ -143,3 +141,4 @@ double Tol()
 }
 
 } // namespace HIF.
+

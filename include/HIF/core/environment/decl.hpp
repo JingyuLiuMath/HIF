@@ -141,10 +141,8 @@ enum TimerType
 {
     TIMER_FACTOR=0,
     TIMER_SPARSE_ELIM,
-    TIMER_SPARSE_ELIM_COMM,
     TIMER_SKEL,
-    TIMER_SKEL_COMM,
-    TIMER_MERGE_COMM,
+    TIMER_MERGE,
     TIMER_MEM_COLL,
     TIMER_ROOT_MERGE,
     TIMER_ROOT_FACTOR,
@@ -152,8 +150,8 @@ enum TimerType
     TIMER_EL_SOLVE,
     TIMER_EL_ID,
     TIMER_INIT_BUILD,
+    TIMER_INIT_SETNB,
     TIMER_INIT_FILL,
-    TIMER_INIT_CORNER,
     TIMER_INIT_BLOCK,
     TIMER_DEBUG,
     NUM_OF_TIMER_TYPE
@@ -204,7 +202,6 @@ void MasterLog( Args... args )
 
 void SetTol(double tol);
 double Tol();
-
 } // namespace HIF.
 
 #endif // ifndef HIF_CORE_ENVIRONMENT_DECL_HPP
