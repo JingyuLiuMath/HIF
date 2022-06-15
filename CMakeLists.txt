@@ -7,7 +7,7 @@ project(HIF)
 set(HIF_VERSION_MAJOR 1)
 set(HIF_VERSION_MINOR 0)
 
-option(TIMER "Instrument HIF with timers." OFF)
+option(TIMER "Instrument HIF with timers." ON)
 option(HIF_INFO "Print HIF detailed information in the log file of master node." OFF)
 option(SBATCH "Auto-generate SBATCH files." OFF)
 
