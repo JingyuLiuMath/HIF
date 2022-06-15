@@ -10,8 +10,8 @@ set(MPI_C_COMPILER       ${MPI_COMPILER_DIR}/mpicc)
 set(MPI_CXX_COMPILER     ${MPI_COMPILER_DIR}/mpicxx)
 set(MPI_Fortran_COMPILER ${MPI_COMPILER_DIR}/mpif90)
 
-set(EL_INCLUDE_DIR /home/jyliu/packages/elemental/master_debug/include)
-set(EL_LIB_DIR /home/jyliu/packages/elemental/master_debug/lib64)
+set(EL_INCLUDE_DIR /home/jyliu/packages/elemental/master/include)
+set(EL_LIB_DIR /home/jyliu/packages/elemental/master/lib64)
 
 set(METIS_INCLUDE_DIR /home/jyliu/metis-5.1.0/include)
 set(METIS_LIBMETIS_DIR /home/jyliu/metis-5.1.0/libmetis)
