@@ -145,7 +145,7 @@ void SetButton(int button)
     ::BUTTON = button;
 }
 
-double Button()
+int Button()
 {
     return ::BUTTON;
 }
