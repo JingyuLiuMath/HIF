@@ -22,7 +22,6 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 			Aneed.ProcessQueues();
 		}
 		FullMat(Aneed, AII_);
-		Aneed.Empty();
 		
 		El::Zeros(ASI_, sep_.size(), intr_.size());
 		Aneed = A(sep_, intr_);
@@ -32,7 +31,6 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 			Aneed.ProcessQueues();
 		}
 		FullMat(Aneed, ASI_);
-		Aneed.Empty();
 
 		El::Zeros(ASS_, sep_.size(), sep_.size());
 		Aneed = A(sep_, sep_);
@@ -42,7 +40,6 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 			Aneed.ProcessQueues();
 		}
 		FullMat(Aneed, ASS_);
-		Aneed.Empty();
 		
 		El::Zeros(ANS_, nb_.size(), sep_.size());
 		Aneed = A(nb_, sep_);
@@ -52,7 +49,6 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
 			Aneed.ProcessQueues();
 		}
 		FullMat(Aneed, ANS_);
-		Aneed.Empty();
 
 		SetSeparatorType();
 	}
