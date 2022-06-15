@@ -73,40 +73,53 @@ DEBUG_HIF(
 TIMER_HIF(
     void InitTimer()
     {
-    timerQueue.resize(NUM_OF_TIMER_TYPE);
+        timerQueue.resize(NUM_OF_TIMER_TYPE);
     }
 
     void TimerStart(TimerType typ)
     {
         if (timerQueue.size() < NUM_OF_TIMER_TYPE)
+        {
             InitTimer();
+        }
         timerQueue[typ].Start();
     }
 
     double TimerStop(TimerType typ)
     {
         if (timerQueue.size() < NUM_OF_TIMER_TYPE)
+        {
             return 0.0;
+        }
         else
+        {
             return timerQueue[typ].Stop();
+        }
     }
 
     double TimerPartial(TimerType typ)
     {
         if (timerQueue.size() < NUM_OF_TIMER_TYPE)
+        {
             return 0.0;
+        }
         else
+        {
             return timerQueue[typ].Partial();
+        }
     }
 
     double TimerTotal(TimerType typ)
     {
         if (timerQueue.size() < NUM_OF_TIMER_TYPE)
+        {
             return 0.0;
+        }
         else
+        {
             return timerQueue[typ].Total();
+        }
     }
 )
-
 
 } // namespace HIF.
