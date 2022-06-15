@@ -8,7 +8,7 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel)
 {
 	if (level_ == whatlevel)
 	{
-		if (Button() == 1)
+		if (Button())
 		{
 			Skel();
 		}
