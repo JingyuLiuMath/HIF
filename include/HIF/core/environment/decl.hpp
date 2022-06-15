@@ -202,7 +202,7 @@ void MasterLog( Args... args )
     LogOS() << str.str() << std::endl;
 }
 
-void SetTol( double tol );
+void SetTol(double tol);
 double Tol();
 
 } // namespace HIF.
