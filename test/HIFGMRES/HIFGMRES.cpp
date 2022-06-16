@@ -106,7 +106,7 @@ int main(int argc, char* argv[])
 		//
 		// and overwrite Y := alpha A X + beta Y.
 		auto applyA =
-			[&](double alpha, const SparseMatrix<double>& X,
+			[&](double alpha, const Matrix<double>& X,
 					double beta, Matrix<double>& Y)
 		{
 			Gemm()
@@ -114,30 +114,33 @@ int main(int argc, char* argv[])
 
 		// 'precond' should have the form
 		//
-		//   void precond(Matrix<Sclar>& Y)
+		//   void precond(Matrix<Sclar>& W)
 		//
-		// and overwrite Y with an approximation of inv(A) Y.
+		// and overwrite W with an approximation of inv(A) W.
 		auto precond =
-			[&](Matrix<double>& Y)
+			[&](Matrix<double>& W)
 		{
-			HIF.Apply(Y);
+			HIF.Apply(W);
 		};
-
+		
+		// GMRES settings.
 		double relTol = 1e-12;
 		int restart = 30;
 		int maxIts = floor(b.Height() / restart);
 		bool progress = true;
+
+
 		El::Timer gmresTimer("GMRESTimer");
 		gmresTimer.Start();
-
 		MasterCout("GMRES starts...");
+
 		int iter = LGMRES(applyA, precond, b, relTol,
 			restart, maxIts, progress);
+		
 		gmresTimer.Stop();
 		MasterCout("GMRES ends in ", gmresTimer.Total(), " sec.");
 		MasterCout("GMRES ends in ", iter, " steps.");
-		MasterCout("Relative Error in  2  Norm: ",
-			scientific, setprecision(2), relTol);
+		MasterCout("Relative Error in  2  Norm: ", scientific, setprecision(2), relTol);
 
 		INFO_HIF
 		(
