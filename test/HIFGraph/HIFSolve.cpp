@@ -5,7 +5,7 @@
 // i j aij
 // ...
 
-// input file of b (if exists)
+// input file of b
 // bi
 // ...
 
@@ -94,7 +94,6 @@ int main(int argc, char* argv[])
 		factTimer.Start();
 		MasterCout("Factorization starts...");
 
-		/*HIF.Factorization(HIFbutton, tol);*/
 		HIF.Factorization();
 		
 		factTimer.Stop();
