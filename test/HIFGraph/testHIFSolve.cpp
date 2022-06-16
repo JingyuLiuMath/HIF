@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
 		const int* targetA = A.LockedTargetBuffer();
 		for (int k = 0; k < nnzA; k++)
 		{
-			std::cout << sourceA[k] << targetA[k] << A.Get(sourceA[k], targetA[k]) << std::endl;
+			std::cout << sourceA[k] << " " << targetA[k] << " " << A.Get(sourceA[k], targetA[k]) << std::endl;
 		}
 
 		/*
