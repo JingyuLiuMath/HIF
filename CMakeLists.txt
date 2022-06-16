@@ -81,7 +81,7 @@ include_directories("${PROJECT_BINARY_DIR}/include")
 
 set(TEST_DIR ${PROJECT_SOURCE_DIR}/test)
 set(TEST_TYPES HIFGraph)
-set(HIFGraph_TESTS HIFSolve)
+set(HIFGraph_TESTS HIFSolve testHIFsolve)
 foreach(TYPE ${TEST_TYPES})
   set(OUTPUT_DIR "${PROJECT_BINARY_DIR}/bin/${TYPE}")
   foreach(TEST ${${TYPE}_TESTS})
