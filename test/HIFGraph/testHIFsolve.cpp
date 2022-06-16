@@ -126,7 +126,7 @@ int main(int argc, char* argv[])
 				setw(13), scientific, setprecision(2), initTimer.Total(),
 				setw(13), scientific, setprecision(2), factTimer.Total(),
 				setw(12), scientific, setprecision(2), applyTimer.Total(),
-				setw(17), scientific, setprecision(2), relnormInf,
+				setw(17), scientific, setprecision(2), relnormInf
 				);
 			Log(
 				"==================================================",
