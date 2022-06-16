@@ -89,7 +89,6 @@ int main(int argc, char* argv[])
 		MasterCout("Initialization ends in ", initTimer.Total(), " sec.");
 
 		// Factorization.
-
 		El::Timer factTimer("FactTimer");
 		factTimer.Start();
 		MasterCout("Factorization starts...");
@@ -100,7 +99,6 @@ int main(int argc, char* argv[])
 		MasterCout("Factorization ends in ", factTimer.Total(), " sec.");
 
 		// Application.
-
 		El::Timer applyTimer("ApplyTimer");
 		applyTimer.Start();
 		MasterCout("Application starts...");
@@ -112,11 +110,19 @@ int main(int argc, char* argv[])
 
 		INFO_HIF
 		(
-			Log("        InitT        FactT        AppT");
-			Log(setw(13), scientific, setprecision(2), initTimer.Total(),
+			Log(
+				"        InitT        FactT        AppT"
+			);
+			Log(
+				setw(13), scientific, setprecision(2), initTimer.Total(),
 				setw(13), scientific, setprecision(2), factTimer.Total(),
-				setw(12), scientific, setprecision(2), applyTimer.Total());
-			Log("======================================================================");
+				setw(12), scientific, setprecision(2), applyTimer.Total()
+			);
+			Log(
+				"==================================================",
+				"==================================================",
+				"=================================================="
+			);
 		)
 
 		std::cout << " b " << std::endl;

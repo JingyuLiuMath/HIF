@@ -8,14 +8,24 @@ void HIFGraph<Scalar>::Factorization()
 {
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:Factorization"))
 
-	/*INFO_HIF
+	INFO_HIF
 	(
-		Log("=================================================",
-			"=========================");
-		Log(" Level    LevelTime    ElTime    SpElim    Skel    Merge    ElSolve    ElID");
-		Log("-------------------------------------------------",
-			"-------------------------");
-	)*/
+		Log(
+			"==================================================",
+			"==================================================",
+			"=================================================="
+		);
+		Log(
+			"        Level        LevelTime        ElTime",        
+			"        SparseElim        Skel        Merge",
+			"        ElSolve        ElID        SetOpTime"
+		);
+		Log(
+			"--------------------------------------------------",
+			"--------------------------------------------------",
+			"--------------------------------------------------"
+		);
+	)
 
 	for (int tmplevel = numlevels_; tmplevel >= 1; tmplevel--)
 	{
@@ -38,12 +48,25 @@ void HIFGraph<Scalar>::Factorization()
 
 		TIMER_HIF(TimerStop(TIMER_FACTOR))
 
-		/*INFO_HIF
+		INFO_HIF
 		(
-			Log();
-			Log("-------------------------------------------------",
-				"-------------------------");
-		)*/
+			Log(
+				setw(13), whatlevel,
+				setw(17), scientific, setprecision(2),TimerPartial(TIMER_FACTOR),
+				setw(14), scientific, setprecision(2),TimerTotal(TIMER_EL),
+				setw(18), scientific, setprecision(2), TimerPartial(TIMER_SPARSEELIM),
+				setw(12), scientific, setprecision(2), TimerPartial(TIMER_SKEL),
+				setw(13), scientific, setprecision(2), TimerPartial(TIMER_MERGE),
+				setw(15), scientific, setprecision(2), TimerTotal(TIMER_EL_LDLSOLVE),
+				setw(12), scientific, setprecision(2), TimerTotal(TIMER_EL_ID),
+				setw(17), scientific, setprecision(2), TimerTotal(TIMER_SETOP)
+				);
+			Log(
+				"--------------------------------------------------",
+				"--------------------------------------------------",
+				"--------------------------------------------------"
+			);
+		)
 	}
 
 	TIMER_HIF(TimerStart(TIMER_FACTOR))
@@ -54,6 +77,27 @@ void HIFGraph<Scalar>::Factorization()
 	TIMER_HIF(TimerStop(TIMER_ROOTFACTOR))
 
 	TIMER_HIF(TimerStop(TIMER_FACTOR))
+
+	INFO_HIF
+	(
+		Log(
+			setw(13), 0,
+			setw(17), scientific, setprecision(2), TimerTotal(TIMER_FACTOR),
+			setw(14), scientific, setprecision(2), TimerTotal(TIMER_EL),
+			setw(18), scientific, setprecision(2), TimerTotal(TIMER_SPARSEELIM),
+			setw(12), scientific, setprecision(2), TimerTotal(TIMER_SKEL),
+			setw(13), scientific, setprecision(2), TimerTotal(TIMER_MERGE),
+			setw(15), scientific, setprecision(2), TimerTotal(TIMER_EL_LDLSOLVE),
+			setw(12), scientific, setprecision(2), TimerTotal(TIMER_EL_ID),
+			setw(17), scientific, setprecision(2), TimerTotal(TIMER_SETOP)
+		);
+		Log(
+			"--------------------------------------------------",
+			"--------------------------------------------------",
+			"--------------------------------------------------"
+		);
+	)
+
 }
 
 } // namespace HIF.
