@@ -110,6 +110,15 @@ int main(int argc, char* argv[])
 		applyTimer.Stop();
 		MasterCout("Application ends in ", applyTimer.Total(), " sec.");
 
+		INFO_HIF
+		(
+			Log("        InitT        FactT        AppT");
+			Log(setw(13), scientific, setprecision(2), initTimer.Total(),
+				setw(13), scientific, setprecision(2), factTimer.Total(),
+				setw(12), scientific, setprecision(2), applyTimer.Total());
+			Log("======================================================================");
+		)
+
 		std::cout << " b " << std::endl;
 		std::cout << " [ " << std::endl;
 		for (int k = 0; k < n; k++)

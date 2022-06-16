@@ -55,14 +55,12 @@ HIFGraph<Scalar>::HIFGraph
 
 	INFO_HIF
 	(
-		Log("=================================================",
-			"=========================");
-		Log("          ", 
-			"  MatrixSize    minvtx    numlevels    tol");
-		Log(setw(17), A.Height(),
-			setw(8), minvtx,
-			setw(8), numlevels_,
-			setw(10), scientific, setprecision(2), Tol());
+		Log("======================================================================");
+		Log("        MatrixSize        minvtx        numlevels        tol");
+		Log(setw(18), A.Height(),
+			setw(14), minvtx,
+			setw(17), numlevels_,
+			setw(11), scientific, setprecision(2), Tol());
 	)
 }
 

@@ -45,7 +45,6 @@ template <typename Scalar>
 class HIFGraph
 {
 public:
-
     typedef Matrix<Scalar> MatrixS;
     typedef SparseMatrix<Scalar> SparseMatrixS;
 
@@ -62,7 +61,6 @@ public:
     void Apply(MatrixS& b);
 
 private:    
-
     // Graph data.
     vector<int> vtx_; // Vertices.
     vector<int> intr_; // Interior vertices.
@@ -155,4 +153,4 @@ private:
 
 } // namespace HIF.
 
-#endif // ifndef HIF_GRAPH_HPP
+#endif // ifndef HIFGRAPH_HPP
