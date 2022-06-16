@@ -51,7 +51,7 @@ void HIFGraph<Scalar>::Factorization()
 		INFO_HIF
 		(
 			Log(
-				setw(13), whatlevel,
+				setw(13), tmplevel,
 				setw(17), scientific, setprecision(2),TimerPartial(TIMER_FACTOR),
 				setw(14), scientific, setprecision(2),TimerTotal(TIMER_EL),
 				setw(18), scientific, setprecision(2), TimerPartial(TIMER_SPARSEELIM),
