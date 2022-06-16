@@ -40,6 +40,8 @@ std::ostream& LogOS()
         {
             fs::create_directory(filedir);
         }
+        fileOS << "/log.log";
+        OpenLog(fileOS.str().c_str());
     }
     return ::logFile;
 }
