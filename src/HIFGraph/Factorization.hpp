@@ -8,6 +8,7 @@ void HIFGraph<Scalar>::Factorization()
 {
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:Factorization"))
 
+	// ElTime, ElLDLSolve, ElID,  SetOpTime are accumulative.
 	INFO_HIF
 	(
 		Log(
