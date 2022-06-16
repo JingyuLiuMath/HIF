@@ -4,7 +4,7 @@ namespace HIF {
 
 // Fill the tree structure with A. 
 template <typename Scalar>
-void HIFGraph<Scalar>::FillTree(const SparseMatrix<Scalar>& A)
+void HIFGraph<Scalar>::FillTree(const SparseMatrixS& A)
 {
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:FillTree"))
 

@@ -4,7 +4,7 @@ namespace HIF {
 
 // Build tree structure according to graph partition.
 template <typename Scalar>
-void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
+void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 {
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:BuildTree"))
 
@@ -68,7 +68,7 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrix<Scalar>& A, int minvtx)
 
 // Pass parent's sep, nb to children.
 template <typename Scalar>
-void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrix<Scalar>& A)
+void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 {
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:PassSeparatorNeighbor"))
 

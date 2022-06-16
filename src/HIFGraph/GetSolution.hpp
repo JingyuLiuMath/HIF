@@ -3,7 +3,7 @@
 namespace HIF {
 
 template <typename Scalar>
-void HIFGraph<Scalar>::GetSolution(Matrix<Scalar>& b, const vector<int>& xcol)
+void HIFGraph<Scalar>::GetSolution(MatrixS& b, const vector<int>& xcol)
 {
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:GetSolution"))
 

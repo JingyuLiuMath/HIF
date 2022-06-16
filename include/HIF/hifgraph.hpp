@@ -99,10 +99,10 @@ private:
     MatrixS xS_; // The sep part of a vector x.
 
     // Initialization functions.
-    void BuildTree(const SparseMatrix<Scalar>& A, int minvtx);
-    void PassSeparatorNeighbor(const SparseMatrix<Scalar>& A);
+    void BuildTree(const SparseMatrixS& A, int minvtx);
+    void PassSeparatorNeighbor(const SparseMatrixS& A);
     void SetNeighborNode();  
-    void FillTree(const SparseMatrix<Scalar>& A);
+    void FillTree(const SparseMatrixS& A);
 
     void SetSeparatorType();
     
@@ -121,7 +121,7 @@ private:
     void RootFactorization();
 
     // Apply functions.
-    void FillVecTree(const Matrix<Scalar>& b, const vector<int>& xcol);
+    void FillVecTree(const MatrixS& b, const vector<int>& xcol);
 
     void RecursiveApplySparseElimUp(int whatlevel);
     void ApplySparseElimUp();
@@ -143,7 +143,7 @@ private:
     void RecursiveApplySparseElimDown(int whatlevel);
     void ApplySparseElimDown();
 
-    void GetSolution(Matrix<Scalar>& b, const vector<int>& xcol);
+    void GetSolution(MatrixS& b, const vector<int>& xcol);
 
     // Debug functions.
     void ShowPartition();
