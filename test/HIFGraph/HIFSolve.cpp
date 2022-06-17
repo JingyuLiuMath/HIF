@@ -88,6 +88,7 @@ int main(int argc, char* argv[])
 		initTimer.Stop();
 		MasterCout("Initialization ends in ", initTimer.Total(), " sec.");
 
+		/*
 		// Factorization.
 		El::Timer factTimer("FactTimer");
 		factTimer.Start();
@@ -141,6 +142,7 @@ int main(int argc, char* argv[])
 			foutx << b.Get(k, 1) << endl;
 		}
 		foutx.close();*/
+		*/
 	}
 	catch (std::exception& e)
 	{
