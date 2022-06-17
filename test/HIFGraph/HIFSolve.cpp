@@ -88,7 +88,6 @@ int main(int argc, char* argv[])
 		initTimer.Stop();
 		MasterCout("Initialization ends in ", initTimer.Total(), " sec.");
 
-		/*
 		// Factorization.
 		El::Timer factTimer("FactTimer");
 		factTimer.Start();
@@ -133,7 +132,6 @@ int main(int argc, char* argv[])
 			std::cout << b.Get(k, 0) << ";" << std::endl;
 		}
 		std::cout << " ] " << std::endl;
-		*/
 
 		/*string filex = "./sol.txt";
 		std::ofstream foutx;
