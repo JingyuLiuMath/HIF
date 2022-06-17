@@ -92,6 +92,11 @@ void HIFGraph<Scalar>::Factorization()
 			setw(12), scientific, setprecision(2), TimerTotal(TIMER_EL_ID),
 			setw(17), scientific, setprecision(2), TimerTotal(TIMER_SETOP)
 		);
+		Log(
+			"==================================================",
+			"==================================================",
+			"=================================================="
+		);
 	)
 
 }
