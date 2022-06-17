@@ -103,11 +103,11 @@ int main(int argc, char* argv[])
 		const int* targetB = B.LockedTargetBuffer();
 		const int* offsetB = B.LockedOffsetBuffer();
 		const double* valueB = B.LockedValueBuffer();
-		for (int i = 0; i < nnzB; i++)
+		for (int k = 0; k < nnzB; k++)
 		{
 			std::cout << sourceB[k] << " " << targetB[k] << " " << valueB[k] << std::endl;
 		}
-		for (int i = 0; i < 5; i++)
+		for (int k = 0; k < 5; k++)
 		{
 			std::cout << offsetB[k] << std::endl;
 		}
