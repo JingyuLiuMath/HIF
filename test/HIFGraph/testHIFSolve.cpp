@@ -124,15 +124,15 @@ int main(int argc, char* argv[])
 		factTimer.Stop();
 		MasterCout("Factorization ends in ", factTimer.Total(), " sec.");
 
-		// Application.
-		El::Timer applyTimer("ApplyTimer");
-		applyTimer.Start();
-		MasterCout("Application starts...");
+		// Problem solving.
+		El::Timer solTimer("SolveTimer");
+		solTimer.Start();
+		MasterCout("Problem solving starts...");
 
 		HIF.Apply(b);
 
-		applyTimer.Stop();
-		MasterCout("Application ends in ", applyTimer.Total(), " sec.");
+		solTimer.Stop();
+		MasterCout("Problem solving ends in ", solTimer.Total(), " sec.");
 
 		// We already know the solution is 1.
 		double relnormInf = 0.0;
@@ -145,12 +145,12 @@ int main(int argc, char* argv[])
 		INFO_HIF
 		(
 			Log(
-				"        InitT        FactT        AppT        RelErrInf"
+				"        InitT        FactT        SolT        RelErrInf"
 			);
 			Log(
 				setw(13), scientific, setprecision(2), initTimer.Total(),
 				setw(13), scientific, setprecision(2), factTimer.Total(),
-				setw(12), scientific, setprecision(2), applyTimer.Total(),
+				setw(12), scientific, setprecision(2), solTimer.Total(),
 				setw(17), scientific, setprecision(2), relnormInf
 				);
 			Log(

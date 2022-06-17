@@ -98,25 +98,25 @@ int main(int argc, char* argv[])
 		factTimer.Stop();
 		MasterCout("Factorization ends in ", factTimer.Total(), " sec.");
 
-		// Application.
-		El::Timer applyTimer("ApplyTimer");
-		applyTimer.Start();
-		MasterCout("Application starts...");
+		// Problem solving.
+		El::Timer solTimer("SolveTimer");
+		solTimer.Start();
+		MasterCout("Problem solving starts...");
 
 		HIF.Apply(b);
 
-		applyTimer.Stop();
-		MasterCout("Application ends in ", applyTimer.Total(), " sec.");
+		solTimer.Stop();
+		MasterCout("Problem solving ends in ", solTimer.Total(), " sec.");
 
 		INFO_HIF
 		(
 			Log(
-				"        InitT        FactT        AppT"
+				"        InitT        FactT        SolT"
 			);
 			Log(
 				setw(13), scientific, setprecision(2), initTimer.Total(),
 				setw(13), scientific, setprecision(2), factTimer.Total(),
-				setw(12), scientific, setprecision(2), applyTimer.Total()
+				setw(12), scientific, setprecision(2), solTimer.Total()
 			);
 			Log(
 				"==================================================",
