@@ -67,13 +67,6 @@ void MetisPart(const SparseMatrix<Scalar>& A,
         B.QueueUpdate(t, t, -1);
     }
     B.ProcessQueues();
-    for (int t = 0; t < nnzA; t++)
-    {
-        if (B.Get(sourceA[t], targetA[t]) != 0)
-        {
-            B.Set(sourceA[t], targetA[t], int(1));
-        }
-    }
     vector<int> degree(B.Width(), 0);
     for (int t = 0; t < nnzA; t++)
     {
