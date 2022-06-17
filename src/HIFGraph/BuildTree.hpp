@@ -72,7 +72,7 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 {
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:PassSeparatorNeighbor"))
 
-	SparseMatrix<Scalar> nbA = A(sep_, nb_);
+	SparseMatrixS nbA = A(sep_, nb_);
 	for (int i = 0; i < sep_.size(); i++)
 	{
 		int sepi = sep_[i];
@@ -93,6 +93,7 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 				// Pass nb.				
 				vector<int> index_addnb(nbA.Width());
 				int actualsize_index_addnb = 0;
+				// Update: can be reduced...
 				for (int col = 0; col < nbA.Width(); col++)
 				{
 					if (nbA.Get(i, col) != Scalar(0))

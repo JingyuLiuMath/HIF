@@ -78,16 +78,16 @@ int main(int argc, char* argv[])
 
 		readTimer.Stop();
 		MasterCout("Reading input ends in ", readTimer.Total(), " sec.");
-
-		int nnzA = A.NumEntries();
+		
+		// sourceA is ordered from small to large
+		/*int nnzA = A.NumEntries();
 		const int* sourceA = A.LockedSourceBuffer();
 		const int* targetA = A.LockedTargetBuffer();
 		for (int k = 0; k < nnzA; k++)
 		{
 			std::cout << sourceA[k] << " " << targetA[k] << " " << A.Get(sourceA[k], targetA[k]) << std::endl;
-		}
+		}*/
 
-		/*
 		// Initialization.
 		El::Timer initTimer("InitTimer");
 		initTimer.Start();
@@ -143,7 +143,6 @@ int main(int argc, char* argv[])
 				"=================================================="
 			);
 		)
-		*/
 	}
 	catch (std::exception& e)
 	{
