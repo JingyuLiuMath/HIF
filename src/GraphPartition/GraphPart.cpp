@@ -138,6 +138,11 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         xadj[t] = offsetA[t];
         std::cout << xadj[t] << std::endl;
     }*/
+    std::cout << "offset" << std::endl;
+    for (int t = 0; t <= A.Height(); t++)
+    {
+        std::cout << offsetA[t] << std::endl;
+    }
     idx_t* xadj;
     vector<int> rowindex(nnzA, 0);
     vector<int> colindex(nnzA, 0);
@@ -184,6 +189,11 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         adjncy[t] = targetA[t];
         std::cout << adjncy[t] << std::endl;
     }*/
+    std::cout << "target" << std::endl;
+    for (int t = 0; t < nnzA; t++)
+    {
+        std::cout << targetA[t] << std::endl;
+    }
     if (rowindex.size() == 0)
     {
         RangeVec(0, nvtxs, sep);
