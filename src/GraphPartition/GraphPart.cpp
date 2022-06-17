@@ -132,9 +132,11 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     const int* offsetA = A.LockedOffsetBuffer();
     int nnzA = A.NumEntries();
     idx_t* xadj = new idx_t[A.Height() + 1];
+    std::cout << "xadj" << std::endl;
     for (int t = 0; t <= A.Height(); t++)
     {
         xadj[t] = offsetA[t];
+        std::cout << xadj[t] << std::endl;
     }
     /*
     vector<int> rowindex(nnzA, 0);
@@ -177,9 +179,11 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     */
     // adjncy.
     idx_t* adjncy = new idx_t[nnzA];
+    std::cout << "adjncy" << std::endl;
     for (int t = 0; t < nnzA; t++)
     {
         adjncy[t] = targetA[t];
+        std::cout << adjncy[t] << std::endl;
     }
     /*if (rowindex.size() == 0)
     {
