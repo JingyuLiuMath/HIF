@@ -143,11 +143,11 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     {
         std::cout << sourceA[t] << std::endl;
     }*/
-    std::cout << "offset" << std::endl;
+    /*std::cout << "offset" << std::endl;
     for (int t = 0; t <= A.Height(); t++)
     {
         std::cout << offsetA[t] << std::endl;
-    }
+    }*/
     idx_t* xadj;
     vector<int> rowindex(nnzA, 0);
     vector<int> colindex(nnzA, 0);
