@@ -30,16 +30,6 @@ void GraphPart(const SparseMatrix<Scalar>& A,
             sep2i_tmp[actualsize_sep2i_tmp] = targetA[k];
             actualsize_sep2i_tmp++;
         }
-
-        /*for (int col = 0; col < A.Width(); col++)
-        {
-            if (A.Get(sep1i, col) != Scalar(0))
-            {
-                sep2i_tmp[actualsize_sep2i_tmp] = col;
-                actualsize_sep2i_tmp++;
-            }
-        }*/
-
         sep2i_tmp.erase(sep2i_tmp.begin() + actualsize_sep2i_tmp, sep2i_tmp.end());
         if (sep2i_tmp.size() > 0)
         {

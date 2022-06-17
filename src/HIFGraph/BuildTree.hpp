@@ -95,22 +95,22 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 				int actualsize_index_addnb = 0;
 				
 				// TODO: can be reduced...
-				/*const int* targetA = A.LockedTargetBuffer();
-				const int* offsetA = A.LockedOffsetBuffer();
-				for (int k = offsetA[i]; k < offsetA[i + 1]; k++)
+				const int* targetnbA = nbA.LockedTargetBuffer();
+				const int* offsetnbA = nbA.LockedOffsetBuffer();
+				for (int k = offsetnbA[i]; k < offsetnbA[i + 1]; k++)
 				{
-					index_addnb[actualsize_index_addnb] = targetA[k];
+					index_addnb[actualsize_index_addnb] = targetnbA[k];
 					actualsize_index_addnb++;
-				}*/
+				}
 
-				for (int col = 0; col < nbA.Width(); col++)
+				/*for (int col = 0; col < nbA.Width(); col++)
 				{
 					if (nbA.Get(i, col) != Scalar(0))
 					{
 						index_addnb[actualsize_index_addnb] = col;
 						actualsize_index_addnb++;
 					}
-				}
+				}*/
 
 				index_addnb.erase(index_addnb.begin() + actualsize_index_addnb, index_addnb.end());
 				for (int j = 0; j < index_addnb.size(); j++)
