@@ -133,6 +133,7 @@ int main(int argc, char* argv[])
 			std::cout << b.Get(k, 0) << ";" << std::endl;
 		}
 		std::cout << " ] " << std::endl;
+		*/
 
 		/*string filex = "./sol.txt";
 		std::ofstream foutx;
@@ -142,7 +143,6 @@ int main(int argc, char* argv[])
 			foutx << b.Get(k, 1) << endl;
 		}
 		foutx.close();*/
-		*/
 	}
 	catch (std::exception& e)
 	{
