@@ -163,7 +163,7 @@ int main(int argc, char* argv[])
 	catch (std::exception& e)
 	{
 		EL_DEBUG_ONLY(El::DumpCallStack())
-			DEBUG_HIF(DumpCallStack())
+		DEBUG_HIF(DumpCallStack())
 	}
 	CloseLog();
 	El::Finalize();

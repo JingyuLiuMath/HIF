@@ -21,15 +21,25 @@ void GraphPart(const SparseMatrix<Scalar>& A,
         int sep1i = sep1[i];
         vector<int> sep2i_tmp(A.Width());
         int actualsize_sep2i_tmp = 0;
+        
         // TODO: can be reduced...
-        for (int col = 0; col < A.Width(); col++)
+        const int* targetA = A.LockedTargetBuffer();
+        const int* offsetA = A.LockedOffsetBuffer();
+        for (int k = offsetA[sep1i]; k < offsetA[sep1i + 1]; k++)
+        {
+            sep2i_tmp[actualsize_sep2i_tmp] = targetA[k];
+            actualsize_sep2i_tmp++;
+        }
+
+        /*for (int col = 0; col < A.Width(); col++)
         {
             if (A.Get(sep1i, col) != Scalar(0))
             {
                 sep2i_tmp[actualsize_sep2i_tmp] = col;
                 actualsize_sep2i_tmp++;
             }
-        }
+        }*/
+
         sep2i_tmp.erase(sep2i_tmp.begin() + actualsize_sep2i_tmp, sep2i_tmp.end());
         if (sep2i_tmp.size() > 0)
         {

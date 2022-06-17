@@ -29,14 +29,41 @@ void GetSubmatrix
     EL_DEBUG_CSE
     // TODO(poulson): Decide how to handle unsorted I and J with duplicates
     // LogicError("This routine is not yet written");
+    // REMARK(Jingyu Liu): The function is correct only when I and J are sorted.
     ASub.Resize(I.size(), J.size());
+    const Int* sourceA = A.LockedSourceBuffer();
+    const Int* targetA = A.LockedTargetBuffer();
+    const Int* offsetA = A.LockedOffsetBuffer();
+    const T* valueA = A.LockedValueBuffer();
+    Int Irow = -1;
+    Int nnzIrow = -1;
+    Int startIrow = -1;
+    Int endIrow = -1;
+    Int i = -1;
+    Int j = -1;
     for (Int row = 0; row < I.size(); row++)
     {
-        for (Int col = 0; col < J.size(); col++)
+        Irow = I[row];
+        startIrow = offsetA[Irow];
+        endIrow = offsetA[Irow + 1];
+        i = startIrow;
+        j = 0;
+        // J and Target(startIrow:endIrow-1) is sorted.
+        while ((i < endIrow) && (j < J.size()))
         {
-            if (A.Get(I[row], J[col]) != T(0))
+            if (targetA[i] < J[j])
             {
-                ASub.QueueUpdate(row, col, A.Get(I[row], J[col]));
+                i++;
+            }
+            else if (targetA[i] > J[j])
+            {
+                j++;
+            }
+            else
+            {
+                ASub.QueueUpdate(row, j, valueA[i]);
+                i++;
+                j++;
             }
         }
     }
