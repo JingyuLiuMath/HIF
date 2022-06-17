@@ -21,6 +21,7 @@ void GraphPart(const SparseMatrix<Scalar>& A,
         int sep1i = sep1[i];
         vector<int> sep2i_tmp(A.Width());
         int actualsize_sep2i_tmp = 0;
+        // TODO: can be reduced...
         for (int col = 0; col < A.Width(); col++)
         {
             if (A.Get(sep1i, col) != Scalar(0))

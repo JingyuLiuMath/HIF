@@ -88,6 +88,31 @@ int main(int argc, char* argv[])
 			std::cout << sourceA[k] << " " << targetA[k] << " " << A.Get(sourceA[k], targetA[k]) << std::endl;
 		}*/
 
+		SparseMatrix<double> B(4, 6);
+		B.QueueUpdate(0, 0, 10);
+		B.QueueUpdate(0, 1, 20);
+		B.QueueUpdate(1, 1, 30);
+		B.QueueUpdate(1, 3, 40);
+		B.QueueUpdate(2, 2, 50);
+		B.QueueUpdate(2, 3, 60);
+		B.QueueUpdate(2, 4, 70);
+		B.QueueUpdate(3, 5, 80);
+		B.ProcessQueues();
+		int nnzB = B.NumEntries();
+		const int* sourceB = B.LockedSourceBuffer();
+		const int* targetB = B.LockedTargetBuffer();
+		const int* offsetB = B.LockedOffsetBuffer();
+		const double* valueB = B.LockedValueBuffer();
+		for (int i = 0; i < nnzB; i++)
+		{
+			std::cout << sourceB[k] << " " << targetB[k] << " " << valueB[k] << std::endl;
+		}
+		for (int i = 0; i < 5; i++)
+		{
+			std::cout << offsetB[k] << std::endl;
+		}
+
+		/*
 		// Initialization.
 		El::Timer initTimer("InitTimer");
 		initTimer.Start();
@@ -143,6 +168,7 @@ int main(int argc, char* argv[])
 				"=================================================="
 			);
 		)
+		*/
 	}
 	catch (std::exception& e)
 	{
