@@ -43,11 +43,8 @@ HIFGraph<Scalar>::HIFGraph
 
 	TIMER_HIF(TimerStart(TIMER_INIT_BUILD))
 	BuildTree(A, minvtx);
-	TIMER_HIF(TimerStop(TIMER_INIT_BUILD))
-
-	TIMER_HIF(TimerStart(TIMER_INIT_SETNB))
 	SetNeighborNode();
-	TIMER_HIF(TimerStop(TIMER_INIT_SETNB))
+	TIMER_HIF(TimerStop(TIMER_INIT_BUILD))
 
 	TIMER_HIF(TimerStart(TIMER_INIT_FILL))
 	FillTree(A);
@@ -68,6 +65,22 @@ HIFGraph<Scalar>::HIFGraph
 			setw(14), minvtx,
 			setw(17), numlevels_,
 			setw(11), scientific, setprecision(2), Tol()
+		);
+	)
+
+	INFO_HIF
+	(
+		Log(
+			"==================================================",
+			"==================================================",
+			"=================================================="
+		);
+		Log(
+			"        BuildTree        Fill"
+		);
+		Log(
+			setw(17), scientific, setprecision(2), TimerTotal(TIMER_INIT_BUILD),
+			setw(12), scientific, setprecision(2), TimerTotal(TIMER_INIT_FILL)
 		);
 	)
 }

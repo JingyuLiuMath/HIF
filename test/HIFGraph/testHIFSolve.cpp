@@ -79,16 +79,8 @@ int main(int argc, char* argv[])
 		readTimer.Stop();
 		MasterCout("Reading input ends in ", readTimer.Total(), " sec.");
 		
-		// sourceA is ordered from small to large
-		/*int nnzA = A.NumEntries();
-		const int* sourceA = A.LockedSourceBuffer();
-		const int* targetA = A.LockedTargetBuffer();
-		for (int k = 0; k < nnzA; k++)
-		{
-			std::cout << sourceA[k] << " " << targetA[k] << " " << A.Get(sourceA[k], targetA[k]) << std::endl;
-		}*/
-
-		SparseMatrix<double> B(4, 6);
+		//sourceB is ordered from small to large, CSR format.
+		/*SparseMatrix<double> B(4, 6);
 		B.QueueUpdate(0, 0, 10);
 		B.QueueUpdate(0, 1, 20);
 		B.QueueUpdate(1, 1, 30);
@@ -110,9 +102,8 @@ int main(int argc, char* argv[])
 		for (int k = 0; k < 5; k++)
 		{
 			std::cout << offsetB[k] << std::endl;
-		}
+		}*/
 
-		/*
 		// Initialization.
 		El::Timer initTimer("InitTimer");
 		initTimer.Start();
@@ -159,7 +150,7 @@ int main(int argc, char* argv[])
 			Log(
 				setw(13), scientific, setprecision(2), initTimer.Total(),
 				setw(13), scientific, setprecision(2), factTimer.Total(),
-				setw(12), scientific, setprecision(2), applyTimer.Total(),
+				setw(12), scientific, setprecision(2), solTimer.Total(),
 				setw(17), scientific, setprecision(2), relnormInf
 				);
 			Log(
@@ -168,7 +159,6 @@ int main(int argc, char* argv[])
 				"=================================================="
 			);
 		)
-		*/
 	}
 	catch (std::exception& e)
 	{
