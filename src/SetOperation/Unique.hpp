@@ -35,7 +35,6 @@ void Unique_Sort(vector<Scalar>& vec)
 		}
 	}
 	veccopy.erase(veccopy.begin() + actualsize_veccopy, veccopy.end());
-	vec.clear();
 	vec.assign(veccopy.begin(), veccopy.end());
 
 	TIMER_HIF(TimerStop(TIMER_SETOP_UNIQUE))

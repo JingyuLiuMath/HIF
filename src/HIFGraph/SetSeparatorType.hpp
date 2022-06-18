@@ -30,7 +30,6 @@ void HIFGraph<Scalar>::SetSeparatorType()
 		FindAllIndex(ordersep, 1, index_find_ordersep_1);
 		vector<int> index_sep;
 		Intersect_Sort(index_find_ordersep_1, singlesep_[k], index_sep);
-		singlesep_[k].clear();
 		singlesep_[k].resize(index_sep.size());
 		for (int i = 0; i < index_sep.size(); i++)
 		{
