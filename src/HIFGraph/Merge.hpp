@@ -41,23 +41,31 @@ void HIFGraph<Scalar>::Merge()
 	// First we tell the parent what its intr, sep, nb is after we eliminate the children's vtx.
 	// intr: children's sk - sep.
 	// sep : sep \cup children's sk.
-	// nb: nb \cup children's nbsk.
-	vector<int> tmpnbsk;
+	// nb: nb - children's nbre.
 	for (int iter = 0; iter < 2; iter++)
 	{
 		intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
-		tmpnbsk.insert(tmpnbsk.end(), (children_[iter]->nbsk_).begin(), (children_[iter]->nbsk_).end());
+		re_.insert(re_.end(), (children_[iter]->re_).begin(), (children_[iter]->re_).end());
+		nbre_.insert(nbre_.end(), (children_[iter]->nbre_).begin(), (children_[iter]->nbre_).end());
 	}
 	sort(intr_.begin(), intr_.end());
-	sort(tmpnbsk.begin(), tmpnbsk.end());
+	sort(re_.begin(), re_.end());
+	sort(nbre_.begin(), nbre_.end());
 	vector<int> tmpsep;
 	Intersect_Sort(sep_, intr_, tmpsep);
+	sep_.clear();
 	sep_.assign(tmpsep.begin(), tmpsep.end());
+	vector<int> tmpnbre;
+	Diff_Sort(nbre_, vtx_, tmpnbre);
+	nbre_.clear();
+	nbre_.assign(tmpnbre.begin(), tmpnbre.end());
 	vector<int> tmpintr;
 	Diff_Sort(intr_, sep_, tmpintr);
+	intr_.clear();
 	intr_.assign(tmpintr.begin(), tmpintr.end());
 	vector<int> tmpnb;
-	Intersect_Sort(nb_, tmpnbsk, tmpnb);
+	Diff_Sort(nb_, nbre_, tmpnb);
+	nb_.clear();
 	nb_.assign(tmpnb.begin(), tmpnb.end());
 
 	// Next we assign the corresponding matrices.
