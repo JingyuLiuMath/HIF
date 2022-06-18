@@ -23,6 +23,8 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrixS& A)
 		}
 		FullMat(Aneed, AII_);
 		
+		ShowMatrix(AII_, "AII");
+
 		El::Zeros(ASI_, sep_.size(), intr_.size());
 		Aneed = A(sep_, intr_);
 		if ((Aneed.Height() > 0) && (Aneed.Width() > 0))

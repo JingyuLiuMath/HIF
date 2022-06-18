@@ -49,8 +49,6 @@ HIFGraph<Scalar>::HIFGraph
 	TIMER_HIF(TimerStart(TIMER_INIT_FILL))
 	FillTree(A);
 	TIMER_HIF(TimerStop(TIMER_INIT_FILL))
-
-	ShowPartition();
 	
 	INFO_HIF
 	(
