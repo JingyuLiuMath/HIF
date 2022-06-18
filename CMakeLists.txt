@@ -52,9 +52,9 @@ file(GLOB_RECURSE HIF_HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
      "include/*.h" "include/*.hpp")
 set(HIF_SRC "${HIF_CPP};${HIF_HEADERS}")
 
-# find_package(MPI REQUIRED)
-# include_directories(${MPI_C_INCLUDE_PATH})
-# include_directories(${MPI_CXX_INCLUDE_PATH})
+find_package(MPI REQUIRED)
+include_directories(${MPI_C_INCLUDE_PATH})
+include_directories(${MPI_CXX_INCLUDE_PATH})
 
 # Build the HIF source
 add_library(HIF STATIC ${HIF_SRC})
