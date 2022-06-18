@@ -434,6 +434,7 @@ void HIFGraph<Scalar>::Skel()
 	sort(re_.begin(), re_.end());
 	Diff_Sort(sep_, re_, sk_);
 	sort(nbre_.begin(), nbre_.end());
+	Diff_Sort(nb_, nbre_, nbsk_);
 }
 
 // No skeletonization.
