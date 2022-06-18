@@ -30,7 +30,6 @@ void HIFGraph<Scalar>::Factorization()
 
 	for (int tmplevel = numlevels_; tmplevel >= 1; tmplevel--)
 	{
-		std::cout << "tmplevel" << tmplevel << std::endl;
 		TIMER_HIF(TimerStart(TIMER_FACTOR))
 
 		// Sparse elimination.
@@ -75,6 +74,7 @@ void HIFGraph<Scalar>::Factorization()
 
 	// Root factorization.
 	TIMER_HIF(TimerStart(TIMER_ROOTFACTOR))
+	std::cout << "RootFactorization" << std::endl;
 	RootFactorization();
 	TIMER_HIF(TimerStop(TIMER_ROOTFACTOR))
 
