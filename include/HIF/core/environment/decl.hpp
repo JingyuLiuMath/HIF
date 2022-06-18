@@ -85,7 +85,7 @@ using Vector = Matrix<Scalar>;
 // Pull in some of Elemental's imported libraries
 namespace blas = El::blas;
 namespace lapack = El::lapack;
-namespace mpi = El::mpi;
+// namespace mpi = El::mpi;
 
 // Pull in some of standard libraries imported libraries
 using std::vector;

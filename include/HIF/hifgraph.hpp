@@ -68,6 +68,7 @@ private:
     vector<int> nb_; // Neighbor vertices.
     vector<int> re_; // Redundant sep. We also use check (c) to represent it.
     vector<int> sk_; // Skeleton sep. We also use hat (h) to represent it.
+    vector<int> nbsk_; // Skeleton nb.
     vector<int> nbre_; // Redundant nb.
     vector<vector<int>> singlesep_; // Sep which only interact with one node.
     vector<int> complexsep_; // Sep which interact with more than one nodes.

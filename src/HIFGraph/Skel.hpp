@@ -434,6 +434,7 @@ void HIFGraph<Scalar>::Skel()
 	sort(re_.begin(), re_.end());
 	Diff_Sort(sep_, re_, sk_);
 	sort(nbre_.begin(), nbre_.end());
+	Diff_Sort(nb_, nbre_, nbsk_);
 }
 
 // No skeletonization.
@@ -443,6 +444,7 @@ void HIFGraph<Scalar>::NoSkel()
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:NoSkel"))
 
 	sk_.assign(sep_.begin(), sep_.end());
+	nbsk_.assign(nb_.begin(), nb_.end());
 }
 
 } // namespace HIF.
