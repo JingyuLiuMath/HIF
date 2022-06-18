@@ -444,6 +444,7 @@ void HIFGraph<Scalar>::NoSkel()
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:NoSkel"))
 
 	sk_.assign(sep_.begin(), sep_.end());
+	nbsk.assign(nb_.begin(), nb_.end());
 }
 
 } // namespace HIF.
