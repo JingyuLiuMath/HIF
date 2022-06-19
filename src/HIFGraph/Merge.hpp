@@ -41,7 +41,7 @@ void HIFGraph<Scalar>::Merge()
 	// First we tell the parent what its intr, sep, nb is after we eliminate the children's vtx.
 	// intr: children's sk - sep.
 	// sep : sep \cup children's sk.
-	// nb: nb - children's nbre.
+	// nb: nb \cup children's nbsk.
 	vector<int> tmpnbsk;
 	for (int iter = 0; iter < 2; iter++)
 	{
@@ -51,8 +51,9 @@ void HIFGraph<Scalar>::Merge()
 		nbre_.insert(nbre_.end(), (children_[iter]->nbre_).begin(), (children_[iter]->nbre_).end());*/
 	}
 	sort(intr_.begin(), intr_.end());
-	sort(re_.begin(), re_.end());
-	sort(nbre_.begin(), nbre_.end());
+	// sort(re_.begin(), re_.end());
+	// sort(nbre_.begin(), nbre_.end());
+	sort(tmpnbsk.begin(), tmpnbsk.end());
 	vector<int> tmpsep;
 	Intersect_Sort(sep_, intr_, tmpsep);
 	sep_.clear();
