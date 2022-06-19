@@ -161,7 +161,7 @@ int main(int argc, char* argv[])
 				setw(13), scientific, setprecision(2), initTimer.Total(),
 				setw(13), scientific, setprecision(2), factTimer.Total(),
 				setw(14), scientific, setprecision(2), gmresTimer.Total(),
-				setw(15), scientific, setprecision(2), iter,
+				setw(15), scientific, setprecision(2), iter
 			);
 			Log(
 				"==================================================",
