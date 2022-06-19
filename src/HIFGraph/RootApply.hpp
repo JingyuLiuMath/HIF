@@ -15,8 +15,6 @@ void HIFGraph<Scalar>::RootApply()
     DiagonalScale(ELLR::LEFT, NORMAL, D, xI_);
     // xI = LI^{-T} * xI.
     Trmm(ELLR::LEFT, LOWER, TRANSPOSE, UNIT, Scalar(1), AIIinv_, xI_);
-
-    ShowMatrix(xI_, "xI");
 }
 
 } // namespace HIF.
