@@ -47,27 +47,18 @@ void HIFGraph<Scalar>::Merge()
 	{
 		intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
 		tmpnbsk.insert(tmpnbsk.end(), (children_[iter]->nbsk_).begin(), (children_[iter]->nbsk_).end());
-		/*re_.insert(re_.end(), (children_[iter]->re_).begin(), (children_[iter]->re_).end());
-		nbre_.insert(nbre_.end(), (children_[iter]->nbre_).begin(), (children_[iter]->nbre_).end());*/
 	}
 	sort(intr_.begin(), intr_.end());
-	// sort(re_.begin(), re_.end());
-	// sort(nbre_.begin(), nbre_.end());
 	sort(tmpnbsk.begin(), tmpnbsk.end());
 	vector<int> tmpsep;
 	Intersect_Sort(sep_, intr_, tmpsep);
 	sep_.clear();
 	sep_.assign(tmpsep.begin(), tmpsep.end());
-	/*vector<int> tmpnbre;
-	Diff_Sort(nbre_, vtx_, tmpnbre);
-	nbre_.clear();
-	nbre_.assign(tmpnbre.begin(), tmpnbre.end());*/
 	vector<int> tmpintr;
 	Diff_Sort(intr_, sep_, tmpintr);
 	intr_.clear();
 	intr_.assign(tmpintr.begin(), tmpintr.end());
 	vector<int> tmpnb;
-	// Diff_Sort(nb_, nbre_, tmpnb);
 	Intersect_Sort(nb_, tmpnbsk, tmpnb);
 	nb_.clear();
 	nb_.assign(tmpnb.begin(), tmpnb.end());
