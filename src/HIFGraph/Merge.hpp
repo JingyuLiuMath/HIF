@@ -52,15 +52,12 @@ void HIFGraph<Scalar>::Merge()
 	sort(tmpnbsk.begin(), tmpnbsk.end());
 	vector<int> tmpsep;
 	Intersect_Sort(sep_, intr_, tmpsep);
-	sep_.clear();
 	sep_.assign(tmpsep.begin(), tmpsep.end());
 	vector<int> tmpintr;
 	Diff_Sort(intr_, sep_, tmpintr);
-	intr_.clear();
 	intr_.assign(tmpintr.begin(), tmpintr.end());
 	vector<int> tmpnb;
 	Intersect_Sort(nb_, tmpnbsk, tmpnb);
-	nb_.clear();
 	nb_.assign(tmpnb.begin(), tmpnb.end());
 
 	// Next we assign the corresponding matrices.
