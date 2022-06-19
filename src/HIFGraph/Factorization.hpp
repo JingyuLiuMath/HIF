@@ -8,6 +8,8 @@ void HIFGraph<Scalar>::Factorization()
 {
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:Factorization"))
 
+	double setoptimecutoff = TimerTotal(TIMER_SETOP);
+
 	// ElTime, ElLDLSolve, ElID,  SetOpTime are accumulative.
 	INFO_HIF
 	(
@@ -60,7 +62,7 @@ void HIFGraph<Scalar>::Factorization()
 				setw(13), scientific, setprecision(2), TimerPartial(TIMER_MERGE),
 				setw(13), scientific, setprecision(2), TimerTotal(TIMER_EL_LDLSOLVE),
 				setw(12), scientific, setprecision(2), TimerTotal(TIMER_EL_ID),
-				setw(13), scientific, setprecision(2), TimerTotal(TIMER_SETOP)
+				setw(13), scientific, setprecision(2), TimerTotal(TIMER_SETOP)-setoptimecutoff
 				);
 			Log(
 				"--------------------------------------------------",
@@ -91,7 +93,7 @@ void HIFGraph<Scalar>::Factorization()
 			setw(13), scientific, setprecision(2), TimerTotal(TIMER_MERGE),
 			setw(13), scientific, setprecision(2), TimerTotal(TIMER_EL_LDLSOLVE),
 			setw(12), scientific, setprecision(2), TimerTotal(TIMER_EL_ID),
-			setw(13), scientific, setprecision(2), TimerTotal(TIMER_SETOP)
+			setw(13), scientific, setprecision(2), TimerTotal(TIMER_SETOP)- setoptimecutoff
 		);
 		Log(
 			"==================================================",
