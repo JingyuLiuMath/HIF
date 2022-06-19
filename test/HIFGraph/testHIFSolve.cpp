@@ -135,23 +135,25 @@ int main(int argc, char* argv[])
 		MasterCout("Problem solving ends in ", solTimer.Total(), " sec.");
 
 		// We already know the solution is 1.
-		double relnormInf = 0.0;
+		double relnorm2 = 0.0;
 		for (int k = 0; k < n; k++)
 		{
-			relnormInf = std::max(std::abs(b.Get(k, 0) - 1), relnormInf);
+			relnorm2 += std::pow(b.Get(k, 0) - 1, 2);
 		}
+		relnorm2 /= n;
+		relnorm2 = std::sqrt(relnorm2);
 
 
 		INFO_HIF
 		(
 			Log(
-				"        InitT        FactT        SolT        RelErrInf"
+				"        InitT        FactT        SolT        RelErr2"
 			);
 			Log(
 				setw(13), scientific, setprecision(2), initTimer.Total(),
 				setw(13), scientific, setprecision(2), factTimer.Total(),
 				setw(12), scientific, setprecision(2), solTimer.Total(),
-				setw(17), scientific, setprecision(2), relnormInf
+				setw(15), scientific, setprecision(2), relnorm2
 				);
 			Log(
 				"==================================================",

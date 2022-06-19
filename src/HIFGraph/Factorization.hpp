@@ -58,7 +58,7 @@ void HIFGraph<Scalar>::Factorization()
 				setw(18), scientific, setprecision(2), TimerPartial(TIMER_SPARSEELIM),
 				setw(12), scientific, setprecision(2), TimerPartial(TIMER_SKEL),
 				setw(13), scientific, setprecision(2), TimerPartial(TIMER_MERGE),
-				setw(18), scientific, setprecision(2), TimerTotal(TIMER_EL_LDLSOLVE),
+				setw(13), scientific, setprecision(2), TimerTotal(TIMER_EL_LDLSOLVE),
 				setw(12), scientific, setprecision(2), TimerTotal(TIMER_EL_ID),
 				setw(17), scientific, setprecision(2), TimerTotal(TIMER_SETOP)
 				);
