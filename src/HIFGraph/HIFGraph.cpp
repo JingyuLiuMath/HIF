@@ -68,6 +68,7 @@ HIFGraph<Scalar>::HIFGraph
 		);
 	)
 
+	// SetOpTime are accumulative.
 	INFO_HIF
 	(
 		Log(

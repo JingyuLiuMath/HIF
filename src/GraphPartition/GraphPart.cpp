@@ -16,6 +16,7 @@ void GraphPart(const SparseMatrix<Scalar>& A,
     sort(p1.begin(), p1.end());
     sort(sep1.begin(), sep1.end());
     sort(p2.begin(), p2.end());
+    vector<int> tmpsep2(p2.size(), 0);
     for (int i = 0; i < sep1.size(); i++)
     {
         int sep1i = sep1[i];
@@ -29,15 +30,29 @@ void GraphPart(const SparseMatrix<Scalar>& A,
             actualsize_sep2i_tmp++;
         }
         sep2i_tmp.erase(sep2i_tmp.begin() + actualsize_sep2i_tmp, sep2i_tmp.end());
-        if (sep2i_tmp.size() > 0)
+        vector<int> index_sep2i;
+        Intersect_Sort(sep2i_tmp, p2, index_sep2i, 2);
+        for (int t = 0; t < index_sep2i.size(); t++)
         {
-            vector<int> sep2i;
-            Intersect_Sort(sep2i_tmp, p2, sep2i);
-            sep2.insert(sep2.end(), sep2i.begin(), sep2i.end());
-            sort(sep2.begin(), sep2.end());
-            Unique_Sort(sep2);
+            tmpsep2[index_sep2i[t]] += 1;
+        }
+        /*vector<int> sep2i;
+        Intersect_Sort(sep2i_tmp, p2, sep2i);
+        sep2.insert(sep2.end(), sep2i.begin(), sep2i.end());
+        sort(sep2.begin(), sep2.end());
+        Unique_Sort(sep2);*/
+    }
+    sep2.resize(p2.size());
+    int actualsize_sep2 = 0;
+    for (int t = 0; t < tmpsep2.size(); t++)
+    {
+        if (tmpsep2[t] > 0)
+        {
+            sep2[actualsize_sep2] = p2[t];
+            actualsize_sep2++;
         }
     }
+    sep2.erase(sep2.begin() + actualsize_sep2, sep2.end());
 }
 
 // Metis partition.
