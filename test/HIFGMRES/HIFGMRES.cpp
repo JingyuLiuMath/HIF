@@ -109,7 +109,17 @@ int main(int argc, char* argv[])
 			[&](double alpha, const Matrix<double>& X,
 					double beta, Matrix<double>& Y)
 		{
-			Gemm()
+			int nnzA = A.NumEntries();
+			const int* sourceA = A.LockedSourceBuffer();
+			const int* targetA = A.LockedTargetBuffer();
+			const int* valueA = A.LockedValueBuffer();
+			for (int col = 0; col < Y.Width(); col++)
+			{
+				for (int k = 0; k < nnzA; k++)
+				{
+					Y.Update(sourceA[k], col, valueA[nnz] * X.Get(targetA[k], col));
+				}
+			}
 		};
 
 		// 'precond' should have the form
