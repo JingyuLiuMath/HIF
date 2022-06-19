@@ -67,7 +67,7 @@ void HIFGraph<Scalar>::Merge()
 	intr_.assign(tmpintr.begin(), tmpintr.end());
 	vector<int> tmpnb;
 	// Diff_Sort(nb_, nbre_, tmpnb);
-	Intersect_Sort(nb_, tmpnbsk, tmpsep);
+	Intersect_Sort(nb_, tmpnbsk, tmpnb);
 	nb_.clear();
 	nb_.assign(tmpnb.begin(), tmpnb.end());
 
