@@ -9,7 +9,6 @@ int FindFirstIndex(const vector<Scalar>& vec, const Scalar value)
 	DEBUG_HIF(CallStackEntry cse("FindFirstIndex"))
 	
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-	TIMER_HIF(TimerStart(TIMER_SETOP_FIND))
 
 	int index = -1;
 	for (int i = 0; i < vec.size(); i++)
@@ -21,7 +20,6 @@ int FindFirstIndex(const vector<Scalar>& vec, const Scalar value)
 		}
 	}
 
-	TIMER_HIF(TimerStop(TIMER_SETOP_FIND))
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 
 	return index;
@@ -34,7 +32,6 @@ void FindAllIndex(const vector<Scalar>& vec, const Scalar value, vector<int>& in
 	DEBUG_HIF(CallStackEntry cse("FindAllIndex"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-	TIMER_HIF(TimerStart(TIMER_SETOP_FIND))
 
 	index.resize(vec.size());
 	int actualsize_index = 0;
@@ -48,7 +45,6 @@ void FindAllIndex(const vector<Scalar>& vec, const Scalar value, vector<int>& in
 	}
 	index.erase(index.begin() + actualsize_index, index.end());
 
-	TIMER_HIF(TimerStop(TIMER_SETOP_FIND))
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 
@@ -59,7 +55,6 @@ void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, v
 	DEBUG_HIF(CallStackEntry cse("FindAllIndex_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-	TIMER_HIF(TimerStart(TIMER_SETOP_FIND))
 
 	index.resize(vec1.size());
 	int actualsize_index = 0;
@@ -81,7 +76,6 @@ void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, v
 	}
 	index.erase(index.begin() + actualsize_index, index.end());
 
-	TIMER_HIF(TimerStop(TIMER_SETOP_FIND))
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 

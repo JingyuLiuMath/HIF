@@ -7,7 +7,6 @@ template <typename Scalar>
 void Unique_Sort(vector<Scalar>& vec)
 {
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-	TIMER_HIF(TimerStart(TIMER_SETOP_UNIQUE))
 
 	DEBUG_HIF(CallStackEntry cse("Unique_Sort"))
 
@@ -37,7 +36,6 @@ void Unique_Sort(vector<Scalar>& vec)
 	veccopy.erase(veccopy.begin() + actualsize_veccopy, veccopy.end());
 	vec.assign(veccopy.begin(), veccopy.end());
 
-	TIMER_HIF(TimerStop(TIMER_SETOP_UNIQUE))
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 

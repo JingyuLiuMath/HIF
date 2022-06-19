@@ -9,7 +9,6 @@ bool Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2)
 	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-	TIMER_HIF(TimerStart(TIMER_SETOP_INTERSECT))
 
 	bool result = false;
 	int i = 0;
@@ -33,7 +32,6 @@ bool Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2)
 		}
 	}
 
-	TIMER_HIF(TimerStop(TIMER_SETOP_INTERSECT))
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 
 	return result;
@@ -47,7 +45,6 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-	TIMER_HIF(TimerStart(TIMER_SETOP_INTERSECT))
 
 	index1.resize(vec1.size());
 	index2.resize(vec2.size());
@@ -78,7 +75,6 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	index1.erase(index1.begin() + actualsize_index1, index1.end());
 	index2.erase(index2.begin() + actualsize_index2, index2.end());
 
-	TIMER_HIF(TimerStop(TIMER_SETOP_INTERSECT))
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 
@@ -91,7 +87,6 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-	TIMER_HIF(TimerStart(TIMER_SETOP_INTERSECT))
 
 	if (who == 1)
 	{
@@ -132,7 +127,6 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	}
 	index.erase(index.begin() + actualsize_index, index.end());
 
-	TIMER_HIF(TimerStop(TIMER_SETOP_INTERSECT))
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 
@@ -143,7 +137,6 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vect
 	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-	TIMER_HIF(TimerStart(TIMER_SETOP_INTERSECT))
 
 	vec.resize(vec1.size());
 	int actualsize_vec = 0;
@@ -169,7 +162,6 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vect
 	}
 	vec.erase(vec.begin() + actualsize_vec, vec.end());
 
-	TIMER_HIF(TimerStop(TIMER_SETOP_INTERSECT))
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 
@@ -183,7 +175,6 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-	TIMER_HIF(TimerStart(TIMER_SETOP_INTERSECT))
 
 	vec.resize(vec1.size());
 	if (who == 1)
@@ -220,7 +211,6 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	vec.erase(vec.begin() + actualsize_vec_index, vec.end());
 	index.erase(index.begin() + actualsize_vec_index, index.end());
 
-	TIMER_HIF(TimerStop(TIMER_SETOP_INTERSECT))
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 

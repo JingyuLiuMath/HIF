@@ -76,11 +76,12 @@ HIFGraph<Scalar>::HIFGraph
 			"=================================================="
 		);
 		Log(
-			"        BuildTree        Fill"
+			"        BuildTree        Fill        SetOp"
 		);
 		Log(
 			setw(17), scientific, setprecision(2), TimerTotal(TIMER_INIT_BUILD),
-			setw(12), scientific, setprecision(2), TimerTotal(TIMER_INIT_FILL)
+			setw(12), scientific, setprecision(2), TimerTotal(TIMER_INIT_FILL),
+			setw(13), scientific, setprecision(2), TimerTotal(TIMER_SETOP)
 		);
 	)
 }
