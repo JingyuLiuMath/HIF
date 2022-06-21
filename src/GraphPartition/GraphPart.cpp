@@ -148,7 +148,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     xadj[0] = 0;
     for (int t = 1; t <= nvtxs; t++)
     {
-        xadj[t] = offsetA[t] - 1;
+        xadj[t] = offsetA[t] - t;
     }
     /*idx_t* xadj;
     vector<int> rowindex(nnzA, 0);
