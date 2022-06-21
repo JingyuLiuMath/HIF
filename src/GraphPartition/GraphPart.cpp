@@ -140,7 +140,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     // nvtxs.
     idx_t nvtxs = A.Height();
     // xadj.
-    const int* sourceA = A.LockedTargetBuffer();
+    const int* sourceA = A.LockedSourceBuffer();
     const int* targetA = A.LockedTargetBuffer();
     const int* offsetA = A.LockedOffsetBuffer();
     int nnzA = A.NumEntries();
