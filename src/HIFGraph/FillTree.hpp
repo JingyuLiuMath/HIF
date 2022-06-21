@@ -15,9 +15,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrixS& A)
 		SparseMatrixS Aneed;
 		
 		El::Zeros(AII_, intr_.size(), intr_.size());
-		TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
 		Aneed = A(intr_, intr_);
-		TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
 		if ((Aneed.Height() > 0) && (Aneed.Width()> 0))
 		{
 			Aneed.QueueUpdate(Aneed.Height() - 1, Aneed.Width() - 1, Scalar(0));
@@ -26,9 +24,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrixS& A)
 		FullMat(Aneed, AII_);
 
 		El::Zeros(ASI_, sep_.size(), intr_.size());
-		TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
 		Aneed = A(sep_, intr_);
-		TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
 		if ((Aneed.Height() > 0) && (Aneed.Width() > 0))
 		{
 			Aneed.QueueUpdate(Aneed.Height() - 1, Aneed.Width() - 1, Scalar(0));
@@ -37,9 +33,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrixS& A)
 		FullMat(Aneed, ASI_);
 
 		El::Zeros(ASS_, sep_.size(), sep_.size());
-		TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
 		Aneed = A(sep_, sep_);
-		TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
 		if ((Aneed.Height() > 0) && (Aneed.Width() > 0))
 		{
 			Aneed.QueueUpdate(Aneed.Height() - 1, Aneed.Width() - 1, Scalar(0));
@@ -48,9 +42,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrixS& A)
 		FullMat(Aneed, ASS_);
 		
 		El::Zeros(ANS_, nb_.size(), sep_.size());
-		TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
 		Aneed = A(nb_, sep_);
-		TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
 		if ((Aneed.Height() > 0) && (Aneed.Width() > 0))
 		{
 			Aneed.QueueUpdate(Aneed.Height() - 1, Aneed.Width() - 1, Scalar(0));
