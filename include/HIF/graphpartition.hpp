@@ -19,10 +19,6 @@ template <typename Scalar>
 void MetisSepPart(const SparseMatrix<Scalar>& A,
     vector<int>& p1, vector<int>& p2, vector<int>& sep);
 
-void Accumarray(const vector<int>& vec, vector<int>& count);
-
-void Cumsum(vector<int>& vec);
-
 } // namespace HIF.
 
 #endif //METISMEX_HPP

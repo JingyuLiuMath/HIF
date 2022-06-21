@@ -150,44 +150,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     {
         xadj[t] = offsetA[t] - t;
     }
-    /*idx_t* xadj;
-    vector<int> rowindex(nnzA, 0);
-    vector<int> colindex(nnzA, 0);
-    for (int t = 0; t < nnzA; t++)
-    {
-        rowindex[t] = targetA[t];
-        colindex[t] = sourceA[t];
-    }
-    vector<int> rowindex_copy(rowindex);
-    vector<int> colindex_copy(colindex);
-    int actualsize = 0;
-    for (int k = 0; k < rowindex_copy.size(); k++)
-    {
-        if (rowindex_copy[k] != colindex_copy[k])
-        {
-            rowindex[actualsize] = rowindex_copy[k];
-            colindex[actualsize] = colindex_copy[k];
-            actualsize++;
-        }
-    }
-    rowindex.erase(rowindex.begin() + actualsize, rowindex.end());
-    colindex.erase(colindex.begin() + actualsize, colindex.end());
-    if (colindex.size() == 0)
-    {
-        xadj = NULL;
-    }
-    else
-    {
-        vector<int> cumsum_accumj;
-        Accumarray(colindex, cumsum_accumj);
-        Cumsum(cumsum_accumj);
-        xadj = new idx_t[cumsum_accumj.size() + 1];
-        xadj[0] = 0;
-        for (int i = 0; i < cumsum_accumj.size(); i++)
-        {
-            xadj[i + 1] = cumsum_accumj[i];
-        }
-    }*/
     // adjncy.
     idx_t* adjncy = new idx_t[nnzA - nvtxs];
     int actualsize_adjncy = 0;
@@ -199,17 +161,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
             actualsize_adjncy++;
         }
     }
-    /*if (rowindex.size() == 0)
-    {
-        RangeVec(0, nvtxs, sep);
-        return;
-    }
-    idx_t* adjncy = new idx_t[rowindex.size()];
-    for (int t = 0; t < rowindex.size(); t++)
-    {
-        adjncy[t] = rowindex[t];
-    }*/
-
+    // others.
     idx_t* vwgt = NULL;
     idx_t options[METIS_NOPTIONS];
     METIS_SetDefaultOptions(options);
@@ -335,30 +287,6 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 
     // Clean up
     FreeCtrl(&ctrl);
-}
-
-// count = accumarray(vec, 1).
-void Accumarray(const vector<int>& vec, vector<int>& count)
-{
-    DEBUG_HIF(CallStackEntry cse("Accumarray"))
-
-    int maxvec = *(std::max_element(vec.begin(), vec.end()));
-    count = vector<int> (maxvec + 1, 0);
-    for (int i = 0; i < vec.size(); i++)
-    {
-        count[vec[i]] += 1;
-    }
-}
-
-// a = cumsum(vec)
-void Cumsum(vector<int>& vec)
-{
-    DEBUG_HIF(CallStackEntry cse("Cumsum"))
-
-    for (int i = 1; i < vec.size(); i++)
-    {
-        vec[i] += vec[i - 1];
-    }
 }
 
 #define PROTOTYPE_PART(Scalar) \
