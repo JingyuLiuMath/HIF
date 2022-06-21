@@ -145,6 +145,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     const int* offsetA = A.LockedOffsetBuffer();
     int nnzA = A.NumEntries();
     idx_t* xadj = new idx_t[nvtxs + 1];
+    xadj[0] = 0;
     for (int t = 1; t <= nvtxs; t++)
     {
         xadj[t] = offsetA[t] - 1;
