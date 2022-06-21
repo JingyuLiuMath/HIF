@@ -154,6 +154,7 @@ enum TimerType
     TIMER_APPLY,
     TIMER_MEM_COLL,
     TIMER_DEBUG,
+    TIMER_GETSUBMATRIX,
     NUM_OF_TIMER_TYPE
 };
 

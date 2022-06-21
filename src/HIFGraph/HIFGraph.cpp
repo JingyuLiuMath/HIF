@@ -77,12 +77,13 @@ HIFGraph<Scalar>::HIFGraph
 			"=================================================="
 		);
 		Log(
-			"        BuildTree        Fill        SetOp"
+			"        BuildTree        Fill        SetOp        GetSubMatrix"
 		);
 		Log(
 			setw(17), scientific, setprecision(2), TimerTotal(TIMER_INIT_BUILD),
 			setw(12), scientific, setprecision(2), TimerTotal(TIMER_INIT_FILL),
-			setw(13), scientific, setprecision(2), TimerTotal(TIMER_SETOP)
+			setw(13), scientific, setprecision(2), TimerTotal(TIMER_SETOP),
+			setw(20), scientific, setprecision(2), TimerTotal(TIMER_GETSUBMATRIX)
 		);
 	)
 }

@@ -36,11 +36,6 @@ void GraphPart(const SparseMatrix<Scalar>& A,
         {
             tmpsep2[index_sep2i[t]] += 1;
         }
-        /*vector<int> sep2i;
-        Intersect_Sort(sep2i_tmp, p2, sep2i);
-        sep2.insert(sep2.end(), sep2i.begin(), sep2i.end());
-        sort(sep2.begin(), sep2.end());
-        Unique_Sort(sep2);*/
     }
     sep2.resize(p2.size());
     int actualsize_sep2 = 0;
@@ -108,7 +103,10 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     singleidx.erase(singleidx.begin() + actualsize_singleidx, singleidx.end());
     idx.erase(idx.begin() + actualsize_idx, idx.end());
     
+    TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
     SparseMatrix<Scalar> A1 = A(idx, idx);
+    TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
+
     vector<int> lidx, ridx, sepidx;
     MetisSepPart(A1, lidx, ridx, sepidx);
         
