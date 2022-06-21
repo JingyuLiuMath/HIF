@@ -135,6 +135,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 {
     DEBUG_HIF(CallStackEntry cse("MetisSepPart"))
 
+    TIMER_HIF(TimerStart(TIMER_METIS))
     // nvtxs.
     idx_t nvtxs = A.Height();
     // xadj.
@@ -285,6 +286,7 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 
     // Clean up
     FreeCtrl(&ctrl);
+    TIMER_HIF(TimerStop(TIMER_METIS))
 }
 
 #define PROTOTYPE_PART(Scalar) \
