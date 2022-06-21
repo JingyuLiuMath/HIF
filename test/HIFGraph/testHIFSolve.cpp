@@ -79,8 +79,9 @@ int main(int argc, char* argv[])
 		readTimer.Stop();
 		MasterCout("Reading input ends in ", readTimer.Total(), " sec.");
 		
-		//sourceB is ordered from small to large, CSR format.
-		/*SparseMatrix<double> B(4, 6);
+		//sourceB is ordered from small to large, 
+		// offset B is CSR format.
+		SparseMatrix<double> B(4, 6);
 		B.QueueUpdate(0, 0, 10);
 		B.QueueUpdate(0, 1, 20);
 		B.QueueUpdate(1, 1, 30);
@@ -102,8 +103,8 @@ int main(int argc, char* argv[])
 		for (int k = 0; k < 5; k++)
 		{
 			std::cout << offsetB[k] << std::endl;
-		}*/
-
+		}
+		/*
 		// Initialization.
 		El::Timer initTimer("InitTimer");
 		initTimer.Start();
@@ -161,6 +162,7 @@ int main(int argc, char* argv[])
 				"=================================================="
 			);
 		)
+		*/
 	}
 	catch (std::exception& e)
 	{
