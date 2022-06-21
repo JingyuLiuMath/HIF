@@ -117,7 +117,6 @@ int main(int argc, char* argv[])
 			{
 				for (int k = 0; k < nnzA; k++)
 				{
-					// Y.Update(sourceA[k], col, valueA[k] * X.Get(targetA[k], col));
 					Y.Set(sourceA[k], col, alpha * valueA[k] * X.Get(targetA[k], col) + beta * Y.Get(sourceA[k], col));
 				}
 			}
