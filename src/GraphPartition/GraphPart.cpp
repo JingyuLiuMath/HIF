@@ -107,18 +107,81 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     SparseMatrix<Scalar> A1 = A(idx, idx);
     TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
 
-    // TIMER_PROCESSQ
-    SparseMatrix<Scalar> testA(A1.Height(), A1.Width());
-    const int* sourceA1 = A1.LockedSourceBuffer();
-    const int* targetA1 = A1.LockedTargetBuffer();
-    const Scalar* valueA1 = A1.LockedValueBuffer();
-    int nnzA1 = A1.NumEntries();
-    for (int t = 0; t < nnzA1; t++)
+    // TIMER_GETSUBMATRIX
+    SparseMatrix<Scalar> ASub(idx.size(), idx.size());
+    const int* targetA = A.LockedTargetBuffer();
+    const int* offsetA = A.LockedOffsetBuffer();
+    const Scalar* valueA = A.LockedValueBuffer();
+    int Irow = -1;
+    int nnzIrow = -1;
+    int startIrow = -1;
+    int endIrow = -1;
+    int i = -1;
+    int j = -1;
+    int starti = -1;
+    int endi = -1;
+    int tmpindex = 1;
+    int loop = 0;
+    for (int row = 0; row < idx.size(); row++)
     {
-        testA.QueueUpdate(sourceA1[t], targetA1[t], valueA1[t]);
+        Irow = idx[row];
+        startIrow = offsetA[Irow];
+        endIrow = offsetA[Irow + 1];
+        j = 0;
+        starti = startIrow;
+        endi = endIrow - 1;
+        while (starti < endi)
+        {
+            tmpindex = (starti + endi) / 2;
+            if (targetA[tmpindex] < idx[0])
+            {
+                starti = tmpindex + 1;
+            }
+            else if (targetA[tmpindex] > idx[0])
+            {
+                endi = tmpindex - 1;
+            }
+            else
+            {
+                starti = tmpindex;
+                break;
+            }
+        }
+        i = starti;
+        while ((i < endIrow) && (j < idx.size()))
+        {
+            if (targetA[i] < idx[j])
+            {
+                i++;
+                loop++;
+            }
+            else if (targetA[i] > idx[j])
+            {
+                j++;
+                loop++;
+            }
+            else
+            {
+                ASub.QueueUpdate(row, j, valueA[i]);
+                i++;
+                j++;
+                loop++;
+            }
+        }
     }
+    INFO_HIF
+    (
+        Log(
+            "       I_size        J_size        loop"
+        );
+        Log(
+            setw(14), idx.size(),
+            setw(14), idx.size(),
+            setw(12), loop
+        );
+    )
     TIMER_HIF(TimerStart(TIMER_PROCESSQ))
-    testA.ProcessQueues();
+    ASub.ProcessQueues();
     TIMER_HIF(TimerStop(TIMER_PROCESSQ))
 
     vector<int> lidx, ridx, sepidx;

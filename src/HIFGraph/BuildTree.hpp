@@ -23,21 +23,84 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 	// Partition.
 
 	TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
-	SparseMatrix<Scalar> tmpA = A(vtx_, vtx_);
+	SparseMatrixS tmpA = A(vtx_, vtx_);
 	TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
 
-	// TIMER_PROCESSQ
-	SparseMatrix<Scalar> testA(tmpA.Height(), tmpA.Width());
-	const int* sourcetmpA = tmpA.LockedSourceBuffer();
-	const int* targettmpA = tmpA.LockedTargetBuffer();
-	const Scalar* valuetmpA = tmpA.LockedValueBuffer();
-	int nnztmpA = tmpA.NumEntries();
-	for (int t = 0; t < nnztmpA; t++)
+	// TIMER_GETSUBMATRIX
+	SparseMatrixS ASub(vtx_.size(), vtx_.size());
+	const int* targetA = A.LockedTargetBuffer();
+	const int* offsetA = A.LockedOffsetBuffer();
+	const Scalar* valueA = A.LockedValueBuffer();
+	int Irow = -1;
+	int nnzIrow = -1;
+	int startIrow = -1;
+	int endIrow = -1;
+	int i = -1;
+	int j = -1;
+	int starti = -1;
+	int endi = -1;
+	int tmpindex = 1;
+	int loop = 0;
+	for (int row = 0; row < vtx_.size(); row++)
 	{
-		testA.QueueUpdate(sourcetmpA[t], targettmpA[t], valuetmpA[t]);
+		Irow = vtx_[row];
+		startIrow = offsetA[Irow];
+		endIrow = offsetA[Irow + 1];
+		j = 0;
+		starti = startIrow;
+		endi = endIrow - 1;
+		while (starti < endi)
+		{
+			tmpindex = (starti + endi) / 2;
+			if (targetA[tmpindex] < vtx_[0])
+			{
+				starti = tmpindex + 1;
+			}
+			else if (targetA[tmpindex] > vtx_[0])
+			{
+				endi = tmpindex - 1;
+			}
+			else
+			{
+				starti = tmpindex;
+				break;
+			}
+		}
+		i = starti;
+		while ((i < endIrow) && (j < vtx_.size()))
+		{
+			if (targetA[i] < vtx_[j])
+			{
+				i++;
+				loop++;
+			}
+			else if (targetA[i] > vtx_[j])
+			{
+				j++;
+				loop++;
+			}
+			else
+			{
+				ASub.QueueUpdate(row, j, valueA[i]);
+				i++;
+				j++;
+				loop++;
+			}
+		}
 	}
+	INFO_HIF
+	(
+		Log(
+			"       I_size        J_size        loop"
+		);
+		Log(
+			setw(14), vtx_.size(),
+			setw(14), vtx_.size(),
+			setw(12), loop
+		);
+	)
 	TIMER_HIF(TimerStart(TIMER_PROCESSQ))
-	testA.ProcessQueues();
+	ASub.ProcessQueues();
 	TIMER_HIF(TimerStop(TIMER_PROCESSQ))
 
 	vector<int> p1, p2, sp1, sp2;
@@ -94,18 +157,81 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 	SparseMatrixS nbA = A(sep_, nb_);
 	TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
 
-	// TIMER_PROCESSQ
-	SparseMatrix<Scalar> testA(nbA.Height(), nbA.Width());
-	const int* sourcenbA = nbA.LockedSourceBuffer();
-	const int* targetnbA = nbA.LockedTargetBuffer();
-	const Scalar* valuenbA = nbA.LockedValueBuffer();
-	int nnznbA = nbA.NumEntries();
-	for (int t = 0; t < nnznbA; t++)
+	// TIMER_GETSUBMATRIX
+	SparseMatrixS ASub(sep_.size(), nb_.size());
+	const int* targetA = A.LockedTargetBuffer();
+	const int* offsetA = A.LockedOffsetBuffer();
+	const Scalar* valueA = A.LockedValueBuffer();
+	int Irow = -1;
+	int nnzIrow = -1;
+	int startIrow = -1;
+	int endIrow = -1;
+	int i = -1;
+	int j = -1;
+	int starti = -1;
+	int endi = -1;
+	int tmpindex = 1;
+	int loop = 0;
+	for (int row = 0; row < sep_.size(); row++)
 	{
-		testA.QueueUpdate(sourcenbA[t], targetnbA[t], valuenbA[t]);
+		Irow = sep_[row];
+		startIrow = offsetA[Irow];
+		endIrow = offsetA[Irow + 1];
+		j = 0;
+		starti = startIrow;
+		endi = endIrow - 1;
+		while (starti < endi)
+		{
+			tmpindex = (starti + endi) / 2;
+			if (targetA[tmpindex] < nb_[0])
+			{
+				starti = tmpindex + 1;
+			}
+			else if (targetA[tmpindex] > nb_[0])
+			{
+				endi = tmpindex - 1;
+			}
+			else
+			{
+				starti = tmpindex;
+				break;
+			}
+		}
+		i = starti;
+		while ((i < endIrow) && (j < nb_.size()))
+		{
+			if (targetA[i] < nb_[j])
+			{
+				i++;
+				loop++;
+			}
+			else if (targetA[i] > nb_[j])
+			{
+				j++;
+				loop++;
+			}
+			else
+			{
+				ASub.QueueUpdate(row, j, valueA[i]);
+				i++;
+				j++;
+				loop++;
+			}
+		}
 	}
+	INFO_HIF
+	(
+		Log(
+			"       I_size        J_size        loop"
+		);
+		Log(
+			setw(14), sep_.size(),
+			setw(14), nb_.size(),
+			setw(12), loop
+		);
+	)
 	TIMER_HIF(TimerStart(TIMER_PROCESSQ))
-	testA.ProcessQueues();
+	ASub.ProcessQueues();
 	TIMER_HIF(TimerStop(TIMER_PROCESSQ))
 
 	for (int i = 0; i < sep_.size(); i++)
