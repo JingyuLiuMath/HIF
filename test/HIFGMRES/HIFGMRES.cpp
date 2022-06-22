@@ -113,11 +113,12 @@ int main(int argc, char* argv[])
 			const int* sourceA = A.LockedSourceBuffer();
 			const int* targetA = A.LockedTargetBuffer();
 			const double* valueA = A.LockedValueBuffer();
+			Y *= beta;
 			for (int col = 0; col < Y.Width(); col++)
 			{
 				for (int k = 0; k < nnzA; k++)
 				{
-					Y.Set(sourceA[k], col, alpha * valueA[k] * X.Get(targetA[k], col) + beta * Y.Get(sourceA[k], col));
+					Y.Update(sourceA[k], col, alpha * valueA[k] * X.Get(targetA[k], col));
 				}
 			}
 		};
