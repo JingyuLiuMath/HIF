@@ -109,7 +109,6 @@ void MetisPart(const SparseMatrix<Scalar>& A,
 
     // TIMER_GETSUBMATRIX
     SparseMatrix<Scalar> ASub(idx.size(), idx.size());
-    const int* targetA = A.LockedTargetBuffer();
     const int* offsetA = A.LockedOffsetBuffer();
     const Scalar* valueA = A.LockedValueBuffer();
     int Irow = -1;
