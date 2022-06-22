@@ -13,15 +13,60 @@ bool Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2)
 	bool result = false;
 	int i = 0;
 	int j = 0;
+	int starti = -1;
+	int endi = -1;
+	int startj = -1;
+	int endj = -1;
+	int tmpindex = -1;
 	while (i < vec1.size() && j < vec2.size())
 	{
 		if (vec1[i] < vec2[j])
 		{
-			i++;
+			// Find i where i is the min index such that vec1[i] >= vec2[j].
+			starti = i + 1;
+			endi = vec1.size() - 1;
+			while (starti < endi)
+			{
+				tmpindex = (starti + endi) / 2;
+				if (vec1[tmpindex] < vec2[j])
+				{
+					starti = tmpindex + 1;
+				}
+				else if (vec1[tmpindex] > vec2[j])
+				{
+					endi = tmpindex - 1;
+				}
+				else
+				{
+					starti = tmpindex;
+					break;
+				}
+			}
+			i = starti;
 		}
 		else if (vec1[i] > vec2[j])
 		{
-			j++;
+			// Find j where j is the min index such that vec2[j] >= vec1[i].
+			startj = j + 1;
+			endj = vec2.size() - 1;
+			while (startj < endj)
+			{
+				tmpindex = (startj + endj) / 2;
+				if (vec2[tmpindex] < vec1[i])
+				{
+					startj = tmpindex + 1;
+				}
+				else if (vec2[tmpindex] > vec1[i])
+				{
+					endj = tmpindex - 1;
+				}
+				else
+				{
+					startj = tmpindex;
+					break;
+				}
+			}
+			j = startj;
 		}
 		else
 		{
@@ -52,15 +97,60 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	int actualsize_index2 = 0;
 	int i = 0;
 	int j = 0;
+	int starti = -1;
+	int endi = -1;
+	int startj = -1;
+	int endj = -1;
+	int tmpindex = -1;
 	while (i < vec1.size() && j < vec2.size())
 	{
 		if (vec1[i] < vec2[j])
 		{
-			i++;
+			// Find i where i is the min index such that vec1[i] >= vec2[j].
+			starti = i + 1;
+			endi = vec1.size() - 1;
+			while (starti < endi)
+			{
+				tmpindex = (starti + endi) / 2;
+				if (vec1[tmpindex] < vec2[j])
+				{
+					starti = tmpindex + 1;
+				}
+				else if (vec1[tmpindex] > vec2[j])
+				{
+					endi = tmpindex - 1;
+				}
+				else
+				{
+					starti = tmpindex;
+					break;
+				}
+			}
+			i = starti;
 		}
 		else if (vec1[i] > vec2[j])
 		{
-			j++;
+			// Find j where j is the min index such that vec2[j] >= vec1[i].
+			startj = j + 1;
+			endj = vec2.size() - 1;
+			while (startj < endj)
+			{
+				tmpindex = (startj + endj) / 2;
+				if (vec2[tmpindex] < vec1[i])
+				{
+					startj = tmpindex + 1;
+				}
+				else if (vec2[tmpindex] > vec1[i])
+				{
+					endj = tmpindex - 1;
+				}
+				else
+				{
+					startj = tmpindex;
+					break;
+				}
+			}
+			j = startj;
 		}
 		else
 		{
@@ -99,15 +189,60 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	int actualsize_index = 0;
 	int i = 0;
 	int j = 0;
+	int starti = -1;
+	int endi = -1;
+	int startj = -1;
+	int endj = -1;
+	int tmpindex = -1;
 	while (i < vec1.size() && j < vec2.size())
 	{
 		if (vec1[i] < vec2[j])
 		{
-			i++;
+			// Find i where i is the min index such that vec1[i] >= vec2[j].
+			starti = i + 1;
+			endi = vec1.size() - 1;
+			while (starti < endi)
+			{
+				tmpindex = (starti + endi) / 2;
+				if (vec1[tmpindex] < vec2[j])
+				{
+					starti = tmpindex + 1;
+				}
+				else if (vec1[tmpindex] > vec2[j])
+				{
+					endi = tmpindex - 1;
+				}
+				else
+				{
+					starti = tmpindex;
+					break;
+				}
+			}
+			i = starti;
 		}
 		else if (vec1[i] > vec2[j])
 		{
-			j++;
+			// Find j where j is the min index such that vec2[j] >= vec1[i].
+			startj = j + 1;
+			endj = vec2.size() - 1;
+			while (startj < endj)
+			{
+				tmpindex = (startj + endj) / 2;
+				if (vec2[tmpindex] < vec1[i])
+				{
+					startj = tmpindex + 1;
+				}
+				else if (vec2[tmpindex] > vec1[i])
+				{
+					endj = tmpindex - 1;
+				}
+				else
+				{
+					startj = tmpindex;
+					break;
+				}
+			}
+			j = startj;
 		}
 		else
 		{
@@ -142,15 +277,60 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vect
 	int actualsize_vec = 0;
 	int i = 0;
 	int j = 0;
+	int starti = -1;
+	int endi = -1;
+	int startj = -1;
+	int endj = -1;
+	int tmpindex = -1;
 	while (i < vec1.size() && j < vec2.size())
 	{
 		if (vec1[i] < vec2[j])
 		{
-			i++;
+			// Find i where i is the min index such that vec1[i] >= vec2[j].
+			starti = i + 1;
+			endi = vec1.size() - 1;
+			while (starti < endi)
+			{
+				tmpindex = (starti + endi) / 2;
+				if (vec1[tmpindex] < vec2[j])
+				{
+					starti = tmpindex + 1;
+				}
+				else if (vec1[tmpindex] > vec2[j])
+				{
+					endi = tmpindex - 1;
+				}
+				else
+				{
+					starti = tmpindex;
+					break;
+				}
+			}
+			i = starti;
 		}
 		else if (vec1[i] > vec2[j])
 		{
-			j++;
+			// Find j where j is the min index such that vec2[j] >= vec1[i].
+			startj = j + 1;
+			endj = vec2.size() - 1;
+			while (startj < endj)
+			{
+				tmpindex = (startj + endj) / 2;
+				if (vec2[tmpindex] < vec1[i])
+				{
+					startj = tmpindex + 1;
+				}
+				else if (vec2[tmpindex] > vec1[i])
+				{
+					endj = tmpindex - 1;
+				}
+				else
+				{
+					startj = tmpindex;
+					break;
+				}
+			}
+			j = startj;
 		}
 		else
 		{
@@ -182,15 +362,60 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	int actualsize_vec_index = 0;
 	int i = 0;
 	int j = 0;
+	int starti = -1;
+	int endi = -1;
+	int startj = -1;
+	int endj = -1;
+	int tmpindex = -1;
 	while (i < vec1.size() && j < vec2.size())
 	{
 		if (vec1[i] < vec2[j])
 		{
-			i++;
+			// Find i where i is the min index such that vec1[i] >= vec2[j].
+			starti = i + 1;
+			endi = vec1.size() - 1;
+			while (starti < endi)
+			{
+				tmpindex = (starti + endi) / 2;
+				if (vec1[tmpindex] < vec2[j])
+				{
+					starti = tmpindex + 1;
+				}
+				else if (vec1[tmpindex] > vec2[j])
+				{
+					endi = tmpindex - 1;
+				}
+				else
+				{
+					starti = tmpindex;
+					break;
+				}
+			}
+			i = starti;
 		}
 		else if (vec1[i] > vec2[j])
 		{
-			j++;
+			// Find j where j is the min index such that vec2[j] >= vec1[i].
+			startj = j + 1;
+			endj = vec2.size() - 1;
+			while (startj < endj)
+			{
+				tmpindex = (startj + endj) / 2;
+				if (vec2[tmpindex] < vec1[i])
+				{
+					startj = tmpindex + 1;
+				}
+				else if (vec2[tmpindex] > vec1[i])
+				{
+					endj = tmpindex - 1;
+				}
+				else
+				{
+					startj = tmpindex;
+					break;
+				}
+			}
+			j = startj;
 		}
 		else
 		{

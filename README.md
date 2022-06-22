@@ -6,13 +6,7 @@ Hierarchical Interpolative Factorization (HIF) is a fast solver for symmetric li
 
 Jingyu Liu, Fudan University, 381258337@qq.com
 
-## Aknowledgement
-
-Many thanks to [Yingzhou Li](https://www.yingzhouli.com/). Without his guidance and help, the code can't be finished.
-
-June 15, 2022
-
-## How to run my code?
+## How to run
 
 ### Compile (Local) Elemental
 
@@ -54,3 +48,9 @@ cd bin/HIFGraph/
 ```
 
 And see `log.log` in the dir log for more inforamtion.
+
+## Aknowledgement
+
+Many thanks to [Yingzhou Li](https://www.yingzhouli.com/). Without his guidance and help, the code can't be finished.
+
+June 22, 2022
