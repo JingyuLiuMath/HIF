@@ -114,15 +114,15 @@ void GetSubmatrix
 
 template<typename T>
 void GetSubmatrix
-( const SparseMatrix<T>& A,
-  const vector<Int>& I,
-  const vector<Int>& J,
-        SparseMatrix<T>& ASub )
+(const SparseMatrix<T>& A,
+    const vector<Int>& I,
+    const vector<Int>& J,
+    SparseMatrix<T>& ASub)
 {
     EL_DEBUG_CSE
     // TODO(poulson): Decide how to handle unsorted I and J with duplicates
     // LogicError("This routine is not yet written");
-    // REMARK(Jingyu Liu): The function is correct only when I and J are sorted.
+    // REMARK(Jingyu Liu): The function is correct only when I and J are sorted and unique.
     ASub.Resize(I.size(), J.size());
     const Int* sourceA = A.LockedSourceBuffer();
     const Int* targetA = A.LockedTargetBuffer();
@@ -136,43 +136,65 @@ void GetSubmatrix
     Int j = -1;
     Int starti = -1;
     Int endi = -1;
-    Int tmpindex = 1;
+    Int startj = -1;
+    Int endj = -1;
+    Int tmpindex = -1;
     for (Int row = 0; row < I.size(); row++)
     {
         Irow = I[row];
         startIrow = offsetA[Irow];
         endIrow = offsetA[Irow + 1];
+        i = startIrow;
         j = 0;
-        starti = startIrow;
-        endi = endIrow - 1;
-        // Find J[0], J and Target(startIrow:endIrow-1) is sorted. targetA[starti] = J[0]
-        while (starti < endi)
-        {
-            tmpindex = (starti + endi) / 2;
-            if (targetA[tmpindex] < J[0])
-            {
-                starti = tmpindex + 1;
-            }
-            else if (targetA[tmpindex] > J[0])
-            {
-                endi = tmpindex - 1;
-            }
-            else
-            {
-                starti = tmpindex;
-                break;
-            }
-        }
-        i = starti;
         while ((i < endIrow) && (j < J.size()))
         {
             if (targetA[i] < J[j])
             {
-                i++;
+                // Find i where i is the min index such that targrt[i] >= J[j].
+                starti = i + 1;
+                endi = endIrow - 1;
+                while (starti < endi)
+                {
+                    tmpindex = (starti + endi) / 2;
+                    if (targetA[tmpindex] < J[j])
+                    {
+                        starti = tmpindex + 1;
+                    }
+                    else if (targetA[tmpindex] > J[j])
+                    {
+                        endi = tmpindex - 1;
+                    }
+                    else
+                    {
+                        starti = tmpindex;
+                        break;
+                    }
+                }
+                i = starti;
             }
             else if (targetA[i] > J[j])
             {
-                j++;
+                // Find j where j is the min index such that J[j] >= targrt[i].  
+                startj = j + 1;
+                endj = J.size() - 1;
+                while (startj < endj)
+                {
+                    tmpindex = (startj + endj) / 2;
+                    if (J[tmpindex] < targetA[i])
+                    {
+                        startj = tmpindex + 1;
+                    }
+                    else if (J[tmpindex] > targetA[i])
+                    {
+                        endj = tmpindex - 1;
+                    }
+                    else
+                    {
+                        startj = tmpindex;
+                        break;
+                    }
+                }
+                j = startj;
             }
             else
             {
@@ -184,7 +206,6 @@ void GetSubmatrix
     }
     ASub.ProcessQueues();
 }
-
 // TODO(poulson): Use lower-level access
 template<typename T>
 void GetSubmatrix
