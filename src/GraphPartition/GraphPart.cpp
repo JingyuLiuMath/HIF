@@ -12,6 +12,7 @@ void GraphPart(const SparseMatrix<Scalar>& A,
 
     MetisPart(A, p1, p2, sep1);
     // p1 = p1 + sep1, p2 = p2, sep2 need to be assigned.
+    TIMER_HIF(TimerStart(TIMER_SETSEP2))
     p1.insert(p1.end(), sep1.begin(), sep1.end());
     sort(p1.begin(), p1.end());
     sort(sep1.begin(), sep1.end());
@@ -48,6 +49,7 @@ void GraphPart(const SparseMatrix<Scalar>& A,
         }
     }
     sep2.erase(sep2.begin() + actualsize_sep2, sep2.end());
+    TIMER_HIF(TimerStop(TIMER_SETSEP2))
 }
 
 // Metis partition.
@@ -60,31 +62,6 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     // degree = sum((spones(nvtxs) - speye(size(nvtxs))) > 0);
     // singleidx = find(degree == 0);
     // idx = find(degree > 0);
-    
-    /*SparseMatrix<int> B;
-    B.Resize(A.Height(), A.Width());
-    const int* sourceA = A.LockedSourceBuffer();
-    const int* targetA = A.LockedTargetBuffer();
-    int nnzA = A.NumEntries();
-    for (int t = 0; t < nnzA; t++)
-    {
-        B.QueueUpdate(sourceA[t], targetA[t], int(1));
-    }
-    B.ProcessQueues();
-    for (int t = 0; t < B.Height(); t++)
-    {
-        B.QueueUpdate(t, t, -1);
-    }
-    B.ProcessQueues();
-    vector<int> degree(B.Width(), 0);
-    for (int t = 0; t < nnzA; t++)
-    {
-        if (B.Get(sourceA[t], targetA[t]) != 0)
-        {
-            degree[targetA[t]] += 1;
-        }
-    }*/
-    
     const int* offsetA = A.LockedOffsetBuffer();
     vector<int> degree(A.Height(), 0);
     for (int t = 1; t <= A.Height(); t++)
