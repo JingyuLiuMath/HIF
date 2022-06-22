@@ -157,6 +157,12 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 	SparseMatrixS nbA = A(sep_, nb_);
 	TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
 
+	if ((sep_.size() < 20) && (nb_.size() < 20))
+	{
+		ShowVector(sep_, "sep");
+		ShowVector(nb_, "nb");
+		ShowMatrix(nbA, "nbA");
+	}
 	// TIMER_GETSUBMATRIX
 	SparseMatrixS ASub(sep_.size(), nb_.size());
 	const int* targetA = A.LockedTargetBuffer();

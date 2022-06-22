@@ -12,83 +12,45 @@ Many thanks to [Yingzhou Li](https://www.yingzhouli.com/). Without his guidance 
 
 June 15, 2022
 
-## Remarks
+## How to run my code?
 
-Since [Elemental](https://github.com/elemental/Elemental) is not complete, you need to write the following codes in order to run my code successfully.
+### Compile (Local) Elemental
 
-- /include/El/blas_like/level1/GetSubmatrix.hpp
+Remark: Since [Elemental](https://github.com/elemental/Elemental) is not complete, we write some functions and that's why we call it local Elemental.
 
-``` C++
-template<typename T>
-void GetSubmatrix
-( const SparseMatrix<T>& A,
-  const vector<Int>& I,
-  const vector<Int>& J,
-        SparseMatrix<T>& ASub )
-{
-    EL_DEBUG_CSE
-    // TODO(poulson): Decide how to handle unsorted I and J with duplicates
-    // LogicError("This routine is not yet written");
-    // REMARK(Jingyu Liu): The function is correct only when I and J are sorted.
-    ASub.Resize(I.size(), J.size());
-    const Int* sourceA = A.LockedSourceBuffer();
-    const Int* targetA = A.LockedTargetBuffer();
-    const Int* offsetA = A.LockedOffsetBuffer();
-    const T* valueA = A.LockedValueBuffer();
-    Int Irow = -1;
-    Int nnzIrow = -1;
-    Int startIrow = -1;
-    Int endIrow = -1;
-    Int i = -1;
-    Int j = -1;
-    Int starti = -1;
-    Int endi = -1;
-    Int tmpindex = 1;
-    for (Int row = 0; row < I.size(); row++)
-    {
-        Irow = I[row];
-        startIrow = offsetA[Irow];
-        endIrow = offsetA[Irow + 1];
-        j = 0;
-        starti = startIrow;
-        endi = endIrow - 1;
-        // Find J[0], J and Target(startIrow:endIrow-1) is sorted.
-        while (starti < endi)
-        {
-            tmpindex = (starti + endi) / 2;
-            if (targetA[tmpindex] < J[0])
-            {
-                starti = tmpindex + 1;
-            }
-            else if (targetA[tmpindex] > J[0])
-            {
-                endi = tmpindex - 1;
-            }
-            else
-            {
-                starti = tmpindex;
-                break;
-            }
-        }
-        i = starti;
-        while ((i < endIrow) && (j < J.size()))
-        {
-            if (targetA[i] < J[j])
-            {
-                i++;
-            }
-            else if (targetA[i] > J[j])
-            {
-                j++;
-            }
-            else
-            {
-                ASub.QueueUpdate(row, j, valueA[i]);
-                i++;
-                j++;
-            }
-        }
-    }
-    ASub.ProcessQueues();
-}
+``` bash
+cd extern/Elemental/
+mkdir build
+cd build/
+mkdir /home/jyliu/packages/elemental
+cmake -D CMAKE_INSTALL_PREFIX=/home/jyliu/packages/elemental/master/ \
+-D CMAKE_BUILD_TYPE=Release \
+-D GFORTRAN_LIB=/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/  \
+-D INSTALL_PYTHON_PACKAGE=OFF ..
+make -j64
+make install
 ```
+
+### Compile Metis
+
+Just follow the guide of [Metis](http://glaros.dtc.umn.edu/gkhome/metis/metis/overview).
+
+### Compile HIF
+
+Before compile HIF, please write a `.cmake` file. You can find an example in `cmake/toolchains/BigMem0.cmake`.
+
+``` bash
+mkdir build/
+cd build/
+cmake .. --toolchain <path/to/your/cmakefile>
+make -j64
+```
+
+### Run tests
+
+``` bash
+cd bin/HIFGraph/
+./HIF --input_A "path/to/A" --input_b "path/to/b" --minvtx 64 --HIFbutton true --tol 1e-3 --logApp true
+```
+
+And see `log.log` in the dir log for more inforamtion.
