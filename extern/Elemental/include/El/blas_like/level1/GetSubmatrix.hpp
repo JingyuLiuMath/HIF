@@ -150,6 +150,10 @@ void GetSubmatrix
         {
             if (targetA[i] < J[j])
             {
+                if (targetA[endIrow - 1] < J[j])
+                {
+                    break;
+                }
                 // Find i where i is the min index such that targrt[i] >= J[j].
                 starti = i + 1;
                 endi = endIrow - 1;
@@ -174,6 +178,10 @@ void GetSubmatrix
             }
             else if (targetA[i] > J[j])
             {
+                if (targetA[i] > J.back())
+                {
+                    break;
+                }
                 // Find j where j is the min index such that J[j] >= targrt[i].  
                 startj = j + 1;
                 endj = J.size() - 1;
