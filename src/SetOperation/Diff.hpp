@@ -27,6 +27,10 @@ void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Sc
 		}
 		else if (vec1[i] > vec2[j])
 		{
+			if (vec1[i] > vec2.back())
+			{
+				break;
+			}
 			// Find j where j is the min index such that vec2[j] >= vec1[i].
 			startj = j + 1;
 			endj = vec2.size() - 1;

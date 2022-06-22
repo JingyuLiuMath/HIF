@@ -22,6 +22,10 @@ bool Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2)
 	{
 		if (vec1[i] < vec2[j])
 		{
+			if (vec1.back() < vec2[j])
+			{
+				break;
+			}
 			// Find i where i is the min index such that vec1[i] >= vec2[j].
 			starti = i + 1;
 			endi = vec1.size() - 1;
@@ -46,6 +50,10 @@ bool Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2)
 		}
 		else if (vec1[i] > vec2[j])
 		{
+			if (vec1[i] > vec2.back())
+			{
+				break;
+			}
 			// Find j where j is the min index such that vec2[j] >= vec1[i].
 			startj = j + 1;
 			endj = vec2.size() - 1;
@@ -106,6 +114,10 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	{
 		if (vec1[i] < vec2[j])
 		{
+			if (vec1.back() < vec2[j])
+			{
+				break;
+			}
 			// Find i where i is the min index such that vec1[i] >= vec2[j].
 			starti = i + 1;
 			endi = vec1.size() - 1;
@@ -130,6 +142,10 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 		}
 		else if (vec1[i] > vec2[j])
 		{
+			if (vec1[i] > vec2.back())
+			{
+				break;
+			}
 			// Find j where j is the min index such that vec2[j] >= vec1[i].
 			startj = j + 1;
 			endj = vec2.size() - 1;
@@ -198,6 +214,10 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	{
 		if (vec1[i] < vec2[j])
 		{
+			if (vec1.back() < vec2[j])
+			{
+				break;
+			}
 			// Find i where i is the min index such that vec1[i] >= vec2[j].
 			starti = i + 1;
 			endi = vec1.size() - 1;
@@ -222,6 +242,10 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 		}
 		else if (vec1[i] > vec2[j])
 		{
+			if (vec1[i] > vec2.back())
+			{
+				break;
+			}
 			// Find j where j is the min index such that vec2[j] >= vec1[i].
 			startj = j + 1;
 			endj = vec2.size() - 1;
@@ -286,6 +310,10 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vect
 	{
 		if (vec1[i] < vec2[j])
 		{
+			if (vec1.back() < vec2[j])
+			{
+				break;
+			}
 			// Find i where i is the min index such that vec1[i] >= vec2[j].
 			starti = i + 1;
 			endi = vec1.size() - 1;
@@ -310,6 +338,10 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vect
 		}
 		else if (vec1[i] > vec2[j])
 		{
+			if (vec1[i] > vec2.back())
+			{
+				break;
+			}
 			// Find j where j is the min index such that vec2[j] >= vec1[i].
 			startj = j + 1;
 			endj = vec2.size() - 1;
@@ -371,6 +403,10 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	{
 		if (vec1[i] < vec2[j])
 		{
+			if (vec1.back() < vec2[j])
+			{
+				break;
+			}
 			// Find i where i is the min index such that vec1[i] >= vec2[j].
 			starti = i + 1;
 			endi = vec1.size() - 1;
@@ -395,6 +431,10 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 		}
 		else if (vec1[i] > vec2[j])
 		{
+			if (vec1[i] > vec2.back())
+			{
+				break;
+			}
 			// Find j where j is the min index such that vec2[j] >= vec1[i].
 			startj = j + 1;
 			endj = vec2.size() - 1;
