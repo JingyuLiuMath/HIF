@@ -22,8 +22,7 @@ template void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& v
 template void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, \
 	vector<Scalar>& vec, vector<int>& index, int who); \
 template void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, \
-	vector<Scalar>& vec); \
-template void Unique_Sort(vector<Scalar>& vec);
+	vector<Scalar>& vec);
 
 PROTOTYPE_SET(int)
 PROTOTYPE_SET(float)
