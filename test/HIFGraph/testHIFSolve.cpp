@@ -10,6 +10,8 @@
 // bi
 // ...
 
+// Ax = b where x = ones(size(b)).
+
 using namespace HIF;
 
 int main(int argc, char* argv[])
