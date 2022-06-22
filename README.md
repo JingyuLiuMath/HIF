@@ -41,14 +41,36 @@ void GetSubmatrix
     Int endIrow = -1;
     Int i = -1;
     Int j = -1;
+    Int starti = -1;
+    Int endi = -1;
+    Int tmpindex = 1;
     for (Int row = 0; row < I.size(); row++)
     {
         Irow = I[row];
         startIrow = offsetA[Irow];
         endIrow = offsetA[Irow + 1];
-        i = startIrow;
         j = 0;
-        // J and Target(startIrow:endIrow-1) is sorted.
+        starti = startIrow;
+        endi = endIrow - 1;
+        // Find J[0], J and Target(startIrow:endIrow-1) is sorted.
+        while (starti < endi)
+        {
+            tmpindex = (starti + endi) / 2;
+            if (targetA[tmpindex] < J[0])
+            {
+                starti = tmpindex + 1;
+            }
+            else if (targetA[tmpindex] > J[0])
+            {
+                endi = tmpindex - 1;
+            }
+            else
+            {
+                starti = tmpindex;
+                break;
+            }
+        }
+        i = starti;
         while ((i < endIrow) && (j < J.size()))
         {
             if (targetA[i] < J[j])

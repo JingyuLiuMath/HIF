@@ -26,6 +26,20 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 	SparseMatrix<Scalar> tmpA = A(vtx_, vtx_);
 	TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
 
+	// TIMER_PROCESSQ
+	SparseMatrix<Scalar> testA(tmpA.Height(), tmpA.Width());
+	const int* sourcetmpA = tmpA.LockedSourceBuffer();
+	const int* targettmpA = tmpA.LockedTargetBuffer();
+	const Scalar* valuetmpA = tmpA.LockedValueBuffer();
+	int nnztmpA = tmpA.NumEntries();
+	for (int t = 0; t < nnztmpA; t++)
+	{
+		testA.QueueUpdate(sourcetmpA[t], targettmpA[t], valuetmpA[t]);
+	}
+	TIMER_HIF(TimerStart(TIMER_PROCESSQ))
+	testA.ProcessQueues();
+	TIMER_HIF(TimerStop(TIMER_PROCESSQ))
+
 	vector<int> p1, p2, sp1, sp2;
 	GraphPart(tmpA, p1, p2, sp1, sp2);
 	vector<int> vtx1, vtx2, sep1, sep2;
@@ -79,6 +93,20 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 	TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
 	SparseMatrixS nbA = A(sep_, nb_);
 	TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
+
+	// TIMER_PROCESSQ
+	SparseMatrix<Scalar> testA(nbA.Height(), nbA.Width());
+	const int* sourcenbA = nbA.LockedSourceBuffer();
+	const int* targetnbA = nbA.LockedTargetBuffer();
+	const Scalar* valuenbA = nbA.LockedValueBuffer();
+	int nnznbA = nbA.NumEntries();
+	for (int t = 0; t < nnznbA; t++)
+	{
+		testA.QueueUpdate(sourcenbA[t], targetnbA[t], valuenbA[t]);
+	}
+	TIMER_HIF(TimerStart(TIMER_PROCESSQ))
+	testA.ProcessQueues();
+	TIMER_HIF(TimerStop(TIMER_PROCESSQ))
 
 	for (int i = 0; i < sep_.size(); i++)
 	{
