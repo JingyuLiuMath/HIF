@@ -60,7 +60,8 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     // degree = sum((spones(nvtxs) - speye(size(nvtxs))) > 0);
     // singleidx = find(degree == 0);
     // idx = find(degree > 0);
-    SparseMatrix<int> B;
+    
+    /*SparseMatrix<int> B;
     B.Resize(A.Height(), A.Width());
     const int* sourceA = A.LockedSourceBuffer();
     const int* targetA = A.LockedTargetBuffer();
@@ -82,6 +83,13 @@ void MetisPart(const SparseMatrix<Scalar>& A,
         {
             degree[targetA[t]] += 1;
         }
+    }*/
+    
+    const int* offsetA = A.LockedOffsetBuffer();
+    vector<int> degree(A.Height(), 0);
+    for (int t = 1; t <= A.Height(); t++)
+    {
+        degree[t - 1] += (offsetA[t] - 1);
     }
     vector<int> singleidx(degree.size());
     vector<int> idx(degree.size());
@@ -106,82 +114,6 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
     SparseMatrix<Scalar> A1 = A(idx, idx);
     TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
-
-    // TIMER_GETSUBMATRIX
-    /*SparseMatrix<Scalar> ASub(idx.size(), idx.size());
-    const int* offsetA = A.LockedOffsetBuffer();
-    const Scalar* valueA = A.LockedValueBuffer();
-    int Irow = -1;
-    int nnzIrow = -1;
-    int startIrow = -1;
-    int endIrow = -1;
-    int i = -1;
-    int j = -1;
-    int starti = -1;
-    int endi = -1;
-    int tmpindex = 1;
-    int loop = 0;
-    for (int row = 0; row < idx.size(); row++)
-    {
-        Irow = idx[row];
-        startIrow = offsetA[Irow];
-        endIrow = offsetA[Irow + 1];
-        j = 0;
-        starti = startIrow;
-        endi = endIrow - 1;
-        while (starti < endi)
-        {
-            tmpindex = (starti + endi) / 2;
-            if (targetA[tmpindex] < idx[0])
-            {
-                starti = tmpindex + 1;
-            }
-            else if (targetA[tmpindex] > idx[0])
-            {
-                endi = tmpindex - 1;
-            }
-            else
-            {
-                starti = tmpindex;
-                break;
-            }
-        }
-        i = starti;
-        while ((i < endIrow) && (j < idx.size()))
-        {
-            if (targetA[i] < idx[j])
-            {
-                i++;
-                loop++;
-            }
-            else if (targetA[i] > idx[j])
-            {
-                j++;
-                loop++;
-            }
-            else
-            {
-                ASub.QueueUpdate(row, j, valueA[i]);
-                i++;
-                j++;
-                loop++;
-            }
-        }
-    }
-    INFO_HIF
-    (
-        Log(
-            "       I_size        J_size        loop"
-        );
-        Log(
-            setw(14), idx.size(),
-            setw(14), idx.size(),
-            setw(12), loop
-        );
-    )
-    TIMER_HIF(TimerStart(TIMER_PROCESSQ))
-    ASub.ProcessQueues();
-    TIMER_HIF(TimerStop(TIMER_PROCESSQ))*/
 
     vector<int> lidx, ridx, sepidx;
     MetisSepPart(A1, lidx, ridx, sepidx);
