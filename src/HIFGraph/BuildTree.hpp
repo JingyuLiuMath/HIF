@@ -27,7 +27,7 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 	TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
 
 	// TIMER_GETSUBMATRIX
-	SparseMatrixS ASub(vtx_.size(), vtx_.size());
+	/*SparseMatrixS ASub(vtx_.size(), vtx_.size());
 	const int* targetA = A.LockedTargetBuffer();
 	const int* offsetA = A.LockedOffsetBuffer();
 	const Scalar* valueA = A.LockedValueBuffer();
@@ -101,7 +101,7 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 	)
 	TIMER_HIF(TimerStart(TIMER_PROCESSQ))
 	ASub.ProcessQueues();
-	TIMER_HIF(TimerStop(TIMER_PROCESSQ))
+	TIMER_HIF(TimerStop(TIMER_PROCESSQ))*/
 
 	vector<int> p1, p2, sp1, sp2;
 	GraphPart(tmpA, p1, p2, sp1, sp2);
@@ -171,7 +171,7 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 		}
 	}
 	// TIMER_GETSUBMATRIX
-	SparseMatrixS ASub(sep_.size(), nb_.size());
+	/*SparseMatrixS ASub(sep_.size(), nb_.size());
 	const int* targetA = A.LockedTargetBuffer();
 	const int* offsetA = A.LockedOffsetBuffer();
 	const Scalar* valueA = A.LockedValueBuffer();
@@ -245,7 +245,7 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 	)
 	TIMER_HIF(TimerStart(TIMER_PROCESSQ))
 	ASub.ProcessQueues();
-	TIMER_HIF(TimerStop(TIMER_PROCESSQ))
+	TIMER_HIF(TimerStop(TIMER_PROCESSQ))*/
 
 	for (int i = 0; i < sep_.size(); i++)
 	{

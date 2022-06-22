@@ -80,7 +80,7 @@ HIFGraph<Scalar>::HIFGraph
 			"        BuildTree        Fill        SetOp        GetSubMatrix        ProcessQ        Metis"
 		);
 		Log(
-			setw(17), scientific, setprecision(2), TimerTotal(TIMER_INIT_BUILD) - TimerTotal(TIMER_PROCESSQ),
+			setw(17), scientific, setprecision(2), TimerTotal(TIMER_INIT_BUILD),
 			setw(12), scientific, setprecision(2), TimerTotal(TIMER_INIT_FILL),
 			setw(13), scientific, setprecision(2), TimerTotal(TIMER_SETOP),
 			setw(20), scientific, setprecision(2), TimerTotal(TIMER_GETSUBMATRIX),

@@ -108,7 +108,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
 
     // TIMER_GETSUBMATRIX
-    SparseMatrix<Scalar> ASub(idx.size(), idx.size());
+    /*SparseMatrix<Scalar> ASub(idx.size(), idx.size());
     const int* offsetA = A.LockedOffsetBuffer();
     const Scalar* valueA = A.LockedValueBuffer();
     int Irow = -1;
@@ -181,7 +181,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     )
     TIMER_HIF(TimerStart(TIMER_PROCESSQ))
     ASub.ProcessQueues();
-    TIMER_HIF(TimerStop(TIMER_PROCESSQ))
+    TIMER_HIF(TimerStop(TIMER_PROCESSQ))*/
 
     vector<int> lidx, ridx, sepidx;
     MetisSepPart(A1, lidx, ridx, sepidx);
