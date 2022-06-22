@@ -161,7 +161,14 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 	{
 		ShowVector(sep_, "sep");
 		ShowVector(nb_, "nb");
-		ShowMatrix(nbA, "nbA");
+		const int* sourcetnbA = nbA.LockedSourceBuffer();
+		const int* targetnbA = nbA.LockedTargetBuffer();
+		const Scalar* valuenbA = nbA.LockedValueBuffer();
+		int nnznbA = nbA.NumEntries();
+		for (int t = 0; t < nnznbA; t++)
+		{
+			std::cout << sourcetnbA[t] << " " << targetnbA[t] << " " << valuenbA[t] << std::endl;
+		}
 	}
 	// TIMER_GETSUBMATRIX
 	SparseMatrixS ASub(sep_.size(), nb_.size());
