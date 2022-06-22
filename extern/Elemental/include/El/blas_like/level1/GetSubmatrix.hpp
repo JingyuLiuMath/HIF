@@ -206,6 +206,7 @@ void GetSubmatrix
     }
     ASub.ProcessQueues();
 }
+
 // TODO(poulson): Use lower-level access
 template<typename T>
 void GetSubmatrix
