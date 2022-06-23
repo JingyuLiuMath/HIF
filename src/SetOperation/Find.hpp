@@ -22,7 +22,6 @@ int FindFirstIndex(const vector<Scalar>& vec, const Scalar value)
 	return index;
 }
 
-
 // Find the index of value in vec. If no index is found, return -1. 
 template <typename Scalar>
 int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value)
