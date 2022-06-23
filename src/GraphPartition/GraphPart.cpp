@@ -120,6 +120,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     // sep.insert(sep.end(), singleidx.begin(), singleidx.end());
     for (int t = 0; t < singleidx.size(); t++)
     {
+        std::cout << "asdad" << std::endl;
         AddElement_Sort(sep, singleidx[t]);
     }
 }
