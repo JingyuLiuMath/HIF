@@ -39,6 +39,10 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 template <typename Scalar>
 void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Scalar>& vec);
 
+// ---------------------------------------AddElement---------------------------------------
+template <typename Scalar>
+void AddElement_Sort(vector<Scalar> vec, Scalar value);
+
 } // namespace HIF.
 
 #endif // ifndef HIF_SETOP_HPP

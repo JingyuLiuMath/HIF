@@ -1,5 +1,6 @@
 #include "HIF.hpp"
 
+#include "./AddElement.hpp"
 #include "./Diff.hpp"
 #include "./Find.hpp"
 #include "./Intersect.hpp"
@@ -7,6 +8,7 @@
 namespace HIF{
 
 #define PROTOTYPE_SET(Scalar) \
+template void AddElement_Sort(vector<Scalar> vec, Scalar value); \
 template int FindFirstIndex(const vector<Scalar>& vec, const Scalar value); \
 template void FindAllIndex(const vector<Scalar>& vec, const Scalar value, vector<int>& index); \
 template void FindAllIndex_Sort(const vector<Scalar>& vec1, \

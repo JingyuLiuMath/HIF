@@ -11,8 +11,10 @@ void GraphPart(const SparseMatrix<Scalar>& A,
     DEBUG_HIF(CallStackEntry cse("GraphPart"))
 
     MetisPart(A, p1, p2, sep1);
+    // p1, p2, sep1 is sorted.
     // p1 = p1 + sep1, p2 = p2, sep2 need to be assigned.
     TIMER_HIF(TimerStart(TIMER_SETSEP2))
+    // TODO: AddElement_Sort
     p1.insert(p1.end(), sep1.begin(), sep1.end());
     sort(p1.begin(), p1.end());
     sort(sep1.begin(), sep1.end());
@@ -110,6 +112,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     {
         sep[i] = idx[sepidx[i]];
     }
+    // TODO: AddElement_Sort
     sep.insert(sep.end(), singleidx.begin(), singleidx.end());
 }
 
