@@ -42,7 +42,7 @@ int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value)
 		}
 	}
 	index = startsearch;  // index is the min index such that vec[index] >= value. 
-	if (startsearch[index] != value)
+	if (vec[index] != value)
 	{
 		TIMER_HIF(TimerStop(TIMER_SETOP))
 		return -1;
