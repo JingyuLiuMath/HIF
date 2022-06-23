@@ -2,26 +2,53 @@
 
 namespace HIF {
 
-// Find the first index of value in vec. If no index is found, return -1. 
+// Find the index of value in vec. If no index is found, return -1. 
 template <typename Scalar>
-int FindFirstIndex(const vector<Scalar>& vec, const Scalar value)
+int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value)
 {
 	DEBUG_HIF(CallStackEntry cse("FindFirstIndex"))
 	
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-
+	int startsearch = 0;
+	int endsearch = vec.size() - 1;
+	int tmpindex = -1;
 	int index = -1;
-	for (int i = 0; i < vec.size(); i++)
+
+	if (vec.front() > value)
 	{
-		if (vec[i] == value)
+		TIMER_HIF(TimerStop(TIMER_SETOP))
+		return index;
+	}
+	if (vec.back() < value)
+	{
+		TIMER_HIF(TimerStop(TIMER_SETOP))
+		return index;
+	}
+	while (startsearch < endsearch)
+	{
+		tmpindex = (startsearch + endsearch) / 2;
+		if (vec[tmpindex] < value)
 		{
-			index = i;
+			startsearch = tmpindex + 1;
+		}
+		else if (vec[tmpindex] > value)
+		{
+			endsearch = tmpindex - 1;
+		}
+		else
+		{
+			startsearch = tmpindex;
 			break;
 		}
 	}
+	index = startsearch;  // index is the min index such that vec[index] >= value. 
+	if (startsearch[index] != value)
+	{
+		TIMER_HIF(TimerStop(TIMER_SETOP))
+		return -1;
+	}
 
 	TIMER_HIF(TimerStop(TIMER_SETOP))
-
 	return index;
 }
 
@@ -55,7 +82,6 @@ void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, v
 	DEBUG_HIF(CallStackEntry cse("FindAllIndex_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-
 	index.resize(vec1.size());
 	int actualsize_index = 0;
 	int i = 0;
@@ -75,7 +101,6 @@ void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, v
 		}
 	}
 	index.erase(index.begin() + actualsize_index, index.end());
-
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 

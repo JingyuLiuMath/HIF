@@ -10,7 +10,6 @@ void AddElement_Sort(vector<Scalar> vec, Scalar value)
 	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-
 	int startsearch = 0;
 	int endsearch = vec.size() - 1;
 	int tmpindex = -1;
@@ -18,11 +17,13 @@ void AddElement_Sort(vector<Scalar> vec, Scalar value)
 	if (vec.front() > value)
 	{
 		vec.insert(vec.begin(), value);
+		TIMER_HIF(TimerStop(TIMER_SETOP))
 		return;
 	}
 	if (vec.back() < value)
 	{
 		vec.push_back(value);
+		TIMER_HIF(TimerStop(TIMER_SETOP))
 		return;
 	}
 	while (startsearch < endsearch)
@@ -47,7 +48,6 @@ void AddElement_Sort(vector<Scalar> vec, Scalar value)
 	{
 		vec.insert(vec.begin() + index, value);
 	}
-
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 
