@@ -94,12 +94,12 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 			}
 			else
 			{
-				/*if (FindFirstIndex<int>(childnode->sep_, sepi) == -1)
+				// Pass sep.
+				if (FindFirstIndex<int>(childnode->sep_, sepi) == -1)
 				{
 					(childnode->sep_).push_back(sepi);
-				}*/
-				// Pass sep.
-				AddElement_Sort(childnode->sep_, sepi);
+				}
+				// AddElement_Sort(childnode->sep_, sepi);
 				// Pass nb.				
 				vector<int> index_addnb(nbA.Width());
 				int actualsize_index_addnb = 0;
@@ -114,11 +114,11 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 				for (int j = 0; j < index_addnb.size(); j++)
 				{
 					int addnbj = nb_[index_addnb[j]];
-					/*if (FindFirstIndex(childnode->nb_, addnbj) == -1)
+					if (FindFirstIndex(childnode->nb_, addnbj) == -1)
 					{
 						(childnode->nb_).push_back(addnbj);
-					}*/
-					AddElement_Sort(childnode->nb_, addnbj);
+					}
+					// AddElement_Sort(childnode->nb_, addnbj);
 				}
 			}
 		}

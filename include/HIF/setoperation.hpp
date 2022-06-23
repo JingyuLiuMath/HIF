@@ -8,6 +8,9 @@ namespace HIF {
 
 // ---------------------------------------Find---------------------------------------
 template <typename Scalar>
+int FindFirstIndex(const vector<Scalar>& vec, const Scalar value);
+
+template <typename Scalar>
 int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value);
 
 template <typename Scalar>
