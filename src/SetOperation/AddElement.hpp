@@ -26,28 +26,37 @@ void AddElement_Sort(vector<Scalar>& vec, Scalar value)
 		TIMER_HIF(TimerStop(TIMER_SETOP))
 		return;
 	}
-	while (startsearch < endsearch)
+	//while (startsearch < endsearch)
+	//{
+	//	tmpindex = (startsearch + endsearch) / 2;
+	//	if (vec[tmpindex] < value)
+	//	{
+	//		startsearch = tmpindex + 1;
+	//	}
+	//	else if (vec[tmpindex] > value)
+	//	{
+	//		endsearch = tmpindex;
+	//	}
+	//	else
+	//	{
+	//		endsearch = tmpindex;
+	//		break;
+	//	}
+	//}
+	//index = endsearch;  // index is the min index such that vec[index] >= value. 
+	//if (vec[index] != value)
+	//{
+	//	vec.insert(vec.begin() + index, value);
+	//}
+	int i;
+	for (i = 0; i < vec.size() - 1; i++)
 	{
-		tmpindex = (startsearch + endsearch) / 2;
-		if (vec[tmpindex] < value)
+		if ((vec[i] < value) && (vec[i + 1] > value))
 		{
-			startsearch = tmpindex + 1;
-		}
-		else if (vec[tmpindex] > value)
-		{
-			endsearch = tmpindex;
-		}
-		else
-		{
-			endsearch = tmpindex;
 			break;
 		}
 	}
-	index = endsearch;  // index is the min index such that vec[index] >= value. 
-	if (vec[index] != value)
-	{
-		vec.insert(vec.begin() + index, value);
-	}
+	vec.insert(vec.begin() + i + 1, value);
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 
