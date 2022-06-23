@@ -76,7 +76,6 @@ void HIFGraph<Scalar>::Factorization()
 
 	// Root factorization.
 	TIMER_HIF(TimerStart(TIMER_ROOTFACTOR))
-	std::cout << "RootFactorization" << std::endl;
 	RootFactorization();
 	TIMER_HIF(TimerStop(TIMER_ROOTFACTOR))
 
