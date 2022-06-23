@@ -44,7 +44,7 @@ void AddElement_Sort(vector<Scalar> vec, Scalar value)
 		}
 	}
 	index = startsearch;  // index is the min index such that vec[index] >= value. 
-	if (startsearch[index] != value)
+	if (vec[index] != value)
 	{
 		vec.insert(vec.begin() + index, value);
 	}
