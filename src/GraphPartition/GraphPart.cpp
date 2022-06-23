@@ -17,7 +17,7 @@ void GraphPart(const SparseMatrix<Scalar>& A,
     p1.insert(p1.end(), sep1.begin(), sep1.end());
     sort(p1.begin(), p1.end());
     sort(sep1.begin(), sep1.end());
-    sort(p2.begin(), p2.end());
+    // sort(p2.begin(), p2.end());
     /*for (int t = 0; t < sep1.size(); t++)
     {
         AddElement_Sort(p1, sep1[t]);

@@ -56,10 +56,10 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 	ShowVector(sep1, "sep1");
 	ShowVector(sep2, "sep2");*/
 
-	sort(vtx1.begin(), vtx1.end();
+	/*sort(vtx1.begin(), vtx1.end();
 	sort(vtx2.begin(), vtx2.end();
 	sort(sep1.begin(), sep1.end();
-	sort(sep2.begin(), sep2.end();
+	sort(sep2.begin(), sep2.end();*/
 
 
 	// Create children HIFGraph.
@@ -110,11 +110,11 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 			else
 			{
 				// Pass sep.
-				/*if (FindFirstIndex<int>(childnode->sep_, sepi) == -1)
+				if (FindFirstIndex<int>(childnode->sep_, sepi) == -1)
 				{
 					(childnode->sep_).push_back(sepi);
-				}*/
-				AddElement_Sort(childnode->sep_, sepi);
+				}
+				// AddElement_Sort(childnode->sep_, sepi);
 				// Pass nb.				
 				vector<int> index_addnb(nbA.Width());
 				int actualsize_index_addnb = 0;
@@ -129,11 +129,11 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 				for (int j = 0; j < index_addnb.size(); j++)
 				{
 					int addnbj = nb_[index_addnb[j]];
-					/*if (FindFirstIndex(childnode->nb_, addnbj) == -1)
+					if (FindFirstIndex(childnode->nb_, addnbj) == -1)
 					{
 						(childnode->nb_).push_back(addnbj);
-					}*/
-					AddElement_Sort(childnode->nb_, addnbj);
+					}
+					// AddElement_Sort(childnode->nb_, addnbj);
 				}
 			}
 		}
