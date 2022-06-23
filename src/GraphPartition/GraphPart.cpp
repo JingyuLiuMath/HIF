@@ -14,10 +14,6 @@ void GraphPart(const SparseMatrix<Scalar>& A,
     // p1, p2, sep1 is sorted.
     // p1 = p1 + sep1, p2 = p2, sep2 need to be assigned.
     TIMER_HIF(TimerStart(TIMER_SETSEP2))
-    /*p1.insert(p1.end(), sep1.begin(), sep1.end());
-    sort(p1.begin(), p1.end());
-    sort(sep1.begin(), sep1.end());
-    sort(p2.begin(), p2.end());*/
     for (int t = 0; t < sep1.size(); t++)
     {
         AddElement_Sort(p1, sep1[t]);
@@ -71,7 +67,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     vector<int> degree(A.Height(), 0);
     for (int t = 1; t <= A.Height(); t++)
     {
-        degree[t - 1] += (offsetA[t] - offsetA[t - 1] - 1);
+        degree[t - 1] = offsetA[t] - offsetA[t - 1] - 1;
     }
     vector<int> singleidx(degree.size());
     vector<int> idx(degree.size());
@@ -117,6 +113,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     // sep.insert(sep.end(), singleidx.begin(), singleidx.end());
     for (int t = 0; t < singleidx.size(); t++)
     {
+        std::cout << "asdad" << std::endl;
         AddElement_Sort(sep, singleidx[t]);
     }
 }

@@ -1,7 +1,6 @@
 #include "HIF.hpp"
 
-namespace HIF
-{
+namespace HIF {
 
 // Add an element to a sorted vector vec.
 template <typename Scalar>
@@ -54,15 +53,7 @@ void AddElement_Sort(vector<Scalar>& vec, Scalar value)
 	{
 		vec.insert(vec.begin() + index, value);
 	}
-	/*for (int i = 0; i < vec.size() - 1; i++)
-	{
-		if ((vec[i] < value) && (vec[i + 1] > value))
-		{
-			vec.insert(vec.begin() + i + 1, value);
-			break;
-		}
-	}*/
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 
-}
+} // namespace HIF.

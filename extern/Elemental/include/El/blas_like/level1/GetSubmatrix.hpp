@@ -124,7 +124,6 @@ void GetSubmatrix
     // LogicError("This routine is not yet written");
     // REMARK(Jingyu Liu): The function is correct only when I and J are sorted and unique.
     ASub.Resize(I.size(), J.size());
-    const Int* sourceA = A.LockedSourceBuffer();
     const Int* targetA = A.LockedTargetBuffer();
     const Int* offsetA = A.LockedOffsetBuffer();
     const T* valueA = A.LockedValueBuffer();
