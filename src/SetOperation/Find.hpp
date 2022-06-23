@@ -45,7 +45,7 @@ int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value)
 		TIMER_HIF(TimerStop(TIMER_SETOP))
 		return index;
 	}
-	while (startsearch < endsearch)
+	while (startsearch <= endsearch)
 	{
 		tmpindex = (startsearch + endsearch) / 2;
 		if (vec[tmpindex] < value)
@@ -54,15 +54,15 @@ int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value)
 		}
 		else if (vec[tmpindex] > value)
 		{
-			endsearch = tmpindex;
+			endsearch = tmpindex - 1;
 		}
 		else
 		{
-			endsearch = tmpindex;
+			startsearch = tmpindex;
 			break;
 		}
 	}
-	index = endsearch;  // index is the min index such that vec[index] >= value. 
+	index = startsearch;  // index is the min index such that vec[index] >= value. 
 	if (vec[index] != value)
 	{
 		TIMER_HIF(TimerStop(TIMER_SETOP))
