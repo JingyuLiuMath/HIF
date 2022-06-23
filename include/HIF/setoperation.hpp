@@ -41,7 +41,7 @@ void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Sc
 
 // ---------------------------------------AddElement---------------------------------------
 template <typename Scalar>
-void AddElement_Sort(vector<Scalar> vec, Scalar value);
+void AddElement_Sort(vector<Scalar>& vec, Scalar value);
 
 } // namespace HIF.
 

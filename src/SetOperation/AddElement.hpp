@@ -5,7 +5,7 @@ namespace HIF
 
 // Add an element to a sorted vector vec.
 template <typename Scalar>
-void AddElement_Sort(vector<Scalar> vec, Scalar value)
+void AddElement_Sort(vector<Scalar>& vec, Scalar value)
 {
 	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
 
