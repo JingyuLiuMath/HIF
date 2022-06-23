@@ -115,11 +115,11 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     {
         sep[i] = idx[sepidx[i]];
     }
-    // sep.insert(sep.end(), singleidx.begin(), singleidx.end());
-    for (int t = 0; t < singleidx.size(); t++)
+    sep.insert(sep.end(), singleidx.begin(), singleidx.end());
+    /*for (int t = 0; t < singleidx.size(); t++)
     {
         AddElement_Sort(sep, singleidx[t]);
-    }
+    }*/
 }
 
 // Metis separator partition.
