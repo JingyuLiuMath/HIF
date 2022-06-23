@@ -99,10 +99,6 @@ void MetisPart(const SparseMatrix<Scalar>& A,
 
     vector<int> lidx, ridx, sepidx;
     MetisSepPart(A1, lidx, ridx, sepidx);  // lidx, ridx, sepidx are sorted.
-       
-    sort(lidx.begin(), lidx.end());
-    sort(ridx.begin(), ridx.end());
-    sort(sepidx.begin(), sepidx.end());
 
     p1.resize(lidx.size());
     p2.resize(ridx.size());
