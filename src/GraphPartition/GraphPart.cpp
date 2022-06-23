@@ -71,7 +71,7 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     vector<int> degree(A.Height(), 0);
     for (int t = 1; t <= A.Height(); t++)
     {
-        degree[t - 1] += (offsetA[t] - 1);
+        degree[t - 1] += (offsetA[t] - offsetA[t - 1] - 1);
     }
     vector<int> singleidx(degree.size());
     vector<int> idx(degree.size());
@@ -99,9 +99,6 @@ void MetisPart(const SparseMatrix<Scalar>& A,
 
     vector<int> lidx, ridx, sepidx;
     MetisSepPart(A1, lidx, ridx, sepidx);  // lidx, ridx, sepidx are sorted.
-    sort(lidx.begin(), lidx.end());
-    sort(ridx.begin(), ridx.end());
-    sort(sepidx.begin(), sepidx.end());
     p1.resize(lidx.size());
     p2.resize(ridx.size());
     sep.resize(sepidx.size());
