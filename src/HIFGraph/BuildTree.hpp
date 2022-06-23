@@ -99,14 +99,14 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 		for (int iter = 0; iter < 2; iter++)
 		{
 			HIFGraph* childnode = children_[iter];
-			/*if (FindIndex_Sort(childnode->vtx_, sepi) == -1)
-			{
-				continue;
-			}*/
-			if (FindFirstIndex(childnode->vtx_, sepi) == -1)
+			if (FindIndex_Sort(childnode->vtx_, sepi) == -1)
 			{
 				continue;
 			}
+			/*if (FindFirstIndex(childnode->vtx_, sepi) == -1)
+			{
+				continue;
+			}*/
 			else
 			{
 				// Pass sep.
