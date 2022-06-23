@@ -42,15 +42,15 @@ void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Sc
 				}
 				else if (vec2[tmpindex] > vec1[i])
 				{
-					endj = tmpindex - 1;
+					endj = tmpindex;
 				}
 				else
 				{
-					startj = tmpindex;
+					endj = tmpindex;
 					break;
 				}
 			}
-			j = startj;
+			j = endj;
 		}
 		else
 		{

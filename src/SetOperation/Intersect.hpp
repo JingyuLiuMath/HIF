@@ -37,15 +37,15 @@ bool Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2)
 				}
 				else if (vec1[tmpindex] > vec2[j])
 				{
-					endi = tmpindex - 1;
+					endi = tmpindex;
 				}
 				else
 				{
-					starti = tmpindex;
+					endi = tmpindex;
 					break;
 				}
 			}
-			i = starti;
+			i = endi;
 		}
 		else if (vec1[i] > vec2[j])
 		{
@@ -65,15 +65,15 @@ bool Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2)
 				}
 				else if (vec2[tmpindex] > vec1[i])
 				{
-					endj = tmpindex - 1;
+					endj = tmpindex;
 				}
 				else
 				{
-					startj = tmpindex;
+					endj = tmpindex;
 					break;
 				}
 			}
-			j = startj;
+			j = endj;
 		}
 		else
 		{
@@ -127,15 +127,15 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 				}
 				else if (vec1[tmpindex] > vec2[j])
 				{
-					endi = tmpindex - 1;
+					endi = tmpindex;
 				}
 				else
 				{
-					starti = tmpindex;
+					endi = tmpindex;
 					break;
 				}
 			}
-			i = starti;
+			i = endi;
 		}
 		else if (vec1[i] > vec2[j])
 		{
@@ -155,15 +155,15 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 				}
 				else if (vec2[tmpindex] > vec1[i])
 				{
-					endj = tmpindex - 1;
+					endj = tmpindex;
 				}
 				else
 				{
-					startj = tmpindex;
+					endj = tmpindex;
 					break;
 				}
 			}
-			j = startj;
+			j = endj;
 		}
 		else
 		{
@@ -225,15 +225,15 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 				}
 				else if (vec1[tmpindex] > vec2[j])
 				{
-					endi = tmpindex - 1;
+					endi = tmpindex;
 				}
 				else
 				{
-					starti = tmpindex;
+					endi = tmpindex;
 					break;
 				}
 			}
-			i = starti;
+			i = endi;
 		}
 		else if (vec1[i] > vec2[j])
 		{
@@ -253,15 +253,15 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 				}
 				else if (vec2[tmpindex] > vec1[i])
 				{
-					endj = tmpindex - 1;
+					endj = tmpindex;
 				}
 				else
 				{
-					startj = tmpindex;
+					endj = tmpindex;
 					break;
 				}
 			}
-			j = startj;
+			j = endj;
 		}
 		else
 		{
@@ -319,15 +319,15 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vect
 				}
 				else if (vec1[tmpindex] > vec2[j])
 				{
-					endi = tmpindex - 1;
+					endi = tmpindex;
 				}
 				else
 				{
-					starti = tmpindex;
+					endi = tmpindex;
 					break;
 				}
 			}
-			i = starti;
+			i = endi;
 		}
 		else if (vec1[i] > vec2[j])
 		{
@@ -347,15 +347,15 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vect
 				}
 				else if (vec2[tmpindex] > vec1[i])
 				{
-					endj = tmpindex - 1;
+					endj = tmpindex;
 				}
 				else
 				{
-					startj = tmpindex;
+					endj = tmpindex;
 					break;
 				}
 			}
-			j = startj;
+			j = endj;
 		}
 		else
 		{
@@ -410,15 +410,15 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 				}
 				else if (vec1[tmpindex] > vec2[j])
 				{
-					endi = tmpindex - 1;
+					endi = tmpindex;
 				}
 				else
 				{
-					starti = tmpindex;
+					endi = tmpindex;
 					break;
 				}
 			}
-			i = starti;
+			i = endi;
 		}
 		else if (vec1[i] > vec2[j])
 		{
@@ -438,15 +438,15 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 				}
 				else if (vec2[tmpindex] > vec1[i])
 				{
-					endj = tmpindex - 1;
+					endj = tmpindex;
 				}
 				else
 				{
-					startj = tmpindex;
+					endj = tmpindex;
 					break;
 				}
 			}
-			j = startj;
+			j = endj;
 		}
 		else
 		{
