@@ -12,6 +12,7 @@ void AddElement_Sort(vector<Scalar>& vec, Scalar value)
 	TIMER_HIF(TimerStart(TIMER_SETOP))
 	if (vec.size() == 0)
 	{
+		vec.push_back(value);
 		TIMER_HIF(TimerStop(TIMER_SETOP))
 		return;
 	}
