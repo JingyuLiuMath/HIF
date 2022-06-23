@@ -9,9 +9,9 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:BuildTree"))
 
 	// TODO: remove sort.
-	sort(vtx_.begin(), vtx_.end());
+	/*sort(vtx_.begin(), vtx_.end());
 	sort(sep_.begin(), sep_.end());
-	sort(nb_.begin(), nb_.end());
+	sort(nb_.begin(), nb_.end());*/
 
 	// Don't partition if the number of vtx is less than minvtx.
 	if (vtx_.size() <= minvtx)
@@ -51,6 +51,11 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 		sep2[i] = vtx_[sp2[i]];
 	}
 	
+	ShowVector(vtx1, "vtx1");
+	ShowVector(vtx2, "vtx2");
+	ShowVector(sep1, "sep1");
+	ShowVector(sep2, "sep2");
+
 	// Create children HIFGraph.
 	children_.resize(2);
 	children_[0] = new HIFGraph(level_ + 1, 2 * seqnum_,
