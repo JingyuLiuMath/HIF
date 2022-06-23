@@ -48,15 +48,14 @@ void AddElement_Sort(vector<Scalar>& vec, Scalar value)
 	//{
 	//	vec.insert(vec.begin() + index, value);
 	//}
-	int i;
-	for (i = 0; i < vec.size() - 1; i++)
+	for (int i = 0; i < vec.size() - 1; i++)
 	{
 		if ((vec[i] < value) && (vec[i + 1] > value))
 		{
+			vec.insert(vec.begin() + i + 1, value);
 			break;
 		}
 	}
-	vec.insert(vec.begin() + i + 1, value);
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 
