@@ -72,9 +72,13 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 {
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:PassSeparatorNeighbor"))
 	
-	TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
+	// TODO: We don't need nbA exactly, just use CSR of A.
+	const int* targetA = A.LockedTargetBuffer();
+	const int* offsetA = A.LockedOffsetBuffer();
+	
+	/*TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
 	SparseMatrixS nbA = A(sep_, nb_);
-	TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
+	TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))*/
 	
 	TIMER_HIF(TimerStart(TIMER_PASS))
 	for (int i = 0; i < sep_.size(); i++)
@@ -92,7 +96,7 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 				// Pass sep.
 				AddElement_Sort(childnode->sep_, sepi);
 				// Pass nb.				
-				vector<int> index_addnb(nbA.Width());
+				/*vector<int> index_addnb(nbA.Width());
 				int actualsize_index_addnb = 0;
 				const int* targetnbA = nbA.LockedTargetBuffer();
 				const int* offsetnbA = nbA.LockedOffsetBuffer();
@@ -106,6 +110,15 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 				{
 					int addnbj = nb_[index_addnb[j]];
 					AddElement_Sort(childnode->nb_, addnbj);
+				}*/
+				int start_sepi = offsetA[sepi];
+				int end_sepi = offsetA[sepi + 1];
+				vector<int> nb_sepi(targetA + start_sepi, targetA + end_sepi);
+				vector<int> addnb;
+				Intersect_Sort(nb_sepi, nb_, addnb);
+				for (int j = 0; j < addnb.size(); j++)
+				{
+					AddElement_Sort(childnode->nb_, addnb[j]);
 				}
 			}
 		}

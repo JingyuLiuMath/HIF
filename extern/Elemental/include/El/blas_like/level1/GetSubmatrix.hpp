@@ -120,94 +120,72 @@ void GetSubmatrix
     SparseMatrix<T>& ASub)
 {
     EL_DEBUG_CSE
-    // TODO(poulson): Decide how to handle unsorted I and J with duplicates
-    // LogicError("This routine is not yet written");
-    // REMARK(Jingyu Liu): The function is correct only when I and J are sorted and unique.
-    ASub.Resize(I.size(), J.size());
+        // TODO(poulson): Decide how to handle unsorted I and J with duplicates
+        // LogicError("This routine is not yet written");
+        // REMARK(Jingyu Liu): The function is correct only when I and J are sorted and unique.
+        ASub.Resize(I.size(), J.size());
     const Int* targetA = A.LockedTargetBuffer();
     const Int* offsetA = A.LockedOffsetBuffer();
     const T* valueA = A.LockedValueBuffer();
     Int Irow = -1;
-    Int nnzIrow = -1;
     Int startIrow = -1;
     Int endIrow = -1;
-    Int i = -1;
-    Int j = -1;
     Int starti = -1;
     Int endi = -1;
-    Int startj = -1;
-    Int endj = -1;
     Int tmpindex = -1;
+    if (J.size() == 0)
+    {
+        return;
+    }
+    Int Jstart = J.front();
+    Int Jend = J.back();
+    vector<Int> columns(Jend - Jstart + 1, -1);
+    for (Int t = 0; t < J.size(); t++)
+    {
+        columns[J[t] - Jstart] = t;
+    }
     for (Int row = 0; row < I.size(); row++)
     {
         Irow = I[row];
         startIrow = offsetA[Irow];
         endIrow = offsetA[Irow + 1];
-        i = startIrow;
-        j = 0;
-        while ((i < endIrow) && (j < J.size()))
+        starti = startIrow;
+        endi = endIrow - 1;
+        if (targetA[startIrow] > Jend)
         {
-            if (targetA[i] < J[j])
+            continue;
+        }
+        if (targetA[endIrow - 1] < Jstart)
+        {
+            continue;
+        }
+        // Find starti such that targetA[starti] >= J[0].
+        while (starti <= endi)
+        {
+            tmpindex = (starti + endi) / 2;
+            if (targetA[tmpindex] < Jstart)
             {
-                if (targetA[endIrow - 1] < J[j])
-                {
-                    break;
-                }
-                // Find i where i is the min index such that targrt[i] >= J[j].
-                starti = i + 1;
-                endi = endIrow - 1;
-                while (starti <= endi)
-                {
-                    tmpindex = (starti + endi) / 2;
-                    if (targetA[tmpindex] < J[j])
-                    {
-                        starti = tmpindex + 1;
-                    }
-                    else if (targetA[tmpindex] > J[j])
-                    {
-                        endi = tmpindex - 1;
-                    }
-                    else
-                    {
-                        starti = tmpindex;
-                        break;
-                    }
-                }
-                i = starti;
+                starti = tmpindex + 1;
             }
-            else if (targetA[i] > J[j])
+            else if (targetA[tmpindex] > Jstart)
             {
-                if (targetA[i] > J.back())
-                {
-                    break;
-                }
-                // Find j where j is the min index such that J[j] >= targrt[i].  
-                startj = j + 1;
-                endj = J.size() - 1;
-                while (startj <= endj)
-                {
-                    tmpindex = (startj + endj) / 2;
-                    if (J[tmpindex] < targetA[i])
-                    {
-                        startj = tmpindex + 1;
-                    }
-                    else if (J[tmpindex] > targetA[i])
-                    {
-                        endj = tmpindex - 1;
-                    }
-                    else
-                    {
-                        startj = tmpindex;
-                        break;
-                    }
-                }
-                j = startj;
+                endi = tmpindex - 1;
             }
             else
             {
-                ASub.QueueUpdate(row, j, valueA[i]);
-                i++;
-                j++;
+                starti = tmpindex;
+                break;
+            }
+        }
+        for (Int t = starti; t < endIrow; t++)
+        {
+            if (targetA[t] > Jend)
+            {
+                break;
+            }
+            if (columns[targetA[t] - Jstart] >= 0)
+            {
+                ASub.QueueUpdate(row, columns[targetA[t] - Jstart], valueA[t]);
             }
         }
     }
