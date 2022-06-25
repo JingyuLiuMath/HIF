@@ -120,10 +120,10 @@ void GetSubmatrix
     SparseMatrix<T>& ASub)
 {
     EL_DEBUG_CSE
-        // TODO(poulson): Decide how to handle unsorted I and J with duplicates
-        // LogicError("This routine is not yet written");
-        // REMARK(Jingyu Liu): The function is correct only when I and J are sorted and unique.
-        ASub.Resize(I.size(), J.size());
+    // TODO(poulson): Decide how to handle unsorted I and J with duplicates
+    // LogicError("This routine is not yet written");
+    // REMARK(Jingyu Liu): The function is correct only when I and J are sorted and unique.
+    ASub.Resize(I.size(), J.size());
     const Int* targetA = A.LockedTargetBuffer();
     const Int* offsetA = A.LockedOffsetBuffer();
     const T* valueA = A.LockedValueBuffer();
