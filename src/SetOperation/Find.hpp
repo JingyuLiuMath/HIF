@@ -2,29 +2,6 @@
 
 namespace HIF {
 
-// Find the first index of value in vec. If no index is found, return -1. 
-template <typename Scalar>
-int FindFirstIndex(const vector<Scalar>& vec, const Scalar value)
-{
-	DEBUG_HIF(CallStackEntry cse("FindFirstIndex"))
-
-		TIMER_HIF(TimerStart(TIMER_SETOP))
-
-		int index = -1;
-	for (int i = 0; i < vec.size(); i++)
-	{
-		if (vec[i] == value)
-		{
-			index = i;
-			break;
-		}
-	}
-
-	TIMER_HIF(TimerStop(TIMER_SETOP))
-
-		return index;
-}
-
 // Find the index of value in vec. If no index is found, return -1. 
 template <typename Scalar>
 int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value)
