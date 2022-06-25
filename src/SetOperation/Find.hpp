@@ -100,27 +100,28 @@ void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, v
 		}
 		else
 		{
-			// vec1[i] > vec2[j]
-			startj = j + 1;
-			endj = vec2.size() - 1;
-			while (startj <= endj)
-			{
-				tmpindex = (startj + endj) / 2;
-				if (vec2[tmpindex] < vec1[i])
-				{
-					startj = tmpindex + 1;
-				}
-				else if (vec2[tmpindex] > vec1[i])
-				{
-					endj = tmpindex - 1;
-				}
-				else
-				{
-					startj = tmpindex;
-					break;
-				}
-			}
-			j = startj;
+			j++;
+			//// vec1[i] > vec2[j]
+			//startj = j + 1;
+			//endj = vec2.size() - 1;
+			//while (startj <= endj)
+			//{
+			//	tmpindex = (startj + endj) / 2;
+			//	if (vec2[tmpindex] < vec1[i])
+			//	{
+			//		startj = tmpindex + 1;
+			//	}
+			//	else if (vec2[tmpindex] > vec1[i])
+			//	{
+			//		endj = tmpindex - 1;
+			//	}
+			//	else
+			//	{
+			//		startj = tmpindex;
+			//		break;
+			//	}
+			//}
+			//j = startj;
 		}
 	}
 	index.erase(index.begin() + actualsize_index, index.end());
