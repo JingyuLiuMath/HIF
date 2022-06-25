@@ -38,6 +38,9 @@ void HIFGraph<Scalar>::Skel()
 {
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:Skel"))
 
+	// DebugLiu:
+	std::cout << "Skel" << endl;
+
 	QRCtrl<Base<Scalar>> ctrl;
 	ctrl.boundRank = false;
 	ctrl.maxRank = 1000;
@@ -435,6 +438,9 @@ void HIFGraph<Scalar>::Skel()
 	Diff_Sort(sep_, re_, sk_);
 	sort(nbre_.begin(), nbre_.end());
 	Diff_Sort(nb_, nbre_, nbsk_);
+
+	// DebugLiu:
+	std::cout << "End Skel" << endl;
 }
 
 // No skeletonization.

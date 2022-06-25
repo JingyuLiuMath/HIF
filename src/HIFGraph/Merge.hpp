@@ -36,6 +36,9 @@ void HIFGraph<Scalar>::Merge()
 		return;
 	}
 
+	// DebugLiu:
+	std::cout << "Merge" << endl;
+
 	childreninfo_.resize(2);
 
 	// First we tell the parent what its intr, sep, nb is after we eliminate the children's vtx.
@@ -198,6 +201,9 @@ void HIFGraph<Scalar>::Merge()
 
 	// Set separator type.
 	SetSeparatorType();
+
+	// DebugLiu:
+	std::cout << "End Merge" << endl;
 }
 
 // Clear unnecessary information.
