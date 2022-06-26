@@ -70,19 +70,15 @@ void HIFGraph<Scalar>::Merge()
 	sort(nbre_.begin(), nbre_.end());
 	vector<int> tmpsep;
 	Intersect_Sort(sep_, intr_, tmpsep);
-	sep_.clear();
 	sep_.assign(tmpsep.begin(), tmpsep.end());
 	/*vector<int> tmpnbre;
 	Diff_Sort(nbre_, vtx_, tmpnbre);
-	nbre_.clear();
 	nbre_.assign(tmpnbre.begin(), tmpnbre.end());*/
 	vector<int> tmpintr;
 	Diff_Sort(intr_, sep_, tmpintr);
-	intr_.clear();
 	intr_.assign(tmpintr.begin(), tmpintr.end());
 	vector<int> tmpnb;
 	Diff_Sort(nb_, nbre_, tmpnb);
-	nb_.clear();
 	nb_.assign(tmpnb.begin(), tmpnb.end());
 
 	// Next we assign the corresponding matrices.
