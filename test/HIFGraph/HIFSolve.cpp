@@ -138,7 +138,7 @@ int main(int argc, char* argv[])
 		foutx.open(filex, std::ios::out);
 		for (int k = 0; k < b.Height(); k++)
 		{
-			foutx << b.Get(k, 1) << endl;
+			foutx << b.Get(k, 0) << endl;
 		}
 		foutx.close();
 	}
