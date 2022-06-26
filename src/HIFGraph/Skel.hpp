@@ -435,6 +435,7 @@ void HIFGraph<Scalar>::Skel()
 		TIMER_HIF(TimerStop(TIMER_EL))
 	}
 
+	// If using AddElement_Sort, no need to sort re and nbre. But no improvement.
 	sort(re_.begin(), re_.end());
 	Diff_Sort(sep_, re_, sk_);
 	sort(nbre_.begin(), nbre_.end());
