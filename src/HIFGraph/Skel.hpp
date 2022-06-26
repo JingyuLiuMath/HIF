@@ -205,8 +205,10 @@ void HIFGraph<Scalar>::Skel()
 		{
 			myindex_p12[i] = myindex_sep1[p12[i]];
 			nodekindex_p12[i] = nodekindex_sep1[p12[i]];
-			re_.push_back(sep1[p12[i]]);
-			(nodek->nbre_).push_back(sep1[p12[i]]);
+			/*re_.push_back(sep1[p12[i]]);
+			(nodek->nbre_).push_back(sep1[p12[i]]);*/
+			AddElement_Sort(re_, sep1[p12[i]]);
+			AddElement_Sort(nodek->nbre_, sep1[p12[i]]);
 		}
 
 		TIMER_HIF(TimerStart(TIMER_EL))
@@ -241,8 +243,10 @@ void HIFGraph<Scalar>::Skel()
 		{
 			myindex_p22[i] = myindex_sep2[p22[i]];
 			nodekindex_p22[i] = nodekindex_sep2[p22[i]];
-			nbre_.push_back(sep2[p22[i]]);
-			(nodek->re_).push_back(sep2[p22[i]]);
+			/*nbre_.push_back(sep2[p22[i]]);
+			(nodek->re_).push_back(sep2[p22[i]]);*/
+			AddElement_Sort(nbre_, sep2[p22[i]]);
+			AddElement_Sort(nodek->re_, sep2[p22[i]]);
 		}
 
 		nbinfo_[k].skip = 0;
@@ -431,9 +435,9 @@ void HIFGraph<Scalar>::Skel()
 		TIMER_HIF(TimerStop(TIMER_EL))
 	}
 
-	sort(re_.begin(), re_.end());
+	// sort(re_.begin(), re_.end());
 	Diff_Sort(sep_, re_, sk_);
-	sort(nbre_.begin(), nbre_.end());
+	// sort(nbre_.begin(), nbre_.end());
 	Diff_Sort(nb_, nbre_, nbsk_);
 }
 
