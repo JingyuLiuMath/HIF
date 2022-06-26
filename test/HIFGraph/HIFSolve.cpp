@@ -125,22 +125,22 @@ int main(int argc, char* argv[])
 			);
 		)
 
-		std::cout << " b " << std::endl;
+		/*std::cout << " b " << std::endl;
 		std::cout << " [ " << std::endl;
 		for (int k = 0; k < n; k++)
 		{
 			std::cout << b.Get(k, 0) << ";" << std::endl;
 		}
-		std::cout << " ] " << std::endl;
+		std::cout << " ] " << std::endl;*/
 
-		/*string filex = "./sol.txt";
+		string filex = "./sol.txt";
 		std::ofstream foutx;
 		foutx.open(filex, std::ios::out);
 		for (int k = 0; k < b.Height(); k++)
 		{
 			foutx << b.Get(k, 1) << endl;
 		}
-		foutx.close();*/
+		foutx.close();
 	}
 	catch (std::exception& e)
 	{
