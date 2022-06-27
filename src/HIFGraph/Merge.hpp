@@ -64,38 +64,15 @@ void HIFGraph<Scalar>::Merge()
 	// intr: children's sk - sep.
 	// sep : sep \cup children's sk.
 	// nb: nb - children's nbre.
-	/*for (int iter = 0; iter < 2; iter++)
-	{
-		intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
-		re_.insert(re_.end(), (children_[iter]->re_).begin(), (children_[iter]->re_).end());
-		nbre_.insert(nbre_.end(), (children_[iter]->nbre_).begin(), (children_[iter]->nbre_).end());
-	}
-	sort(intr_.begin(), intr_.end());
-	sort(re_.begin(), re_.end());
-	sort(nbre_.begin(), nbre_.end());
-	vector<int> tmpsep;
-	Intersect_Sort(sep_, intr_, tmpsep);
-	sep_.assign(tmpsep.begin(), tmpsep.end());
-	vector<int> tmpintr;
-	Diff_Sort(intr_, sep_, tmpintr);
-	intr_.assign(tmpintr.begin(), tmpintr.end());
-	vector<int> tmpnb;
-	Diff_Sort(nb_, nbre_, tmpnb);
-	nb_.assign(tmpnb.begin(), tmpnb.end());*/
-
-	// test
-	vector<int> tmpnbsk;
 	for (int iter = 0; iter < 2; iter++)
 	{
 		intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
 		re_.insert(re_.end(), (children_[iter]->re_).begin(), (children_[iter]->re_).end());
 		nbre_.insert(nbre_.end(), (children_[iter]->nbre_).begin(), (children_[iter]->nbre_).end());
-		tmpnbsk.insert(tmpnbsk.end(), (children_[iter]->nbsk_).begin(), (children_[iter]->nbsk_).end());
 	}
 	sort(intr_.begin(), intr_.end());
 	sort(re_.begin(), re_.end());
 	sort(nbre_.begin(), nbre_.end());
-	sort(tmpnbsk.begin(), tmpnbsk.end());
 	vector<int> tmpsep;
 	Intersect_Sort(sep_, intr_, tmpsep);
 	sep_.assign(tmpsep.begin(), tmpsep.end());
@@ -103,23 +80,46 @@ void HIFGraph<Scalar>::Merge()
 	Diff_Sort(intr_, sep_, tmpintr);
 	intr_.assign(tmpintr.begin(), tmpintr.end());
 	vector<int> tmpnb;
-	vector<int> tmpnb2;
 	Diff_Sort(nb_, nbre_, tmpnb);
-	Intersect_Sort(nb_, tmpnbsk, tmpnb2);
 	nb_.assign(tmpnb.begin(), tmpnb.end());
-	vector<int> difftmpnb1;
-	vector<int> difftmpnb2;
-	Diff_Sort(tmpnb, tmpnb2, difftmpnb1);
-	Diff_Sort(tmpnb2, tmpnb, difftmpnb2);
-	if (difftmpnb1.size() > 0)
-	{
-		ShowVector(difftmpnb1, "difftmpnb1");
-	}
-	if (difftmpnb2.size() > 0)
-	{
-		// Never happen
-		ShowVector(difftmpnb2, "difftmpnb2");
-	}
+
+	// test
+	//vector<int> tmpnbsk;
+	//for (int iter = 0; iter < 2; iter++)
+	//{
+	//	intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
+	//	re_.insert(re_.end(), (children_[iter]->re_).begin(), (children_[iter]->re_).end());
+	//	nbre_.insert(nbre_.end(), (children_[iter]->nbre_).begin(), (children_[iter]->nbre_).end());
+	//	tmpnbsk.insert(tmpnbsk.end(), (children_[iter]->nbsk_).begin(), (children_[iter]->nbsk_).end());
+	//}
+	//sort(intr_.begin(), intr_.end());
+	//sort(re_.begin(), re_.end());
+	//sort(nbre_.begin(), nbre_.end());
+	//sort(tmpnbsk.begin(), tmpnbsk.end());
+	//vector<int> tmpsep;
+	//Intersect_Sort(sep_, intr_, tmpsep);
+	//sep_.assign(tmpsep.begin(), tmpsep.end());
+	//vector<int> tmpintr;
+	//Diff_Sort(intr_, sep_, tmpintr);
+	//intr_.assign(tmpintr.begin(), tmpintr.end());
+	//vector<int> tmpnb;
+	//vector<int> tmpnb2;
+	//Diff_Sort(nb_, nbre_, tmpnb);
+	//Intersect_Sort(nb_, tmpnbsk, tmpnb2);
+	//nb_.assign(tmpnb.begin(), tmpnb.end());
+	//vector<int> difftmpnb1;
+	//vector<int> difftmpnb2;
+	//Diff_Sort(tmpnb, tmpnb2, difftmpnb1);
+	//Diff_Sort(tmpnb2, tmpnb, difftmpnb2);
+	//if (difftmpnb1.size() > 0)
+	//{
+	//	ShowVector(difftmpnb1, "difftmpnb1");
+	//}
+	//if (difftmpnb2.size() > 0)
+	//{
+	//	// Never happen
+	//	ShowVector(difftmpnb2, "difftmpnb2");
+	//}
 
 
 	// Next we assign the corresponding matrices.
