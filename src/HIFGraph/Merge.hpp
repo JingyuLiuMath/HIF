@@ -117,6 +117,7 @@ void HIFGraph<Scalar>::Merge()
 	}
 	if (difftmpnb2.size() > 0)
 	{
+		// Never happen
 		ShowVector(difftmpnb2, "difftmpnb2");
 	}
 

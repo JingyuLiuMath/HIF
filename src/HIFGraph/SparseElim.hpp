@@ -37,9 +37,11 @@ void HIFGraph<Scalar>::SparseElim()
 	TIMER_HIF(TimerStart(TIMER_EL_LDLSOLVE))
 	LDLSolve(AII_, AIIinv_);
 	TIMER_HIF(TimerStop(TIMER_EL_LDLSOLVE))
+	
 	// AIIinvAIS = AII^{-1} * ASI^{T}.
 	Transpose(ASI_, AIIinvAIS_);
 	MultiplySolve(AIIinv_, AIIinvAIS_);
+	
 	// ASS = ASS - ASI * AII^ {-1} * ASI^ {T}.
 	Gemm(NORMAL, NORMAL,
 		Scalar(-1), ASI_, AIIinvAIS_,

@@ -118,32 +118,31 @@ void HIFGraph<Scalar>::Skel()
 		FindAllIndex_Sort(sep1, sep_, myindex_sep1);
 		vector<int> nodekindex_sep1;
 		FindAllIndex_Sort(sep1, nodek->nb_, nodekindex_sep1);
-		vector<int> myindex_sep1C;
-		FindAllIndex_Sort(mysep1C, sep_, myindex_sep1C);
+		vector<int> myindex_mysep1C;
+		FindAllIndex_Sort(mysep1C, sep_, myindex_mysep1C);
 		vector<int> myindex_mysep2C;
 		FindAllIndex_Sort(mysep2C, nb_, myindex_mysep2C);
 		
 		vector<int> nodekindex_sep2;
 		FindAllIndex_Sort(sep2, nodek->sep_, nodekindex_sep2);
-		
 		vector<int> myindex_sep2;
 		FindAllIndex_Sort(sep2, nb_, myindex_sep2);
-		vector<int> nodekindex_sep2C;
-		FindAllIndex_Sort(nodeksep2C, nodek->sep_, nodekindex_sep2C);
+		vector<int> nodekindex_nodeksep2C;
+		FindAllIndex_Sort(nodeksep2C, nodek->sep_, nodekindex_nodeksep2C);
 		vector<int> nodekindex_nodeksep1C;
 		FindAllIndex_Sort(nodeksep1C, nodek->nb_, nodekindex_nodeksep1C);
 
 		// ID decomposition.
-		// In the following process, the first "1" or "2" denotes my or nodek, 
-		// the second "1" or "2" denotes sk or re.
-
-		/*skelmtx1 = [obj.ASS(myindex_sep1C, myindex_sep1);
-			obj.ANS(myindex_mysep2C, myindex_sep1)];
-		skelmtx2 = [nodek.ASS(nodekindex_sep2C, nodekindex_sep2);
-			nodek.ANS(nodekindex_nodeksep1C, nodekindex_sep2)];*/
-		if ((myindex_sep1C.size() + myindex_mysep2C.size() == 0) || 
+		
+		// skelmtx1 = 
+		// [obj.ASS(myindex_mysep1C, myindex_sep1);
+		//	obj.ANS(myindex_mysep2C, myindex_sep1)];
+		// skelmtx2 = 
+		// [nodek.ASS(nodekindex_nodeksep2C, nodekindex_sep2);
+		//	nodek.ANS(nodekindex_nodeksep1C, nodekindex_sep2)];
+		if ((myindex_mysep1C.size() + myindex_mysep2C.size() == 0) || 
 			(myindex_sep1.size() == 0) ||
-			(nodekindex_sep2C.size() + nodekindex_nodeksep1C.size() == 0) ||
+			(nodekindex_nodeksep2C.size() + nodekindex_nodeksep1C.size() == 0) ||
 			(nodekindex_sep2.size() == 0))
 		{
 			nbinfo_[k].skip = 1;
@@ -152,46 +151,52 @@ void HIFGraph<Scalar>::Skel()
 		MatrixS skelmtx1;
 		MatrixS skelmtx2;
 		El::Zeros(skelmtx1,
-			myindex_sep1C.size() + myindex_mysep2C.size(), myindex_sep1.size());
+			myindex_mysep1C.size() + myindex_mysep2C.size(), myindex_sep1.size());
 		El::Zeros(skelmtx2,
-			nodekindex_sep2C.size() + nodekindex_nodeksep1C.size(), nodekindex_sep2.size());
+			nodekindex_nodeksep2C.size() + nodekindex_nodeksep1C.size(), nodekindex_sep2.size());
 		MatrixS viewmtx;
 		View(viewmtx, skelmtx1, 
 			0, 0,
-			myindex_sep1C.size(), myindex_sep1.size());
-		viewmtx = ASS_(myindex_sep1C, myindex_sep1);
+			myindex_mysep1C.size(), myindex_sep1.size());
+		viewmtx = ASS_(myindex_mysep1C, myindex_sep1);
 		View(viewmtx, skelmtx1, 
-			myindex_sep1C.size(), 0, 
+			myindex_mysep1C.size(), 0, 
 			myindex_mysep2C.size(), myindex_sep1.size());
 		viewmtx = ANS_(myindex_mysep2C, myindex_sep1);
 		View(viewmtx, skelmtx2,
 			0, 0,
-			nodekindex_sep2C.size(), nodekindex_sep2.size());
-		viewmtx = (nodek->ASS_)(nodekindex_sep2C, nodekindex_sep2);
+			nodekindex_nodeksep2C.size(), nodekindex_sep2.size());
+		viewmtx = (nodek->ASS_)(nodekindex_nodeksep2C, nodekindex_sep2);
 		View(viewmtx, skelmtx2,
-			nodekindex_sep2C.size(), 0,
+			nodekindex_nodeksep2C.size(), 0,
 			nodekindex_nodeksep1C.size(), nodekindex_sep2.size());
 		viewmtx = (nodek->ANS_)(nodekindex_nodeksep1C, nodekindex_sep2);
 
+		// In the following process, the first "1" or "2" denotes my or nodek, 
+		// the second "1" or "2" denotes sk or re.
 		TIMER_HIF(TimerStart(TIMER_EL))
 		TIMER_HIF(TimerStart(TIMER_EL_ID))
 		vector<int> p11;
 		vector<int> p12;
 		MatrixS& T1 = nbinfo_[k].Th1c1;
 		IDSolve(skelmtx1, T1, p11, p12, ctrl); // skelmtx1(:, p12) = skelmtx1(:, p11) * T1.
+		
+		ShowVector(p11, "p11");
+		ShowVector(p12, "p12");
+
 		TIMER_HIF(TimerStop(TIMER_EL_ID))
 		TIMER_HIF(TimerStop(TIMER_EL))
 
+		// myindex_p11 = myindex_sep1(p11);
+		// myindex_p12 = myindex_sep1(p12);
+		// nodekindex_p11 = nodekindex_sep1(p11);
+		// nodekindex_p12 = nodekindex_sep1(p12);
+		// obj.re = [obj.re, sep1(p12)];
+		// nodek.nbre = [nodek.nbre, sep1(p12)];
 		vector<int>& myindex_p11 = nbinfo_[k].myindex_p11;
 		vector<int>& myindex_p12 = nbinfo_[k].myindex_p12;
 		vector<int>& nodekindex_p11 = nbinfo_[k].nodekindex_p11;
 		vector<int>& nodekindex_p12 = nbinfo_[k].nodekindex_p12;
-		/*myindex_p11 = myindex_sep1(p11);
-		myindex_p12 = myindex_sep1(p12);
-		nodekindex_p11 = nodekindex_sep1(p11);
-		nodekindex_p12 = nodekindex_sep1(p12);
-		obj.re = [obj.re, sep1(p12)];
-		nodek.nbre = [nodek.nbre, sep1(p12)];*/
 		myindex_p11.resize(p11.size());
 		myindex_p12.resize(p12.size());
 		nodekindex_p11.resize(p11.size());
@@ -216,20 +221,24 @@ void HIFGraph<Scalar>::Skel()
 		vector<int> p21;
 		vector<int> p22;
 		MatrixS& T2 = nbinfo_[k].Th2c2;
-		IDSolve(skelmtx2, T2, p21, p22, ctrl); // skelmtx2(:, p22) = skelmtx2(:, p21) * T2.		
+		IDSolve(skelmtx2, T2, p21, p22, ctrl); // skelmtx2(:, p22) = skelmtx2(:, p21) * T2.
+
+		ShowVector(p21, "p21");
+		ShowVector(p22, "p22");
+
 		TIMER_HIF(TimerStop(TIMER_EL_ID))
 		TIMER_HIF(TimerStop(TIMER_EL))
 
+		// myindex_p21 = myindex_sep2(p21);
+		// myindex_p22 = myindex_sep2(p22);
+		// nodekindex_p21 = nodekindex_sep2(p21);
+		// nodekindex_p22 = nodekindex_sep2(p22);
+		// nodek.re = [nodek.re, sep2(p22)];
+		// obj.nbre = [obj.nbre, sep2(p22)];
 		vector<int>& myindex_p21 = nbinfo_[k].myindex_p21;
 		vector<int>& myindex_p22 = nbinfo_[k].myindex_p22;
 		vector<int>& nodekindex_p21 = nbinfo_[k].nodekindex_p21;
 		vector<int>& nodekindex_p22 = nbinfo_[k].nodekindex_p22;
-		/*myindex_p21 = myindex_sep2(p21);
-		myindex_p22 = myindex_sep2(p22);
-		nodekindex_p21 = nodekindex_sep2(p21);
-		nodekindex_p22 = nodekindex_sep2(p22);
-		nodek.re = [nodek.re, sep2(p22)];
-		obj.nbre = [obj.nbre, sep2(p22)];*/
 		myindex_p21.resize(p21.size());
 		myindex_p22.resize(p22.size());
 		nodekindex_p21.resize(p21.size());
