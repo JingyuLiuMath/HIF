@@ -106,7 +106,26 @@ int main(int argc, char* argv[])
 		{
 			std::cout << offsetB[k] << std::endl;
 		}*/
+		
+		Matrix<double> testperm(1, 5);
+		testperm.Set(0, 0) = 5;
+		testperm.Set(0, 1) = 2;
+		testperm.Set(0, 2) = 3;
+		testperm.Set(0, 3) = 7;
+		testperm.Set(0, 4) = 1;
+		Permutation P;
+		El::SortingPermutation(testperm, P);
+		for (int i = 0; i < 5; i++)
+		{
+			std::cout << testperm.Get(0, i) << std::endl;
+		}
+		P.PermuteCols(testperm);
+		for (int i = 0; i < 5; i++)
+		{
+			std::cout << testperm.Get(0, i) << std::endl;
+		}
 
+		/*
 		// Initialization.
 		El::Timer initTimer("InitTimer");
 		initTimer.Start();
@@ -164,6 +183,7 @@ int main(int argc, char* argv[])
 				"=================================================="
 			);
 		)
+		*/
 	}
 	catch (std::exception& e)
 	{
