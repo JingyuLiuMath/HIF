@@ -55,7 +55,6 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
     Permutation P;
     ID(skelmtx, P, T, ctrl);
     int k = T.Height(); // rank.
-    ShowMatrix(T, "T");
     p1.resize(T.Height());
     p2.resize(T.Width());
     Matrix<int> pmat(1, skelmtx.Width());
@@ -64,7 +63,6 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
         pmat.Set(0, i, i);
     }
     P.PermuteCols(pmat);
-    ShowMatrix(pmat, "pmat");
     Matrix<int> p1mat(1, T.Height());
     Matrix<int> p2mat(1, T.Width());
     for (int i = 0; i < pmat.Width(); i++)
@@ -78,18 +76,14 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
             p2mat.Set(0, i - k, pmat.Get(0, i));
         }
     }
-    ShowMatrix(p1mat, "p1mat");
-    ShowMatrix(p2mat, "p2mat");
     Permutation P1;
     Permutation P2;
     El::SortingPermutation(p1mat, P1);
     El::SortingPermutation(p2mat, P2);
-    std::cout << "qwe" << std::endl;
     P1.PermuteCols(p1mat);
     P2.PermuteCols(p2mat);
     P1.PermuteRows(T);
     P2.PermuteCols(T);
-    std::cout << "adsadda" << std::endl;
     for (int i = 0; i < p1mat.Width(); i++)
     {
         p1[i] = p1mat.Get(0, i);
@@ -98,7 +92,6 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
     {
         p2[i] = p2mat.Get(0, i);
     }
-    std::cout << "123123123123" << std::endl;
     // skelmtx(:, p2) = skelmtx(:, p1) * T where p1 and p2 are sorted.
 }
 
