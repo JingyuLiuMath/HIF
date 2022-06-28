@@ -100,7 +100,7 @@ void HIFGraph<Scalar>::Factorization()
 			"=================================================="
 		);
 	)
-
+	std::cout << "re size: " << re.size() << endl;
 }
 
 } // namespace HIF.
