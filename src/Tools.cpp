@@ -54,7 +54,7 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
 
     Permutation P;
     ID(skelmtx, P, T, ctrl);
-    int k = T.Height();
+    int k = T.Height(); // rank.
     p1.resize(T.Height());
     p2.resize(T.Width());
     Matrix<int> pmat(1, skelmtx.Width());
@@ -73,7 +73,7 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
         }
         else
         {
-            p2mat.Update(0, i, pmat.Get(0, i));
+            p2mat.Update(0, i - k, pmat.Get(0, i));
         }
     }
     Permutation P1;
