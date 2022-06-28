@@ -82,7 +82,7 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
     El::SortingPermutation(p2mat, P2);
     P1.PermuteCols(p1mat);
     P2.PermuteCols(p2mat);
-    P1.PermutRows(T);
+    P1.PermuteRows(T);
     P2.PermuteCols(T);
     for (int i = 0; i < p1.size(); i++)
     {
