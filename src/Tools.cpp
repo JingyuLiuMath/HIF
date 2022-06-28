@@ -80,10 +80,12 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
     Permutation P2;
     El::SortingPermutation(p1mat, P1);
     El::SortingPermutation(p2mat, P2);
+    std::cout << "qwe" << std::endl;
     P1.PermuteCols(p1mat);
     P2.PermuteCols(p2mat);
     P1.PermuteRows(T);
     P2.PermuteCols(T);
+    std::cout << "adsadda" << std::endl;
     for (int i = 0; i < p1mat.Width(); i++)
     {
         p1[i] = p1mat.Get(0, i);
@@ -92,6 +94,7 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
     {
         p2[i] = p2mat.Get(0, i);
     }
+    std::cout << "123123123123" << std::endl;
     // skelmtx(:, p2) = skelmtx(:, p1) * T where p1 and p2 are sorted.
 }
 
