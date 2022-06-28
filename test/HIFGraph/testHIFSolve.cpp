@@ -81,32 +81,6 @@ int main(int argc, char* argv[])
 		readTimer.Stop();
 		MasterCout("Reading input ends in ", readTimer.Total(), " sec.");
 		
-		//sourceB is ordered from small to large, 
-		// offset B is CSR format.
-		/*SparseMatrix<double> B(4, 6);
-		B.QueueUpdate(0, 0, 10);
-		B.QueueUpdate(0, 1, 20);
-		B.QueueUpdate(1, 1, 30);
-		B.QueueUpdate(1, 3, 40);
-		B.QueueUpdate(2, 2, 50);
-		B.QueueUpdate(2, 3, 60);
-		B.QueueUpdate(2, 4, 70);
-		B.QueueUpdate(3, 5, 80);
-		B.ProcessQueues();
-		int nnzB = B.NumEntries();
-		const int* sourceB = B.LockedSourceBuffer();
-		const int* targetB = B.LockedTargetBuffer();
-		const int* offsetB = B.LockedOffsetBuffer();
-		const double* valueB = B.LockedValueBuffer();
-		for (int k = 0; k < nnzB; k++)
-		{
-			std::cout << sourceB[k] << " " << targetB[k] << " " << valueB[k] << std::endl;
-		}
-		for (int k = 0; k < 5; k++)
-		{
-			std::cout << offsetB[k] << std::endl;
-		}*/
-		
 		// Initialization.
 		El::Timer initTimer("InitTimer");
 		initTimer.Start();
@@ -143,7 +117,7 @@ int main(int argc, char* argv[])
 		{
 			relnorm2 += std::pow(b.Get(k, 0) - 1, 2);
 		}
-		relnorm2 /= n;
+		relnorm2 = relnorm2 / n;
 		relnorm2 = std::sqrt(relnorm2);
 
 
