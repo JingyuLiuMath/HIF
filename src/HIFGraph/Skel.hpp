@@ -181,6 +181,15 @@ void HIFGraph<Scalar>::Skel()
 		MatrixS& T1 = nbinfo_[k].Th1c1;
 		IDSolve(skelmtx1, T1, p11, p12, ctrl); // skelmtx1(:, p12) = skelmtx1(:, p11) * T1.
 		
+		//// Print  skelmtx1(:, p12) - skelmtx1(:, p11) * T1.
+		//vector<int> index;
+		//RangeVec(0, skelmtx1.Height(), index);
+		//MatrixS testmtx = skelmtx1(index, p12);
+		//Gemm(NORMAL, NORMAL,
+		//	Scalar(-1), skelmtx1(index, p11), T1,
+		//	Scalar(1), testmtx);
+		//ShowMatrix(testmtx, "testmtx");
+
 		/*ShowVector(p11, "p11");
 		ShowVector(p12, "p12");*/
 

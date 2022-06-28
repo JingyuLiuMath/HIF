@@ -63,21 +63,39 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
         pmat.Set(0, i, i);
     }
     P.PermuteCols(pmat);
+    Matrix<int> p1mat(1, p1.size());
+    Matrix<int> p2mat(1, p2.size());
     for (int i = 0; i < pmat.Width(); i++)
     {
         if (i < k)
         {
-            p1[i] = pmat.Get(0, i);
+            p1mat.Update(0, i, pmat.Get(0, i));
         }
         else
         {
-            p2[i - k] = pmat.Get(0, i);
+            p2mat.Update(0, i, pmat.Get(0, i));
         }
     }
-    // skelmtx(:, p2) = skelmtx(:, p1) * T.
+    Permutation P1;
+    Permutation P2;
+    El::SortingPermutation(p1mat, P1);
+    El::SortingPermutation(p2mat, P2);
+    P1.PermuteCols(p1mat);
+    P2.PermuteCols(p2mat);
+    P1.PermutRows(T);
+    P2.PermuteCols(T);
+    for (int i = 0; i < p1.size(); i++)
+    {
+        p1[i] = p1mat.Get(0, i);
+    }
+    for (int i = 0; i < p2.size(); i++)
+    {
+        p2[i] = p2mat.Get(0, i);
+    }
+    // skelmtx(:, p2) = skelmtx(:, p1) * T where p1 and p2 are sorted.
 }
 
-// A(rowindex, colindex) = newsubA.
+// A(rowindex, colindex) = newsubA where rowindex and colindex are sorted.
 template <typename Scalar>
 void SubMatrixUpdate(Matrix<Scalar>& A, const vector<int>& rowindex, const vector<int>& colindex,
     Matrix<Scalar>& newsubA)
