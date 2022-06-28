@@ -181,18 +181,6 @@ void HIFGraph<Scalar>::Skel()
 		MatrixS& T1 = nbinfo_[k].Th1c1;
 		IDSolve(skelmtx1, T1, p11, p12, ctrl); // skelmtx1(:, p12) = skelmtx1(:, p11) * T1.
 		
-		// Print  skelmtx1(:, p12) - skelmtx1(:, p11) * T1.
-		vector<int> index;
-		RangeVec(0, skelmtx1.Height(), index);
-		MatrixS testmtx = skelmtx1(index, p12);
-		Gemm(NORMAL, NORMAL,
-			Scalar(-1), skelmtx1(index, p11), T1,
-			Scalar(1), testmtx);
-		ShowMatrix(testmtx, "testmtx");
-
-		ShowVector(p11, "p11");
-		ShowVector(p12, "p12");
-
 		TIMER_HIF(TimerStop(TIMER_EL_ID))
 		TIMER_HIF(TimerStop(TIMER_EL))
 
@@ -231,9 +219,6 @@ void HIFGraph<Scalar>::Skel()
 		vector<int> p22;
 		MatrixS& T2 = nbinfo_[k].Th2c2;
 		IDSolve(skelmtx2, T2, p21, p22, ctrl); // skelmtx2(:, p22) = skelmtx2(:, p21) * T2.
-
-		ShowVector(p21, "p21");
-		ShowVector(p22, "p22");
 
 		TIMER_HIF(TimerStop(TIMER_EL_ID))
 		TIMER_HIF(TimerStop(TIMER_EL))
