@@ -63,8 +63,8 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
         pmat.Set(0, i, i);
     }
     P.PermuteCols(pmat);
-    Matrix<int> p1mat(1, p1.size());
-    Matrix<int> p2mat(1, p2.size());
+    Matrix<int> p1mat(1, T.Height());
+    Matrix<int> p2mat(1, T.Width());
     for (int i = 0; i < pmat.Width(); i++)
     {
         if (i < k)
@@ -84,11 +84,11 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
     P2.PermuteCols(p2mat);
     P1.PermuteRows(T);
     P2.PermuteCols(T);
-    for (int i = 0; i < p1.size(); i++)
+    for (int i = 0; i < p1mat.Width(); i++)
     {
         p1[i] = p1mat.Get(0, i);
     }
-    for (int i = 0; i < p2.size(); i++)
+    for (int i = 0; i < p2mat.Width(); i++)
     {
         p2[i] = p2mat.Get(0, i);
     }
