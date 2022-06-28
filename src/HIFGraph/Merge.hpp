@@ -85,7 +85,7 @@ void HIFGraph<Scalar>::Merge()
 
 	// intr: children's sk - sep.
 	// sep : sep - children's re.
-	// nb: nb - children's nbre.
+	// nb: nb - children's nbre.(maybe correct)
 	for (int iter = 0; iter < 2; iter++)
 	{
 		intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
