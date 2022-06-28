@@ -28,6 +28,11 @@ void RangeVec(int start, int end, vector<int>& vec);
 template <typename Scalar>
 void FullMat(const SparseMatrix<Scalar>& sparseA, Matrix<Scalar>& A);
 
+template <typename Scalar>
+void ShowMatrix(const Matrix<Scalar>& A, const string discription);
+
+void ShowVector(const vector<int>& v, const string discription);
+
 } // namespace HIF.
 
 #endif // ifndef HIF_TOOLS_HPP

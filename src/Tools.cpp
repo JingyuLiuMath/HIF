@@ -63,6 +63,7 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
         pmat.Set(0, i, i);
     }
     P.PermuteCols(pmat);
+    ShowMatrix(pmat, "pmat");
     Matrix<int> p1mat(1, T.Height());
     Matrix<int> p2mat(1, T.Width());
     for (int i = 0; i < pmat.Width(); i++)
@@ -76,6 +77,8 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
             p2mat.Update(0, i - k, pmat.Get(0, i));
         }
     }
+    ShowMatrix(p1mat, "p1mat");
+    ShowMatrix(p2mat, "p2mat");
     Permutation P1;
     Permutation P2;
     El::SortingPermutation(p1mat, P1);
@@ -141,6 +144,41 @@ void FullMat(const SparseMatrix<Scalar>& sparseA, Matrix<Scalar>& A)
     }
 }
 
+// Show matrix.
+template <typename Scalar>
+void ShowMatrix(const Matrix<Scalar>& A, const string discription)
+{
+    DEBUG_HIF(CallStackEntry cse("HIFGraph:ShowMatrix"))
+
+    std::cout << discription << std::endl;
+    std::cout << "Height " << A.Height() << std::endl;
+    std::cout << "Width " << A.Width() << std::endl;
+    std::cout << " [ " << std::endl;
+    for (int i = 0; i < A.Height(); i++)
+    {
+        for (int j = 0; j < A.Width(); j++)
+        {
+            std::cout << A.Get(i, j) << ",";
+        }
+        std::cout << ";" << std::endl;
+    }
+    std::cout << " ] " << std::endl;
+}
+
+// Show vector.
+void ShowVector(const vector<int>& v, const string discription)
+{
+    DEBUG_HIF(CallStackEntry cse("HIFGraph:ShowVector"))
+
+    std::cout << discription << std::endl;
+    std::cout << " Size " << v.size() << std::endl;
+    std::cout << " [ " << std::endl;
+    for (int i = 0; i < v.size(); i++)
+    {
+        std::cout << v[i] << ";" << std::endl;
+    }
+    std::cout << " ] " << std::endl;
+}
 
 #define PROTOTYPE(Scalar) \
 template void LDLSolve( Matrix<Scalar>& A ); \
@@ -158,7 +196,8 @@ template void SubMatrixUpdate(Matrix<Scalar>& A, \
     const vector<int>& colindex, \
     Matrix<Scalar>& newsubA); \
 template void FullMat(const SparseMatrix<Scalar>& sparseA, \
-    Matrix<Scalar>& A);
+    Matrix<Scalar>& A); \
+template void ShowMatrix(const Matrix<Scalar>& A, const string discription);
 
 PROTOTYPE(float)
 PROTOTYPE(double)
