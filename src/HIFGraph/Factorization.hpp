@@ -21,7 +21,7 @@ void HIFGraph<Scalar>::Factorization()
 		Log(
 			"        Level        LevelTime        ElTime",        
 			"        SparseElim        Skel        Merge",
-			"        ElLDL        ElID        SetOp"
+			"        ElLDL        ElID        SetOperation"
 		);
 		Log(
 			"--------------------------------------------------",
@@ -62,7 +62,7 @@ void HIFGraph<Scalar>::Factorization()
 				setw(13), scientific, setprecision(2), TimerPartial(TIMER_MERGE),
 				setw(13), scientific, setprecision(2), TimerTotal(TIMER_EL_LDLSOLVE),
 				setw(12), scientific, setprecision(2), TimerTotal(TIMER_EL_ID),
-				setw(13), scientific, setprecision(2), TimerTotal(TIMER_SETOP)-setoptimecutoff
+				setw(20), scientific, setprecision(2), TimerTotal(TIMER_SETOP)-setoptimecutoff
 				);
 			Log(
 				"--------------------------------------------------",
@@ -92,7 +92,7 @@ void HIFGraph<Scalar>::Factorization()
 			setw(13), scientific, setprecision(2), TimerTotal(TIMER_MERGE),
 			setw(13), scientific, setprecision(2), TimerTotal(TIMER_EL_LDLSOLVE),
 			setw(12), scientific, setprecision(2), TimerTotal(TIMER_EL_ID),
-			setw(13), scientific, setprecision(2), TimerTotal(TIMER_SETOP)- setoptimecutoff
+			setw(20), scientific, setprecision(2), TimerTotal(TIMER_SETOP)- setoptimecutoff
 		);
 		Log(
 			"==================================================",
