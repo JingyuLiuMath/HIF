@@ -43,7 +43,7 @@ void HIFGraph<Scalar>::Merge()
 	// intr: children's sk - sep.
 	// sep : sep \cup children's sk.
 	// nb: nb \cup children's nbsk. (Not correct, don't know why)
-	/*vector<int> tmpnbsk;
+	vector<int> tmpnbsk;
 	for (int iter = 0; iter < 2; iter++)
 	{
 		intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
@@ -59,12 +59,12 @@ void HIFGraph<Scalar>::Merge()
 	intr_.assign(tmpintr.begin(), tmpintr.end());
 	vector<int> tmpnb;
 	Intersect_Sort(nb_, tmpnbsk, tmpnb);
-	nb_.assign(tmpnb.begin(), tmpnb.end());*/
+	nb_.assign(tmpnb.begin(), tmpnb.end());
 	
 	// intr: children's sk - sep.
 	// sep : sep \cup children's sk.
 	// nb: nb - children's nbre.
-	for (int iter = 0; iter < 2; iter++)
+	/*for (int iter = 0; iter < 2; iter++)
 	{
 		intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
 		re_.insert(re_.end(), (children_[iter]->re_).begin(), (children_[iter]->re_).end());
@@ -81,7 +81,7 @@ void HIFGraph<Scalar>::Merge()
 	intr_.assign(tmpintr.begin(), tmpintr.end());
 	vector<int> tmpnb;
 	Diff_Sort(nb_, nbre_, tmpnb);
-	nb_.assign(tmpnb.begin(), tmpnb.end());
+	nb_.assign(tmpnb.begin(), tmpnb.end());*/
 
 	// intr: children's sk - sep.
 	// sep : sep - children's re.
