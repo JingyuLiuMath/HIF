@@ -31,8 +31,6 @@
 namespace HIF {
 
 // Pull in a number of useful enums from Elemental
-using namespace El::DistNS;
-using namespace El::DistWrapNS;
 using namespace El::LeftOrRightNS;
 using ELLR = El::LeftOrRightNS::LeftOrRight;
 using namespace El::OrientationNS;
