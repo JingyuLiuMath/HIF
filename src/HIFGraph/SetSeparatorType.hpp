@@ -2,6 +2,29 @@
 
 namespace HIF {
 
+// Recusively set separator vertices' type.
+template <typename Scalar>
+void HIFGraph<Scalar>::RecursiveSetSeparatorType(int whatlevel)
+{
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:RecursiveSetSeparatorType"))
+
+	if (level_ == whatlevel)
+	{
+		SetSeparatorType();
+	}
+	else
+	{
+		if (endflag_ == 0)
+		{
+			for (int iter = 0; iter < 2; iter++)
+			{
+				children_[iter]->RecursiveSetSeparatorType(whatlevel);
+			}
+		}
+	}
+}
+
+
 // Set separator vertices' type.
 template <typename Scalar>
 void HIFGraph<Scalar>::SetSeparatorType()

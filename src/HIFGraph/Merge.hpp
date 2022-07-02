@@ -38,7 +38,7 @@ void HIFGraph<Scalar>::Merge()
 
 	childreninfo_.resize(2);
 
-	// First we tell the parent what its intr, sep, nb is after we eliminate the children's vtx.
+	// First we tell the parent what its intr, sep, nb is after we eliminate the children's intr and re.
 	
 	// intr: children's sk - sep.
 	// sep : sep \cup children's sk.
@@ -144,13 +144,7 @@ void HIFGraph<Scalar>::Merge()
 	//}
 
 
-	// Next we assign the corresponding matrices.
-	// From child to parent.
-	// intr: children's sep and children's nb
-	// sep: children's sep and children's nb
-	// nb : children's nb
-
-	// We assign values blockly.
+	// Next we assign the corresponding matrices blockly.
 
 	MatrixS copymtx; // Copy of assigned matrix. 
 

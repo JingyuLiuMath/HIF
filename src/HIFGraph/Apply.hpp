@@ -2,6 +2,7 @@
 
 namespace HIF {
 
+// b = A^{-1} b where A^{-1} is given by HIF.
 template <typename Scalar>
 void HIFGraph<Scalar>::Apply(MatrixS& b)
 {
@@ -35,11 +36,11 @@ void HIFGraph<Scalar>::Apply(MatrixS& b)
 		RecursiveApplySkelDown(tmplevel, xcol);
 		RecursiveApplySparseElimDown(tmplevel);
 	}
-	
-	// GetSolution.
-	GetSolution(b, xcol);
 
 	TIMER_HIF(TimerStop(TIMER_APPLY))
+
+	// GetSolution.
+	GetSolution(b, xcol);
 }
 
 } // namespace HIF.

@@ -10,7 +10,7 @@ void HIFGraph<Scalar>::Factorization()
 
 	double setoptimecutoff = TimerTotal(TIMER_SETOP);
 
-	// ElTime, ElLDLSolve, ElID,  SetOpTime are accumulative.
+	// ElTime, ElLDL, ElID, SetOperation are accumulative.
 	INFO_HIF
 	(
 		Log(
@@ -44,9 +44,10 @@ void HIFGraph<Scalar>::Factorization()
 		RecursiveSkel(tmplevel);
 		TIMER_HIF(TimerStop(TIMER_SKEL))
 
-		// Merge.
+		// Merge and set separator type..
 		TIMER_HIF(TimerStart(TIMER_MERGE))
 		RecursiveMerge(tmplevel - 1);
+		RecursiveSetSeparatorType(tmplevel - 1);
 		TIMER_HIF(TimerStop(TIMER_MERGE))
 
 		TIMER_HIF(TimerStop(TIMER_FACTOR))

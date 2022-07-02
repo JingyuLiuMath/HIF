@@ -17,12 +17,12 @@ int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value)
 	if (vec.front() > value)
 	{
 		TIMER_HIF(TimerStop(TIMER_SETOP))
-		return index;
+		return -1;
 	}
 	if (vec.back() < value)
 	{
 		TIMER_HIF(TimerStop(TIMER_SETOP))
-		return index;
+		return -1;
 	}
 	while (startsearch <= endsearch)
 	{
@@ -47,7 +47,6 @@ int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value)
 		TIMER_HIF(TimerStop(TIMER_SETOP))
 		return -1;
 	}
-
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 	return index;
 }

@@ -117,6 +117,7 @@ private:
 
     void RecursiveMerge(int whatlevel);
     void Merge();
+    void RecursiveSetSeparatorType(int whatlevel);
     void FactorClear();
 
     void RootFactorization();

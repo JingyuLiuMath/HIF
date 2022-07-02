@@ -1,7 +1,7 @@
 #
 # Fudan University
 #
-cmake_minimum_required(VERSION 2.8.12) # for the new FindMPI module
+cmake_minimum_required(VERSION 2.8.12)
 project(HIF)
 
 set(HIF_VERSION_MAJOR 1)
