@@ -44,7 +44,7 @@ void HIFGraph<Scalar>::Factorization()
 		RecursiveSkel(tmplevel);
 		TIMER_HIF(TimerStop(TIMER_SKEL))
 
-		// Merge and set separator type..
+		// Merge.
 		TIMER_HIF(TimerStart(TIMER_MERGE))
 		RecursiveMerge(tmplevel - 1);
 		RecursiveSetSeparatorType(tmplevel - 1);
