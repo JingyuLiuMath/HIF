@@ -126,20 +126,20 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
 
     TIMER_HIF(TimerStart(TIMER_METIS))
     // nvtxs.
-    idx_t nvtxs = A.Height();
+    int nvtxs = A.Height();
     // xadj.
     const int* sourceA = A.LockedSourceBuffer();
     const int* targetA = A.LockedTargetBuffer();
     const int* offsetA = A.LockedOffsetBuffer();
     int nnzA = A.NumEntries();
-    idx_t* xadj = new idx_t[nvtxs + 1];
+    int* xadj = new int[nvtxs + 1];
     xadj[0] = 0;
     for (int t = 1; t <= nvtxs; t++)
     {
         xadj[t] = offsetA[t] - t;
     }
     // adjncy.
-    idx_t* adjncy = new idx_t[nnzA - nvtxs];
+    int* adjncy = new int[nnzA - nvtxs];
     int actualsize_adjncy = 0;
     for (int t = 0; t < nnzA; t++)
     {
@@ -150,18 +150,18 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         }
     }
     // others.
-    idx_t* vwgt = NULL;
-    idx_t options[METIS_NOPTIONS];
+    int* vwgt = NULL;
+    int options[METIS_NOPTIONS];
     METIS_SetDefaultOptions(options);
 
     // Metis main function.
-    idx_t i, nnvtxs = 0;
-    idx_t ptlgraph, ptrgraph, ptsep;
+    int i, nnvtxs = 0;
+    int ptlgraph, ptrgraph, ptsep;
     graph_t* graph = NULL;
     ctrl_t* ctrl;
-    idx_t* piperm;
-    idx_t snvtxs[3];
-    idx_t* where;
+    int* piperm;
+    int snvtxs[3];
+    int* where;
 
     if (!gk_malloc_init())
     {
