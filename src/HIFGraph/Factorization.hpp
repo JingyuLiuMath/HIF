@@ -11,7 +11,7 @@ void HIFGraph<Scalar>::Factorization()
 	double setoptimecutoff = TimerTotal(TIMER_SETOP);
 
 	// ElTime, ElLDL, ElID, SetOperation are accumulative.
-	// Others are only about its level except on level 0.
+	// Others' time is only about their level except on level 0.
 	INFO_HIF
 	(
 		Log(
