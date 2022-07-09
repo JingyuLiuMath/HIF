@@ -138,6 +138,23 @@ void FullMat(const SparseMatrix<Scalar>& sparseA, Matrix<Scalar>& A)
     }
 }
 
+// Full mat.
+template <typename Scalar>
+void FullMat(const SparseMatrix<Scalar>& sparseA, const vector<int>& rowindex, const vector<int>& colindex,
+    Matrix<Scalar>& A)
+{
+    DEBUG_HIF(CallStackEntry cse("FullMat"))
+
+    El::Zeros(A, rowindex.size(), colindex.size());
+    for (int i = 0; i < rowindex.size(); i++)
+    {
+        for (int j = 0; j < colindex.size(); j++)
+        {
+            A.Set(i, j, sparseA.Get(rowindex[i], colindex[j]));
+        }
+    }
+}
+
 // Show matrix.
 template <typename Scalar>
 void ShowMatrix(const Matrix<Scalar>& A, const string discription)
@@ -176,20 +193,14 @@ void ShowVector(const vector<int>& v, const string discription)
 
 #define PROTOTYPE(Scalar) \
 template void LDLSolve( Matrix<Scalar>& A ); \
-template void LDLSolve( Matrix<Scalar>& A, \
-        Matrix<Scalar>& Ainv ); \
-template void MultiplySolve( Matrix<Scalar>& A, \
-        Matrix<Scalar>& X ); \
-template void IDSolve(Matrix<Scalar>& skelmtx, \
-    Matrix<Scalar>& T, \
-    vector<int>& p1, \
-    vector<int>& p2, \
-    const QRCtrl<Base<Scalar>>& ctrl); \
-template void SubMatrixUpdate(Matrix<Scalar>& A, \
-    const vector<int>& rowindex, \
-    const vector<int>& colindex, \
+template void LDLSolve( Matrix<Scalar>& A, Matrix<Scalar>& Ainv ); \
+template void MultiplySolve( Matrix<Scalar>& A, Matrix<Scalar>& X ); \
+template void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T, \
+    vector<int>& p1, vector<int>& p2, const QRCtrl<Base<Scalar>>& ctrl); \
+template void SubMatrixUpdate(Matrix<Scalar>& A, const vector<int>& rowindex, const vector<int>& colindex, \
     Matrix<Scalar>& newsubA); \
-template void FullMat(const SparseMatrix<Scalar>& sparseA, \
+template void FullMat(const SparseMatrix<Scalar>& sparseA, Matrix<Scalar>& A); \
+template void FullMat(const SparseMatrix<Scalar>& sparseA, const vector<int>& rowindex, const vector<int>& colindex, \
     Matrix<Scalar>& A); \
 template void ShowMatrix(const Matrix<Scalar>& A, const string discription);
 

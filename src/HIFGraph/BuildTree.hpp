@@ -17,7 +17,6 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 	}
 
 	// Partition.
-
 	TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
 	SparseMatrixS tmpA = A(vtx_, vtx_);
 	TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
