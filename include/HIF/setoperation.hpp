@@ -43,6 +43,9 @@ void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Sc
 template <typename Scalar>
 void AddElement_Sort(vector<Scalar>& vec, Scalar value);
 
+template <typename Scalar>
+void AddVec_Sort(vector<Scalar>& vec1, const vector<Scalar>& vec2);
+
 } // namespace HIF.
 
 #endif // ifndef HIF_SETOP_HPP
