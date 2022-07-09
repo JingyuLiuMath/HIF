@@ -135,7 +135,7 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 					const int* offsetnbA = nbA.LockedOffsetBuffer();
 					for (int k = offsetnbA[i]; k < offsetnbA[i + 1]; k++)
 					{
-						addnb1.push_back(nb_[targetnbA[k]])
+						addnb1.push_back(nb_[targetnbA[k]]);
 					}
 				}
 				else
