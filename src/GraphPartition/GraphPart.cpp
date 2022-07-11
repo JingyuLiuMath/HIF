@@ -14,11 +14,11 @@ void GraphPart(const SparseMatrix<Scalar>& A,
     // p1, p2, sep1 is sorted.
     // p1 = p1 + sep1, p2 = p2, sep2 need to be assigned.
     TIMER_HIF(TimerStart(TIMER_SETSEP2))
-    for (int t = 0; t < sep1.size(); t++)
+    /*for (int t = 0; t < sep1.size(); t++)
     {
         AddElement_Sort(p1, sep1[t]);
-    }
-    // AddVec_Sort(p1, sep1);
+    }*/
+    AddVec_Sort(p1, sep1);
     vector<int> tmpsep2(p2.size(), 0);
     for (int i = 0; i < sep1.size(); i++)
     {
@@ -90,13 +90,13 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     singleidx.erase(singleidx.begin() + actualsize_singleidx, singleidx.end());
     idx.erase(idx.begin() + actualsize_idx, idx.end());
     
-    TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
+    /*TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
     SparseMatrix<Scalar> A1 = A(idx, idx);
-    TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
+    TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))*/
 
     vector<int> lidx, ridx, sepidx;
-    MetisSepPart(A1, lidx, ridx, sepidx);  // lidx, ridx, sepidx are sorted.
-    // MetisSepPart(A(idx, idx), lidx, ridx, sepidx);
+    // MetisSepPart(A1, lidx, ridx, sepidx);  // lidx, ridx, sepidx are sorted.
+    MetisSepPart(A(idx, idx), lidx, ridx, sepidx);
     p1.resize(lidx.size());
     p2.resize(ridx.size());
     sep.resize(sepidx.size());
@@ -113,11 +113,11 @@ void MetisPart(const SparseMatrix<Scalar>& A,
         sep[i] = idx[sepidx[i]];
     }
     // sep = idx + singleidx.
-    for (int t = 0; t < singleidx.size(); t++)
+    /*for (int t = 0; t < singleidx.size(); t++)
     {
         AddElement_Sort(sep, singleidx[t]);
-    }
-    // AddVec_Sort(sep, singleidx);
+    }*/
+    AddVec_Sort(sep, singleidx);
 }
 
 // Metis separator partition.
