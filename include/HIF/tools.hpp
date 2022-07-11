@@ -21,7 +21,11 @@ void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T,
 
 template <typename Scalar>
 void SubMatrixUpdate(Matrix<Scalar>& A, const vector<int>& rowindex, const vector<int>& colindex,
-    Matrix<Scalar>& newsubA);
+    const Matrix<Scalar>& newsubA);
+
+template <typename Scalar>
+void SubMatrixEqual(Matrix<Scalar>& subA,
+    const Matrix<Scalar>& A, const vector<int>& rowindex, const vector<int>& colindex);
 
 void RangeVec(int start, int end, vector<int>& vec);
 
