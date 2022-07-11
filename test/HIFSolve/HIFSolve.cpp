@@ -125,19 +125,14 @@ int main(int argc, char* argv[])
 			);
 		)
 
-		for (int k = 0; k < b.Height(); k++)
-		{
-			std::cout << b.Get(k, 0) << endl;
-		}
-
-		/*string filex = "./sol.txt";
+		string filex = "./sol.txt";
 		std::ofstream foutx;
 		foutx.open(filex, std::ios::out);
 		for (int k = 0; k < b.Height(); k++)
 		{
 			foutx << b.Get(k, 0) << endl;
 		}
-		foutx.close();*/
+		foutx.close();
 	}
 	catch (std::exception& e)
 	{
