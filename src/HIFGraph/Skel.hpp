@@ -158,23 +158,23 @@ void HIFGraph<Scalar>::Skel()
 		View(viewmtx, skelmtx1, 
 			0, 0,
 			myindex_mysep1C.size(), myindex_sep1.size());
-		// viewmtx = ASS_(myindex_mysep1C, myindex_sep1);
-		SubMatrixEqual(viewmtx, ASS_, myindex_mysep1C, myindex_sep1);
+		viewmtx = ASS_(myindex_mysep1C, myindex_sep1);
+		// SubMatrixEqual(viewmtx, ASS_, myindex_mysep1C, myindex_sep1);
 		View(viewmtx, skelmtx1, 
 			myindex_mysep1C.size(), 0, 
 			myindex_mysep2C.size(), myindex_sep1.size());
-		// viewmtx = ANS_(myindex_mysep2C, myindex_sep1);
-		SubMatrixEqual(viewmtx, ANS_, myindex_mysep2C, myindex_sep1);
+		viewmtx = ANS_(myindex_mysep2C, myindex_sep1);
+		// SubMatrixEqual(viewmtx, ANS_, myindex_mysep2C, myindex_sep1);
 		View(viewmtx, skelmtx2,
 			0, 0,
 			nodekindex_nodeksep2C.size(), nodekindex_sep2.size());
-		// viewmtx = (nodek->ASS_)(nodekindex_nodeksep2C, nodekindex_sep2);
-		SubMatrixEqual(viewmtx, nodek->ASS_, nodekindex_nodeksep2C, nodekindex_sep2);
+		viewmtx = (nodek->ASS_)(nodekindex_nodeksep2C, nodekindex_sep2);
+		// SubMatrixEqual(viewmtx, nodek->ASS_, nodekindex_nodeksep2C, nodekindex_sep2);
 		View(viewmtx, skelmtx2,
 			nodekindex_nodeksep2C.size(), 0,
 			nodekindex_nodeksep1C.size(), nodekindex_sep2.size());
-		// viewmtx = (nodek->ANS_)(nodekindex_nodeksep1C, nodekindex_sep2);
-		SubMatrixEqual(viewmtx, nodek->ANS_, nodekindex_nodeksep1C, nodekindex_sep2);
+		viewmtx = (nodek->ANS_)(nodekindex_nodeksep1C, nodekindex_sep2);
+		// SubMatrixEqual(viewmtx, nodek->ANS_, nodekindex_nodeksep1C, nodekindex_sep2);
 
 		// In the following process, the first "1" or "2" denotes my or nodek, 
 		// the second "1" or "2" denotes sk or re.
