@@ -122,7 +122,7 @@ void SubMatrixEqual(Matrix<Scalar>& subA,
     {
         for (int j = 0; j < colindex.size(); j++)
         {
-            subA.Set(i, j, newsubA.Get(rowindex[i], colindex[j]));
+            subA.Set(i, j, A.Get(rowindex[i], colindex[j]));
         }
     }
 }
