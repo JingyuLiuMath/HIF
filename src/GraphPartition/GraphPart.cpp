@@ -90,13 +90,13 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     singleidx.erase(singleidx.begin() + actualsize_singleidx, singleidx.end());
     idx.erase(idx.begin() + actualsize_idx, idx.end());
     
-    /*TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
+    TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
     SparseMatrix<Scalar> A1 = A(idx, idx);
-    TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))*/
+    TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
 
     vector<int> lidx, ridx, sepidx;
-    // MetisSepPart(A1, lidx, ridx, sepidx);  // lidx, ridx, sepidx are sorted.
-    MetisSepPart(A(idx, idx), lidx, ridx, sepidx);
+    MetisSepPart(A1, lidx, ridx, sepidx);  // lidx, ridx, sepidx are sorted.
+    // MetisSepPart(A(idx, idx), lidx, ridx, sepidx);
     p1.resize(lidx.size());
     p2.resize(ridx.size());
     sep.resize(sepidx.size());
