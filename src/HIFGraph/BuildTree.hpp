@@ -76,8 +76,8 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 	SparseMatrixS nbA = A(sep_, nb_);
 	TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
 
-	/*TIMER_HIF(TimerStart(TIMER_PASS))
-	vector<int> addsep1;
+	TIMER_HIF(TimerStart(TIMER_PASS))
+	/*vector<int> addsep1;
 	vector<int> addnb1;
 	vector<int> addsep2;
 	vector<int> addnb2;*/
