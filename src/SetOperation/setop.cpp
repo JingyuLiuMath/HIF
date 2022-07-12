@@ -9,7 +9,6 @@
 namespace HIF{
 
 #define PROTOTYPE_SET(Scalar) \
-template void AddElement_Sort(vector<Scalar>& vec, Scalar value); \
 template void AddVec_Sort(vector<Scalar>& vec1, const vector<Scalar>& vec2); \
 template void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Scalar>& vec); \
 template int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value); \
