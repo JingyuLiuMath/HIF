@@ -10,10 +10,10 @@ namespace HIF{
 #define PROTOTYPE_SET(Scalar) \
 template void AddElement_Sort(vector<Scalar>& vec, Scalar value); \
 template void AddVec_Sort(vector<Scalar>& vec1, const vector<Scalar>& vec2); \
+template void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Scalar>& vec); \
 template int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value); \
 template void FindAllIndex(const vector<Scalar>& vec, const Scalar value, vector<int>& index); \
-template void FindAllIndex_Sort(const vector<Scalar>& vec1, \
-	const vector<Scalar>& vec2, vector<int>& index); \
+template void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<int>& index); \
 template bool Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2); \
 template void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, \
 	vector<int>& index1, vector<int>& index2); \
@@ -23,8 +23,7 @@ template void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& v
 	vector<Scalar>& vec); \
 template void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, \
 	vector<Scalar>& vec, vector<int>& index, int who); \
-template void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, \
-	vector<Scalar>& vec);
+template void Unique_Sort(vector<Scalar>& vec);
 
 PROTOTYPE_SET(int)
 PROTOTYPE_SET(float)

@@ -46,6 +46,10 @@ void AddElement_Sort(vector<Scalar>& vec, Scalar value);
 template <typename Scalar>
 void AddVec_Sort(vector<Scalar>& vec1, const vector<Scalar>& vec2);
 
+// ---------------------------------------Unique---------------------------------------
+template <typename Scalar>
+void Unique_Sort(vector<Scalar>& vec);
+
 } // namespace HIF.
 
 #endif // ifndef HIF_SETOP_HPP

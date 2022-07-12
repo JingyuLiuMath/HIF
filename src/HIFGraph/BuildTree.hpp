@@ -77,44 +77,11 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 	TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
 
 	TIMER_HIF(TimerStart(TIMER_PASS))
-	/*vector<int> addsep1;
+	vector<int> addsep1;
 	vector<int> addnb1;
 	vector<int> addsep2;
-	vector<int> addnb2;*/
+	vector<int> addnb2;
 	
-	for (int i = 0; i < sep_.size(); i++)
-	{
-		int sepi = sep_[i];
-		for (int iter = 0; iter < 2; iter++)
-		{
-			HIFGraph* childnode = children_[iter];
-			if (FindIndex_Sort(childnode->vtx_, sepi) == -1)
-			{
-				continue;
-			}
-			else
-			{
-				// Pass sep.
-				AddElement_Sort(childnode->sep_, sepi);
-				// Pass nb.				
-				vector<int> index_addnb(nbA.Width());
-				int actualsize_index_addnb = 0;
-				const int* targetnbA = nbA.LockedTargetBuffer();
-				const int* offsetnbA = nbA.LockedOffsetBuffer();
-				for (int k = offsetnbA[i]; k < offsetnbA[i + 1]; k++)
-				{
-					index_addnb[actualsize_index_addnb] = targetnbA[k];
-					actualsize_index_addnb++;
-				}
-				index_addnb.erase(index_addnb.begin() + actualsize_index_addnb, index_addnb.end());
-				for (int j = 0; j < index_addnb.size(); j++)
-				{
-					int addnbj = nb_[index_addnb[j]];
-					AddElement_Sort(childnode->nb_, addnbj);
-				}
-			}
-		}
-	}
 
 	//for (int i = 0; i < sep_.size(); i++)
 	//{
@@ -128,41 +95,76 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 	//		}
 	//		else
 	//		{
-	//			if (iter == 0)
+	//			// Pass sep.
+	//			AddElement_Sort(childnode->sep_, sepi);
+	//			// Pass nb.				
+	//			vector<int> index_addnb(nbA.Width());
+	//			int actualsize_index_addnb = 0;
+	//			const int* targetnbA = nbA.LockedTargetBuffer();
+	//			const int* offsetnbA = nbA.LockedOffsetBuffer();
+	//			for (int k = offsetnbA[i]; k < offsetnbA[i + 1]; k++)
 	//			{
-	//				// Pass sep.
-	//				addsep1.push_back(sepi);
-	//				// Pass nb.				
-	//				const int* targetnbA = nbA.LockedTargetBuffer();
-	//				const int* offsetnbA = nbA.LockedOffsetBuffer();
-	//				for (int k = offsetnbA[i]; k < offsetnbA[i + 1]; k++)
-	//				{
-	//					addnb1.push_back(nb_[targetnbA[k]]);
-	//				}
+	//				index_addnb[actualsize_index_addnb] = targetnbA[k];
+	//				actualsize_index_addnb++;
 	//			}
-	//			else
+	//			index_addnb.erase(index_addnb.begin() + actualsize_index_addnb, index_addnb.end());
+	//			for (int j = 0; j < index_addnb.size(); j++)
 	//			{
-	//				// Pass sep.
-	//				addsep2.push_back(sepi);
-	//				// Pass nb.				
-	//				const int* targetnbA = nbA.LockedTargetBuffer();
-	//				const int* offsetnbA = nbA.LockedOffsetBuffer();
-	//				for (int k = offsetnbA[i]; k < offsetnbA[i + 1]; k++)
-	//				{
-	//					addnb2.push_back(nb_[targetnbA[k]]);
-	//				}
+	//				int addnbj = nb_[index_addnb[j]];
+	//				AddElement_Sort(childnode->nb_, addnbj);
 	//			}
 	//		}
 	//	}
 	//}
-	//sort(addnb1.begin(), addnb1.end());
-	//sort(addnb2.begin(), addnb2.end());
-	//std::unique(addnb1.begin(), addnb1.end());
-	//std::unique(addnb2.begin(), addnb2.end());
-	//AddVec_Sort(children_[0]->sep_, addsep1);
-	//AddVec_Sort(children_[1]->sep_, addsep2);
-	//AddVec_Sort(children_[0]->nb_, addnb1);
-	//AddVec_Sort(children_[1]->nb_, addnb2);
+
+
+	for (int i = 0; i < sep_.size(); i++)
+	{
+		int sepi = sep_[i];
+		for (int iter = 0; iter < 2; iter++)
+		{
+			HIFGraph* childnode = children_[iter];
+			if (FindIndex_Sort(childnode->vtx_, sepi) == -1)
+			{
+				continue;
+			}
+			else
+			{
+				if (iter == 0)
+				{
+					// Pass sep.
+					addsep1.push_back(sepi);
+					// Pass nb.				
+					const int* targetnbA = nbA.LockedTargetBuffer();
+					const int* offsetnbA = nbA.LockedOffsetBuffer();
+					for (int k = offsetnbA[i]; k < offsetnbA[i + 1]; k++)
+					{
+						addnb1.push_back(nb_[targetnbA[k]]);
+					}
+				}
+				else
+				{
+					// Pass sep.
+					addsep2.push_back(sepi);
+					// Pass nb.				
+					const int* targetnbA = nbA.LockedTargetBuffer();
+					const int* offsetnbA = nbA.LockedOffsetBuffer();
+					for (int k = offsetnbA[i]; k < offsetnbA[i + 1]; k++)
+					{
+						addnb2.push_back(nb_[targetnbA[k]]);
+					}
+				}
+			}
+		}
+	}
+	std::sort(addnb1.begin(), addnb1.end());
+	std::sort(addnb2.begin(), addnb2.end());
+	Unique_Sort(addnb1);
+	Unique_Sort(addnb2);
+	AddVec_Sort(children_[0]->sep_, addsep1);
+	AddVec_Sort(children_[1]->sep_, addsep2);
+	AddVec_Sort(children_[0]->nb_, addnb1);
+	AddVec_Sort(children_[1]->nb_, addnb2);
 	TIMER_HIF(TimerStop(TIMER_PASS))
 }
 

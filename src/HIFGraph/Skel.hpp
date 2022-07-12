@@ -76,7 +76,7 @@ void HIFGraph<Scalar>::Skel()
 			}
 		}
 		mysep1C.insert(mysep1C.end(), complexsep_.begin(), complexsep_.end());
-		sort(mysep1C.begin(), mysep1C.end());
+		std::sort(mysep1C.begin(), mysep1C.end());
 		vector<int> nodeksep1C;
 		Diff_Sort(nodek->nb_, sep1, nodeksep1C);
 
@@ -109,7 +109,7 @@ void HIFGraph<Scalar>::Skel()
 			}
 		}
 		nodeksep2C.insert(nodeksep2C.end(), (nodek->complexsep_).begin(), (nodek->complexsep_).end());
-		sort(nodeksep2C.begin(), nodeksep2C.end());
+		std::sort(nodeksep2C.begin(), nodeksep2C.end());
 		vector<int> mysep2C;
 		Diff_Sort(nb_, sep2, mysep2C);
 
@@ -213,8 +213,6 @@ void HIFGraph<Scalar>::Skel()
 			nodekindex_p12[i] = nodekindex_sep1[p12[i]];
 			re_.push_back(sep1[p12[i]]);
 			(nodek->nbre_).push_back(sep1[p12[i]]);
-			/*AddElement_Sort(re_, sep1[p12[i]]);
-			AddElement_Sort(nodek->nbre_, sep1[p12[i]]);*/
 		}
 
 		TIMER_HIF(TimerStart(TIMER_EL))
@@ -252,8 +250,6 @@ void HIFGraph<Scalar>::Skel()
 			nodekindex_p22[i] = nodekindex_sep2[p22[i]];
 			nbre_.push_back(sep2[p22[i]]);
 			(nodek->re_).push_back(sep2[p22[i]]);
-			/*AddElement_Sort(nbre_, sep2[p22[i]]);
-			AddElement_Sort(nodek->re_, sep2[p22[i]]);*/
 		}
 
 		nbinfo_[k].skip = 0;
@@ -443,9 +439,9 @@ void HIFGraph<Scalar>::Skel()
 	}
 
 	// If using AddElement_Sort, no need to sort re and nbre. But no improvement.
-	sort(re_.begin(), re_.end());
+	std::sort(re_.begin(), re_.end());
 	Diff_Sort(sep_, re_, sk_);
-	sort(nbre_.begin(), nbre_.end());
+	std::sort(nbre_.begin(), nbre_.end());
 	Diff_Sort(nb_, nbre_, nbsk_);
 }
 

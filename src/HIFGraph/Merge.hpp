@@ -49,8 +49,8 @@ void HIFGraph<Scalar>::Merge()
 		intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
 		tmpnbsk.insert(tmpnbsk.end(), (children_[iter]->nbsk_).begin(), (children_[iter]->nbsk_).end());
 	}
-	sort(intr_.begin(), intr_.end());
-	sort(tmpnbsk.begin(), tmpnbsk.end());
+	std::sort(intr_.begin(), intr_.end());
+	std::sort(tmpnbsk.begin(), tmpnbsk.end());
 	vector<int> tmpsep;
 	Intersect_Sort(sep_, intr_, tmpsep);
 	sep_.assign(tmpsep.begin(), tmpsep.end());
