@@ -45,7 +45,7 @@ void AddVec_Sort(vector<Scalar>& vec1, const vector<Scalar>& vec2)
 
 	vector<Scalar> vec1copy = vec1;
 	vec1.resize(vec1copy.size() + vec2.size());
-	std::merge(vec1copy.begin(), vec1copy.end(), vec2.begin(), vec2.end(), vec1);
+	std::merge(vec1copy.begin(), vec1copy.end(), vec2.begin(), vec2.end(), vec1.begin());
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 
