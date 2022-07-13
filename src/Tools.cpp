@@ -145,6 +145,7 @@ void FullMat(const SparseMatrix<Scalar>& sparseA, Matrix<Scalar>& A)
 {
     DEBUG_HIF(CallStackEntry cse("FullMat"))
 
+    El::Zeros(A, sparseA.Height(), sparseA.Width());
     for (int i = 0; i < A.Height(); i++)
     {
         for (int j = 0; j < A.Width(); j++)
