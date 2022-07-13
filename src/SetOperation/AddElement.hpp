@@ -6,7 +6,7 @@ namespace HIF {
 template <typename Scalar>
 void AddVec_Sort(vector<Scalar>& vec1, const vector<Scalar>& vec2)
 {
-	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
+	DEBUG_HIF(CallStackEntry cse("AddVec_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
 	/*vector<Scalar> vec;
@@ -44,6 +44,7 @@ void AddVec_Sort(vector<Scalar>& vec1, const vector<Scalar>& vec2)
 	vec1.assign(vec.begin(), vec.end());*/
 
 	vector<Scalar> vec1copy(vec1);
+	vec1.clear();
 	vec1.resize(vec1copy.size() + vec2.size());
 	std::merge(vec1copy.begin(), vec1copy.end(), vec2.begin(), vec2.end(), vec1.begin());
 	TIMER_HIF(TimerStop(TIMER_SETOP))
