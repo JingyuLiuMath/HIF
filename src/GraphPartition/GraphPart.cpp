@@ -13,9 +13,10 @@ void GraphPart(const SparseMatrix<Scalar>& A,
     MetisPart(A, p1, p2, sep1);
     // p1, p2, sep1 is sorted.
     // p1 = p1 + sep1, p2 = p2, sep2 need to be assigned.
-    TIMER_HIF(TimerStart(TIMER_SETSEP2))
     AddVec_Sort(p1, sep1);
-    vector<int> tmpsep2(p2.size(), 0);
+    TIMER_HIF(TimerStart(TIMER_SETSEP2))
+    
+    /*vector<int> tmpsep2(p2.size(), 0);
     for (int i = 0; i < sep1.size(); i++)
     {
         int sep1i = sep1[i];
@@ -46,7 +47,22 @@ void GraphPart(const SparseMatrix<Scalar>& A,
             actualsize_sep2++;
         }
     }
-    sep2.erase(sep2.begin() + actualsize_sep2, sep2.end());
+    sep2.erase(sep2.begin() + actualsize_sep2, sep2.end());*/
+
+    vector<int> tmp;
+    for (int i = 0; i < sep1.size(); i++)
+    {
+        int sep1i = sep1[i];
+        const int* targetA = A.LockedTargetBuffer();
+        const int* offsetA = A.LockedOffsetBuffer();
+        for (int k = offsetA[sep1i]; k < offsetA[sep1i + 1]; k++)
+        {
+            tmp.push_back(targetA[k]);
+        }
+    }
+    std::sort(tmp.begin(), tmp.end());
+    Unique_Sort(tmp);
+    Intersect_Sort(tmp, p2, sep2);
     TIMER_HIF(TimerStop(TIMER_SETSEP2))
 }
 
