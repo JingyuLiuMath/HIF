@@ -114,14 +114,14 @@ void HIFGraph<Scalar>::Skel()
 			else
 			{
 				// nodeksep2C.insert(nodeksep2C.end(), (nodek->singlesep_[nok]).begin(), (nodek->singlesep_[nok]).end());
-				for (int i = 0; i < (nodek->singlesep_[nok]).size(); i++)
+				for (int i = 0; i < nodek->singlesep_[nok].size(); i++)
 				{
 					nodeksep2C.push_back(nodek->singlesep_[nok][i]);
 				}
 			}
 		}
 		// nodeksep2C.insert(nodeksep2C.end(), (nodek->complexsep_).begin(), (nodek->complexsep_).end());
-		for (int i = 0; i < (nodek->complexsep_).size(); i++)
+		for (int i = 0; i < nodek->complexsep_.size(); i++)
 		{
 			nodeksep2C.push_back(nodek->complexsep_[i]);
 		}
