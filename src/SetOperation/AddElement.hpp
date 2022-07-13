@@ -9,7 +9,7 @@ void AddVec_Sort(vector<Scalar>& vec1, const vector<Scalar>& vec2)
 	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-	vector<Scalar> vec;
+	/*vector<Scalar> vec;
 	int i = 0;
 	int j = 0;
 	while (i < vec1.size() && j < vec2.size())
@@ -41,7 +41,11 @@ void AddVec_Sort(vector<Scalar>& vec1, const vector<Scalar>& vec2)
 		vec.push_back(vec2[j]);
 		j++;
 	}
-	vec1.assign(vec.begin(), vec.end());
+	vec1.assign(vec.begin(), vec.end());*/
+
+	vector<Scalar> vec1copy = vec1;
+	vec1.resize(vec1copy.size() + vec2.size());
+	std::merge(vec1copy.begin(), vec1copy.end(), vec2.begin(), vec2.end(), vec1);
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 
