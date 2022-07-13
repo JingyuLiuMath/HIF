@@ -71,8 +71,6 @@ void HIFGraph<Scalar>::Merge()
 
 	// Next we assign the corresponding matrices blockly.
 
-	MatrixS copymtx; // Copy of assigned matrix. 
-
 	// AII
 	// An intr of the parent only belongs to the sep of one of its children.
 	// If two intrs belong to the same child, we assign AII from the child's ASS. 
