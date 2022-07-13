@@ -15,40 +15,6 @@ void GraphPart(const SparseMatrix<Scalar>& A,
     // p1 = p1 + sep1, p2 = p2, sep2 need to be assigned.
     AddVec_Sort(p1, sep1);
     TIMER_HIF(TimerStart(TIMER_SETSEP2))
-    
-    /*vector<int> tmpsep2(p2.size(), 0);
-    for (int i = 0; i < sep1.size(); i++)
-    {
-        int sep1i = sep1[i];
-        vector<int> sep2i_tmp(A.Width());
-        int actualsize_sep2i_tmp = 0;
-        const int* targetA = A.LockedTargetBuffer();
-        const int* offsetA = A.LockedOffsetBuffer();
-        for (int k = offsetA[sep1i]; k < offsetA[sep1i + 1]; k++)
-        {
-            sep2i_tmp[actualsize_sep2i_tmp] = targetA[k];
-            actualsize_sep2i_tmp++;
-        }
-        sep2i_tmp.erase(sep2i_tmp.begin() + actualsize_sep2i_tmp, sep2i_tmp.end());
-        vector<int> index_sep2i;
-        Intersect_Sort(sep2i_tmp, p2, index_sep2i, 2);
-        for (int t = 0; t < index_sep2i.size(); t++)
-        {
-            tmpsep2[index_sep2i[t]] += 1;
-        }
-    }
-    sep2.resize(p2.size());
-    int actualsize_sep2 = 0;
-    for (int t = 0; t < tmpsep2.size(); t++)
-    {
-        if (tmpsep2[t] > 0)
-        {
-            sep2[actualsize_sep2] = p2[t];
-            actualsize_sep2++;
-        }
-    }
-    sep2.erase(sep2.begin() + actualsize_sep2, sep2.end());*/
-
     vector<int> tmp;
     for (int i = 0; i < sep1.size(); i++)
     {
