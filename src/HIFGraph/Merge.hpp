@@ -107,7 +107,7 @@ void HIFGraph<Scalar>::Merge()
 	Transpose(AII_(myindex_intr2, myindex_intr1), copymtx);
 	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr2, copymtx);*/
 
-	SubMatrixUpdate(AII_, myindex_intr1, (children_[0]->ASS_)(cindex_intr1, cindex_intr1));
+	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr1, (children_[0]->ASS_)(cindex_intr1, cindex_intr1));
 
 	SubMatrixUpdate(AII_, myindex_intr2, myindex_intr2, (children_[1]->ASS_)(cindex_intr2, cindex_intr2));
 
