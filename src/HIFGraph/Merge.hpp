@@ -44,8 +44,8 @@ void HIFGraph<Scalar>::Merge()
 	// sep : sep \cup children's sk.
 	// nb: nb \cup children's nbsk.
 	vector<int> tmpnbsk;
-	intr_.reserve(children_[0]->sk_.size() + children_[1]->sk_.size());
-	tmpnbsk.reserve(children_[0]->nbsk_.size() + children_[1]->nbsk_.size());
+	/*intr_.reserve(children_[0]->sk_.size() + children_[1]->sk_.size());
+	tmpnbsk.reserve(children_[0]->nbsk_.size() + children_[1]->nbsk_.size());*/
 	for (int iter = 0; iter < 2; iter++)
 	{
 		/*intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
