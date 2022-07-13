@@ -78,52 +78,52 @@ int main(int argc, char* argv[])
 		readTimer.Stop();
 		MasterCout("Reading input ends in ", readTimer.Total(), " sec.");
 
-		//// Initialization.
-		//El::Timer initTimer("InitTimer");
-		//initTimer.Start();
-		//MasterCout("Initialization starts...");
+		// Initialization.
+		El::Timer initTimer("InitTimer");
+		initTimer.Start();
+		MasterCout("Initialization starts...");
 
-		//HIFGraph<double> HIF(A, minvtx);
+		HIFGraph<double> HIF(A, minvtx);
 
-		//initTimer.Stop();
-		//MasterCout("Initialization ends in ", initTimer.Total(), " sec.");
+		initTimer.Stop();
+		MasterCout("Initialization ends in ", initTimer.Total(), " sec.");
 
-		//// Factorization.
-		//El::Timer factTimer("FactTimer");
-		//factTimer.Start();
-		//MasterCout("Factorization starts...");
+		// Factorization.
+		El::Timer factTimer("FactTimer");
+		factTimer.Start();
+		MasterCout("Factorization starts...");
 
-		//HIF.Factorization();
-		//
-		//factTimer.Stop();
-		//MasterCout("Factorization ends in ", factTimer.Total(), " sec.");
+		HIF.Factorization();
+		
+		factTimer.Stop();
+		MasterCout("Factorization ends in ", factTimer.Total(), " sec.");
 
-		//// Problem solving.
-		//El::Timer solTimer("SolveTimer");
-		//solTimer.Start();
-		//MasterCout("Problem solving starts...");
+		// Problem solving.
+		El::Timer solTimer("SolveTimer");
+		solTimer.Start();
+		MasterCout("Problem solving starts...");
 
-		//HIF.Apply(b);
+		HIF.Apply(b);
 
-		//solTimer.Stop();
-		//MasterCout("Problem solving ends in ", solTimer.Total(), " sec.");
+		solTimer.Stop();
+		MasterCout("Problem solving ends in ", solTimer.Total(), " sec.");
 
-		//INFO_HIF
-		//(
-		//	Log(
-		//		"        InitT        FactT        SolT"
-		//	);
-		//	Log(
-		//		setw(13), scientific, setprecision(2), initTimer.Total(),
-		//		setw(13), scientific, setprecision(2), factTimer.Total(),
-		//		setw(12), scientific, setprecision(2), solTimer.Total()
-		//	);
-		//	Log(
-		//		"==================================================",
-		//		"==================================================",
-		//		"=================================================="
-		//	);
-		//)
+		INFO_HIF
+		(
+			Log(
+				"        InitT        FactT        SolT"
+			);
+			Log(
+				setw(13), scientific, setprecision(2), initTimer.Total(),
+				setw(13), scientific, setprecision(2), factTimer.Total(),
+				setw(12), scientific, setprecision(2), solTimer.Total()
+			);
+			Log(
+				"==================================================",
+				"==================================================",
+				"=================================================="
+			);
+		)
 
 		string filex = "./sol.txt";
 		std::ofstream foutx;
