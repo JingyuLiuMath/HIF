@@ -95,18 +95,6 @@ void HIFGraph<Scalar>::Merge()
 	vector<int> cindex_intr21;
 	Intersect_Sort(intr_, children_[0]->nb_, myindex_intr21, cindex_intr21);
 	
-	/*copymtx = (children_[0]->ASS_)(cindex_intr1, cindex_intr1);
-	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr1, copymtx);
-	
-	copymtx = (children_[1]->ASS_)(cindex_intr2, cindex_intr2);
-	SubMatrixUpdate(AII_, myindex_intr2, myindex_intr2, copymtx);
-	
-	copymtx = (children_[0]->ANS_)(cindex_intr21, cindex_intr1);
-	SubMatrixUpdate(AII_, myindex_intr21, myindex_intr1, copymtx);
-	
-	Transpose(AII_(myindex_intr2, myindex_intr1), copymtx);
-	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr2, copymtx);*/
-
 	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr1, (children_[0]->ASS_)(cindex_intr1, cindex_intr1));
 
 	SubMatrixUpdate(AII_, myindex_intr2, myindex_intr2, (children_[1]->ASS_)(cindex_intr2, cindex_intr2));
@@ -136,18 +124,6 @@ void HIFGraph<Scalar>::Merge()
 	vector<int> myindex_sep2y;
 	vector<int> cindex_sep2y;
 	Intersect_Sort(sep_, children_[1]->nb_, myindex_sep2y, cindex_sep2y);
-	
-	/*copymtx = (children_[0]->ASS_)(cindex_sep1x, cindex_intr1);
-	SubMatrixUpdate(ASI_, myindex_sep1x, myindex_intr1, copymtx);
-	
-	copymtx = (children_[1]->ASS_)(cindex_sep2x, cindex_intr2);
-	SubMatrixUpdate(ASI_, myindex_sep2x, myindex_intr2, copymtx);
-	
-	copymtx = (children_[0]->ANS_)(cindex_sep1y, cindex_intr1);
-	SubMatrixUpdate(ASI_, myindex_sep1y, myindex_intr1, copymtx);
-	
-	copymtx = (children_[1]->ANS_)(cindex_sep2y, cindex_intr2);
-	SubMatrixUpdate(ASI_, myindex_sep2y, myindex_intr2, copymtx);*/
 
 	SubMatrixUpdate(ASI_, myindex_sep1x, myindex_intr1, (children_[0]->ASS_)(cindex_sep1x, cindex_intr1));
 
@@ -177,18 +153,6 @@ void HIFGraph<Scalar>::Merge()
 	vector<int> myindex_sep21;
 	vector<int> cindex_sep21;
 	Intersect_Sort(sep_, children_[0]->nb_, myindex_sep21, cindex_sep21);
-	
-	/*copymtx = (children_[0]->ASS_)(cindex_sep1, cindex_sep1);
-	SubMatrixUpdate(ASS_, myindex_sep1, myindex_sep1, copymtx);
-	
-	copymtx = (children_[1]->ASS_)(cindex_sep2, cindex_sep2);
-	SubMatrixUpdate(ASS_, myindex_sep2, myindex_sep2, copymtx);
-	
-	copymtx = (children_[0]->ANS_)(cindex_sep21, cindex_sep1);
-	SubMatrixUpdate(ASS_, myindex_sep21, myindex_sep1, copymtx);
-	
-	Transpose(ASS_(myindex_sep2, myindex_sep1), copymtx);
-	SubMatrixUpdate(ASS_, myindex_sep1, myindex_sep2, copymtx);*/
 
 	SubMatrixUpdate(ASS_, myindex_sep1, myindex_sep1, (children_[0]->ASS_)(cindex_sep1, cindex_sep1));
 
@@ -210,12 +174,6 @@ void HIFGraph<Scalar>::Merge()
 	vector<int> myindex_nb2x;
 	vector<int> cindex_nb2x;
 	Intersect_Sort(nb_, children_[1]->nb_, myindex_nb2x, cindex_nb2x);
-	
-	/*copymtx = (children_[0]->ANS_)(cindex_nb1x, cindex_sep1);
-	SubMatrixUpdate(ANS_, myindex_nb1x, myindex_sep1, copymtx);
-	
-	copymtx = (children_[1]->ANS_)(cindex_nb2x, cindex_sep2);
-	SubMatrixUpdate(ANS_, myindex_nb2x, myindex_sep2, copymtx);*/
 
 	SubMatrixUpdate(ANS_, myindex_nb1x, myindex_sep1, (children_[0]->ANS_)(cindex_nb1x, cindex_sep1));
 
