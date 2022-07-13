@@ -46,8 +46,16 @@ void HIFGraph<Scalar>::Merge()
 	vector<int> tmpnbsk;
 	for (int iter = 0; iter < 2; iter++)
 	{
-		intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
-		tmpnbsk.insert(tmpnbsk.end(), (children_[iter]->nbsk_).begin(), (children_[iter]->nbsk_).end());
+		/*intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
+		tmpnbsk.insert(tmpnbsk.end(), (children_[iter]->nbsk_).begin(), (children_[iter]->nbsk_).end());*/
+		for (int i = 0; i < (children_[iter]->sk_).size(); i++)
+		{
+			intr.push_back((children_[iter]->sk_)[i]);
+		}
+		for (int i = 0; i < (children_[iter]->nbsk_).size(); i++)
+		{
+			tmpnbsk.push_back((children_[iter]->nbsk_)[i]);
+		}
 	}
 	std::sort(intr_.begin(), intr_.end());
 	std::sort(tmpnbsk.begin(), tmpnbsk.end());

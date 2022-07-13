@@ -72,10 +72,18 @@ void HIFGraph<Scalar>::Skel()
 			}
 			else
 			{
-				mysep1C.insert(mysep1C.end(), singlesep_[nok].begin(), singlesep_[nok].end());
+				// mysep1C.insert(mysep1C.end(), singlesep_[nok].begin(), singlesep_[nok].end());
+				for (int i = 0; i < singlesep_[nok].size(); i++)
+				{
+					mysep1C.push_back(singlesep_[nok][i]);
+				}
 			}
 		}
-		mysep1C.insert(mysep1C.end(), complexsep_.begin(), complexsep_.end());
+		// mysep1C.insert(mysep1C.end(), complexsep_.begin(), complexsep_.end());
+		for (int i = 0; i < complexsep_.size(); i++)
+		{
+			mysep1C.push_back(complexsep_[i]);
+		}
 		std::sort(mysep1C.begin(), mysep1C.end());
 		vector<int> nodeksep1C;
 		Diff_Sort(nodek->nb_, sep1, nodeksep1C);
@@ -105,10 +113,18 @@ void HIFGraph<Scalar>::Skel()
 			}
 			else
 			{
-				nodeksep2C.insert(nodeksep2C.end(), (nodek->singlesep_[nok]).begin(), (nodek->singlesep_[nok]).end());
+				// nodeksep2C.insert(nodeksep2C.end(), (nodek->singlesep_[nok]).begin(), (nodek->singlesep_[nok]).end());
+				for (int i = 0; i < (nodek->singlesep_[nok]).size(); i++)
+				{
+					nodeksep2C.push_back(nodek->singlesep_[nok][i]);
+				}
 			}
 		}
-		nodeksep2C.insert(nodeksep2C.end(), (nodek->complexsep_).begin(), (nodek->complexsep_).end());
+		// nodeksep2C.insert(nodeksep2C.end(), (nodek->complexsep_).begin(), (nodek->complexsep_).end());
+		for (int i = 0; i < (nodek->complexsep_).size(); i++)
+		{
+			nodeksep2C.push_back(nodek->complexsep_[i]);
+		}
 		std::sort(nodeksep2C.begin(), nodeksep2C.end());
 		vector<int> mysep2C;
 		Diff_Sort(nb_, sep2, mysep2C);
