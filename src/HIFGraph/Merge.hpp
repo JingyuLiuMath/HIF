@@ -113,8 +113,7 @@ void HIFGraph<Scalar>::Merge()
 
 	SubMatrixUpdate(AII_, myindex_intr21, myindex_intr1, (children_[0]->ANS_)(cindex_intr21, cindex_intr1));
 
-	Transpose(AII_(myindex_intr2, myindex_intr1), copymtx);
-	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr2, copymtx);
+	SubMatrixTransposeUpdate(AII_, myindex_intr1, myindex_intr2, AII_(myindex_intr2, myindex_intr1));
 
 	// ASI
 	// A sep of the parent only belongs to the sep of one of its children.
@@ -197,8 +196,7 @@ void HIFGraph<Scalar>::Merge()
 
 	SubMatrixUpdate(ASS_, myindex_sep21, myindex_sep1, (children_[0]->ANS_)(cindex_sep21, cindex_sep1));
 
-	Transpose(ASS_(myindex_sep2, myindex_sep1), copymtx);
-	SubMatrixUpdate(ASS_, myindex_sep1, myindex_sep2, copymtx);
+	SubMatrixTransposeUpdate(ASS_, myindex_sep1, myindex_sep2, ASS_(myindex_sep2, myindex_sep1));
 
 	// ANS
 	// If a nb and a sep in the same child, we assign ANS from the child's ANS.

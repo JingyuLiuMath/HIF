@@ -111,6 +111,22 @@ void SubMatrixUpdate(Matrix<Scalar>& A, const vector<int>& rowindex, const vecto
     }
 }
 
+// A(rowindex, colindex) = newsubA^{T} where rowindex and colindex are sorted.
+template <typename Scalar>
+void SubMatrixTransposeUpdate(Matrix<Scalar>& A, const vector<int>& rowindex, const vector<int>& colindex,
+    const Matrix<Scalar>& newsubA)
+{
+    DEBUG_HIF(CallStackEntry cse("SubMatrixUpdate"))
+
+    for (int i = 0; i < rowindex.size(); i++)
+    {
+        for (int j = 0; j < colindex.size(); j++)
+        {
+            A.Set(rowindex[i], colindex[j], newsubA.Get(j, i));
+        }
+    }
+}
+
 // subA = A(rowindex, colindex) where rowindex and colindex are sorted.
 template <typename Scalar>
 void SubMatrixEqual(Matrix<Scalar>& subA, 
@@ -216,6 +232,8 @@ template void IDSolve(Matrix<Scalar>& skelmtx, Matrix<Scalar>& T, \
     vector<int>& p1, vector<int>& p2, const QRCtrl<Base<Scalar>>& ctrl); \
 template void SubMatrixUpdate(Matrix<Scalar>& A, const vector<int>& rowindex, const vector<int>& colindex, \
     const Matrix<Scalar>& newsubA); \
+template void SubMatrixTransposeUpdate(Matrix<Scalar>& A, const vector<int>& rowindex, const vector<int>& colindex, \
+const Matrix<Scalar>& newsubA); \
 template void SubMatrixEqual(Matrix<Scalar>& subA, \
     const Matrix<Scalar>& A, const vector<int>& rowindex, const vector<int>& colindex); \
 template void FullMat(const SparseMatrix<Scalar>& sparseA, Matrix<Scalar>& A); \

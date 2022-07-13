@@ -24,6 +24,10 @@ void SubMatrixUpdate(Matrix<Scalar>& A, const vector<int>& rowindex, const vecto
     const Matrix<Scalar>& newsubA);
 
 template <typename Scalar>
+void SubMatrixTransposeUpdate(Matrix<Scalar>& A, const vector<int>& rowindex, const vector<int>& colindex,
+    const Matrix<Scalar>& newsubA);
+
+template <typename Scalar>
 void SubMatrixEqual(Matrix<Scalar>& subA,
     const Matrix<Scalar>& A, const vector<int>& rowindex, const vector<int>& colindex);
 
