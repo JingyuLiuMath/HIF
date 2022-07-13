@@ -66,10 +66,8 @@ template <typename Scalar>
 void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 {
 	DEBUG_HIF(CallStackEntry cse("HIFGraph:PassSeparatorNeighbor"))
-	
-	TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
+
 	SparseMatrixS nbA = A(sep_, nb_);
-	TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
 
 	TIMER_HIF(TimerStart(TIMER_PASS))
 	vector<int> addsep1;
