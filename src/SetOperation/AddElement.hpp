@@ -9,7 +9,7 @@ void AddVec_Sort(vector<Scalar>& vec1, const vector<Scalar>& vec2)
 	DEBUG_HIF(CallStackEntry cse("AddVec_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-	/*vector<Scalar> vec;
+	vector<Scalar> vec;
 	int i = 0;
 	int j = 0;
 	while (i < vec1.size() && j < vec2.size())
@@ -41,12 +41,7 @@ void AddVec_Sort(vector<Scalar>& vec1, const vector<Scalar>& vec2)
 		vec.push_back(vec2[j]);
 		j++;
 	}
-	vec1.assign(vec.begin(), vec.end());*/
-
-	vector<Scalar> vec(vec1.size() + vec2.size());
-	std::merge(vec1.begin(), vec1.end(), vec2.begin(), vec2.end(), vec.begin());
 	vec1.assign(vec.begin(), vec.end());
-	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 
 } // namespace HIF.
