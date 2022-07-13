@@ -17,13 +17,8 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 	}
 
 	// Partition.
-	TIMER_HIF(TimerStart(TIMER_GETSUBMATRIX))
-	SparseMatrixS tmpA = A(vtx_, vtx_);
-	TIMER_HIF(TimerStop(TIMER_GETSUBMATRIX))
-
 	vector<int> p1, p2, sp1, sp2;
-	GraphPart(tmpA, p1, p2, sp1, sp2); // p1, p2, sp1, sp2 are sorted.
-	// GraphPart(A(vtx_, vtx_), p1, p2, sp1, sp2); // p1, p2, sp1, sp2 are sorted.
+	GraphPart(A(vtx_, vtx_), p1, p2, sp1, sp2); // p1, p2, sp1, sp2 are sorted.
 	vector<int> vtx1, vtx2, sep1, sep2;
 	vtx1.resize(p1.size());
 	for (int i = 0; i < vtx1.size(); i++)
