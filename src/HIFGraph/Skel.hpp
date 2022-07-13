@@ -327,7 +327,7 @@ void HIFGraph<Scalar>::Skel()
 		SubMatrixUpdate(ANS_, myindex_p22, myindex_p12, copymtx);
 		/*Transpose(copymtx, copymtxT);
 		SubMatrixUpdate(nodek->ANS_, nodekindex_p12, nodekindex_p22, copymtxT);*/
-		SubMatrixTransposeUpdate(nodek->ANS_, nodekindex_p12, nodekindex_p22, copymtx)
+		SubMatrixTransposeUpdate(nodek->ANS_, nodekindex_p12, nodekindex_p22, copymtx);
 		// Ah2c1 = Ah2c1 - Ah2h1 * Th1c1.
 		copymtx = ANS_(myindex_p21, myindex_p12);
 		Gemm(NORMAL, NORMAL,
