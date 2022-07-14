@@ -43,7 +43,7 @@ void HIFGraph<Scalar>::Merge()
 	// intr: children's sk - sep.
 	// sep : sep \cup children's sk.
 	// nb: nb - children's nbre.
-	for (int iter = 0; iter < 2; iter++)
+	/*for (int iter = 0; iter < 2; iter++)
 	{
 		intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
 		re_.insert(re_.end(), (children_[iter]->re_).begin(), (children_[iter]->re_).end());
@@ -60,36 +60,36 @@ void HIFGraph<Scalar>::Merge()
 	intr_.assign(tmpintr.begin(), tmpintr.end());
 	vector<int> tmpnb;
 	Diff_Sort(nb_, nbre_, tmpnb);
-	nb_.assign(tmpnb.begin(), tmpnb.end());
+	nb_.assign(tmpnb.begin(), tmpnb.end());*/
 
 	// intr: children's sk - sep.
 	// sep : sep \cup children's sk.
 	// nb: nb \cup children's nbsk.
 	//vector<int> tmpnbsk;
-	//for (int iter = 0; iter < 2; iter++)
-	//{
-	//	/*intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
-	//	tmpnbsk.insert(tmpnbsk.end(), (children_[iter]->nbsk_).begin(), (children_[iter]->nbsk_).end());*/
-	//	for (int i = 0; i < children_[iter]->sk_.size(); i++)
-	//	{
-	//		intr_.push_back(children_[iter]->sk_[i]);
-	//	}
-	//	for (int i = 0; i < children_[iter]->nbsk_.size(); i++)
-	//	{
-	//		tmpnbsk.push_back(children_[iter]->nbsk_[i]);
-	//	}
-	//}
-	//std::sort(intr_.begin(), intr_.end());
-	//std::sort(tmpnbsk.begin(), tmpnbsk.end());
-	//vector<int> tmpsep;
-	//Intersect_Sort(sep_, intr_, tmpsep);
-	//sep_.assign(tmpsep.begin(), tmpsep.end());
-	//vector<int> tmpintr;
-	//Diff_Sort(intr_, sep_, tmpintr);
-	//intr_.assign(tmpintr.begin(), tmpintr.end());
-	//vector<int> tmpnb;
-	//Intersect_Sort(nb_, tmpnbsk, tmpnb);
-	//nb_.assign(tmpnb.begin(), tmpnb.end());
+	for (int iter = 0; iter < 2; iter++)
+	{
+		/*intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
+		tmpnbsk.insert(tmpnbsk.end(), (children_[iter]->nbsk_).begin(), (children_[iter]->nbsk_).end());*/
+		for (int i = 0; i < children_[iter]->sk_.size(); i++)
+		{
+			intr_.push_back(children_[iter]->sk_[i]);
+		}
+		for (int i = 0; i < children_[iter]->nbsk_.size(); i++)
+		{
+			tmpnbsk.push_back(children_[iter]->nbsk_[i]);
+		}
+	}
+	std::sort(intr_.begin(), intr_.end());
+	std::sort(tmpnbsk.begin(), tmpnbsk.end());
+	vector<int> tmpsep;
+	Intersect_Sort(sep_, intr_, tmpsep);
+	sep_.assign(tmpsep.begin(), tmpsep.end());
+	vector<int> tmpintr;
+	Diff_Sort(intr_, sep_, tmpintr);
+	intr_.assign(tmpintr.begin(), tmpintr.end());
+	vector<int> tmpnb;
+	Intersect_Sort(nb_, tmpnbsk, tmpnb);
+	nb_.assign(tmpnb.begin(), tmpnb.end());
 
 	// Next we assign the corresponding matrices blockly.
 
@@ -206,7 +206,7 @@ void HIFGraph<Scalar>::Merge()
 	}
 
 	// Set separator type.
-	SetSeparatorType();
+	// SetSeparatorType();
 }
 
 // Clear unnecessary information.
