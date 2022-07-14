@@ -70,6 +70,8 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 	SparseMatrixS nbA = A(sep_, nb_);
 
 	TIMER_HIF(TimerStart(TIMER_PASS))
+	const int* targetnbA = nbA.LockedTargetBuffer();
+	const int* offsetnbA = nbA.LockedOffsetBuffer();
 	vector<int> addsep1;
 	vector<int> addnb1;
 	vector<int> addsep2;
@@ -91,8 +93,6 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 					// Pass sep.
 					addsep1.push_back(sepi);
 					// Pass nb.				
-					const int* targetnbA = nbA.LockedTargetBuffer();
-					const int* offsetnbA = nbA.LockedOffsetBuffer();
 					for (int k = offsetnbA[i]; k < offsetnbA[i + 1]; k++)
 					{
 						addnb1.push_back(nb_[targetnbA[k]]);
@@ -102,9 +102,7 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 				{
 					// Pass sep.
 					addsep2.push_back(sepi);
-					// Pass nb.				
-					const int* targetnbA = nbA.LockedTargetBuffer();
-					const int* offsetnbA = nbA.LockedOffsetBuffer();
+					// Pass nb.
 					for (int k = offsetnbA[i]; k < offsetnbA[i + 1]; k++)
 					{
 						addnb2.push_back(nb_[targetnbA[k]]);

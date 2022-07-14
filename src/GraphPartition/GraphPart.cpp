@@ -15,12 +15,12 @@ void GraphPart(const SparseMatrix<Scalar>& A,
     // p1 = p1 + sep1, p2 = p2, sep2 need to be assigned.
     AddVec_Sort(p1, sep1);
     TIMER_HIF(TimerStart(TIMER_SETSEP2))
+    const int* targetA = A.LockedTargetBuffer();
+    const int* offsetA = A.LockedOffsetBuffer();
     vector<int> tmp;
     for (int i = 0; i < sep1.size(); i++)
     {
         int sep1i = sep1[i];
-        const int* targetA = A.LockedTargetBuffer();
-        const int* offsetA = A.LockedOffsetBuffer();
         for (int k = offsetA[sep1i]; k < offsetA[sep1i + 1]; k++)
         {
             tmp.push_back(targetA[k]);
