@@ -65,7 +65,7 @@ void HIFGraph<Scalar>::Merge()
 	// intr: children's sk - sep.
 	// sep : sep \cup children's sk.
 	// nb: nb \cup children's nbsk.
-	//vector<int> tmpnbsk;
+	vector<int> tmpnbsk;
 	for (int iter = 0; iter < 2; iter++)
 	{
 		/*intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
