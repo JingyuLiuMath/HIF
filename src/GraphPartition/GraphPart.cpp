@@ -121,6 +121,16 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
             actualsize_adjncy++;
         }
     }
+    if (actualsize_adjncy == 0)
+    {
+        sep.resize(nvtxs);
+        for (int t = 0; t < nvtxs; t++)
+        {
+            sep[t] = t;
+        }
+        return;
+    }
+
     // others.
     int* vwgt = NULL;
     int options[METIS_NOPTIONS];
