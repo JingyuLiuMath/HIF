@@ -25,7 +25,7 @@ void HIFGraph<Scalar>::SetNeighborNode()
 			for (int i = 0; i < nbnode_.size(); i++)
 			{
 				HIFGraph* nbnodei = nbnode_[i];
-				if ((nbnodei->children_).empty())
+				if (nbnodei->endflag_ == 1)
 				{
 					// Now nbnodei doesn't have a child, we should treat it as a nbnode.
 					if (Intersect_Sort(childnode->nb_, nbnodei->vtx_))
@@ -39,7 +39,7 @@ void HIFGraph<Scalar>::SetNeighborNode()
 						}
 						if (myseqnum == nbnodei->seqnum_)
 						{
-							break;
+							continue;
 						}
 						(childnode->nbnode_).push_back(nbnodei);
 						(childnode->nbnodeseqnum_).push_back(nbnodei->seqnum_);
