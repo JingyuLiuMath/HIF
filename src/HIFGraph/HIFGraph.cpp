@@ -50,7 +50,6 @@ HIFGraph<Scalar>::HIFGraph
 	// FillTree(A);
 	TIMER_HIF(TimerStop(TIMER_INIT_FILL))
 
-	ShowPartition();
 	INFO_HIF
 	(
 		Log(
