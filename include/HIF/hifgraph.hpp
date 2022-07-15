@@ -79,7 +79,7 @@ private:
     int seqnum_; // A node's order in its level.
     int endflag_ = 0; // Whether the partition ends.
     vector<HIFGraph*> children_; // Children nodes.
-    vector<HIFGraph*> nbnode_; // Neighbor nodes.
+    // vector<HIFGraph*> nbnode_; // Neighbor nodes.
     vector<int> nbnodeseqnum_; // Neighbor nodes' seqnum.
     vector<int> nbnodelevel_; // Neighbor nodes' level.
     vector<SkelInfo<Scalar>> nbinfo_; // Information between a node and its nbNode when skeletonization.
