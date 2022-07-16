@@ -6,40 +6,40 @@
 
 namespace HIF {
 
-template <typename Scalar>
-struct SkelInfo
-{
-    int skip;
+//template <typename Scalar>
+//struct SkelInfo
+//{
+//    int skip;
+//
+//    Matrix<Scalar> Th1c1;
+//    vector<int> myindex_p11;
+//    vector<int> myindex_p12;
+//    vector<int> nodekindex_p11;
+//    vector<int> nodekindex_p12;
+//
+//    Matrix<Scalar> Th2c2;
+//    vector<int> myindex_p21;
+//    vector<int> myindex_p22;
+//    vector<int> nodekindex_p21;
+//    vector<int> nodekindex_p22;
+//
+//    Matrix<Scalar> Ac1c1inv;
+//    Matrix<Scalar> Ac1c1invAc1h1;
+//    Matrix<Scalar> Ac1c1invAc1c2;
+//    Matrix<Scalar> Ac1c1invAc1h2;
+//
+//    Matrix<Scalar> Ac2c2inv;
+//    Matrix<Scalar> Ac2c2invAc2h1;
+//    Matrix<Scalar> Ac2c2invAc2h2;
+//};
 
-    Matrix<Scalar> Th1c1;
-    vector<int> myindex_p11;
-    vector<int> myindex_p12;
-    vector<int> nodekindex_p11;
-    vector<int> nodekindex_p12;
-
-    Matrix<Scalar> Th2c2;
-    vector<int> myindex_p21;
-    vector<int> myindex_p22;
-    vector<int> nodekindex_p21;
-    vector<int> nodekindex_p22;
-
-    Matrix<Scalar> Ac1c1inv;
-    Matrix<Scalar> Ac1c1invAc1h1;
-    Matrix<Scalar> Ac1c1invAc1c2;
-    Matrix<Scalar> Ac1c1invAc1h2;
-
-    Matrix<Scalar> Ac2c2inv;
-    Matrix<Scalar> Ac2c2invAc2h1;
-    Matrix<Scalar> Ac2c2invAc2h2;
-};
-
-struct IndexInfo
-{
-    vector<int> myindex_intr;
-    vector<int> cindex_intr;
-    vector<int> myindex_sep;
-    vector<int> cindex_sep;
-};
+//struct IndexInfo
+//{
+//    vector<int> myindex_intr;
+//    vector<int> cindex_intr;
+//    vector<int> myindex_sep;
+//    vector<int> cindex_sep;
+//};
 
 template <typename Scalar>
 class HIFGraph
@@ -60,7 +60,42 @@ public:
     // Application.
     void Apply(MatrixS& b);
 
-private:    
+private:
+
+    struct SkelInfo
+    {
+        int skip;
+
+        MatrixS Th1c1;
+        vector<int> myindex_p11;
+        vector<int> myindex_p12;
+        vector<int> nodekindex_p11;
+        vector<int> nodekindex_p12;
+
+        MatrixS Th2c2;
+        vector<int> myindex_p21;
+        vector<int> myindex_p22;
+        vector<int> nodekindex_p21;
+        vector<int> nodekindex_p22;
+
+        MatrixS Ac1c1inv;
+        MatrixS Ac1c1invAc1h1;
+        MatrixS Ac1c1invAc1c2;
+        MatrixS Ac1c1invAc1h2;
+
+        MatrixS Ac2c2inv;
+        MatrixS Ac2c2invAc2h1;
+        MatrixS Ac2c2invAc2h2;
+    }; // Skeletonization information.
+
+    struct IndexInfo
+    {
+        vector<int> myindex_intr;
+        vector<int> cindex_intr;
+        vector<int> myindex_sep;
+        vector<int> cindex_sep;
+    }; // Index information, used for merge.
+
     // Graph data.
     vector<int> vtx_; // Vertices.
     vector<int> intr_; // Interior vertices.
@@ -71,7 +106,7 @@ private:
     vector<int> nbsk_; // Skeleton nb.
     vector<int> nbre_; // Redundant nb.
     vector<vector<int>> singlesep_; // Sep which only interact with one node.
-    vector<int> complexsep_; // Sep which interact with more than one nodes.
+    vector<int> complexsep_; // Sep which interact with more than one node.
 
     // Tree data.
     int numlevels_ = 0; // Total number of levels.
@@ -82,7 +117,7 @@ private:
     vector<HIFGraph*> nbnode_; // Neighbor nodes.
     vector<int> nbnodeseqnum_; // Neighbor nodes' seqnum.
     vector<int> nbnodelevel_; // Neighbor nodes' level.
-    vector<SkelInfo<Scalar>> nbinfo_; // Information between a node and its nbNode when skeletonization.
+    vector<SkelInfo> nbinfo_; // Information between a node and its nbNode when skeletonization.
     vector<IndexInfo> childreninfo_; // Index information when merge and split.
     
     // Matrices data.
