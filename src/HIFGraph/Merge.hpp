@@ -49,12 +49,22 @@ void HIFGraph<Scalar>::Merge()
 	{
 		/*intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
 		tmpnbsk.insert(tmpnbsk.end(), (children_[iter]->nbsk_).begin(), (children_[iter]->nbsk_).end());*/
-		for (int i = 0; i < children_[iter]->sk_.size(); i++)
+		//for (int i = 0; i < children_[iter]->sk_.size(); i++)
+		//{
+		//	// intr_.push_back(children_[iter]->sk_[i]);
+		//	intr_.push_back(childrennode_.Child(iter).sk_[i]);
+		//}
+		//for (int i = 0; i < children_[iter]->nbsk_.size(); i++)
+		//{
+		//	// tmpnbsk.push_back(children_[iter]->nbsk_[i]);
+		//	tmpnbsk.push_back(childrennode_.Child(iter).nbsk_[i]);
+		//}
+		for (int i = 0; i < childrennode_.Child(iter).sk_.size(); i++)
 		{
 			// intr_.push_back(children_[iter]->sk_[i]);
 			intr_.push_back(childrennode_.Child(iter).sk_[i]);
 		}
-		for (int i = 0; i < children_[iter]->nbsk_.size(); i++)
+		for (int i = 0; i < childrennode_.Child(iter).nbsk_.size(); i++)
 		{
 			// tmpnbsk.push_back(children_[iter]->nbsk_[i]);
 			tmpnbsk.push_back(childrennode_.Child(iter).nbsk_[i]);

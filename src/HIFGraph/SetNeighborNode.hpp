@@ -62,9 +62,9 @@ void HIFGraph<Scalar>::SetNeighborNode()
 		//	}
 		//}
 		HIFGraph& childnode = childrennode_.Child(iter);
-		(childnode.nbnode_).push_back(childrennode_.Child(1 - iter));
-		(childnode.nbnodeseqnum_).push_back(childrennode_.Child(1 - iter).seqnum_);
-		(childnode.nbnodelevel_).push_back(childrennode_.Child(1 - iter).level_);
+		childnode.nbnode_.push_back(childrennode_.Child(1 - iter));
+		childnode.nbnodeseqnum_.push_back(childrennode_.Child(1 - iter).seqnum_);
+		childnode.nbnodelevel_.push_back(childrennode_.Child(1 - iter).level_);
 		for (int i = 0; i < nbnode_.size(); i++)
 		{
 			HIFGraph& nbnodei = nbnode_[i];
@@ -84,12 +84,12 @@ void HIFGraph<Scalar>::SetNeighborNode()
 					{
 						continue;
 					}
-					(childnode.nbnode_).push_back(nbnodei);
-					(childnode.nbnodeseqnum_).push_back(nbnodei.seqnum_);
-					(childnode.nbnodelevel_).push_back(nbnodei.level_);
-					(nbnodei.nbnode_).push_back(childnode);
-					(nbnodei.nbnodeseqnum_).push_back(childnode.seqnum_);
-					(nbnodei.nbnodelevel_).push_back(childnode.level_);
+					childnode.nbnode_.push_back(nbnodei);
+					childnode.nbnodeseqnum_.push_back(nbnodei.seqnum_);
+					childnode.nbnodelevel_.push_back(nbnodei.level_);
+					nbnodei.nbnode_.push_back(childnode);
+					nbnodei.nbnodeseqnum_.push_back(childnode.seqnum_);
+					nbnodei.nbnodelevel_.push_back(childnode.level_);
 				}
 			}
 			else
@@ -99,9 +99,9 @@ void HIFGraph<Scalar>::SetNeighborNode()
 					HIFGraph& childnbnodei = nbnodei.childrennode_.Child(it);
 					if (Intersect_Sort(childnode.nb_, childnbnodei.vtx_))
 					{
-						(childnode.nbnode_).push_back(childnbnodei);
-						(childnode.nbnodeseqnum_).push_back(childnbnodei.seqnum_);
-						(childnode.nbnodelevel_).push_back(childnbnodei.level_);
+						childnode.nbnode_.push_back(childnbnodei);
+						childnode.nbnodeseqnum_.push_back(childnbnodei.seqnum_);
+						childnode.nbnodelevel_.push_back(childnbnodei.level_);
 					}
 				}
 			}
