@@ -94,22 +94,22 @@ private:
         vector<int> cindex_intr;
         vector<int> myindex_sep;
         vector<int> cindex_sep;
-    }; // Index information, used for merge.
+    }; // Index information, used for merge, applymerge, applysplit. `c` denotes `child`.
 
     // Graph data.
     vector<int> vtx_; // Vertices.
     vector<int> intr_; // Interior vertices.
     vector<int> sep_; // Separator vertices.
     vector<int> nb_; // Neighbor vertices.
-    vector<int> re_; // Redundant sep. We also use check (c) to represent it.
     vector<int> sk_; // Skeleton sep. We also use hat (h) to represent it.
+    vector<int> re_; // Redundant sep. We also use check (c) to represent it.
     vector<int> nbsk_; // Skeleton nb.
     vector<int> nbre_; // Redundant nb.
     vector<vector<int>> singlesep_; // Sep which only interact with one node.
     vector<int> complexsep_; // Sep which interact with more than one node.
 
     // Tree data.
-    int numlevels_ = 0; // Total number of levels.
+    int numlevels_ = 0; // The highest level in current subtree.
     int level_; // Current level, start from 0.
     int seqnum_; // A node's order in its level.
     int endflag_ = 0; // Whether the partition ends.
@@ -117,16 +117,16 @@ private:
     vector<HIFGraph*> nbnode_; // Neighbor nodes.
     vector<int> nbnodeseqnum_; // Neighbor nodes' seqnum.
     vector<int> nbnodelevel_; // Neighbor nodes' level.
-    vector<SkelInfo> nbinfo_; // Information between a node and its nbNode when skeletonization.
-    vector<IndexInfo> childreninfo_; // Index information when merge and split.
+    vector<SkelInfo> nbinfo_; // Information between a node and its nbnode after skeletonization.
+    vector<IndexInfo> childreninfo_; // Index information of a node and its children.
     
     // Matrices data.
     // For the following matrices, the fist index is row, and the second index is col.
     MatrixS AII_; // Interaction between int and int.
-    MatrixS ASI_; // Interaction between sepand int.
-    MatrixS ASS_; // Interaction between sepand sep.
-    MatrixS ANS_; // Interaction between nband sep.
-    MatrixS AIIinv_; // The LDL factorization about AII.
+    MatrixS ASI_; // Interaction between sep and int.
+    MatrixS ASS_; // Interaction between sep and sep.
+    MatrixS ANS_; // Interaction between nb and sep.
+    MatrixS AIIinv_; // AII^{-1} which is obtained by the LDL factorization of AII.
     MatrixS AIIinvAIS_; // AIIinvAIS = AII^ { -1 } *ASI^ { T }.
 
     // Vectors data.
