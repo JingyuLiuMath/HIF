@@ -51,7 +51,7 @@ public:
     // Initialization.
     HIFGraph(const SparseMatrixS& A, int minvtx);
     HIFGraph(int level, int seqnum,
-        vector<int>& vtx, vector<int>& sep, vector<int>& nb);
+        const vector<int>& vtx, const vector<int>& sep, const vector<int>& nb);
     ~HIFGraph();
 
     // Factorization.
