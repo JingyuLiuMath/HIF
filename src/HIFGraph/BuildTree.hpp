@@ -42,10 +42,15 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 	}
 	
 	// Create children HIFGraph.
-	children_.resize(2);
+	/*children_.resize(2);
 	children_[0] = new HIFGraph<Scalar>(level_ + 1, 2 * seqnum_,
 		vtx1, sep1, sep2);
 	children_[1] = new HIFGraph<Scalar>(level_ + 1, 2 * seqnum_ + 1,
+		vtx2, sep2, sep1);*/
+	childrennode_.children.resize(2);
+	childrennode_.children_[0] = new HIFGraph<Scalar>(level_ + 1, 2 * seqnum_,
+		vtx1, sep1, sep2);
+	childrennode_.children_[1] = new HIFGraph<Scalar>(level_ + 1, 2 * seqnum_ + 1,
 		vtx2, sep2, sep1);
 
 	// Send information to children.
@@ -54,7 +59,8 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 	// Recursively build tree.
 	for (int iter = 0; iter < 2; iter++)
 	{
-		children_[iter]->BuildTree(A, minvtx);
+		// children_[iter]->BuildTree(A, minvtx);
+		childrennode_.Child[iter].BuildTree(A, minvtx);
 	}
 
 	// Set numlevels.
@@ -81,7 +87,7 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 		int sepi = sep_[i];
 		for (int iter = 0; iter < 2; iter++)
 		{
-			if (FindIndex_Sort(children_[iter]->vtx_, sepi) == -1)
+			if (FindIndex_Sort(childrennode_.children_[iter]->vtx_, sepi) == -1)
 			{
 				continue;
 			}
@@ -114,10 +120,10 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 	std::sort(addnb2.begin(), addnb2.end());
 	Unique_Sort(addnb1);
 	Unique_Sort(addnb2);
-	AddVec_Sort(children_[0]->sep_, addsep1);
-	AddVec_Sort(children_[1]->sep_, addsep2);
-	AddVec_Sort(children_[0]->nb_, addnb1);
-	AddVec_Sort(children_[1]->nb_, addnb2);
+	AddVec_Sort(childrennode_.children_[0]->sep_, addsep1);
+	AddVec_Sort(childrennode_.children_[1]->sep_, addsep2);
+	AddVec_Sort(childrennode_.children_[0]->nb_, addnb1);
+	AddVec_Sort(childrennode_.children_[1]->nb_, addnb2);
 	TIMER_HIF(TimerStop(TIMER_PASS))
 }
 

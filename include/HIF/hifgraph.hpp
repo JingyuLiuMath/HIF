@@ -61,6 +61,20 @@ private:
         vector<int> cindex_sep;
     }; // Index information, used for merge, applymerge, applysplit. `c` denotes `child`.
 
+    struct Node
+    {
+        vector<HIFGraph*> children;
+
+        HIFGraph& Child(int t)
+        {
+            return *children[t];
+        }
+        const HIFGraph& Child(int t) const
+        {
+            return *children[t];
+        }
+    };
+
     // Graph data.
     vector<int> vtx_; // Vertices.
     vector<int> intr_; // Interior vertices.
@@ -84,7 +98,8 @@ private:
     vector<int> nbnodelevel_; // Neighbor nodes' level.
     vector<SkelInfo> nbinfo_; // Information between a node and its nbnode after skeletonization.
     vector<IndexInfo> childreninfo_; // Index information of a node and its children.
-    
+    Node childrennode_; // Children nodes.
+
     // Matrices data.
     // For the following matrices, the fist index is row, and the second index is col.
     MatrixS AII_; // Interaction between int and int.
