@@ -20,7 +20,8 @@ void HIFGraph<Scalar>::GetSolution(MatrixS& b, const vector<int>& xcol)
 		{
 			xI_.Empty();
 			xS_.Empty();
-			children_[iter]->GetSolution(b, xcol);
+			// children_[iter]->GetSolution(b, xcol);
+			childrennode_.Child(iter).GetSolution(b, xcol);
 		}
 	}
 }

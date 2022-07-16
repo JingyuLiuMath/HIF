@@ -18,7 +18,8 @@ void HIFGraph<Scalar>::RecursiveSparseElim(int whatlevel)
 		{
 			for (int iter = 0; iter < 2; iter++)
 			{
-				children_[iter]->RecursiveSparseElim(whatlevel);
+				// children_[iter]->RecursiveSparseElim(whatlevel);
+				childrennode_.Child(iter).RecursiveSparseElim(whatlevel);
 			}
 		}
 	}

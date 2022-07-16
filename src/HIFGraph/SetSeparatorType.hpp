@@ -18,7 +18,8 @@ void HIFGraph<Scalar>::RecursiveSetSeparatorType(int whatlevel)
 		{
 			for (int iter = 0; iter < 2; iter++)
 			{
-				children_[iter]->RecursiveSetSeparatorType(whatlevel);
+				// children_[iter]->RecursiveSetSeparatorType(whatlevel);
+				childrennode_.Child(iter).RecursiveSetSeparatorType(whatlevel);
 			}
 		}
 	}

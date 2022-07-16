@@ -18,7 +18,8 @@ void HIFGraph<Scalar>::RecursiveApplySkelUp(int whatlevel, const vector<int>& xc
 		{
 			for (int iter = 0; iter < 2; iter++)
 			{
-				children_[iter]->RecursiveApplySkelUp(whatlevel, xcol);
+				// children_[iter]->RecursiveApplySkelUp(whatlevel, xcol);
+				childrennode_.Child(iter).RecursiveApplySkelUp(whatlevel, xcol);
 			}
 		}
 	}

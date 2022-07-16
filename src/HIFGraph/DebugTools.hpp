@@ -20,7 +20,8 @@ void HIFGraph<Scalar>::ShowPartition()
 	{
 		for (int iter = 0; iter < 2; iter++)
 		{
-			children_[iter]->ShowPartition();
+			// children_[iter]->ShowPartition();
+			childrennode_.Child(iter).ShowPartition();
 		}
 	}
 }

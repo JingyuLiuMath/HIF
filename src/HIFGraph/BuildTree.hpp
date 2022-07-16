@@ -47,10 +47,10 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 		vtx1, sep1, sep2);
 	children_[1] = new HIFGraph<Scalar>(level_ + 1, 2 * seqnum_ + 1,
 		vtx2, sep2, sep1);*/
-	childrennode_.children.resize(2);
-	childrennode_.children[0] = new HIFGraph<Scalar>(level_ + 1, 2 * seqnum_,
+	childrennode_.nodevec.resize(2);
+	childrennode_.nodevec[0] = new HIFGraph<Scalar>(level_ + 1, 2 * seqnum_,
 		vtx1, sep1, sep2);
-	childrennode_.children[1] = new HIFGraph<Scalar>(level_ + 1, 2 * seqnum_ + 1,
+	childrennode_.nodevec[1] = new HIFGraph<Scalar>(level_ + 1, 2 * seqnum_ + 1,
 		vtx2, sep2, sep1);
 
 	// Send information to children.
@@ -64,7 +64,8 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 	}
 
 	// Set numlevels.
-	numlevels_ = std::max(children_[0]->numlevels_, children_[1]->numlevels_);
+	// numlevels_ = std::max(children_[0]->numlevels_, children_[1]->numlevels_);
+	numlevels_ = std::max(childrennode_.Child(0).numlevels_, childrennode_.Child(1).numlevels_);
 }
 
 // Pass parent's sep, nb to children.
@@ -76,6 +77,55 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 	SparseMatrixS nbA = A(sep_, nb_);
 
 	TIMER_HIF(TimerStart(TIMER_PASS))
+	//const int* targetnbA = nbA.LockedTargetBuffer();
+	//const int* offsetnbA = nbA.LockedOffsetBuffer();
+	//vector<int> addsep1;
+	//vector<int> addnb1;
+	//vector<int> addsep2;
+	//vector<int> addnb2;
+	//for (int i = 0; i < sep_.size(); i++)
+	//{
+	//	int sepi = sep_[i];
+	//	for (int iter = 0; iter < 2; iter++)
+	//	{
+	//		if (FindIndex_Sort(children_[iter]->vtx_, sepi) == -1)
+	//		{
+	//			continue;
+	//		}
+	//		else
+	//		{
+	//			if (iter == 0)
+	//			{
+	//				// Pass sep.
+	//				addsep1.push_back(sepi);
+	//				// Pass nb.				
+	//				for (int k = offsetnbA[i]; k < offsetnbA[i + 1]; k++)
+	//				{
+	//					addnb1.push_back(nb_[targetnbA[k]]);
+	//				}
+	//			}
+	//			else
+	//			{
+	//				// Pass sep.
+	//				addsep2.push_back(sepi);
+	//				// Pass nb.
+	//				for (int k = offsetnbA[i]; k < offsetnbA[i + 1]; k++)
+	//				{
+	//					addnb2.push_back(nb_[targetnbA[k]]);
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
+	//std::sort(addnb1.begin(), addnb1.end());
+	//std::sort(addnb2.begin(), addnb2.end());
+	//Unique_Sort(addnb1);
+	//Unique_Sort(addnb2);
+	//AddVec_Sort(children_[0]->sep_, addsep1);
+	//AddVec_Sort(children_[1]->sep_, addsep2);
+	//AddVec_Sort(children_[0]->nb_, addnb1);
+	//AddVec_Sort(children_[1]->nb_, addnb2);
+
 	const int* targetnbA = nbA.LockedTargetBuffer();
 	const int* offsetnbA = nbA.LockedOffsetBuffer();
 	vector<int> addsep1;
@@ -87,7 +137,7 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 		int sepi = sep_[i];
 		for (int iter = 0; iter < 2; iter++)
 		{
-			if (FindIndex_Sort(childrennode_.children[iter]->vtx_, sepi) == -1)
+			if (FindIndex_Sort(childrennode_.Child(iter).vtx_, sepi) == -1)
 			{
 				continue;
 			}
@@ -120,10 +170,10 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 	std::sort(addnb2.begin(), addnb2.end());
 	Unique_Sort(addnb1);
 	Unique_Sort(addnb2);
-	AddVec_Sort(childrennode_.children[0]->sep_, addsep1);
-	AddVec_Sort(childrennode_.children[1]->sep_, addsep2);
-	AddVec_Sort(childrennode_.children[0]->nb_, addnb1);
-	AddVec_Sort(childrennode_.children[1]->nb_, addnb2);
+	AddVec_Sort(childrennode_.Child(0).sep_, addsep1);
+	AddVec_Sort(childrennode_.Child(1).sep_, addsep2);
+	AddVec_Sort(childrennode_.Child(0).nb_, addnb1);
+	AddVec_Sort(childrennode_.Child(1).nb_, addnb2);
 	TIMER_HIF(TimerStop(TIMER_PASS))
 }
 

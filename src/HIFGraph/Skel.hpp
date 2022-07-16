@@ -25,7 +25,8 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel)
 		{
 			for (int iter = 0; iter < 2; iter++)
 			{
-				children_[iter]->RecursiveSkel(whatlevel);
+				// children_[iter]->RecursiveSkel(whatlevel);
+				childrennode_.Child(iter).RecursiveSkel(whatlevel);
 			}
 		}
 	}

@@ -61,19 +61,33 @@ private:
         vector<int> cindex_sep;
     }; // Index information, used for merge, applymerge, applysplit. `c` denotes `child`.
 
-    struct Node
+    struct ChildNode
     {
-        vector<HIFGraph*> children;
+        vector<HIFGraph*> nodevec;
 
         HIFGraph& Child(int t)
         {
-            return *children[t];
+            return *nodevec[t];
         }
         const HIFGraph& Child(int t) const
         {
-            return *children[t];
+            return *nodevec[t];
         }
-    };
+    }; // child node.
+
+    struct NeighborNode
+    {
+        vector<HIFGraph*> nodevec;
+
+        HIFGraph& Neighbor(int t)
+        {
+            return *nodevec[t];
+        }
+        const HIFGraph& Neighbor(int t) const
+        {
+            return *nodevec[t];
+        }
+    }; // neighbor node.
 
     // Graph data.
     vector<int> vtx_; // Vertices.
@@ -92,13 +106,14 @@ private:
     int level_; // Current level, start from 0.
     int seqnum_; // A node's order in its level.
     int endflag_ = 0; // Whether the partition ends.
-    vector<HIFGraph*> children_; // Children nodes.
+    // vector<HIFGraph*> children_; // Children nodes.
     vector<HIFGraph*> nbnode_; // Neighbor nodes.
     vector<int> nbnodeseqnum_; // Neighbor nodes' seqnum.
     vector<int> nbnodelevel_; // Neighbor nodes' level.
     vector<SkelInfo> nbinfo_; // Information between a node and its nbnode after skeletonization.
     vector<IndexInfo> childreninfo_; // Index information of a node and its children.
-    Node childrennode_; // Children nodes.
+    ChildNode childrennode_; // Children nodes.
+    // NeighborNode nbnode_; // Neighbor nodes.
 
     // Matrices data.
     // For the following matrices, the fist index is row, and the second index is col.

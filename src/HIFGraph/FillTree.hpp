@@ -27,7 +27,8 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrixS& A)
 	{
 		for (int iter = 0; iter < 2; iter++)
 		{
-			children_[iter]->FillTree(A);
+			// children_[iter]->FillTree(A);
+			childrennode_.Child(iter).FillTree(A);
 		}
 	}
 }
