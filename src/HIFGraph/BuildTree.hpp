@@ -60,7 +60,7 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 	for (int iter = 0; iter < 2; iter++)
 	{
 		// children_[iter]->BuildTree(A, minvtx);
-		childrennode_.Child[iter].BuildTree(A, minvtx);
+		childrennode_.Child(iter).BuildTree(A, minvtx);
 	}
 
 	// Set numlevels.
