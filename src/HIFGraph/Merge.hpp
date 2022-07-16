@@ -199,7 +199,7 @@ void HIFGraph<Scalar>::Merge()
 
 	SubMatrixUpdate(ASS_, myindex_sep1, myindex_sep1, childrennode_.Child(0).ASS_(cindex_sep1, cindex_sep1));
 
-	SubMatrixUpdate(ASS_, myindex_sep2, myindex_sep2, childrennode_.Child(1).ASS_)(cindex_sep2, cindex_sep2));
+	SubMatrixUpdate(ASS_, myindex_sep2, myindex_sep2, childrennode_.Child(1).ASS_(cindex_sep2, cindex_sep2));
 
 	SubMatrixUpdate(ASS_, myindex_sep21, myindex_sep1, childrennode_.Child(0).ANS_(cindex_sep21, cindex_sep1));
 

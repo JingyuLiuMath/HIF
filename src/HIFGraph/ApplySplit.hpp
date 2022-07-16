@@ -19,7 +19,7 @@ void HIFGraph<Scalar>::RecursiveApplySplit(int whatlevel, const vector<int>& xco
 			for (int iter = 0; iter < 2; iter++)
 			{
 				// children_[iter]->RecursiveApplySplit(whatlevel, xcol);
-				childrennode_.Child(iter).RecursiveApplySplit(whatlevel, xol);
+				childrennode_.Child(iter).RecursiveApplySplit(whatlevel, xcol);
 			}
 		}
 	}
