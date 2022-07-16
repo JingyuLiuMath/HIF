@@ -87,7 +87,7 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 		int sepi = sep_[i];
 		for (int iter = 0; iter < 2; iter++)
 		{
-			if (FindIndex_Sort(childrennode_.children_[iter]->vtx_, sepi) == -1)
+			if (FindIndex_Sort(childrennode_.children[iter]->vtx_, sepi) == -1)
 			{
 				continue;
 			}
@@ -120,10 +120,10 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS& A)
 	std::sort(addnb2.begin(), addnb2.end());
 	Unique_Sort(addnb1);
 	Unique_Sort(addnb2);
-	AddVec_Sort(childrennode_.children_[0]->sep_, addsep1);
-	AddVec_Sort(childrennode_.children_[1]->sep_, addsep2);
-	AddVec_Sort(childrennode_.children_[0]->nb_, addnb1);
-	AddVec_Sort(childrennode_.children_[1]->nb_, addnb2);
+	AddVec_Sort(childrennode_.children[0]->sep_, addsep1);
+	AddVec_Sort(childrennode_.children[1]->sep_, addsep2);
+	AddVec_Sort(childrennode_.children[0]->nb_, addnb1);
+	AddVec_Sort(childrennode_.children[1]->nb_, addnb2);
 	TIMER_HIF(TimerStop(TIMER_PASS))
 }
 
