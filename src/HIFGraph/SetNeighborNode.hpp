@@ -96,7 +96,7 @@ void HIFGraph<Scalar>::SetNeighborNode()
 			{
 				for (int it = 0; it < 2; it++)
 				{
-					HIFGraph* childnbnodei = nbnodei->children_[it];
+					HIFGraph* childnbnodei = nbnodei->childrennode_.nodevec[it];
 					if (Intersect_Sort(childnode->nb_, childnbnodei->vtx_))
 					{
 						(childnode->nbnode_).push_back(childnbnodei);
