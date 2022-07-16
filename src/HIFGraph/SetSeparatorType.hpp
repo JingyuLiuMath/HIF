@@ -40,7 +40,7 @@ void HIFGraph<Scalar>::SetSeparatorType()
 		HIFGraph* nodek = nbnode_[k];
 		vector<int> tmpindex;
 		Intersect_Sort(sep_, nodek->nb_, tmpindex, 1);
-		singlesep_[k] = tmpindex;
+		singlesep_[k].assign(tmpindex.begin(), tmpindex.end());
 		for (int i = 0; i < tmpindex.size(); i++)
 		{
 			ordersep[tmpindex[i]] += 1;

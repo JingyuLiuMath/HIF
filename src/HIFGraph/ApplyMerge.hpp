@@ -18,7 +18,7 @@ void HIFGraph<Scalar>::RecursiveApplyMerge(int whatlevel, const vector<int>& xco
 		{
 			for (int iter = 0; iter < 2; iter++)
 			{
-				children_[iter]->RecursiveApplyMerge(whatlevel,xcol);
+				children_[iter]->RecursiveApplyMerge(whatlevel, xcol);
 			}
 		}
 	}

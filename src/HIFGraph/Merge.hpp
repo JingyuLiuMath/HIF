@@ -182,9 +182,6 @@ void HIFGraph<Scalar>::Merge()
 	{
 		children_[iter]->FactorClear();
 	}
-
-	// Set separator type.
-	// SetSeparatorType();
 }
 
 // Clear unnecessary information.
