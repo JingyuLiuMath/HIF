@@ -6,41 +6,6 @@
 
 namespace HIF {
 
-//template <typename Scalar>
-//struct SkelInfo
-//{
-//    int skip;
-//
-//    Matrix<Scalar> Th1c1;
-//    vector<int> myindex_p11;
-//    vector<int> myindex_p12;
-//    vector<int> nodekindex_p11;
-//    vector<int> nodekindex_p12;
-//
-//    Matrix<Scalar> Th2c2;
-//    vector<int> myindex_p21;
-//    vector<int> myindex_p22;
-//    vector<int> nodekindex_p21;
-//    vector<int> nodekindex_p22;
-//
-//    Matrix<Scalar> Ac1c1inv;
-//    Matrix<Scalar> Ac1c1invAc1h1;
-//    Matrix<Scalar> Ac1c1invAc1c2;
-//    Matrix<Scalar> Ac1c1invAc1h2;
-//
-//    Matrix<Scalar> Ac2c2inv;
-//    Matrix<Scalar> Ac2c2invAc2h1;
-//    Matrix<Scalar> Ac2c2invAc2h2;
-//};
-
-//struct IndexInfo
-//{
-//    vector<int> myindex_intr;
-//    vector<int> cindex_intr;
-//    vector<int> myindex_sep;
-//    vector<int> cindex_sep;
-//};
-
 template <typename Scalar>
 class HIFGraph
 {
