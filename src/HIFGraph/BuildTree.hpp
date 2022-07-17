@@ -42,15 +42,10 @@ void HIFGraph<Scalar>::BuildTree(const SparseMatrixS& A, int minvtx)
 	}
 	
 	// Create children HIFGraph.
-	/*children_.resize(2);
+	children_.resize(2);
 	children_[0] = new HIFGraph<Scalar>(level_ + 1, 2 * seqnum_,
 		vtx1, sep1, sep2);
 	children_[1] = new HIFGraph<Scalar>(level_ + 1, 2 * seqnum_ + 1,
-		vtx2, sep2, sep1);*/
-	children_ = new HIFGraph<Scalar>[2];
-	children_[0](level_ + 1, 2 * seqnum_,
-		vtx1, sep1, sep2);
-	children_[1](level_ + 1, 2 * seqnum_ + 1,
 		vtx2, sep2, sep1);
 
 	// Send information to children.
