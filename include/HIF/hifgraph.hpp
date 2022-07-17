@@ -65,6 +65,19 @@ private:
     {
         vector<HIFGraph*> nodevec;
 
+        ChildNode()
+        {
+            nodevec.resize(2);
+        }
+        ~ChildNode()
+        {
+            for (int i = 0; i < nodevec.size(); i++)
+            {
+                delete nodevec[i];
+            }
+            nodevec.resize(0);
+        }
+
         HIFGraph& Child(int t)
         {
             return *nodevec[t];
