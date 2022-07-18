@@ -43,11 +43,11 @@ make -j64
 ### Run tests
 
 ``` bash
-cd bin/HIFGraph/
-./HIF --input_A "path/to/A" --input_b "path/to/b" --minvtx 64 --HIFbutton true --tol 1e-3 --logApp true
+cd bin/HIFSolve/
+./HIFSolve --input_A "path/to/A" --input_b "path/to/b" --minvtx 64 --HIFbutton true --tol 1e-3 --logApp true
 ```
 
-And see `log.log` in the dir log for more inforamtion.
+And see `log.log` in the dir `log` for more inforamtion.
 
 ## Aknowledgement
 
