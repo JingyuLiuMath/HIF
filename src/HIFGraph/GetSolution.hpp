@@ -16,10 +16,10 @@ void HIFGraph<Scalar>::GetSolution(MatrixS& b, const vector<int>& xcol)
 	}
 	else
 	{
+		xI_.Empty();
+		xS_.Empty();
 		for (int iter = 0; iter < 2; iter++)
 		{
-			xI_.Empty();
-			xS_.Empty();
 			children_[iter]->GetSolution(b, xcol);
 		}
 	}
