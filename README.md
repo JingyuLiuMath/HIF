@@ -8,16 +8,25 @@ Jingyu Liu, Fudan University, 381258337@qq.com
 
 ## How to run
 
-### Compile (Local) Elemental
+### Preliminaries
 
-Remark: Since [Elemental](https://github.com/elemental/Elemental) is not complete, we write some functions and that's why we call it local Elemental.
+``` bash
+source scl_source enable devtoolset-7
+module load LAPACK
+module load MPICH
+module load CMake
+module load Elemental
+module load OpenBLAS
+module load metis/5.1.0
+```
+
+### Compile Elemental
 
 ``` bash
 cd extern/Elemental/
 mkdir build
 cd build/
-mkdir /home/jyliu/packages/elemental
-cmake -D CMAKE_INSTALL_PREFIX=/home/jyliu/packages/elemental/master/ \
+cmake -D CMAKE_INSTALL_PREFIX=<elemental/install/path> \
 -D CMAKE_BUILD_TYPE=Release \
 -D GFORTRAN_LIB=/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/  \
 -D INSTALL_PYTHON_PACKAGE=OFF ..
@@ -27,7 +36,11 @@ make install
 
 ### Compile Metis
 
-Just follow the guide of [Metis](http://glaros.dtc.umn.edu/gkhome/metis/metis/overview).
+``` bash
+cd extern/metis/
+make config prefix=<metis/install/path>
+make install
+```
 
 ### Compile HIF
 
