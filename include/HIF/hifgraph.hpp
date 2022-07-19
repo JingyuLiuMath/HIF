@@ -65,7 +65,6 @@ private:
     {
         vector<HIFGraph*> nodevec;
 
-
         ChildNode()
         {
             nodevec.resize(2);
