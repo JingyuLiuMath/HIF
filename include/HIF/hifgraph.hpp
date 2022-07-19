@@ -61,6 +61,35 @@ private:
         vector<int> cindex_sep;
     }; // Index information, used for merge, applymerge, applysplit. `c` denotes `child`.
 
+    struct ChildNode
+    {
+        vector<HIFGraph*> nodevec;
+
+
+        ChildNode()
+        {
+            nodevec.resize(2);
+        }
+        ~ChildNode()
+        {
+            for (int t = 0; t < nodevec.size(); t++)
+            {
+                delete nodevec[t];
+            }
+            nodevec.resize(0);
+        }
+
+        HIFGraph& Child(int t)
+        {
+            return *nodevec[t];
+        }
+        const HIFGraph& Child(int t) const
+        {
+            return *nodevec[t];
+        }
+
+    };
+
     // Graph data.
     vector<int> vtx_; // Vertices.
     vector<int> intr_; // Interior vertices.
