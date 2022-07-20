@@ -23,7 +23,7 @@ module load metis/5.1.0
 ### Compile Elemental
 
 ``` bash
-cd extern/Elemental/
+cd extern/elemental/
 mkdir build
 cd build/
 cmake -D CMAKE_INSTALL_PREFIX=<elemental/install/path> \
@@ -34,7 +34,7 @@ make -j64
 make install
 ```
 
-### Compile Metis
+### Compile METIS
 
 ``` bash
 cd extern/metis/
@@ -66,4 +66,4 @@ And see `log.log` in the dir `log` for more inforamtion.
 
 Many thanks to [Yingzhou Li](https://www.yingzhouli.com/). Without his guidance and help, the code can't be finished.
 
-July 13, 2022
+July 20, 2022
