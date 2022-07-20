@@ -25,7 +25,7 @@ void HIFGraph<Scalar>::RecursiveSkel(int whatlevel)
 		{
 			for (int iter = 0; iter < 2; iter++)
 			{
-				children_[iter]->RecursiveSkel(whatlevel);
+				childrennode_.Child(iter).RecursiveSkel(whatlevel);
 			}
 		}
 	}
@@ -49,7 +49,7 @@ void HIFGraph<Scalar>::Skel()
 
 	for (int k = 0; k < nbnode_.size(); k++)
 	{
-		HIFGraph* nodek = nbnode_[k];
+		HIFGraph& nodek = *nbnode_[k];
 		if (nodek->level_ != level_)
 		{
 			nbinfo_[k].skip = 1;
@@ -86,11 +86,11 @@ void HIFGraph<Scalar>::Skel()
 		}
 		std::sort(mysep1C.begin(), mysep1C.end());
 		vector<int> nodeksep1C;
-		Diff_Sort(nodek->nb_, sep1, nodeksep1C);
+		Diff_Sort(nodek.nb_, sep1, nodeksep1C);
 
 		int korder = -1;
 		vector<int> veckorder;
-		FindAllIndex(nodek->nbnodeseqnum_, seqnum_, veckorder);
+		FindAllIndex(nodek.nbnodeseqnum_, seqnum_, veckorder);
 		if (veckorder.size() == 1)
 		{
 			korder = veckorder[0];
@@ -98,14 +98,14 @@ void HIFGraph<Scalar>::Skel()
 		else
 		{
 			vector<int> vecklevel;
-			FindAllIndex(nodek->nbnodelevel_, level_, vecklevel);
+			FindAllIndex(nodek.nbnodelevel_, level_, vecklevel);
 			vector<int> vectmp;
 			Intersect_Sort(veckorder, vecklevel, vectmp);
 			korder = vectmp[0];
 		}
-		vector<int> sep2 = nodek->singlesep_[korder];
+		vector<int> sep2 = nodek.singlesep_[korder];
 		vector<int> nodeksep2C;
-		for (int nok = 0; nok < (nodek->nbnode_).size(); nok++)
+		for (int nok = 0; nok < nodek.nbnode_.size(); nok++)
 		{
 			if (nok == korder)
 			{
@@ -114,16 +114,16 @@ void HIFGraph<Scalar>::Skel()
 			else
 			{
 				// nodeksep2C.insert(nodeksep2C.end(), (nodek->singlesep_[nok]).begin(), (nodek->singlesep_[nok]).end());
-				for (int i = 0; i < nodek->singlesep_[nok].size(); i++)
+				for (int i = 0; i < nodek.singlesep_[nok].size(); i++)
 				{
-					nodeksep2C.push_back(nodek->singlesep_[nok][i]);
+					nodeksep2C.push_back(nodek.singlesep_[nok][i]);
 				}
 			}
 		}
 		// nodeksep2C.insert(nodeksep2C.end(), (nodek->complexsep_).begin(), (nodek->complexsep_).end());
-		for (int i = 0; i < nodek->complexsep_.size(); i++)
+		for (int i = 0; i < nodek.complexsep_.size(); i++)
 		{
-			nodeksep2C.push_back(nodek->complexsep_[i]);
+			nodeksep2C.push_back(nodek.complexsep_[i]);
 		}
 		std::sort(nodeksep2C.begin(), nodeksep2C.end());
 		vector<int> mysep2C;
@@ -133,20 +133,20 @@ void HIFGraph<Scalar>::Skel()
 		vector<int> myindex_sep1;
 		FindAllIndex_Sort(sep1, sep_, myindex_sep1);
 		vector<int> nodekindex_sep1;
-		FindAllIndex_Sort(sep1, nodek->nb_, nodekindex_sep1);
+		FindAllIndex_Sort(sep1, nodek.nb_, nodekindex_sep1);
 		vector<int> myindex_mysep1C;
 		FindAllIndex_Sort(mysep1C, sep_, myindex_mysep1C);
 		vector<int> myindex_mysep2C;
 		FindAllIndex_Sort(mysep2C, nb_, myindex_mysep2C);
 		
 		vector<int> nodekindex_sep2;
-		FindAllIndex_Sort(sep2, nodek->sep_, nodekindex_sep2);
+		FindAllIndex_Sort(sep2, nodek.sep_, nodekindex_sep2);
 		vector<int> myindex_sep2;
 		FindAllIndex_Sort(sep2, nb_, myindex_sep2);
 		vector<int> nodekindex_nodeksep2C;
-		FindAllIndex_Sort(nodeksep2C, nodek->sep_, nodekindex_nodeksep2C);
+		FindAllIndex_Sort(nodeksep2C, nodek.sep_, nodekindex_nodeksep2C);
 		vector<int> nodekindex_nodeksep1C;
-		FindAllIndex_Sort(nodeksep1C, nodek->nb_, nodekindex_nodeksep1C);
+		FindAllIndex_Sort(nodeksep1C, nodek.nb_, nodekindex_nodeksep1C);
 
 		// ID decomposition.
 		
@@ -184,12 +184,12 @@ void HIFGraph<Scalar>::Skel()
 		View(viewmtx, skelmtx2,
 			0, 0,
 			nodekindex_nodeksep2C.size(), nodekindex_sep2.size());
-		viewmtx = (nodek->ASS_)(nodekindex_nodeksep2C, nodekindex_sep2);
+		viewmtx = nodek.ASS_(nodekindex_nodeksep2C, nodekindex_sep2);
 		// SubMatrixEqual(viewmtx, nodek->ASS_, nodekindex_nodeksep2C, nodekindex_sep2);
 		View(viewmtx, skelmtx2,
 			nodekindex_nodeksep2C.size(), 0,
 			nodekindex_nodeksep1C.size(), nodekindex_sep2.size());
-		viewmtx = (nodek->ANS_)(nodekindex_nodeksep1C, nodekindex_sep2);
+		viewmtx = nodek.ANS_(nodekindex_nodeksep1C, nodekindex_sep2);
 		// SubMatrixEqual(viewmtx, nodek->ANS_, nodekindex_nodeksep1C, nodekindex_sep2);
 
 		// In the following process, the first "1" or "2" denotes my or nodek, 
@@ -228,7 +228,7 @@ void HIFGraph<Scalar>::Skel()
 			myindex_p12[i] = myindex_sep1[p12[i]];
 			nodekindex_p12[i] = nodekindex_sep1[p12[i]];
 			re_.push_back(sep1[p12[i]]);
-			(nodek->nbre_).push_back(sep1[p12[i]]);
+			nodek.nbre_.push_back(sep1[p12[i]]);
 		}
 
 		TIMER_HIF(TimerStart(TIMER_EL))
@@ -265,7 +265,7 @@ void HIFGraph<Scalar>::Skel()
 			myindex_p22[i] = myindex_sep2[p22[i]];
 			nodekindex_p22[i] = nodekindex_sep2[p22[i]];
 			nbre_.push_back(sep2[p22[i]]);
-			(nodek->re_).push_back(sep2[p22[i]]);
+			nodek.re_.push_back(sep2[p22[i]]);
 		}
 
 		nbinfo_[k].skip = 0;
@@ -287,10 +287,10 @@ void HIFGraph<Scalar>::Skel()
 			Scalar(1), ASS_(myindex_p11, myindex_p11), T1,
 			Scalar(0), Ah1h1T1);
 		Gemm(TRANSPOSE, NORMAL,
-			Scalar(1), (nodek->ASS_)(nodekindex_p21, nodekindex_p22), T2,
+			Scalar(1), nodek.ASS_(nodekindex_p21, nodekindex_p22), T2,
 			Scalar(0), Ac2h2T2);
 		Gemm(NORMAL, NORMAL,
-			Scalar(1), (nodek->ASS_)(nodekindex_p21, nodekindex_p21), T2,
+			Scalar(1), nodek.ASS_(nodekindex_p21, nodekindex_p21), T2,
 			Scalar(0), Ah2h2T2);
 		// Ac1c1 = Ac1c1 - Ah1c1^{T} * Th1c1 - Th1c1^{T} * Ah1c1 + Th1c1^{T} * Ah1h1 * Th1c1.
 		copymtx = ASS_(myindex_p12, myindex_p12);
@@ -322,35 +322,35 @@ void HIFGraph<Scalar>::Skel()
 			Scalar(1), T2, tmpmtx,
 			Scalar(1), copymtx);
 		SubMatrixUpdate(ANS_, myindex_p22, myindex_p12, copymtx);
-		SubMatrixTransposeUpdate(nodek->ANS_, nodekindex_p12, nodekindex_p22, copymtx);
+		SubMatrixTransposeUpdate(nodek.ANS_, nodekindex_p12, nodekindex_p22, copymtx);
 		// Ah2c1 = Ah2c1 - Ah2h1 * Th1c1.
 		copymtx = ANS_(myindex_p21, myindex_p12);
 		Gemm(NORMAL, NORMAL,
 			Scalar(-1), ANS_(myindex_p21, myindex_p11), T1,
 			Scalar(1), copymtx);
 		SubMatrixUpdate(ANS_, myindex_p21, myindex_p12, copymtx);
-		SubMatrixTransposeUpdate(nodek->ANS_, nodekindex_p12, nodekindex_p21, copymtx);
+		SubMatrixTransposeUpdate(nodek.ANS_, nodekindex_p12, nodekindex_p21, copymtx);
 		// Ac2h1 = Ac2h1 - Th2c2^{T} * Ah2h1.
 		copymtx = ANS_(myindex_p22, myindex_p11);
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), T2, ANS_(myindex_p21, myindex_p11),
 			Scalar(1), copymtx);
 		SubMatrixUpdate(ANS_, myindex_p22, myindex_p11, copymtx);
-		SubMatrixTransposeUpdate(nodek->ANS_, nodekindex_p11, nodekindex_p22, copymtx);
+		SubMatrixTransposeUpdate(nodek.ANS_, nodekindex_p11, nodekindex_p22, copymtx);
 		// Ac2c2 = Ac2c2 - Ah2c2^{T} * Th2c2 - Th2c2^{T} * Ah2c2 + Th2c2^{T} * Ah2h2 * Th2c2.
-		copymtx = (nodek->ASS_)(nodekindex_p22, nodekindex_p22);
+		copymtx = nodek.ASS_(nodekindex_p22, nodekindex_p22);
 		copymtx -= Ac2h2T2;
 		Transpose(Ac2h2T2, tmpmtx);
 		copymtx -= tmpmtx;
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(1), T2, Ah2h2T2,
 			Scalar(1), copymtx);
-		SubMatrixUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p22, copymtx);
+		SubMatrixUpdate(nodek.ASS_, nodekindex_p22, nodekindex_p22, copymtx);
 		// Ah2c2 = Ah2c2 - Ah2h2 * Th2c2.
-		copymtx = (nodek->ASS_)(nodekindex_p21, nodekindex_p22);
+		copymtx = (nodek.ASS_)(nodekindex_p21, nodekindex_p22);
 		copymtx -= Ah2h2T2;
-		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p22, copymtx);
-		SubMatrixTransposeUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p21, copymtx);
+		SubMatrixUpdate(nodek.ASS_, nodekindex_p21, nodekindex_p22, copymtx);
+		SubMatrixTransposeUpdate(nodek.ASS_, nodekindex_p22, nodekindex_p21, copymtx);
 		
 		// Step 2.
 		// Ac1c1 = Lc1 * Dc1 * Lc1^{T}.
@@ -379,38 +379,38 @@ void HIFGraph<Scalar>::Skel()
 			Scalar(-1), ANS_(myindex_p22, myindex_p12), nbinfo_[k].Ac1c1invAc1h1,
 			Scalar(1), copymtx);
 		SubMatrixUpdate(ANS_, myindex_p22, myindex_p11, copymtx);
-		SubMatrixTransposeUpdate(nodek->ANS_, nodekindex_p11, nodekindex_p22, copymtx);
+		SubMatrixTransposeUpdate(nodek.ANS_, nodekindex_p11, nodekindex_p22, copymtx);
 		// Ah2h1 = Ah2h1 - Ah2c1 * Ac1c1^{-1} * Ah1c1^{T}.
 		copymtx = ANS_(myindex_p21, myindex_p11);
 		Gemm(NORMAL, NORMAL,
 			Scalar(-1), ANS_(myindex_p21, myindex_p12), nbinfo_[k].Ac1c1invAc1h1,
 			Scalar(1), copymtx);
 		SubMatrixUpdate(ANS_, myindex_p21, myindex_p11, copymtx);
-		SubMatrixTransposeUpdate(nodek->ANS_, nodekindex_p11, nodekindex_p21, copymtx);
+		SubMatrixTransposeUpdate(nodek.ANS_, nodekindex_p11, nodekindex_p21, copymtx);
 		// Ac2c2 = Ac2c2 - Ac2c1 * Ac1c1^{-1} * Ac2c1^{T}.
-		copymtx = (nodek->ASS_)(nodekindex_p22, nodekindex_p22);
+		copymtx = nodek.ASS_(nodekindex_p22, nodekindex_p22);
 		Gemm(NORMAL, NORMAL,
 			Scalar(-1), ANS_(myindex_p22, myindex_p12), nbinfo_[k].Ac1c1invAc1c2,
 			Scalar(1), copymtx);
-		SubMatrixUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p22, copymtx);
+		SubMatrixUpdate(nodek.ASS_, nodekindex_p22, nodekindex_p22, copymtx);
 		// Ah2c2 = Ah2c2 - Ah2c1 * Ac1c1^{-1} * Ac2c1^{T}.
-		copymtx = (nodek->ASS_)(nodekindex_p21, nodekindex_p22);
+		copymtx = nodek.ASS_(nodekindex_p21, nodekindex_p22);
 		Gemm(NORMAL, NORMAL,
 			Scalar(-1), ANS_(myindex_p21, myindex_p12), nbinfo_[k].Ac1c1invAc1c2,
 			Scalar(1), copymtx);
-		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p22, copymtx);
-		SubMatrixTransposeUpdate(nodek->ASS_, nodekindex_p22, nodekindex_p21, copymtx);
+		SubMatrixUpdate(nodek.ASS_, nodekindex_p21, nodekindex_p22, copymtx);
+		SubMatrixTransposeUpdate(nodek.ASS_, nodekindex_p22, nodekindex_p21, copymtx);
 		// Ah2h2 = Ah2h2 - Ah2c1 * Ac1c1^{-1} * Ah2c1^{T}.
-		copymtx = (nodek->ASS_)(nodekindex_p21, nodekindex_p21);
+		copymtx = nodek.ASS_(nodekindex_p21, nodekindex_p21);
 		Gemm(NORMAL, NORMAL,
 			Scalar(-1), ANS_(myindex_p21, myindex_p12), nbinfo_[k].Ac1c1invAc1h2,
 			Scalar(1), copymtx);
-		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p21, copymtx);
+		SubMatrixUpdate(nodek.ASS_, nodekindex_p21, nodekindex_p21, copymtx);
 		// Ah1c1 = Ac2c1 = Ah2c1 = 0.
 
 		// Step 3.
 		// Ac2c2 = Lc2 * Dc2 * Lc2^{T}.
-		copymtx = (nodek->ASS_)(nodekindex_p22, nodekindex_p22);
+		copymtx = nodek.ASS_(nodekindex_p22, nodekindex_p22);
 		TIMER_HIF(TimerStart(TIMER_EL_LDLSOLVE))
 		LDLSolve(copymtx, nbinfo_[k].Ac2c2inv);
 		TIMER_HIF(TimerStop(TIMER_EL_LDLSOLVE))
@@ -418,7 +418,7 @@ void HIFGraph<Scalar>::Skel()
 		nbinfo_[k].Ac2c2invAc2h1 = ANS_(myindex_p22, myindex_p11);
 		MultiplySolve(nbinfo_[k].Ac2c2inv, nbinfo_[k].Ac2c2invAc2h1);
 		// Ac2c2invAc2h2 = Ac2c2^{-1} * Ah2c2^{T}.
-		Transpose((nodek->ASS_)(nodekindex_p21, nodekindex_p22), nbinfo_[k].Ac2c2invAc2h2);
+		Transpose(nodek.ASS_(nodekindex_p21, nodekindex_p22), nbinfo_[k].Ac2c2invAc2h2);
 		MultiplySolve(nbinfo_[k].Ac2c2inv, nbinfo_[k].Ac2c2invAc2h2);
 		// Ah1h1 = Ah1h1 - Ac2h1^{T} * Ac2c2^{-1} * Ac2h1.
 		copymtx = ASS_(myindex_p11, myindex_p11);
@@ -429,16 +429,16 @@ void HIFGraph<Scalar>::Skel()
 		// Ah2h1 = Ah2h1 - Ah2c2 * Ac2c2^{-1} * Ac2h1.
 		copymtx = ANS_(myindex_p21, myindex_p11);
 		Gemm(NORMAL, NORMAL,
-			Scalar(-1), (nodek->ASS_)(nodekindex_p21, nodekindex_p22), nbinfo_[k].Ac2c2invAc2h1,
+			Scalar(-1), nodek.ASS_(nodekindex_p21, nodekindex_p22), nbinfo_[k].Ac2c2invAc2h1,
 			Scalar(1), copymtx);
 		SubMatrixUpdate(ANS_, myindex_p21, myindex_p11, copymtx);
-		SubMatrixTransposeUpdate(nodek->ANS_, nodekindex_p11, nodekindex_p21, copymtx);
+		SubMatrixTransposeUpdate(nodek.ANS_, nodekindex_p11, nodekindex_p21, copymtx);
 		// Ah2h2 = Ah2h2 - Ah2c2 * Ac2c2^{-1} * Ah2c2^{T}.
-		copymtx = (nodek->ASS_)(nodekindex_p21, nodekindex_p21);
+		copymtx = nodek.ASS_(nodekindex_p21, nodekindex_p21);
 		Gemm(NORMAL, NORMAL,
-			Scalar(-1), (nodek->ASS_)(nodekindex_p21, nodekindex_p22), nbinfo_[k].Ac2c2invAc2h2,
+			Scalar(-1), nodek.ASS_(nodekindex_p21, nodekindex_p22), nbinfo_[k].Ac2c2invAc2h2,
 			Scalar(1), copymtx);
-		SubMatrixUpdate(nodek->ASS_, nodekindex_p21, nodekindex_p21, copymtx);
+		SubMatrixUpdate(nodek.ASS_, nodekindex_p21, nodekindex_p21, copymtx);
 		// Ah2c2 = Ac2h1 = 0.
 
 		TIMER_HIF(TimerStop(TIMER_EL))

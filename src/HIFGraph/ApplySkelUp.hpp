@@ -18,7 +18,7 @@ void HIFGraph<Scalar>::RecursiveApplySkelUp(int whatlevel, const vector<int>& xc
 		{
 			for (int iter = 0; iter < 2; iter++)
 			{
-				children_[iter]->RecursiveApplySkelUp(whatlevel, xcol);
+				childrennode_.Child(iter).RecursiveApplySkelUp(whatlevel, xcol);
 			}
 		}
 	}
@@ -33,7 +33,7 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 
 	for (int k = 0; k < nbinfo_.size(); k++)
 	{
-		HIFGraph* nbnodek = nbnode_[k];
+		HIFGraph& nbnodek = .nbnode_[k];
 		SkelInfo& nbinfok = nbinfo_[k];
 		if (nbinfok.skip == 1)
 		{
@@ -50,11 +50,11 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 			Scalar(1), copyvec);
 		SubMatrixUpdate(xS_, nbinfok.myindex_p12, xcol, copyvec);
 		// xc2 = xc2 - Th2c2^{T} * xh2.
-		copyvec = (nbnodek->xS_)(nbinfok.nodekindex_p22, xcol);
+		copyvec = nbnodek.xS_(nbinfok.nodekindex_p22, xcol);
 		Gemm(TRANSPOSE, NORMAL,
-			Scalar(-1), nbinfok.Th2c2, (nbnodek->xS_)(nbinfok.nodekindex_p21, xcol),
+			Scalar(-1), nbinfok.Th2c2, nbnodek.xS_(nbinfok.nodekindex_p21, xcol),
 			Scalar(1), copyvec);
-		SubMatrixUpdate(nbnodek->xS_, nbinfok.nodekindex_p22, xcol, copyvec);
+		SubMatrixUpdate(nbnodek.xS_, nbinfok.nodekindex_p22, xcol, copyvec);
 
 		// Step 2.
 		// xh1 = xh1 - (Ac1c1^{-1} * Ah1c1^{T})^{T} * xc1.
@@ -64,17 +64,17 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 			Scalar(1), copyvec);
 		SubMatrixUpdate(xS_, nbinfok.myindex_p11, xcol, copyvec);
 		// xc2 = xc2 - (Ac1c1^{-1} * Ac2c1^{T})^{T} * xc1.
-		copyvec = (nbnodek->xS_)(nbinfok.nodekindex_p22, xcol);
+		copyvec = nbnodek.xS_(nbinfok.nodekindex_p22, xcol);
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), nbinfok.Ac1c1invAc1c2, xS_(nbinfok.myindex_p12, xcol),
 			Scalar(1), copyvec);
-		SubMatrixUpdate(nbnodek->xS_, nbinfok.nodekindex_p22, xcol, copyvec);
+		SubMatrixUpdate(nbnodek.xS_, nbinfok.nodekindex_p22, xcol, copyvec);
 		// xh2 = xh2 - (Ac1c1^{-1} * Ah2c1^{T})^{T} * xc1.
-		copyvec = (nbnodek->xS_)(nbinfok.nodekindex_p21, xcol);
+		copyvec = nbnodek.xS_(nbinfok.nodekindex_p21, xcol);
 		Gemm(TRANSPOSE, NORMAL,
 			Scalar(-1), nbinfok.Ac1c1invAc1h2, xS_(nbinfok.myindex_p12, xcol),
 			Scalar(1), copyvec);
-		SubMatrixUpdate(nbnodek->xS_, nbinfok.nodekindex_p21, xcol, copyvec);
+		SubMatrixUpdate(nbnodek.xS_, nbinfok.nodekindex_p21, xcol, copyvec);
 		// xc1 = Lc1^{-1} * xc1.
 		copyvec = xS_(nbinfok.myindex_p12, xcol);
 		Trmm(ELLR::LEFT, LOWER, NORMAL, UNIT, Scalar(1), nbinfok.Ac1c1inv, copyvec);
@@ -84,19 +84,19 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 		// xh1 = xh1 - (Ac2c2^{-1} * Ac2h1)^{T} * xc2.
 		copyvec = xS_(nbinfok.myindex_p11, xcol);
 		Gemm(TRANSPOSE, NORMAL,
-			Scalar(-1), nbinfok.Ac2c2invAc2h1, (nbnodek->xS_)(nbinfok.nodekindex_p22, xcol),
+			Scalar(-1), nbinfok.Ac2c2invAc2h1, nbnodek.xS_(nbinfok.nodekindex_p22, xcol),
 			Scalar(1), copyvec);
 		SubMatrixUpdate(xS_, nbinfok.myindex_p11, xcol, copyvec);
 		// xh2 = xh2 - (Ac2c2^{-1} * Ah2c2^{T})^{T} * xc2.
-		copyvec = (nbnodek->xS_)(nbinfok.nodekindex_p21, xcol);
+		copyvec = nbnodek.xS_(nbinfok.nodekindex_p21, xcol);
 		Gemm(TRANSPOSE, NORMAL,
-			Scalar(-1), nbinfok.Ac2c2invAc2h2, (nbnodek->xS_)(nbinfok.nodekindex_p22, xcol),
+			Scalar(-1), nbinfok.Ac2c2invAc2h2, nbnodek.xS_(nbinfok.nodekindex_p22, xcol),
 			Scalar(1), copyvec);
-		SubMatrixUpdate(nbnodek->xS_, nbinfok.nodekindex_p21, xcol, copyvec);
+		SubMatrixUpdate(nbnodek.xS_, nbinfok.nodekindex_p21, xcol, copyvec);
 		// xc2 = Lc2^{-1} * xc2.
-		copyvec = (nbnodek->xS_)(nbinfok.nodekindex_p22, xcol);
+		copyvec = nbnodek.xS_(nbinfok.nodekindex_p22, xcol);
 		Trmm(ELLR::LEFT, LOWER, NORMAL, UNIT, Scalar(1), nbinfok.Ac2c2inv, copyvec);
-		SubMatrixUpdate(nbnodek->xS_, nbinfok.nodekindex_p22, xcol, copyvec);
+		SubMatrixUpdate(nbnodek.xS_, nbinfok.nodekindex_p22, xcol, copyvec);
 		
 		// xc1 = Dc1^{-1} * xc1. xc2 = Dc2^{-1} * xc2. We only apply D once.
 		auto D1 = GetDiagonal(nbinfok.Ac1c1inv);
@@ -104,9 +104,9 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int>& xcol)
 		DiagonalScale(ELLR::LEFT, NORMAL, D1, copyvec);
 		SubMatrixUpdate(xS_, nbinfok.myindex_p12, xcol, copyvec);
 		auto D2 = GetDiagonal(nbinfok.Ac2c2inv);
-		copyvec = (nbnodek->xS_)(nbinfok.nodekindex_p22, xcol);
+		copyvec = nbnodek.xS_(nbinfok.nodekindex_p22, xcol);
 		DiagonalScale(ELLR::LEFT, NORMAL, D2, copyvec);
-		SubMatrixUpdate(nbnodek->xS_, nbinfok.nodekindex_p22, xcol, copyvec);
+		SubMatrixUpdate(nbnodek.xS_, nbinfok.nodekindex_p22, xcol, copyvec);
 	}
 }
 

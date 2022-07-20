@@ -18,7 +18,7 @@ void HIFGraph<Scalar>::RecursiveSetSeparatorType(int whatlevel)
 		{
 			for (int iter = 0; iter < 2; iter++)
 			{
-				children_[iter]->RecursiveSetSeparatorType(whatlevel);
+				childrennode_.Child(iter).RecursiveSetSeparatorType(whatlevel);
 			}
 		}
 	}
@@ -37,9 +37,9 @@ void HIFGraph<Scalar>::SetSeparatorType()
 	
 	for (int k = 0; k < nbnode_.size(); k++)
 	{
-		HIFGraph* nodek = nbnode_[k];
+		HIFGraph& nodek = *nbnode_[k];
 		vector<int> tmpindex;
-		Intersect_Sort(sep_, nodek->nb_, tmpindex, 1);
+		Intersect_Sort(sep_, nodek.nb_, tmpindex, 1);
 		singlesep_[k].assign(tmpindex.begin(), tmpindex.end());
 		for (int i = 0; i < tmpindex.size(); i++)
 		{

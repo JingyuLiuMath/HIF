@@ -87,7 +87,16 @@ private:
             return *nodevec[t];
         }
 
-    };
+        HIFGraph* PtChild(int t)
+        {
+            return nodevec[t];
+        }
+        const HIFGraph* PtChild(int t) const
+        {
+            return nodevec[t];
+        }
+
+    }; // children node.
 
     // Graph data.
     vector<int> vtx_; // Vertices.
@@ -106,7 +115,8 @@ private:
     int level_; // Current level, start from 0.
     int seqnum_; // A node's order in its level.
     int endflag_ = 0; // Whether the partition ends.
-    vector<HIFGraph*> children_; // Children nodes.
+    ChildNode childrennode_; // Children nodes.
+    // vector<HIFGraph*> children_; // Children nodes.
     vector<HIFGraph*> nbnode_; // Neighbor nodes.
     vector<int> nbnodeseqnum_; // Neighbor nodes' seqnum.
     vector<int> nbnodelevel_; // Neighbor nodes' level.

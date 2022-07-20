@@ -18,7 +18,7 @@ void HIFGraph<Scalar>::RecursiveApplySplit(int whatlevel, const vector<int>& xco
 		{
 			for (int iter = 0; iter < 2; iter++)
 			{
-				children_[iter]->RecursiveApplySplit(whatlevel, xcol);
+				childrennode_.Child(iter).RecursiveApplySplit(whatlevel, xcol);
 			}
 		}
 	}
@@ -40,8 +40,8 @@ void HIFGraph<Scalar>::ApplySplit(const vector<int>& xcol)
 
 	for (int iter = 0; iter < 2; iter++)
 	{
-		SubMatrixUpdate(children_[iter]->xS_, childreninfo_[iter].cindex_intr, xcol, xI_(childreninfo_[iter].myindex_intr, xcol));
-		SubMatrixUpdate(children_[iter]->xS_, childreninfo_[iter].cindex_sep, xcol, xS_(childreninfo_[iter].myindex_sep, xcol));
+		SubMatrixUpdate(childrennode_.Child(iter).xS_, childreninfo_[iter].cindex_intr, xcol, xI_(childreninfo_[iter].myindex_intr, xcol));
+		SubMatrixUpdate(childrennode_.Child(iter).xS_, childreninfo_[iter].cindex_sep, xcol, xS_(childreninfo_[iter].myindex_sep, xcol));
 	}
 }
 

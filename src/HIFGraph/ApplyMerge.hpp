@@ -18,7 +18,7 @@ void HIFGraph<Scalar>::RecursiveApplyMerge(int whatlevel, const vector<int>& xco
 		{
 			for (int iter = 0; iter < 2; iter++)
 			{
-				children_[iter]->RecursiveApplyMerge(whatlevel, xcol);
+				childrennode_.Child(iter).RecursiveApplyMerge(whatlevel, xcol);
 			}
 		}
 	}
@@ -47,8 +47,8 @@ void HIFGraph<Scalar>::ApplyMerge(const vector<int>& xcol)
 	El::Zeros(xS_, sep_.size(), xcol.size());
 	for (int iter = 0; iter < 2; iter++)
 	{
-		SubMatrixUpdate(xI_, childreninfo_[iter].myindex_intr, xcol, (children_[iter]->xS_)(childreninfo_[iter].cindex_intr, xcol));
-		SubMatrixUpdate(xS_, childreninfo_[iter].myindex_sep, xcol, (children_[iter]->xS_)(childreninfo_[iter].cindex_sep, xcol));
+		SubMatrixUpdate(xI_, childreninfo_[iter].myindex_intr, xcol, childrennode_.Child(iter).xS_(childreninfo_[iter].cindex_intr, xcol));
+		SubMatrixUpdate(xS_, childreninfo_[iter].myindex_sep, xcol, childrennode_.Child(iter).xS_(childreninfo_[iter].cindex_sep, xcol));
 	}
 }
 

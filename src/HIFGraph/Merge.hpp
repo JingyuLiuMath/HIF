@@ -18,7 +18,7 @@ void HIFGraph<Scalar>::RecursiveMerge(int whatlevel)
 		{
 			for (int iter = 0; iter < 2; iter++)
 			{
-				children_[iter]->RecursiveMerge(whatlevel);
+				childrennode_.Child(iter).RecursiveMerge(whatlevel);
 			}
 		}
 	}
@@ -71,9 +71,9 @@ void HIFGraph<Scalar>::Merge()
 
 	for (int iter = 0; iter < 2; iter++)
 	{
-		intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
-		re_.insert(re_.end(), (children_[iter]->re_).begin(), (children_[iter]->re_).end());
-		nbre_.insert(nbre_.end(), (children_[iter]->nbre_).begin(), (children_[iter]->nbre_).end());
+		intr_.insert(intr_.end(), childrennode_.Child(iter).sk_.begin(), childrennode_.Child(iter).->sk_.end());
+		re_.insert(re_.end(), childrennode_.Child(iter).re_.begin(), childrennode_.Child(iter).re_.end());
+		nbre_.insert(nbre_.end(), childrennode_.Child(iter).nbre_.begin(), childrennode_.Child(iter).nbre_.end());
 	}
 	sort(intr_.begin(), intr_.end());
 	sort(re_.begin(), re_.end());
@@ -107,24 +107,24 @@ void HIFGraph<Scalar>::Merge()
 	vector<int> intr1;
 	vector<int>& myindex_intr1 = childreninfo_[0].myindex_intr;
 	vector<int>& cindex_intr1 = childreninfo_[0].cindex_intr;
-	Intersect_Sort(intr_, children_[0]->vtx_, intr1, myindex_intr1, 1);
-	FindAllIndex_Sort(intr1, children_[0]->sep_, cindex_intr1);
+	Intersect_Sort(intr_, childrennode_.Child(0).vtx_, intr1, myindex_intr1, 1);
+	FindAllIndex_Sort(intr1, childrennode_.Child(0).sep_, cindex_intr1);
 	
 	vector<int> intr2;
 	vector<int>& myindex_intr2 = childreninfo_[1].myindex_intr;
 	vector<int>& cindex_intr2 = childreninfo_[1].cindex_intr;
-	Intersect_Sort(intr_, children_[1]->vtx_, intr2, myindex_intr2, 1);
-	FindAllIndex_Sort(intr2, children_[1]->sep_, cindex_intr2);	
+	Intersect_Sort(intr_, childrennode_.Child(1).vtx_, intr2, myindex_intr2, 1);
+	FindAllIndex_Sort(intr2, childrennode_.Child(1).sep_, cindex_intr2);
 	
 	vector<int> myindex_intr21;
 	vector<int> cindex_intr21;
-	Intersect_Sort(intr_, children_[0]->nb_, myindex_intr21, cindex_intr21);
+	Intersect_Sort(intr_, childrennode_.Child(0).nb_, myindex_intr21, cindex_intr21);
 	
-	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr1, (children_[0]->ASS_)(cindex_intr1, cindex_intr1));
+	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr1, childrennode_.Child(0).ASS_(cindex_intr1, cindex_intr1));
 
-	SubMatrixUpdate(AII_, myindex_intr2, myindex_intr2, (children_[1]->ASS_)(cindex_intr2, cindex_intr2));
+	SubMatrixUpdate(AII_, myindex_intr2, myindex_intr2, childrennode_.Child(1).ASS_(cindex_intr2, cindex_intr2));
 
-	SubMatrixUpdate(AII_, myindex_intr21, myindex_intr1, (children_[0]->ANS_)(cindex_intr21, cindex_intr1));
+	SubMatrixUpdate(AII_, myindex_intr21, myindex_intr1, childrennode_.Child(0).ANS_(cindex_intr21, cindex_intr1));
 
 	SubMatrixTransposeUpdate(AII_, myindex_intr1, myindex_intr2, AII_(myindex_intr2, myindex_intr1));
 
@@ -136,27 +136,27 @@ void HIFGraph<Scalar>::Merge()
 	
 	vector<int> myindex_sep1x;
 	vector<int> cindex_sep1x;
-	Intersect_Sort(sep_, children_[0]->sep_, myindex_sep1x, cindex_sep1x);
-	
+	Intersect_Sort(sep_, childrennode_.Child(0).sep_, myindex_sep1x, cindex_sep1x);
+
 	vector<int> myindex_sep1y;
 	vector<int> cindex_sep1y;
-	Intersect_Sort(sep_, children_[0]->nb_, myindex_sep1y, cindex_sep1y);
-	
+	Intersect_Sort(sep_, childrennode_.Child(0).nb_, myindex_sep1y, cindex_sep1y);
+
 	vector<int> myindex_sep2x;
 	vector<int> cindex_sep2x;
-	Intersect_Sort(sep_, children_[1]->sep_, myindex_sep2x, cindex_sep2x);
-	
+	Intersect_Sort(sep_, childrennode_.Child(1).sep_, myindex_sep2x, cindex_sep2x);
+
 	vector<int> myindex_sep2y;
 	vector<int> cindex_sep2y;
-	Intersect_Sort(sep_, children_[1]->nb_, myindex_sep2y, cindex_sep2y);
+	Intersect_Sort(sep_, childrennode_.Child(1).nb_, myindex_sep2y, cindex_sep2y);
 
-	SubMatrixUpdate(ASI_, myindex_sep1x, myindex_intr1, (children_[0]->ASS_)(cindex_sep1x, cindex_intr1));
+	SubMatrixUpdate(ASI_, myindex_sep1x, myindex_intr1, childrennode_.Child(0).ASS_(cindex_sep1x, cindex_intr1));
 
-	SubMatrixUpdate(ASI_, myindex_sep2x, myindex_intr2, (children_[1]->ASS_)(cindex_sep2x, cindex_intr2));
+	SubMatrixUpdate(ASI_, myindex_sep2x, myindex_intr2, childrennode_.Child(1).ASS_(cindex_sep2x, cindex_intr2));
 
-	SubMatrixUpdate(ASI_, myindex_sep1y, myindex_intr1, (children_[0]->ANS_)(cindex_sep1y, cindex_intr1));
+	SubMatrixUpdate(ASI_, myindex_sep1y, myindex_intr1, childrennode_.Child(0).ANS_(cindex_sep1y, cindex_intr1));
 
-	SubMatrixUpdate(ASI_, myindex_sep2y, myindex_intr2, (children_[1]->ANS_)(cindex_sep2y, cindex_intr2));
+	SubMatrixUpdate(ASI_, myindex_sep2y, myindex_intr2, childrennode_.Child(1).ANS_(cindex_sep2y, cindex_intr2));
 
 	// ASS
 	// If two seps belongs to the same child, we assign ASS from the child's ASS. 
@@ -166,24 +166,24 @@ void HIFGraph<Scalar>::Merge()
 	vector<int> sep1;
 	vector<int>& myindex_sep1 = childreninfo_[0].myindex_sep;
 	vector<int>& cindex_sep1 = childreninfo_[0].cindex_sep;
-	Intersect_Sort(sep_, children_[0]->vtx_, sep1, myindex_sep1, 1);
-	FindAllIndex_Sort(sep1, children_[0]->sep_, cindex_sep1);
-	
+	Intersect_Sort(sep_, childrennode_.Child(0).vtx_, sep1, myindex_sep1, 1);
+	FindAllIndex_Sort(sep1, childrennode_.Child(0).sep_, cindex_sep1);
+
 	vector<int> sep2;
 	vector<int>& myindex_sep2 = childreninfo_[1].myindex_sep;
 	vector<int>& cindex_sep2 = childreninfo_[1].cindex_sep;
-	Intersect_Sort(sep_, children_[1]->vtx_, sep2, myindex_sep2, 1);
-	FindAllIndex_Sort(sep2, children_[1]->sep_, cindex_sep2);
-	
+	Intersect_Sort(sep_, childrennode_.Child(1).vtx_, sep2, myindex_sep2, 1);
+	FindAllIndex_Sort(sep2, childrennode_.Child(1).sep_, cindex_sep2);
+
 	vector<int> myindex_sep21;
 	vector<int> cindex_sep21;
-	Intersect_Sort(sep_, children_[0]->nb_, myindex_sep21, cindex_sep21);
+	Intersect_Sort(sep_, childrennode_.Child(0).nb_, myindex_sep21, cindex_sep21);
 
-	SubMatrixUpdate(ASS_, myindex_sep1, myindex_sep1, (children_[0]->ASS_)(cindex_sep1, cindex_sep1));
+	SubMatrixUpdate(ASS_, myindex_sep1, myindex_sep1, childrennode_.Child(0).ASS_(cindex_sep1, cindex_sep1));
 
-	SubMatrixUpdate(ASS_, myindex_sep2, myindex_sep2, (children_[1]->ASS_)(cindex_sep2, cindex_sep2));
+	SubMatrixUpdate(ASS_, myindex_sep2, myindex_sep2, childrennode_.Child(1).ASS_(cindex_sep2, cindex_sep2));
 
-	SubMatrixUpdate(ASS_, myindex_sep21, myindex_sep1, (children_[0]->ANS_)(cindex_sep21, cindex_sep1));
+	SubMatrixUpdate(ASS_, myindex_sep21, myindex_sep1, childrennode_.Child(0).ANS_(cindex_sep21, cindex_sep1));
 
 	SubMatrixTransposeUpdate(ASS_, myindex_sep1, myindex_sep2, ASS_(myindex_sep2, myindex_sep1));
 
@@ -194,20 +194,20 @@ void HIFGraph<Scalar>::Merge()
 	
 	vector<int> myindex_nb1x;
 	vector<int> cindex_nb1x;
-	Intersect_Sort(nb_, children_[0]->nb_, myindex_nb1x, cindex_nb1x);
-	
+	Intersect_Sort(nb_, childrennode_.Child(0).nb_, myindex_nb1x, cindex_nb1x);
+
 	vector<int> myindex_nb2x;
 	vector<int> cindex_nb2x;
-	Intersect_Sort(nb_, children_[1]->nb_, myindex_nb2x, cindex_nb2x);
+	Intersect_Sort(nb_, childrennode_.Child(1).nb_, myindex_nb2x, cindex_nb2x);
 
-	SubMatrixUpdate(ANS_, myindex_nb1x, myindex_sep1, (children_[0]->ANS_)(cindex_nb1x, cindex_sep1));
+	SubMatrixUpdate(ANS_, myindex_nb1x, myindex_sep1, childrennode_.Child(0).ANS_(cindex_nb1x, cindex_sep1));
 
-	SubMatrixUpdate(ANS_, myindex_nb2x, myindex_sep2, (children_[1]->ANS_)(cindex_nb2x, cindex_sep2));
+	SubMatrixUpdate(ANS_, myindex_nb2x, myindex_sep2, childrennode_.Child(1).ANS_(cindex_nb2x, cindex_sep2));
 
 	// Clear children's unnecessary information.
 	for (int iter = 0; iter < 2; iter++)
 	{
-		children_[iter]->FactorClear();
+		childrennode_.Child(iter).FactorClear();
 	}
 }
 
