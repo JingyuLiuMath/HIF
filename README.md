@@ -37,10 +37,8 @@ make install
 
 ``` bash
 cd extern/metis/
-mkdir -p ../../packages/metis/
-make config prefix=/home/jyliu/HIFCpp/HIF/packages/metis
+make config
 make -j
-make install
 ```
 
 ### Compile HIF
