@@ -90,7 +90,7 @@ void HIFGraph<Scalar>::SetNeighborNode()
 					}
 					childnode.nbnode_.push_back(nbnode_[i]);
 					childnode.nbnodeseqnum_.push_back(nbnodei.seqnum_);
-					(childnode->nbnodelevel_).push_back(nbnodei.level_);
+					childnode.nbnodelevel_.push_back(nbnodei.level_);
 					/*nbnodei.nbnode_.push_back(childrennode_.PtChild(iter));
 					nbnodei.nbnodeseqnum_.push_back(childnode.seqnum_);
 					nbnodei.nbnodelevel_.push_back(childnode.level_);*/
