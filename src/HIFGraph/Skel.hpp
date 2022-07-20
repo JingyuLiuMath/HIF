@@ -50,12 +50,12 @@ void HIFGraph<Scalar>::Skel()
 	for (int k = 0; k < nbnode_.size(); k++)
 	{
 		HIFGraph& nodek = *nbnode_[k];
-		if (nodek->level_ != level_)
+		if (nodek.level_ != level_)
 		{
 			nbinfo_[k].skip = 1;
 			continue;
 		}
-		if (nodek->seqnum_ < seqnum_) 
+		if (nodek.seqnum_ < seqnum_) 
 		{
 			nbinfo_[k].skip = 1;
 			continue;
