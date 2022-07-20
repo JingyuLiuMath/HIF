@@ -45,6 +45,7 @@ if(NOT EL_LIB_DIR)
     find_package(El REQUIRED)
 endif()
 link_directories(${EL_LIB_DIR})
+link_directories(${EL_LIB64_DIR})
 include_directories(${EL_INCLUDE_DIR})
 
 # Grab all of the .c, .cpp, .h, and .hpp HIF files

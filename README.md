@@ -15,22 +15,21 @@ source scl_source enable devtoolset-7
 module load LAPACK
 module load MPICH
 module load CMake
-module load Elemental
 module load OpenBLAS
-module load metis/5.1.0
 ```
 
 ### Compile Elemental
 
 ``` bash
 cd extern/elemental/
-mkdir build
+mkdir -p ../../packages/elemental/
+mkdir build/
 cd build/
-cmake -D CMAKE_INSTALL_PREFIX=<elemental/install/path> \
+cmake -D CMAKE_INSTALL_PREFIX=../../../packages/elemental/ \
 -D CMAKE_BUILD_TYPE=Release \
 -D GFORTRAN_LIB=/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/  \
 -D INSTALL_PYTHON_PACKAGE=OFF ..
-make -j64
+make -j
 make install
 ```
 
@@ -38,7 +37,9 @@ make install
 
 ``` bash
 cd extern/metis/
-make config prefix=<metis/install/path>
+mkdir -p ../../packages/metis/
+make config prefix=../../../packages/metis
+make -j
 make install
 ```
 
@@ -49,7 +50,7 @@ Before compile HIF, please write a `.cmake` file. You can find an example in `cm
 ``` bash
 mkdir build/
 cd build/
-cmake .. --toolchain <path/to/your/cmakefile>
+cmake .. --toolchain ../cmake/toolchains/BigMem0.cmake
 make -j64
 ```
 
