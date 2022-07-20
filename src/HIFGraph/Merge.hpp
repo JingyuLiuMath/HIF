@@ -71,7 +71,7 @@ void HIFGraph<Scalar>::Merge()
 
 	for (int iter = 0; iter < 2; iter++)
 	{
-		intr_.insert(intr_.end(), childrennode_.Child(iter).sk_.begin(), childrennode_.Child(iter).->sk_.end());
+		intr_.insert(intr_.end(), childrennode_.Child(iter).sk_.begin(), childrennode_.Child(iter).sk_.end());
 		re_.insert(re_.end(), childrennode_.Child(iter).re_.begin(), childrennode_.Child(iter).re_.end());
 		nbre_.insert(nbre_.end(), childrennode_.Child(iter).nbre_.begin(), childrennode_.Child(iter).nbre_.end());
 	}
