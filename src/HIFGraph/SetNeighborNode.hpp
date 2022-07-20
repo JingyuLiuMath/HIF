@@ -78,7 +78,7 @@ void HIFGraph<Scalar>::SetNeighborNode()
 				if (Intersect_Sort(childnode.nb_, nbnodei.vtx_))
 				{
 					// We have to avoid add one's ancestor as its nbnode.
-					int dlevel = childnode.level_ - nbnodei-.level_;
+					int dlevel = childnode.level_ - nbnodei.level_;
 					int myseqnum = childnode.seqnum_;
 					for (int k = 0; k < dlevel; k++)
 					{

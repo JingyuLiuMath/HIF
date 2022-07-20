@@ -25,7 +25,7 @@ cd extern/elemental/
 mkdir -p ../../packages/elemental/
 mkdir build/
 cd build/
-cmake -D CMAKE_INSTALL_PREFIX=../../../packages/elemental/ \
+cmake -D CMAKE_INSTALL_PREFIX=/home/jyliu/HIFCpp/HIF/packages/elemental/ \
 -D CMAKE_BUILD_TYPE=Release \
 -D GFORTRAN_LIB=/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/  \
 -D INSTALL_PYTHON_PACKAGE=OFF ..
@@ -38,7 +38,7 @@ make install
 ``` bash
 cd extern/metis/
 mkdir -p ../../packages/metis/
-make config prefix=../../../packages/metis
+make config prefix=/home/jyliu/HIFCpp/HIF/packages/metis
 make -j
 make install
 ```
