@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
 		int k = 0;
 		while (finb >> value)
 		{
-			b.Update(k, 0, value);
+			b.Set(k, 0, value);
 			k++;
 		}
 		finb.close();
