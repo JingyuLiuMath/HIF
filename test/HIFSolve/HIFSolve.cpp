@@ -80,6 +80,7 @@ int main(int argc, char* argv[])
 
 		ShowMatrix(b, "b");
 
+		/*
 		// Initialization.
 		El::Timer initTimer("InitTimer");
 		initTimer.Start();
@@ -135,6 +136,7 @@ int main(int argc, char* argv[])
 			foutx << b.Get(k, 0) << endl;
 		}
 		foutx.close();
+		*/
 	}
 	catch (std::exception& e)
 	{
