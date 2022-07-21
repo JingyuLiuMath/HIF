@@ -17,7 +17,28 @@ int main(int argc, char* argv[])
 
 	try
 	{
-		const string inputfileA = Input("--input_A", "input filename of A", "./A.txt");
+		vector<double> b(256);
+		string fileb = "/home/jyliu/HIFdata/grid5File/grid5vec_16.txt";
+		std::ifstream finb;
+		finb.open(fileb, std::ios::in);
+		if (!finb)
+		{
+			std::cerr << "cannot open the file" << std::endl;;
+		}
+		int k = 0;
+		while (finb >> value)
+		{
+			b[k] = value;
+			k++;
+		}
+		finb.close();
+
+		for (int i = 0; i < b.size(); i++)
+		{
+			cout << b[i] << endl;
+		}
+
+		/*const string inputfileA = Input("--input_A", "input filename of A", "./A.txt");
 		const string inputfileb = Input("--input_b", "input filename of b", "./b.txt");
 		const int minvtx = Input("--minvtx", "minvtx", 64);
 		const bool button = Input("--HIFbutton", "true for HIF, false for MF", true);
@@ -28,57 +49,59 @@ int main(int argc, char* argv[])
 		LogAppend(logApp);
 		SetTol(tol);
 		SetButton(button);
-		El::PrintInputReport();
+		El::PrintInputReport();*/
 
-		El::SetBlocksize(128);
-		El::SetLocalTrrkBlocksize<double>(8);
+		//El::SetBlocksize(128);
+		//El::SetLocalTrrkBlocksize<double>(8);
 
-		DEBUG_HIF(MasterCout("Debug Mode"));
+		//DEBUG_HIF(MasterCout("Debug Mode"));
 
-		// Reading input.
-		El::Timer readTimer("ReadTimer");
-		readTimer.Start();
-		MasterCout("Reading input starts...");
+		//// Reading input.
+		//El::Timer readTimer("ReadTimer");
+		//readTimer.Start();
+		//MasterCout("Reading input starts...");
 
-		string fileA = inputfileA;
-		std::ifstream finA;
-		finA.open(fileA, std::ios::in);
-		if (!finA)
-		{
-			std::cerr << "cannot open the file" << std::endl;
-		}
-		int n;
-		finA >> n;
-		SparseMatrix<double> A(n, n);
-		int i, j;
-		double value;
-		while (finA >> i >> j >> value)
-		{
-			A.QueueUpdate(i, j, value);
-		}
-		A.ProcessQueues();
-		finA.close();
+		//string fileA = inputfileA;
+		//std::ifstream finA;
+		//finA.open(fileA, std::ios::in);
+		//if (!finA)
+		//{
+		//	std::cerr << "cannot open the file" << std::endl;
+		//}
+		//int n;
+		//finA >> n;
+		//SparseMatrix<double> A(n, n);
+		//int i, j;
+		//double value;
+		//while (finA >> i >> j >> value)
+		//{
+		//	A.QueueUpdate(i, j, value);
+		//}
+		//A.ProcessQueues();
+		//finA.close();
 
-		string fileb = inputfileb;
-		std::ifstream finb;
-		finb.open(fileb, std::ios::in);
-		if (!finb)
-		{
-			std::cerr << "cannot open the file" << std::endl;;
-		}
-		Matrix<double> b(n, 1);
-		int k = 0;
-		while (finb >> value)
-		{
-			b.Update(k, 0, value);
-			k++;
-		}
-		finb.close();
+		//string fileb = inputfileb;
+		//std::ifstream finb;
+		//finb.open(fileb, std::ios::in);
+		//if (!finb)
+		//{
+		//	std::cerr << "cannot open the file" << std::endl;;
+		//}
+		//Matrix<double> b(n, 1);
+		//int k = 0;
+		//while (finb >> value)
+		//{
+		//	b.Update(k, 0, value);
+		//	k++;
+		//}
+		//finb.close();
 
-		readTimer.Stop();
-		MasterCout("Reading input ends in ", readTimer.Total(), " sec.");
+		//readTimer.Stop();
+		//MasterCout("Reading input ends in ", readTimer.Total(), " sec.");
 
-		ShowMatrix(b, "b");
+		//ShowMatrix(b, "b");
+
+
 
 		/*
 		// Initialization.
