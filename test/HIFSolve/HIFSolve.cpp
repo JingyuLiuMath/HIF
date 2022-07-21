@@ -26,6 +26,7 @@ int main(int argc, char* argv[])
 			std::cerr << "cannot open the file" << std::endl;;
 		}
 		int k = 0;
+		double value;
 		while (finb >> value)
 		{
 			b[k] = value;
