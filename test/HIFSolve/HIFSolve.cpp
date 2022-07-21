@@ -17,28 +17,6 @@ int main(int argc, char* argv[])
 
 	try
 	{
-		/*vector<double> b(256);
-		string fileb = "/home/jyliu/HIFdata/grid5File/grid5vec_16.txt";
-		std::ifstream finb;
-		finb.open(fileb, std::ios::in);
-		if (!finb)
-		{
-			std::cerr << "cannot open the file" << std::endl;;
-		}
-		int k = 0;
-		double value;
-		while (finb >> value)
-		{
-			b[k] = value;
-			k++;
-		}
-		finb.close();
-
-		for (int i = 0; i < b.size(); i++)
-		{
-			std::cout << b[i] << std::endl;
-		}*/
-
 		const string inputfileA = Input("--input_A", "input filename of A", "./A.txt");
 		const string inputfileb = Input("--input_b", "input filename of b", "./b.txt");
 		const int minvtx = Input("--minvtx", "minvtx", 64);
@@ -99,8 +77,6 @@ int main(int argc, char* argv[])
 
 		readTimer.Stop();
 		MasterCout("Reading input ends in ", readTimer.Total(), " sec.");
-
-		ShowMatrix(b, "b");
 
 		// Initialization.
 		El::Timer initTimer("InitTimer");
