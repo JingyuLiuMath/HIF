@@ -78,6 +78,8 @@ int main(int argc, char* argv[])
 		readTimer.Stop();
 		MasterCout("Reading input ends in ", readTimer.Total(), " sec.");
 
+		ShowMatrix(b, "b");
+
 		// Initialization.
 		El::Timer initTimer("InitTimer");
 		initTimer.Start();
