@@ -31,14 +31,16 @@ cmake -D CMAKE_INSTALL_PREFIX=/home/jyliu/HIFCpp/HIF/packages/elemental/ \
 -D INSTALL_PYTHON_PACKAGE=OFF ..
 make -j
 make install
+export LD_LIBRARY_PATH=/home/jyliu/HIFCpp/HIF/packages/elemental/lib:/home/jyliu/HIFCpp/HIF/packages/elemental/lib64:$LD_LIBRARY_PATH
 ```
 
 ### Compile METIS
 
 ``` bash
 cd extern/metis/
-make config
-make -j
+mkdir -p ../../packages/metis/
+make config prefix=/home/jyliu/HIFCpp/HIF/packages/metis/
+make install
 ```
 
 ### Compile HIF
