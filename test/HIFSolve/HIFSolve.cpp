@@ -68,10 +68,9 @@ int main(int argc, char* argv[])
 		}
 		Matrix<double> b(n, 1);
 		int k = 0;
-		El::Zeros(b, b.Height(), b.Width());
 		while (finb >> value)
 		{
-			b.Update(k, 0, value);
+			b.Set(k, 0, value);
 			k++;
 		}
 		finb.close();
