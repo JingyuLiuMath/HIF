@@ -83,8 +83,6 @@ void HIFGraph<Scalar>::Factorization()
 
 	TIMER_HIF(TimerStop(TIMER_FACTOR))
 
-	ShowMatrix(AIIinv_, "AIIinv");
-
 	INFO_HIF
 	(
 		Log(
