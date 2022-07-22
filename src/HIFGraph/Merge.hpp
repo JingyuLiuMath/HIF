@@ -40,21 +40,19 @@ void HIFGraph<Scalar>::Merge()
 
 	// First we tell the parent what its intr, sep, nb is after we eliminate the children's intr and re.
 
-	intr: children's sk - sep.
-	sep : sep \cup children's sk.
-	nb: nb \cup children's nbsk.
+	// intr: children's sk - sep.
+	// sep : sep \cup children's sk.
+	// nb: nb \cup children's nbsk.
 	vector<int> tmpnbsk;
 	for (int iter = 0; iter < 2; iter++)
 	{
-		/*intr_.insert(intr_.end(), (children_[iter]->sk_).begin(), (children_[iter]->sk_).end());
-		tmpnbsk.insert(tmpnbsk.end(), (children_[iter]->nbsk_).begin(), (children_[iter]->nbsk_).end());*/
-		for (int i = 0; i < children_[iter]->sk_.size(); i++)
+		for (int i = 0; i < childrennode_.Child(iter).sk_.size(); i++)
 		{
-			intr_.push_back(children_[iter]->sk_[i]);
+			intr_.push_back(childrennode_.Child(iter).sk_[i]);
 		}
-		for (int i = 0; i < children_[iter]->nbsk_.size(); i++)
+		for (int i = 0; i < childrennode_.Child(iter).nbsk_.size(); i++)
 		{
-			tmpnbsk.push_back(children_[iter]->nbsk_[i]);
+			tmpnbsk.push_back(childrennode_.Child(iter).nbsk_[i]);
 		}
 	}
 	std::sort(intr_.begin(), intr_.end());
