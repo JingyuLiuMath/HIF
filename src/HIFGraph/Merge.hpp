@@ -68,6 +68,8 @@ void HIFGraph<Scalar>::Merge()
 	Intersect_Sort(nb_, tmpnbsk, tmpnb);
 	nb_.assign(tmpnb.begin(), tmpnb.end());
 
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:Merge:setintr_sep_nb"))
+
 	// Next we assign the corresponding matrices blockly.
 
 	// AII
@@ -100,6 +102,8 @@ void HIFGraph<Scalar>::Merge()
 
 	SubMatrixTransposeUpdate(AII_, myindex_intr1, myindex_intr2, AII_(myindex_intr2, myindex_intr1));
 
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:Merge:AII"))
+
 	// ASI
 	// A sep of the parent only belongs to the sep of one of its children.
 	// If an intr and a sep belongs to the same child, we assign ASI from the child's ASS.
@@ -130,6 +134,8 @@ void HIFGraph<Scalar>::Merge()
 
 	SubMatrixUpdate(ASI_, myindex_sep2y, myindex_intr2, childrennode_.Child(1).ANS_(cindex_sep2y, cindex_intr2));
 
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:Merge:ASI"))
+
 	// ASS
 	// If two seps belongs to the same child, we assign ASS from the child's ASS. 
 	// Otherwise, we assign ASS from one child's ANS or 0.
@@ -159,6 +165,8 @@ void HIFGraph<Scalar>::Merge()
 
 	SubMatrixTransposeUpdate(ASS_, myindex_sep1, myindex_sep2, ASS_(myindex_sep2, myindex_sep1));
 
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:Merge:ASS"))
+
 	// ANS
 	// If a nb and a sep in the same child, we assign ANS from the child's ANS.
 	// Otherwise, ANS= 0.
@@ -175,6 +183,8 @@ void HIFGraph<Scalar>::Merge()
 	SubMatrixUpdate(ANS_, myindex_nb1x, myindex_sep1, childrennode_.Child(0).ANS_(cindex_nb1x, cindex_sep1));
 
 	SubMatrixUpdate(ANS_, myindex_nb2x, myindex_sep2, childrennode_.Child(1).ANS_(cindex_nb2x, cindex_sep2));
+	
+	DEBUG_HIF(CallStackEntry cse("HIFGraph:Merge:ANS"))
 
 	// Clear children's unnecessary information.
 	for (int iter = 0; iter < 2; iter++)

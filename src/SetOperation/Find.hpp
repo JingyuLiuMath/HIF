@@ -41,8 +41,8 @@ int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value)
 			return tmpindex;
 		}
 	}
-	return -1;
 	TIMER_HIF(TimerStop(TIMER_SETOP))
+	return -1;
 }
 
 // vec[index] = value.
