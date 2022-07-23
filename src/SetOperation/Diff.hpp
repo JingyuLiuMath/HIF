@@ -9,10 +9,8 @@ void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Sc
 	DEBUG_HIF(CallStackEntry cse("Diff_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-	vec.resize(vec1.size());
 	int i = 0;
 	int j = 0;
-	int actualsize_vec = 0;
 	int startj = -1;
 	int endj = -1;
 	int tmpindex = -1;
@@ -20,8 +18,7 @@ void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Sc
 	{
 		if (vec1[i] < vec2[j])
 		{
-			vec[actualsize_vec] = vec1[i];
-			actualsize_vec++;
+			vec.push_back(vec1[i]);
 			i++;
 		}
 		else if (vec1[i] > vec2[j])
@@ -35,7 +32,7 @@ void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Sc
 			endj = vec2.size() - 1;
 			while (startj <= endj)
 			{
-				tmpindex = (startj + endj) / 2;
+				tmpindex = startj + (endj - startj) / 2;
 				if (vec2[tmpindex] < vec1[i])
 				{
 					startj = tmpindex + 1;
@@ -60,12 +57,11 @@ void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Sc
 	}
 	while (i < vec1.size())
 	{
-		vec[actualsize_vec] = vec1[i];
+		vec.push_back(vec1[i]);
 		actualsize_vec++;
 		i++;
 	}
-	vec.erase(vec.begin() + actualsize_vec, vec.end());
-	TIMER_HIF(TimerStop(TIMER_SETOP))
+	TIMER_HIF(TimerStop(TIMER_SETOP))£»
 }
 
 } // namespace HIF.

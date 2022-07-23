@@ -6,7 +6,7 @@ namespace HIF {
 template <typename Scalar>
 int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value)
 {
-	DEBUG_HIF(CallStackEntry cse("FindFirstIndex"))
+	DEBUG_HIF(CallStackEntry cse("FindIndex_Sort"))
 	
 	TIMER_HIF(TimerStart(TIMER_SETOP))
 	int startsearch = 0;
@@ -26,7 +26,7 @@ int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value)
 	}
 	while (startsearch <= endsearch)
 	{
-		tmpindex = (startsearch + endsearch) / 2;
+		tmpindex = startsearch + (endsearch - startsearch) / 2;
 		if (vec[tmpindex] < value)
 		{
 			startsearch = tmpindex + 1;
@@ -37,18 +37,12 @@ int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value)
 		}
 		else
 		{
-			startsearch = tmpindex;
-			break;
+			TIMER_HIF(TimerStop(TIMER_SETOP))
+			return tmpindex;
 		}
 	}
-	index = startsearch;  // index is the min index such that vec[index] >= value. 
-	if (vec[index] != value)
-	{
-		TIMER_HIF(TimerStop(TIMER_SETOP))
-		return -1;
-	}
+	return -1;
 	TIMER_HIF(TimerStop(TIMER_SETOP))
-	return index;
 }
 
 // vec[index] = value.
@@ -58,19 +52,13 @@ void FindAllIndex(const vector<Scalar>& vec, const Scalar value, vector<int>& in
 	DEBUG_HIF(CallStackEntry cse("FindAllIndex"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-
-	index.resize(vec.size());
-	int actualsize_index = 0;
 	for (int i = 0; i < vec.size(); i++)
 	{
 		if (vec[i] == value)
 		{
-			index[actualsize_index] = i;
-			actualsize_index++;
+			index.push_back(i);
 		}
 	}
-	index.erase(index.begin() + actualsize_index, index.end());
-
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 
@@ -81,8 +69,6 @@ void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, v
 	DEBUG_HIF(CallStackEntry cse("FindAllIndex_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-	index.resize(vec1.size());
-	int actualsize_index = 0;
 	int i = 0;
 	int j = 0;
 	int startj = -1;
@@ -92,8 +78,7 @@ void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, v
 	{
 		if (vec1[i] == vec2[j])
 		{
-			index[actualsize_index] = j;
-			actualsize_index++;
+			index.push_back(j);
 			i++;
 			j++;
 		}
@@ -104,7 +89,7 @@ void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, v
 			endj = vec2.size() - 1;
 			while (startj <= endj)
 			{
-				tmpindex = (startj + endj) / 2;
+				tmpindex = startj + (endj - startj) / 2;
 				if (vec2[tmpindex] < vec1[i])
 				{
 					startj = tmpindex + 1;
@@ -122,7 +107,6 @@ void FindAllIndex_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, v
 			j = startj;
 		}
 	}
-	index.erase(index.begin() + actualsize_index, index.end());
 	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 
