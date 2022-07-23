@@ -57,6 +57,7 @@ void HIFGraph<Scalar>::Merge()
 	}
 	std::sort(intr_.begin(), intr_.end());
 	std::sort(tmpnbsk.begin(), tmpnbsk.end());
+	Unique_Sort(tmpnbsk);
 	vector<int> tmpsep;
 	Intersect_Sort(sep_, intr_, tmpsep);
 	sep_.assign(tmpsep.begin(), tmpsep.end());
