@@ -58,7 +58,6 @@ void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Sc
 	while (i < vec1.size())
 	{
 		vec.push_back(vec1[i]);
-		actualsize_vec++;
 		i++;
 	}
 	TIMER_HIF(TimerStop(TIMER_SETOP))£»
