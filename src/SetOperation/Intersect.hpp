@@ -177,7 +177,6 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-	int actualsize_index = 0;
 	int i = 0;
 	int j = 0;
 	int starti = -1;
@@ -416,7 +415,6 @@ void Intersect_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2,
 	DEBUG_HIF(CallStackEntry cse("Intersect_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
-	int actualsize_index = 0;
 	int i = 0;
 	int j = 0;
 	int starti = -1;
