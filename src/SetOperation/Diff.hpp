@@ -60,7 +60,7 @@ void Diff_Sort(const vector<Scalar>& vec1, const vector<Scalar>& vec2, vector<Sc
 		vec.push_back(vec1[i]);
 		i++;
 	}
-	TIMER_HIF(TimerStop(TIMER_SETOP))£»
+	TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 
 } // namespace HIF.
