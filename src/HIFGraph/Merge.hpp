@@ -82,7 +82,7 @@ void HIFGraph<Scalar>::Merge()
 	Intersect_Sort(intr_, childrennode_.Child(0).vtx_, intr1, myindex_intr1, 1);
 	FindAllIndex_Sort(intr1, childrennode_.Child(0).sep_, cindex_intr1);
 	
-	if (level_ = 5)
+	if (level_ == 5)
 	{
 		if (myindex_intr1.size() != cindex_intr1.size())
 		{
@@ -96,7 +96,7 @@ void HIFGraph<Scalar>::Merge()
 	Intersect_Sort(intr_, childrennode_.Child(1).vtx_, intr2, myindex_intr2, 1);
 	FindAllIndex_Sort(intr2, childrennode_.Child(1).sep_, cindex_intr2);
 	
-	if (level_ = 5)
+	if (level_ == 5)
 	{
 		if (myindex_intr2.size() != cindex_intr2.size())
 		{
@@ -157,7 +157,7 @@ void HIFGraph<Scalar>::Merge()
 	Intersect_Sort(sep_, childrennode_.Child(0).vtx_, sep1, myindex_sep1, 1);
 	FindAllIndex_Sort(sep1, childrennode_.Child(0).sep_, cindex_sep1);
 
-	if (level_ = 5)
+	if (level_ == 5)
 	{
 		if (myindex_sep1.size() != cindex_sep1.size())
 		{
@@ -171,7 +171,7 @@ void HIFGraph<Scalar>::Merge()
 	Intersect_Sort(sep_, childrennode_.Child(1).vtx_, sep2, myindex_sep2, 1);
 	FindAllIndex_Sort(sep2, childrennode_.Child(1).sep_, cindex_sep2);
 
-	if (level_ = 5)
+	if (level_ == 5)
 	{
 		if (myindex_sep2.size() != cindex_sep2.size())
 		{
