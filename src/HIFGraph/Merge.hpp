@@ -67,13 +67,6 @@ void HIFGraph<Scalar>::Merge()
 	/*vector<int> tmpnb;
 	Intersect_Sort(nb_, tmpnbsk, tmpnb);
 	nb_.assign(tmpnb.begin(), tmpnb.end());*/
-
-	if (level_ = 5)
-	{
-		ShowVector(intr_, "intr");
-		ShowVector(sep_, "sep");
-		ShowVector(nb_, "nb");
-	}
 	
 	// Next we assign the corresponding matrices blockly.
 
@@ -91,9 +84,10 @@ void HIFGraph<Scalar>::Merge()
 	
 	if (level_ = 5)
 	{
-		ShowVector(intr1, "intr1");
-		ShowVector(myindex_intr1, "myindex_intr1");
-		ShowVector(cindex_intr1, "cindex_intr1");
+		if (myindex_intr1.size() != cindex_intr1.size())
+		{
+			std::cout << "intr1" << endl;
+		}
 	}
 
 	vector<int> intr2;
@@ -104,20 +98,15 @@ void HIFGraph<Scalar>::Merge()
 	
 	if (level_ = 5)
 	{
-		ShowVector(intr2, "intr2");
-		ShowVector(myindex_intr2, "myindex_intr2");
-		ShowVector(cindex_intr2, "cindex_intr2");
+		if (myindex_intr2.size() != cindex_intr2.size())
+		{
+			std::cout << "intr2" << endl;
+		}
 	}
 
 	vector<int> myindex_intr21;
 	vector<int> cindex_intr21;
 	Intersect_Sort(intr_, childrennode_.Child(0).nb_, myindex_intr21, cindex_intr21);
-	
-	if (level_ = 5)
-	{
-		ShowVector(myindex_intr21, "myindex_intr21");
-		ShowVector(cindex_intr21, "cindex_intr21");
-	}
 
 	SubMatrixUpdate(AII_, myindex_intr1, myindex_intr1, childrennode_.Child(0).ASS_(cindex_intr1, cindex_intr1));
 
@@ -137,41 +126,17 @@ void HIFGraph<Scalar>::Merge()
 	vector<int> cindex_sep1x;
 	Intersect_Sort(sep_, childrennode_.Child(0).sep_, myindex_sep1x, cindex_sep1x);
 
-	if (level_ = 5)
-	{
-		ShowVector(myindex_sep1x, "myindex_sep1x");
-		ShowVector(cindex_sep1x, "cindex_sep1x");
-	}
-
 	vector<int> myindex_sep1y;
 	vector<int> cindex_sep1y;
 	Intersect_Sort(sep_, childrennode_.Child(0).nb_, myindex_sep1y, cindex_sep1y);
-
-	if (level_ = 5)
-	{
-		ShowVector(myindex_sep1y, "myindex_sep1y");
-		ShowVector(cindex_sep1y, "cindex_sep1y");
-	}
 
 	vector<int> myindex_sep2x;
 	vector<int> cindex_sep2x;
 	Intersect_Sort(sep_, childrennode_.Child(1).sep_, myindex_sep2x, cindex_sep2x);
 
-	if (level_ = 5)
-	{
-		ShowVector(myindex_sep2x, "myindex_sep2x");
-		ShowVector(cindex_sep2x, "cindex_sep2x");
-	}
-
 	vector<int> myindex_sep2y;
 	vector<int> cindex_sep2y;
 	Intersect_Sort(sep_, childrennode_.Child(1).nb_, myindex_sep2y, cindex_sep2y);
-
-	if (level_ = 5)
-	{
-		ShowVector(myindex_sep2y, "myindex_sep2y");
-		ShowVector(cindex_sep2y, "cindex_sep2y");
-	}
 
 	SubMatrixUpdate(ASI_, myindex_sep1x, myindex_intr1, childrennode_.Child(0).ASS_(cindex_sep1x, cindex_intr1));
 
@@ -194,9 +159,10 @@ void HIFGraph<Scalar>::Merge()
 
 	if (level_ = 5)
 	{
-		ShowVector(sep1, "sep1");
-		ShowVector(myindex_sep1, "myindex_sep1");
-		ShowVector(cindex_sep1, "cindex_sep1");
+		if (myindex_sep1.size() != cindex_sep1.size())
+		{
+			std::cout << "sep1" << endl;
+		}
 	}
 
 	vector<int> sep2;
@@ -207,20 +173,15 @@ void HIFGraph<Scalar>::Merge()
 
 	if (level_ = 5)
 	{
-		ShowVector(sep2, "sep2");
-		ShowVector(myindex_sep1, "myindex_sep2");
-		ShowVector(cindex_sep2, "cindex_sep2");
+		if (myindex_sep2.size() != cindex_sep2.size())
+		{
+			std::cout << "sep2" << endl;
+		}
 	}
 
 	vector<int> myindex_sep21;
 	vector<int> cindex_sep21;
 	Intersect_Sort(sep_, childrennode_.Child(0).nb_, myindex_sep21, cindex_sep21);
-
-	if (level_ = 5)
-	{
-		ShowVector(myindex_sep21, "myindex_sep21");
-		ShowVector(cindex_sep21, "cindex_sep21");
-	}
 
 	SubMatrixUpdate(ASS_, myindex_sep1, myindex_sep1, childrennode_.Child(0).ASS_(cindex_sep1, cindex_sep1));
 
@@ -239,21 +200,9 @@ void HIFGraph<Scalar>::Merge()
 	vector<int> cindex_nb1x;
 	Intersect_Sort(nb_, childrennode_.Child(0).nb_, myindex_nb1x, cindex_nb1x);
 
-	if (level_ = 5)
-	{
-		ShowVector(myindex_nb1x, "myindex_nb1x");
-		ShowVector(cindex_nb1x, "cindex_nb1x");
-	}
-
 	vector<int> myindex_nb2x;
 	vector<int> cindex_nb2x;
 	Intersect_Sort(nb_, childrennode_.Child(1).nb_, myindex_nb2x, cindex_nb2x);
-
-	if (level_ = 5)
-	{
-		ShowVector(myindex_nb2x, "myindex_nb2x");
-		ShowVector(cindex_nb2x, "cindex_nb2x");
-	}
 
 	SubMatrixUpdate(ANS_, myindex_nb1x, myindex_sep1, childrennode_.Child(0).ANS_(cindex_nb1x, cindex_sep1));
 
