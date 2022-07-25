@@ -43,30 +43,34 @@ void HIFGraph<Scalar>::Merge()
 	// intr: children's sk - sep.
 	// sep : sep \cup children's sk.
 	// nb: nb \cup children's nbsk.
-	vector<int> tmpnbsk;
+	/*vector<int> tmpnbsk;*/
 	for (int iter = 0; iter < 2; iter++)
 	{
-		for (int i = 0; i < childrennode_.Child(iter).sk_.size(); i++)
+		/*for (int i = 0; i < childrennode_.Child(iter).sk_.size(); i++)
 		{
 			intr_.push_back(childrennode_.Child(iter).sk_[i]);
 		}
 		for (int i = 0; i < childrennode_.Child(iter).nbsk_.size(); i++)
 		{
 			tmpnbsk.push_back(childrennode_.Child(iter).nbsk_[i]);
+		}*/
+		for (int i = 0; i < childrennode_.Child(iter).sep_.size(); i++)
+		{
+			intr_.push_back(childrennode_.Child(iter).sep_[i]);
 		}
 	}
 	std::sort(intr_.begin(), intr_.end());
-	std::sort(tmpnbsk.begin(), tmpnbsk.end());
+	/*std::sort(tmpnbsk.begin(), tmpnbsk.end());
 	Unique_Sort(tmpnbsk);
 	vector<int> tmpsep;
 	Intersect_Sort(sep_, intr_, tmpsep);
-	sep_.assign(tmpsep.begin(), tmpsep.end());
+	sep_.assign(tmpsep.begin(), tmpsep.end());*/
 	vector<int> tmpintr;
 	Diff_Sort(intr_, sep_, tmpintr);
 	intr_.assign(tmpintr.begin(), tmpintr.end());
-	vector<int> tmpnb;
+	/*vector<int> tmpnb;
 	Intersect_Sort(nb_, tmpnbsk, tmpnb);
-	nb_.assign(tmpnb.begin(), tmpnb.end());
+	nb_.assign(tmpnb.begin(), tmpnb.end());*/
 	
 	// Next we assign the corresponding matrices blockly.
 
@@ -80,25 +84,9 @@ void HIFGraph<Scalar>::Merge()
 	vector<int>& cindex_intr1 = childreninfo_[0].cindex_intr;
 	Intersect_Sort(intr_, childrennode_.Child(0).sep_, myindex_intr1, cindex_intr1);
 
-	if (level_ <= 6)
-	{
-		if (myindex_intr1.size() != cindex_intr1.size())
-		{
-			std::cout << "intr1" << endl;
-		}
-	}
-
 	vector<int>& myindex_intr2 = childreninfo_[1].myindex_intr;
 	vector<int>& cindex_intr2 = childreninfo_[1].cindex_intr;
 	Intersect_Sort(intr_, childrennode_.Child(1).sep_, myindex_intr2, cindex_intr2);
-	
-	if (level_ <= 6)
-	{
-		if (myindex_intr2.size() != cindex_intr2.size())
-		{
-			std::cout << "intr2" << endl;
-		}
-	}
 
 	vector<int> myindex_intr21;
 	vector<int> cindex_intr21;
@@ -118,25 +106,33 @@ void HIFGraph<Scalar>::Merge()
 	// Otherwise, we assign ASI from one child's ANS or 0.
 	El::Zeros(ASI_, sep_.size(), intr_.size());
 	
-	vector<int> myindex_sep1x;
+	/*vector<int> myindex_sep1x;
 	vector<int> cindex_sep1x;
-	Intersect_Sort(sep_, childrennode_.Child(0).sep_, myindex_sep1x, cindex_sep1x);
+	Intersect_Sort(sep_, childrennode_.Child(0).sep_, myindex_sep1x, cindex_sep1x);*/
+	
+	vector<int>& myindex_sep1 = childreninfo_[0].myindex_sep;
+	vector<int>& cindex_sep1 = childreninfo_[0].cindex_sep;
+	Intersect_Sort(sep_, childrennode_.Child(0).sep_, myindex_sep1, cindex_sep1);
 
 	vector<int> myindex_sep1y;
 	vector<int> cindex_sep1y;
 	Intersect_Sort(sep_, childrennode_.Child(0).nb_, myindex_sep1y, cindex_sep1y);
 
-	vector<int> myindex_sep2x;
+	/*vector<int> myindex_sep2x;
 	vector<int> cindex_sep2x;
-	Intersect_Sort(sep_, childrennode_.Child(1).sep_, myindex_sep2x, cindex_sep2x);
+	Intersect_Sort(sep_, childrennode_.Child(1).sep_, myindex_sep2x, cindex_sep2x);*/
+
+	vector<int>& myindex_sep2 = childreninfo_[1].myindex_sep;
+	vector<int>& cindex_sep2 = childreninfo_[1].cindex_sep;
+	Intersect_Sort(sep_, childrennode_.Child(1).sep_, myindex_sep2, cindex_sep2);
 
 	vector<int> myindex_sep2y;
 	vector<int> cindex_sep2y;
 	Intersect_Sort(sep_, childrennode_.Child(1).nb_, myindex_sep2y, cindex_sep2y);
 
-	SubMatrixUpdate(ASI_, myindex_sep1x, myindex_intr1, childrennode_.Child(0).ASS_(cindex_sep1x, cindex_intr1));
+	SubMatrixUpdate(ASI_, myindex_sep1, myindex_intr1, childrennode_.Child(0).ASS_(cindex_sep1, cindex_intr1));
 
-	SubMatrixUpdate(ASI_, myindex_sep2x, myindex_intr2, childrennode_.Child(1).ASS_(cindex_sep2x, cindex_intr2));
+	SubMatrixUpdate(ASI_, myindex_sep2, myindex_intr2, childrennode_.Child(1).ASS_(cindex_sep2, cindex_intr2));
 
 	SubMatrixUpdate(ASI_, myindex_sep1y, myindex_intr1, childrennode_.Child(0).ANS_(cindex_sep1y, cindex_intr1));
 
@@ -147,29 +143,13 @@ void HIFGraph<Scalar>::Merge()
 	// Otherwise, we assign ASS from one child's ANS or 0.
 	El::Zeros(ASS_, sep_.size(), sep_.size());
 	
-	vector<int>& myindex_sep1 = childreninfo_[0].myindex_sep;
+	/*vector<int>& myindex_sep1 = childreninfo_[0].myindex_sep;
 	vector<int>& cindex_sep1 = childreninfo_[0].cindex_sep;
-	Intersect_Sort(sep_, childrennode_.Child(0).sep_, myindex_sep1, cindex_sep1);
+	Intersect_Sort(sep_, childrennode_.Child(0).sep_, myindex_sep1, cindex_sep1);*/
 
-	if (level_ <= 6)
-	{
-		if (myindex_sep1.size() != cindex_sep1.size())
-		{
-			std::cout << "sep1" << endl;
-		}
-	}
-
-	vector<int>& myindex_sep2 = childreninfo_[1].myindex_sep;
+	/*vector<int>& myindex_sep2 = childreninfo_[1].myindex_sep;
 	vector<int>& cindex_sep2 = childreninfo_[1].cindex_sep;
-	Intersect_Sort(sep_, childrennode_.Child(1).sep_, myindex_sep2, cindex_sep2);
-
-	if (level_ <= 6)
-	{
-		if (myindex_sep2.size() != cindex_sep2.size())
-		{
-			std::cout << "sep2" << endl;
-		}
-	}
+	Intersect_Sort(sep_, childrennode_.Child(1).sep_, myindex_sep2, cindex_sep2);*/
 
 	vector<int> myindex_sep21;
 	vector<int> cindex_sep21;
@@ -185,7 +165,7 @@ void HIFGraph<Scalar>::Merge()
 
 	// ANS
 	// If a nb and a sep in the same child, we assign ANS from the child's ANS.
-	// Otherwise, ANS= 0.
+	// Otherwise, ANS = 0.
 	El::Zeros(ANS_, nb_.size(), sep_.size());
 	
 	vector<int> myindex_nb1x;
