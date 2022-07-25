@@ -21,7 +21,7 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrixS& A)
 
 		FullMat(A, nb_, sep_, ANS_);
 
-		// SetSeparatorType();
+		SetSeparatorType();
 	}
 	else
 	{
