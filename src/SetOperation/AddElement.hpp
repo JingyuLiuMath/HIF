@@ -9,6 +9,11 @@ void AddVec_Sort(vector<Scalar>& vec1, const vector<Scalar>& vec2)
 	DEBUG_HIF(CallStackEntry cse("AddVec_Sort"))
 
 	TIMER_HIF(TimerStart(TIMER_SETOP))
+	if (vec2.size() == 0)
+	{
+		TIMER_HIF(TimerStop(TIMER_SETOP))
+		return;
+	}
 	vector<Scalar> vec;
 	int i = 0;
 	int j = 0;

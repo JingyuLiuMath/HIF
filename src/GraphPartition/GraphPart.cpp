@@ -48,25 +48,19 @@ void MetisPart(const SparseMatrix<Scalar>& A,
     {
         degree[t - 1] = offsetA[t] - offsetA[t - 1] - 1;
     }
-    vector<int> singleidx(degree.size());
-    vector<int> idx(degree.size());
-    int actualsize_singleidx = 0;
-    int actualsize_idx = 0;
+    vector<int> singleidx;
+    vector<int> idx;
     for (int i = 0; i < degree.size(); i++)
     {
         if (degree[i] == 0)
         {
-            singleidx[actualsize_singleidx] = i;
-            actualsize_singleidx++;
+            singleidx.push_back(i);
         }
         else
         {
-            idx[actualsize_idx] = i;
-            actualsize_idx++;
+            idx.push_back(i);
         }
     }
-    singleidx.erase(singleidx.begin() + actualsize_singleidx, singleidx.end());
-    idx.erase(idx.begin() + actualsize_idx, idx.end());
     
     vector<int> lidx, ridx, sepidx;
     MetisSepPart(A(idx, idx), lidx, ridx, sepidx); // lidx, ridx, sepidx are sorted.
@@ -232,28 +226,48 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
     if (ctrl->pfactor > 0.0)
     {
         for (i = 0; i < graph->nvtxs; i++)
+        {
             if (where[i] == 0)
+            {
                 p1[ptlgraph++] = piperm[i];
+            }
             else if (where[i] == 1)
+            {
                 p2[ptrgraph++] = piperm[i];
+            }
             else
+            {
                 sep[ptsep++] = piperm[i];
-
+            }
+        }
         for (i = nnvtxs; i < nvtxs; i++)
+        {
             sep[ptsep++] = piperm[i];
-
+        }
         gk_free((void**)&piperm, LTERM);
     }
     else
     {
         for (i = 0; i < graph->nvtxs; i++)
+        {
             if (where[i] == 0)
+            {
                 p1[ptlgraph++] = i;
+            }
             else if (where[i] == 1)
+            {
                 p2[ptrgraph++] = i;
+            }
             else
+            {
                 sep[ptsep++] = i;
+            }
+        }
     }
+
+    std::sort(p1.begin(), p1.end());
+    std::sort(p2.begin(), p2.end());
+    std::sort(sep.begin(), sep.end());
 
     // Clean up
     FreeCtrl(&ctrl);
