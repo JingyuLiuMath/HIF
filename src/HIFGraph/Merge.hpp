@@ -43,17 +43,17 @@ void HIFGraph<Scalar>::Merge()
 	// intr: children's sk - sep.
 	// sep : sep \cup children's sk.
 	// nb: nb \cup children's nbsk.
-	vector<int> tmpnbsk;
+	/*vector<int> tmpnbsk;*/
 	for (int iter = 0; iter < 2; iter++)
 	{
 		for (int i = 0; i < childrennode_.Child(iter).sk_.size(); i++)
 		{
 			intr_.push_back(childrennode_.Child(iter).sk_[i]);
 		}
-		for (int i = 0; i < childrennode_.Child(iter).nbsk_.size(); i++)
+		/*for (int i = 0; i < childrennode_.Child(iter).nbsk_.size(); i++)
 		{
 			tmpnbsk.push_back(childrennode_.Child(iter).nbsk_[i]);
-		}
+		}*/
 	}
 	std::sort(intr_.begin(), intr_.end());
 	std::sort(tmpnbsk.begin(), tmpnbsk.end());
@@ -78,9 +78,6 @@ void HIFGraph<Scalar>::Merge()
 
 	vector<int>& myindex_intr1 = childreninfo_[0].myindex_intr;
 	vector<int>& cindex_intr1 = childreninfo_[0].cindex_intr;
-	/*vector<int> intr1;
-	Intersect_Sort(intr_, childrennode_.Child(0).vtx_, intr1, myindex_intr1, 1);
-	FindAllIndex_Sort(intr1, childrennode_.Child(0).sep_, cindex_intr1);*/
 	Intersect_Sort(intr_, childrennode_.Child(0).sep_, myindex_intr1, cindex_intr1);
 
 	if (level_ <= 6)
@@ -93,9 +90,6 @@ void HIFGraph<Scalar>::Merge()
 
 	vector<int>& myindex_intr2 = childreninfo_[1].myindex_intr;
 	vector<int>& cindex_intr2 = childreninfo_[1].cindex_intr;
-	/*vector<int> intr2;
-	Intersect_Sort(intr_, childrennode_.Child(1).vtx_, intr2, myindex_intr2, 1);
-	FindAllIndex_Sort(intr2, childrennode_.Child(1).sep_, cindex_intr2);*/
 	Intersect_Sort(intr_, childrennode_.Child(1).sep_, myindex_intr2, cindex_intr2);
 	
 	if (level_ <= 6)
@@ -155,9 +149,6 @@ void HIFGraph<Scalar>::Merge()
 	
 	vector<int>& myindex_sep1 = childreninfo_[0].myindex_sep;
 	vector<int>& cindex_sep1 = childreninfo_[0].cindex_sep;
-	/*vector<int> sep1;
-	Intersect_Sort(sep_, childrennode_.Child(0).vtx_, sep1, myindex_sep1, 1);
-	FindAllIndex_Sort(sep1, childrennode_.Child(0).sep_, cindex_sep1);*/
 	Intersect_Sort(sep_, childrennode_.Child(0).sep_, myindex_sep1, cindex_sep1);
 
 	if (level_ <= 6)
@@ -170,9 +161,6 @@ void HIFGraph<Scalar>::Merge()
 
 	vector<int>& myindex_sep2 = childreninfo_[1].myindex_sep;
 	vector<int>& cindex_sep2 = childreninfo_[1].cindex_sep;
-	/*vector<int> sep2;
-	Intersect_Sort(sep_, childrennode_.Child(1).vtx_, sep2, myindex_sep2, 1);
-	FindAllIndex_Sort(sep2, childrennode_.Child(1).sep_, cindex_sep2);*/
 	Intersect_Sort(sep_, childrennode_.Child(1).sep_, myindex_sep2, cindex_sep2);
 
 	if (level_ <= 6)

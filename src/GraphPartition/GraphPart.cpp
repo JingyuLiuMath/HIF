@@ -265,9 +265,9 @@ void MetisSepPart(const SparseMatrix<Scalar>& A,
         }
     }
 
-    std::sort(p1.begin(), p1.end());
+    /*std::sort(p1.begin(), p1.end());
     std::sort(p2.begin(), p2.end());
-    std::sort(sep.begin(), sep.end());
+    std::sort(sep.begin(), sep.end());*/
 
     // Clean up
     FreeCtrl(&ctrl);
