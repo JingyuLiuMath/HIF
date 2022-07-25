@@ -43,17 +43,17 @@ void HIFGraph<Scalar>::Merge()
 	// intr: children's sk - sep.
 	// sep : sep \cup children's sk.
 	// nb: nb \cup children's nbsk.
-	/*vector<int> tmpnbsk;*/
+	vector<int> tmpnbsk;
 	for (int iter = 0; iter < 2; iter++)
 	{
 		for (int i = 0; i < childrennode_.Child(iter).sk_.size(); i++)
 		{
 			intr_.push_back(childrennode_.Child(iter).sk_[i]);
 		}
-		/*for (int i = 0; i < childrennode_.Child(iter).nbsk_.size(); i++)
+		for (int i = 0; i < childrennode_.Child(iter).nbsk_.size(); i++)
 		{
 			tmpnbsk.push_back(childrennode_.Child(iter).nbsk_[i]);
-		}*/
+		}
 	}
 	std::sort(intr_.begin(), intr_.end());
 	std::sort(tmpnbsk.begin(), tmpnbsk.end());
