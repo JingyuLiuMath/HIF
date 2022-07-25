@@ -13,7 +13,11 @@ int FindIndex_Sort(const vector<Scalar>& vec, const Scalar value)
 	int endsearch = vec.size() - 1;
 	int tmpindex = -1;
 	int index = -1;
-
+	
+	if (vec.size() == 0)
+	{
+		return -1;
+	}
 	if (vec.front() > value)
 	{
 		TIMER_HIF(TimerStop(TIMER_SETOP))
