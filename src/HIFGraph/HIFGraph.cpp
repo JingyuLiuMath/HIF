@@ -43,7 +43,7 @@ HIFGraph<Scalar>::HIFGraph
 
 	TIMER_HIF(TimerStart(TIMER_INIT_BUILD))
 	BuildTree(A, minvtx);
-	SetNeighborNode();
+	/*SetNeighborNode();*/
 	TIMER_HIF(TimerStop(TIMER_INIT_BUILD))
 
 	TIMER_HIF(TimerStart(TIMER_INIT_FILL))
