@@ -21,7 +21,7 @@ module load OpenBLAS
 ### Compile Elemental
 
 ``` bash
-cd extern/elemental/
+cd extern/Elemental/
 mkdir -p ../../packages/elemental/
 mkdir build/
 cd build/
