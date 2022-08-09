@@ -17,7 +17,7 @@ void LDLSolve(Matrix<Scalar>& A)
     {
         for (int j = 0; j < d.Width(); ++j)
         {
-            if (d.Get(i, j) < Scalar(0.001))
+            if (d.Get(i, j) < Scalar(0.01))
             {
                 std::cout << "d_{ij}   " << d.Get(i, j) << std::endl;
             }
@@ -28,7 +28,7 @@ void LDLSolve(Matrix<Scalar>& A)
     }
     if ((d.Height() > 0) && (d.Width() > 0))
     {
-        if (dmax / dmin > Scalar(1000))
+        if (dmax / dmin > Scalar(100))
         {
             std::cout << "dmax / dmin   " << dmax / dmin << std::endl;
         }
