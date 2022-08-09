@@ -15,7 +15,10 @@ void LDLSolve(Matrix<Scalar>& A)
     {
         for (int j = 0; j < d.Width(); ++j)
         {
-            std::cout << "d_{ij}" << d.Get(i, j) << std::endl;
+            if (d.Get(i, j) < 1)
+            {
+                std::cout << "d_{ij} " << d.Get(i, j) << std::endl;
+            }
             d.Set(i, j, Scalar(1) / d.Get(i, j));
         }
     }
