@@ -103,7 +103,7 @@ void HIFGraph<Scalar>::Skel()
 			Intersect_Sort(veckorder, vecklevel, vectmp);
 			korder = vectmp[0];
 		}
-		vector<int> sep2 = nodek.singlesep_[korder];
+		vector<int> sep2(nodek.singlesep_[korder]);
 		vector<int> nodeksep2C;
 		for (int nok = 0; nok < nodek.nbnode_.size(); nok++)
 		{
@@ -367,7 +367,7 @@ void HIFGraph<Scalar>::Skel()
 		// Ac1c1invAc1h2 = Ac1c1^{-1} * Ah2c1^{T}.
 		Transpose(ANS_(myindex_p21, myindex_p12), nbinfo_[k].Ac1c1invAc1h2);
 		MultiplySolve(nbinfo_[k].Ac1c1inv, nbinfo_[k].Ac1c1invAc1h2);
-		// Ah1h1 = Ah1h1 - Ah1c1 * Ac1c1^ { -1 } *Ah1c1^ { T }.
+		// Ah1h1 = Ah1h1 - Ah1c1 * Ac1c1^{-1} * Ah1c1^ {T}.
 		copymtx = ASS_(myindex_p11, myindex_p11);
 		Gemm(NORMAL, NORMAL,
 			Scalar(-1), ASS_(myindex_p11, myindex_p12), nbinfo_[k].Ac1c1invAc1h1,
