@@ -11,18 +11,24 @@ void LDLSolve(Matrix<Scalar>& A)
     LDL(A, false);
     TriangularInverse(LOWER, UNIT, A);
     auto d = GetDiagonal(A);
-    auto dmax = d.Get(0, 0);
-    auto dmin = d.Get(0, 0);
     for (int i = 0; i < d.Height(); ++i)
     {
         for (int j = 0; j < d.Width(); ++j)
         {
-            if (d.Get(i, j) < 1)
+            if ((i == 0) && (j == 0))
+            {
+                auto dmax = d.Get(0, 0);
+                auto dmin = d.Get(0, 0);
+            }
+            else
+            {
+                dmax = std::max(d.Get(i, j), dmax);
+                dmin = std::min(d.Get(i, j), dmin);
+            }
+            if (d.Get(i, j) < Scalar(0.001))
             {
                 std::cout << "d_{ij} " << d.Get(i, j) << std::endl;
             }
-            dmax = std::max(d.Get(i, j), dmax);
-            dmin = std::min(d.Get(i, j), dmin);
             d.Set(i, j, Scalar(1) / d.Get(i, j));
         }
     }
