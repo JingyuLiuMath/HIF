@@ -19,7 +19,7 @@ void LDLSolve(Matrix<Scalar>& A)
         {
             if (d.Get(i, j) < Scalar(0.001))
             {
-                std::cout << "d_{ij} " << d.Get(i, j) << std::endl;
+                std::cout << "d_{ij}   " << d.Get(i, j) << std::endl;
             }
             dmax = std::max(d.Get(i, j), dmax);
             dmin = std::min(d.Get(i, j), dmin);
@@ -28,7 +28,10 @@ void LDLSolve(Matrix<Scalar>& A)
     }
     if ((d.Height() > 0) && (d.Width() > 0))
     {
-        std::cout << "dmax / dmin" << dmax / dmin << std::endl;
+        if (dmax / dmin > Scalar(1000))
+        {
+            std::cout << "dmax / dmin   " << dmax / dmin << std::endl;
+        }
     }
     SetDiagonal(A, d);
 }
