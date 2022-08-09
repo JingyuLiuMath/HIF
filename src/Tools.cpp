@@ -11,11 +11,8 @@ void LDLSolve(Matrix<Scalar>& A)
     LDL(A, false);
     TriangularInverse(LOWER, UNIT, A);
     auto d = GetDiagonal(A);
-    if ( (d.Height() > 0) && (d.Width() > 0) )
-    {
-        double dmax = d.Get(0, 0);
-        double dmin = d.Get(0, 0);
-    }
+    double dmax = d.Get(0, 0);
+    double dmin = d.Get(0, 0);
     for (int i = 0; i < d.Height(); ++i)
     {
         for (int j = 0; j < d.Width(); ++j)
