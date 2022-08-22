@@ -32,16 +32,30 @@ int main(int argc, char* argv[])
 		string inputfileA = string(argv[1]);
 		string inputfileb = string(argv[2]);
 		int minvtx = int(atoi(argv[3]));
-		bool button = bool(atoi(argv[4]));
+		if atoi(argv[4]) == 0
+		{
+			bool button = false;
+		}
+		else
+		{
+			bool button = true;
+		}
 		double tol = double(atof(argv[5]));
-		bool logApp = bool(atoi(argv[6]));
+		if atoi(argv[6]) == 0
+		{
+			bool logApp = false;
+		}
+		else
+		{
+			bool logApp = true;
+		}
 
-		std::cout << "inputfileA" << inputfileA << std::endl;
-		std::cout << "inputfileb" << inputfileb << std::endl;
-		std::cout << "minvtx" << minvtx << std::endl;
-		std::cout << "button" << button << std::endl;
-		std::cout << "tol" << tol << std::endl;
-		std::cout << "logApp" << logApp << std::endl;
+		std::cout << "inputfileA: " << inputfileA << std::endl;
+		std::cout << "inputfileb: " << inputfileb << std::endl;
+		std::cout << "minvtx: " << minvtx << std::endl;
+		std::cout << "button: " << button << std::endl;
+		std::cout << "tol: " << tol << std::endl;
+		std::cout << "logApp: " << logApp << std::endl;
 
 		// El::ProcessInput();
 		LogAppend(logApp);
