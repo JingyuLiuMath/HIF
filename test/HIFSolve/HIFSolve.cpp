@@ -29,11 +29,11 @@ int main(int argc, char* argv[])
 			printf("HIFsolve, Usage: ./HIFsolve input_A input_b minvtx button tol logApp\n");
 			exit(-1);
 		}
-		string inputfileA = string(atoi(argv[1]));
-		string inputfileb = string(atoi(argv[2]));
+		string inputfileA = string(argv[1]);
+		string inputfileb = string(argv[2]);
 		int minvtx = int(atoi(argv[3]));
 		bool button = bool(atoi(argv[4]));
-		double tol = double(atoi(argv[5]));
+		double tol = double(atof(argv[5]));
 		bool logApp = bool(atoi(argv[6]));
 
 		// El::ProcessInput();
