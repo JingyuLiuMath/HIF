@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
 		string inputfileA = string(argv[1]);
 		string inputfileb = string(argv[2]);
 		int minvtx = int(atoi(argv[3]));
-		if int(atoi(argv[4])) == 0
+		if (int(atoi(argv[4])) == 0)
 		{
 			bool button = false;
 		}
@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
 			bool button = true;
 		}
 		double tol = double(atof(argv[5]));
-		if int(atoi(argv[6])) == 0
+		if (int(atoi(argv[6])) == 0)
 		{
 			bool logApp = false;
 		}
