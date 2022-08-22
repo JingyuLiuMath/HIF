@@ -11,20 +11,20 @@
 
 using namespace HIF;
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
-	// El::Initialize(argc, argv);
+	El::Initialize(argc, argv);
 
 	try
 	{
-		/*const string inputfileA = Input("--input_A", "input filename of A", "./A.txt");
+		const string inputfileA = Input("--input_A", "input filename of A", "./A.txt");
 		const string inputfileb = Input("--input_b", "input filename of b", "./b.txt");
 		const int minvtx = Input("--minvtx", "minvtx", 64);
 		const bool button = Input("--HIFbutton", "true for HIF, false for MF", true);
 		const double tol = Input("--tol", "tolerance", 1e-3);
-		const bool logApp = Input("--logApp", "Log File appending", false);*/
+		const bool logApp = Input("--logApp", "Log File appending", false);
 		
-		if (argc != 7)
+		/*if (argc != 7)
 		{
 			printf("HIFsolve, Usage: ./HIFsolve input_A input_b minvtx button tol logApp\n");
 			exit(-1);
@@ -32,7 +32,7 @@ int main(int argc, char** argv)
 		string inputfileA = string(argv[1]);
 		string inputfileb = string(argv[2]);
 		int minvtx = int(atoi(argv[3]));
-		bool button = false;
+		bool button;
 		if (int(atoi(argv[4])) == 0)
 		{
 			button = false;
@@ -42,14 +42,13 @@ int main(int argc, char** argv)
 			button = true;
 		}
 		double tol = double(atof(argv[5]));
-		bool logApp = true;
 		if (int(atoi(argv[6])) == 0)
 		{
-			logApp = false;
+			bool logApp = false;
 		}
 		else
 		{
-			logApp = true;
+			bool logApp = true;
 		}
 
 		std::cout << "inputfileA: " << inputfileA << std::endl;
@@ -57,16 +56,16 @@ int main(int argc, char** argv)
 		std::cout << "minvtx: " << minvtx << std::endl;
 		std::cout << "button: " << button << std::endl;
 		std::cout << "tol: " << tol << std::endl;
-		std::cout << "logApp: " << logApp << std::endl;
+		std::cout << "logApp: " << logApp << std::endl;*/
 
-		// El::ProcessInput();
+		El::ProcessInput();
 		LogAppend(logApp);
 		SetTol(tol);
 		SetButton(button);
-		// El::PrintInputReport();
+		El::PrintInputReport();
 
-		// El::SetBlocksize(128);
-		// El::SetLocalTrrkBlocksize<double>(8);
+		El::SetBlocksize(128);
+		El::SetLocalTrrkBlocksize<double>(8);
 
 		DEBUG_HIF(MasterCout("Debug Mode"));
 
@@ -175,6 +174,6 @@ int main(int argc, char** argv)
 		DEBUG_HIF(DumpCallStack())
 	}
 	CloseLog();
-	// El::Finalize();
+	El::Finalize();
 	return 0;
 }
