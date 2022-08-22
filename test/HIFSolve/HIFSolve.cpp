@@ -32,22 +32,24 @@ int main(int argc, char* argv[])
 		string inputfileA = string(argv[1]);
 		string inputfileb = string(argv[2]);
 		int minvtx = int(atoi(argv[3]));
+		bool button = false;
 		if (int(atoi(argv[4])) == 0)
 		{
-			bool button = false;
+			button = false;
 		}
 		else
 		{
-			bool button = true;
+			button = true;
 		}
 		double tol = double(atof(argv[5]));
+		bool logApp = true;
 		if (int(atoi(argv[6])) == 0)
 		{
-			bool logApp = false;
+			logApp = false;
 		}
 		else
 		{
-			bool logApp = true;
+			logApp = true;
 		}
 
 		std::cout << "inputfileA: " << inputfileA << std::endl;
