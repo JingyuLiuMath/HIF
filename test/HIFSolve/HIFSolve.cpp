@@ -36,6 +36,13 @@ int main(int argc, char* argv[])
 		double tol = double(atof(argv[5]));
 		bool logApp = bool(atoi(argv[6]));
 
+		std::cout << "inputfileA" << inputfileA << std::endl;
+		std::cout << "inputfileb" << inputfileb << std::endl;
+		std::cout << "minvtx" << minvtx << std::endl;
+		std::cout << "button" << button << std::endl;
+		std::cout << "tol" << tol << std::endl;
+		std::cout << "logApp" << logApp << std::endl;
+
 		// El::ProcessInput();
 		LogAppend(logApp);
 		SetTol(tol);
