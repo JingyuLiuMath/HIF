@@ -11,7 +11,7 @@
 
 using namespace HIF;
 
-int main(int argc, char* argv[])
+int main(int argc, char** argv)
 {
 	// El::Initialize(argc, argv);
 
@@ -65,8 +65,8 @@ int main(int argc, char* argv[])
 		SetButton(button);
 		// El::PrintInputReport();
 
-		// El::SetBlocksize(128);
-		// El::SetLocalTrrkBlocksize<double>(8);
+		El::SetBlocksize(128);
+		El::SetLocalTrrkBlocksize<double>(8);
 
 		DEBUG_HIF(MasterCout("Debug Mode"));
 
