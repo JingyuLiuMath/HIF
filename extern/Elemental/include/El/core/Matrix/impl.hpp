@@ -29,6 +29,11 @@ Matrix<Ring>::Matrix( Int height, Int width )
     memory_.Require( leadingDimension_ * width );
     data_ = memory_.Buffer();
     // TODO(poulson): Consider explicitly zeroing
+    // Jingyu Liu: explicitlyy zerosing.
+    for (Int i = 0; i < leadingDimension_ * width; i++)
+    {
+        data_[i] = Ring(0);
+    }
 }
 
 template<typename Ring>
