@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
 			std::cerr << "cannot open the file" << std::endl;;
 		}
 		Matrix<double> x(n, 1);
-		int k = 0;
+		k = 0;
 		while (finx >> value)
 		{
 			x.Set(k, 0, value);
