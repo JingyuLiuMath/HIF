@@ -10,8 +10,6 @@
 // bi
 // ...
 
-// Ax = b where x = ones(size(b)).
-
 using namespace HIF;
 
 int main(int argc, char* argv[])
@@ -44,8 +42,6 @@ int main(int argc, char* argv[])
 		readTimer.Start();
 		MasterCout("Reading input starts...");
 
-		string fileA = inputfileA;
-		std::ifstream finA;
 		finA.open(fileA, std::ios::in);
 		if (!finA)
 		{
@@ -128,7 +124,6 @@ int main(int argc, char* argv[])
 		solTimer.Stop();
 		MasterCout("Problem solving ends in ", solTimer.Total(), " sec.");
 
-		// We already know the solution is 1.
 		double relnorm2 = 0.0;
 		double xnorm2 = 0.0;
 		for (int k = 0; k < n; k++)

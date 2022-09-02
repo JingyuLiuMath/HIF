@@ -9,8 +9,6 @@
 // bi
 // ...
 
-// Ax = b where x = ones(size(b)).
-
 using namespace HIF;
 
 int main(int argc, char* argv[])
@@ -21,6 +19,7 @@ int main(int argc, char* argv[])
 	{
 		const string inputfileA = Input("--input_A", "input filename of A", "./A.txt");
 		const string inputfileb = Input("--input_b", "input filename of b", "./b.txt");
+		const string inputfilex = Input("--input_x", "input filename of x", "./x.txt");
 		const int minvtx = Input("--minvtx", "minvtx", 64);
 		const bool button = Input("--HIFbutton", "true for HIF, false for MF", true);
 		const double tol = Input("--tol", "tolerance", 1e-3);
@@ -76,6 +75,22 @@ int main(int argc, char* argv[])
 			k++;
 		}
 		finb.close();
+
+		string filex = inputfilex;
+		std::ifstream finx;
+		finx.open(filex, std::ios::in);
+		if (!finx)
+		{
+			std::cerr << "cannot open the file" << std::endl;;
+		}
+		Matrix<double> x(n, 1);
+		k = 0;
+		while (finx >> value)
+		{
+			x.Set(k, 0, value);
+			k++;
+		}
+		finx.close();
 
 		readTimer.Stop();
 		MasterCout("Reading input ends in ", readTimer.Total(), " sec.");
@@ -155,13 +170,14 @@ int main(int argc, char* argv[])
 		MasterCout("GMRES ends in ", iter, " steps.");
 		MasterCout("Relative Error in  2  Norm: ", scientific, setprecision(2), relTol);
 
-		// We already know the solution is 1.
 		double relnorm2 = 0.0;
+		double xnorm2 = 0.0;
 		for (int k = 0; k < n; k++)
 		{
-			relnorm2 += std::pow(b.Get(k, 0) - 1, 2);
+			relnorm2 += std::pow(b.Get(k, 0) - x.Get(k, 0), 2);
+			xnorm2 += std::pow(x.Get(k, 0), 2);
 		}
-		relnorm2 /= n;
+		relnorm2 = relnorm2 / xnorm2;
 		relnorm2 = std::sqrt(relnorm2);
 
 		INFO_HIF
