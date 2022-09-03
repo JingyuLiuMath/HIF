@@ -52,7 +52,7 @@ void HIFGraph<Scalar>::SetNeighborNode()
 				for (int it = 0; it < 2; it++)
 				{
 					HIFGraph& childnbnodei = nbnodei.childrennode_.Child(it);
-					if (Intersect_Sort(childnode.nb_, childnbnodei.vtx_))
+					if (Intersect_Sort(childnode.nb_, childnbnodei.sep_))
 					{
 						childnode.nbnode_.push_back(nbnodei.childrennode_.PtChild(it));
 						childnode.nbnodeseqnum_.push_back(childnbnodei.seqnum_);
