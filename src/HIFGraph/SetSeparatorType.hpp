@@ -47,7 +47,7 @@ void HIFGraph<Scalar>::SetSeparatorType()
 		}
 	}
 	
-	/*vector<int> tmpvec = sep_;
+	vector<int> tmpvec = sep_;
 	for (int k = 0; k < nbnode_.size(); k++)
 	{
 		vector<int> index_find_ordersep_1;
@@ -62,9 +62,9 @@ void HIFGraph<Scalar>::SetSeparatorType()
 		complexsep_.clear();
 		Diff_Sort(tmpvec, singlesep_[k], complexsep_);
 		tmpvec = complexsep_;
-	}*/
+	}
 
-	for (int k = 0; k < nbnode_.size(); k++)
+	/*for (int k = 0; k < nbnode_.size(); k++)
 	{
 		vector<int> index_find_ordersep_1;
 		FindAllIndex(ordersep, 1, index_find_ordersep_1);
@@ -83,7 +83,7 @@ void HIFGraph<Scalar>::SetSeparatorType()
 		{
 			complexsep_.push_back(sep_[i]);
 		}
-	}
+	}*/
 }
 
 } // namespace HIF.

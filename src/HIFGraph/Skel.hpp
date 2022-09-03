@@ -64,28 +64,26 @@ void HIFGraph<Scalar>::Skel()
 		// The following data are vertices.
 		vector<int> sep1(singlesep_[k]);		
 		vector<int> mysep1C;
-		Diff_Sort(sep_, sep1, mysep1C);
-		//for (int nok = 0; nok < nbnode_.size(); nok++)
-		//{
-		//	if (nok == k)
-		//	{
-		//		continue;
-		//	}
-		//	else
-		//	{
-		//		// mysep1C.insert(mysep1C.end(), singlesep_[nok].begin(), singlesep_[nok].end());
-		//		for (int i = 0; i < singlesep_[nok].size(); i++)
-		//		{
-		//			mysep1C.push_back(singlesep_[nok][i]);
-		//		}
-		//	}
-		//}
-		//// mysep1C.insert(mysep1C.end(), complexsep_.begin(), complexsep_.end());
-		//for (int i = 0; i < complexsep_.size(); i++)
-		//{
-		//	mysep1C.push_back(complexsep_[i]);
-		//}
-		// std::sort(mysep1C.begin(), mysep1C.end());
+		// Diff_Sort(sep_, sep1, mysep1C);
+		for (int nok = 0; nok < nbnode_.size(); nok++)
+		{
+			if (nok == k)
+			{
+				continue;
+			}
+			else
+			{
+				for (int i = 0; i < singlesep_[nok].size(); i++)
+				{
+					mysep1C.push_back(singlesep_[nok][i]);
+				}
+			}
+		}
+		for (int i = 0; i < complexsep_.size(); i++)
+		{
+			mysep1C.push_back(complexsep_[i]);
+		}
+		std::sort(mysep1C.begin(), mysep1C.end());
 		vector<int> nodeksep1C;
 		Diff_Sort(nodek.nb_, sep1, nodeksep1C);
 
@@ -106,28 +104,26 @@ void HIFGraph<Scalar>::Skel()
 		}
 		vector<int> sep2(nodek.singlesep_[korder]);
 		vector<int> nodeksep2C;
-		Diff_Sort(nodek.sep_, sep2, nodeksep2C);
-		//for (int nok = 0; nok < nodek.nbnode_.size(); nok++)
-		//{
-		//	if (nok == korder)
-		//	{
-		//		continue;
-		//	}
-		//	else
-		//	{
-		//		// nodeksep2C.insert(nodeksep2C.end(), (nodek->singlesep_[nok]).begin(), (nodek->singlesep_[nok]).end());
-		//		for (int i = 0; i < nodek.singlesep_[nok].size(); i++)
-		//		{
-		//			nodeksep2C.push_back(nodek.singlesep_[nok][i]);
-		//		}
-		//	}
-		//}
-		//// nodeksep2C.insert(nodeksep2C.end(), (nodek->complexsep_).begin(), (nodek->complexsep_).end());
-		//for (int i = 0; i < nodek.complexsep_.size(); i++)
-		//{
-		//	nodeksep2C.push_back(nodek.complexsep_[i]);
-		//}
-		//std::sort(nodeksep2C.begin(), nodeksep2C.end());
+		// Diff_Sort(nodek.sep_, sep2, nodeksep2C);
+		for (int nok = 0; nok < nodek.nbnode_.size(); nok++)
+		{
+			if (nok == korder)
+			{
+				continue;
+			}
+			else
+			{
+				for (int i = 0; i < nodek.singlesep_[nok].size(); i++)
+				{
+					nodeksep2C.push_back(nodek.singlesep_[nok][i]);
+				}
+			}
+		}
+		for (int i = 0; i < nodek.complexsep_.size(); i++)
+		{
+			nodeksep2C.push_back(nodek.complexsep_[i]);
+		}
+		std::sort(nodeksep2C.begin(), nodeksep2C.end());
 		vector<int> mysep2C;
 		Diff_Sort(nb_, sep2, mysep2C);
 
