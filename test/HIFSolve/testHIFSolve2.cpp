@@ -57,8 +57,8 @@ int main(int argc, char* argv[])
 		finA.close();
 
 		Matrix<double> x(n, 1);
-		uniform_real_distribution<double> u(-10, 10);
-		default_random_engine e(time(NULL));
+		std::uniform_real_distribution<double> u(-10, 10);
+		std::default_random_engine e(time(NULL));
 		for (int k = 0; k < n; k++)
 		{
 			x.Set(k, 0, u(e));
