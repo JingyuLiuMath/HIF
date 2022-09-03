@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
 		for (int row = 0; row < n; row++)
 		{
 			tmpvalue = 0.0;
-			for (int t = offsetA[i]; t < offsetA[i + 1]; t++)
+			for (int t = offsetA[row]; t < offsetA[row + 1]; t++)
 			{
 				tmpvalue += valueA[t] * x.Get(targetA[t], 0);
 			}
