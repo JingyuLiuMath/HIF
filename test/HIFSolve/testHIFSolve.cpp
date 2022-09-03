@@ -42,6 +42,8 @@ int main(int argc, char* argv[])
 		readTimer.Start();
 		MasterCout("Reading input starts...");
 
+		string fileA = inputfileA;
+		std::ifstream finA;
 		finA.open(fileA, std::ios::in);
 		if (!finA)
 		{
