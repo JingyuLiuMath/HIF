@@ -10,7 +10,7 @@ void HIFGraph<Scalar>::ShowPartition()
 
 	if (endflag_ == 1)
 	{
-		std::cout << " curren level " << level_ << std::endl;;
+		std::cout << " curren level " << level_ << std::endl;
 		std::cout << " curren seqnum " << seqnum_ << std::endl;
 		ShowVector(vtx_, "vtx");
 		ShowVector(sep_, "sep");

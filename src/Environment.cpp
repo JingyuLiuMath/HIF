@@ -75,7 +75,7 @@ DEBUG_HIF(
                 << "\n";
             ::callStack.pop();
         }
-        std::cerr << msg.str();;
+        std::cerr << msg.str();
         std::cerr.flush();
     }
 )

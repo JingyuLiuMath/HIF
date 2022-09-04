@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 		finb.open(fileb, std::ios::in);
 		if (!finb)
 		{
-			std::cerr << "cannot open the file" << std::endl;;
+			std::cerr << "cannot open the file" << std::endl;
 		}
 		Matrix<double> b(n, 1);
 		int k = 0;
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 		finx.open(filex, std::ios::in);
 		if (!finx)
 		{
-			std::cerr << "cannot open the file" << std::endl;;
+			std::cerr << "cannot open the file" << std::endl;
 		}
 		Matrix<double> x(n, 1);
 		k = 0;

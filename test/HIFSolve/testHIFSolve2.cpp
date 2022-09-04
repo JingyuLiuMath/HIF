@@ -78,7 +78,7 @@ int main(int argc, char* argv[])
 				tmpvalue += valueA[t] * x.Get(targetA[t], 0);
 			}
 			b.Set(row, 0, tmpvalue);
-		}	
+		}
 
 		readTimer.Stop();
 		MasterCout("Reading input ends in ", readTimer.Total(), " sec.");
