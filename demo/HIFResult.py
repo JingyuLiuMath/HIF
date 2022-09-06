@@ -19,7 +19,7 @@ class HIFResult:
 
 
 # Read iutputs from filename, d is the dimension.
-def ReadIutputs(filename, d):
+def ReadInputs(filename, d):
     num = 0
     dict_result = {}
     infoSize = 0
@@ -60,26 +60,28 @@ def ReadIutputs(filename, d):
 
 
 # Plot results about HIF and MF.
-def PlotResults_HIF_MF(hif_result, mf_result, num, titlename, d):
+def PlotResults_HIF_MF(hif_result, mf_result, hif_num, mf_num, titlename, d):
     # plt.rcParams['text.usetex']
 
-    list_size = []
-
     # Information about HIF.
+    list_hif_size = []
     list_hif_init_time = []
     list_hif_factor_time = []
     list_hif_sol_time = []
     list_hif_rel_err2 = []
 
     # Information about MF.
+    list_mf_size = []
     list_mf_init_time = []
     list_mf_factor_time = []
     list_mf_sol_time = []
     list_mf_rel_err2 = []
 
-    # Add information
-    for i in range(1, num + 1):
-        list_size.append(hif_result[i].matsize_)
+    # Add information.
+
+    # HIF
+    for i in range(1, hif_num+1):
+        list_hif_size.append(hif_result[i].matsize_)
 
         # HIF
         list_hif_init_time.append(hif_result[i].init_time_)
@@ -87,6 +89,9 @@ def PlotResults_HIF_MF(hif_result, mf_result, num, titlename, d):
         list_hif_sol_time.append(hif_result[i].sol_time_)
         list_hif_rel_err2.append(hif_result[i].rel_err2_)
 
+    # MF
+    for i in range(1, mf_num + 1):
+        list_mf_size.append(mf_result[i].matsize_)
         # MF
         list_mf_init_time.append(mf_result[i].init_time_)
         list_mf_factor_time.append(mf_result[i].factor_time_)
@@ -99,7 +104,7 @@ def PlotResults_HIF_MF(hif_result, mf_result, num, titlename, d):
         # sol       O(n)        O(n log(n))
         # n is the matrix size.
 
-        n = np.array(list_size, dtype='int64')
+        n = np.array(list_hif_size, dtype='int64')
         logn = np.log(n)
         nlogn = n * logn
         nf3c2 = np.power(n, 1.5)  # fmcn means m/n.
@@ -110,18 +115,18 @@ def PlotResults_HIF_MF(hif_result, mf_result, num, titlename, d):
 
         fig1 = plt.figure()
 
-        alpha = hif_factor_time[0] / mf_factor_time[0]
-        mf_factor_time = mf_factor_time * alpha
-        plt.loglog(list_size, hif_factor_time, '-r', label='HIF')
-        plt.loglog(list_size, mf_factor_time, '-b', label='MF')
+        # alpha = hif_factor_time[0] / mf_factor_time[0]
+        # mf_factor_time = mf_factor_time * alpha
+        plt.loglog(list_hif_size, hif_factor_time, '-r', label='HIF')
+        plt.loglog(list_mf_size, mf_factor_time, '-b', label='MF')
 
         alpha = hif_factor_time[0] / n[0]
         n = n * alpha
-        plt.plot(list_size, n, '--y', label='$O(n)$')
+        plt.plot(list_hif_size, n, '--y', label='$O(n)$')
 
         alpha = hif_factor_time[0] / nf3c2[0]
         nf3c2 = nf3c2 * alpha
-        plt.plot(list_size, nf3c2, '--g', label=r'$O(n^{\frac{3}{2}})$')
+        plt.plot(list_hif_size, nf3c2, '--g', label=r'$O(n^{\frac{3}{2}})$')
 
         plt.title(f'{titlename}: Factor time')
         plt.xlabel('Matrix size')
@@ -130,7 +135,7 @@ def PlotResults_HIF_MF(hif_result, mf_result, num, titlename, d):
         plt.legend()
         plt.tight_layout()
         plt.show()
-        fig1.savefig(f'./figures/{titlename}_hifmf_fac.png', format='png')
+        fig1.savefig(f'{titlename}_hifmf_fac.png', format='png')
 
         # Sol time
         hif_sol_time = np.array(list_hif_sol_time)
@@ -138,18 +143,18 @@ def PlotResults_HIF_MF(hif_result, mf_result, num, titlename, d):
 
         fig2 = plt.figure()
 
-        alpha = hif_sol_time[0] / mf_sol_time[0]
-        mf_sol_time = mf_sol_time * alpha
-        plt.loglog(list_size, hif_sol_time, '-r', label='HIF')
-        plt.loglog(list_size, mf_sol_time, '-b', label='MF')
+        # alpha = hif_sol_time[0] / mf_sol_time[0]
+        # mf_sol_time = mf_sol_time * alpha
+        plt.loglog(list_hif_size, hif_sol_time, '-r', label='HIF')
+        plt.loglog(list_mf_size, mf_sol_time, '-b', label='MF')
 
         alpha = hif_sol_time[0] / n[0]
         n = n * alpha
-        plt.plot(list_size, n, '--y', label='$O(n)$')
+        plt.plot(list_hif_size, n, '--y', label='$O(n)$')
 
         alpha = hif_sol_time[0] / nlogn[0]
         nlogn = nlogn * alpha
-        plt.plot(list_size, nlogn, '--g', label=r'$O(n \log n)$')
+        plt.plot(list_hif_size, nlogn, '--g', label=r'$O(n \log n)$')
 
         plt.title(f'{titlename}: Solve time')
         plt.xlabel('Matrix size')
@@ -158,7 +163,7 @@ def PlotResults_HIF_MF(hif_result, mf_result, num, titlename, d):
         plt.legend()
         plt.tight_layout()
         plt.show()
-        fig2.savefig(f'./figures/{titlename}_hifmf_solve.png', format='png')
+        fig2.savefig(f'{titlename}_hifmf_solve.png', format='png')
 
         # Error
         hif_rel_err2 = np.array(list_hif_rel_err2)
@@ -166,8 +171,8 @@ def PlotResults_HIF_MF(hif_result, mf_result, num, titlename, d):
 
         fig3 = plt.figure()
 
-        plt.loglog(list_size, hif_rel_err2, '-r', label='HF')
-        plt.loglog(list_size, mf_rel_err2, '-b', label='MF')
+        plt.loglog(list_hif_size, hif_rel_err2, '-r', label='HF')
+        plt.loglog(list_mf_size, mf_rel_err2, '-b', label='MF')
 
         plt.title(f'{titlename}: Relative error')
         plt.xlabel('Matrix size')
@@ -176,16 +181,16 @@ def PlotResults_HIF_MF(hif_result, mf_result, num, titlename, d):
         plt.legend()
         plt.tight_layout()
         plt.show()
-        fig3.savefig(f'./figures/{titlename}_hifmf_err2.png', format='png')
+        fig3.savefig(f'{titlename}_hifmf_err2.png', format='png')
     elif d == 3:
         #                HIF            MF
         # fact        O(n logn)       O(n^{2})
         # sol          O(n)           O(n^{4/3})
         # n is the matrix size.
 
-        length = len(list_size)
-        n = np.array(list_size, dtype='int64')
-        logn = np.log(list_size)
+        length = len(list_hif_size)
+        n = np.array(list_hif_size, dtype='int64')
+        logn = np.log(list_hif_size)
         nlogn = n * logn
         nf4c3 = np.power(n, 4/3)  # fmcn means m/n
         n2 = np.power(n, 2)
@@ -196,18 +201,18 @@ def PlotResults_HIF_MF(hif_result, mf_result, num, titlename, d):
 
         fig1 = plt.figure()
 
-        alpha = hif_factor_time[0] / mf_factor_time[0]
-        mf_factor_time = mf_factor_time * alpha
-        plt.loglog(list_size, hif_factor_time, '-r', label='HIF')
-        plt.loglog(list_size, mf_factor_time, '-b', label='MF')
+        # alpha = hif_factor_time[0] / mf_factor_time[0]
+        # mf_factor_time = mf_factor_time * alpha
+        plt.loglog(list_hif_size, hif_factor_time, '-r', label='HIF')
+        plt.loglog(list_mf_size, mf_factor_time, '-b', label='MF')
 
         alpha = hif_factor_time[0] / nlogn[0]
         nlogn = nlogn * alpha
-        plt.plot(list_size, nlogn, '--y', label=r'$O(n \log n)$')
+        plt.plot(list_hif_size, nlogn, '--y', label=r'$O(n \log n)$')
 
         alpha = hif_factor_time[0] / n2[0]
         n2 = n2 * alpha
-        plt.plot(list_size, n2, '--g', label=r'$O(n^{2})$')
+        plt.plot(list_hif_size, n2, '--g', label=r'$O(n^{2})$')
 
         plt.title(f'{titlename}: Factor time')
         plt.xlabel('Matrix size')
@@ -216,7 +221,7 @@ def PlotResults_HIF_MF(hif_result, mf_result, num, titlename, d):
         plt.legend()
         plt.tight_layout()
         plt.show()
-        fig1.savefig(f'./figures/{titlename}_hifmf_fac.png', format='png')
+        fig1.savefig(f'{titlename}_hifmf_fac.png', format='png')
 
         # Sol time
         hif_sol_time = np.array(list_hif_sol_time)
@@ -224,18 +229,18 @@ def PlotResults_HIF_MF(hif_result, mf_result, num, titlename, d):
 
         fig2 = plt.figure()
 
-        alpha = hif_sol_time[0] / mf_sol_time[0]
-        mf_sol_time = mf_sol_time * alpha
-        plt.loglog(list_size, hif_sol_time, '-r', label='HIF')
-        plt.loglog(list_size, mf_sol_time, '-b', label='MF')
+        # alpha = hif_sol_time[0] / mf_sol_time[0]
+        # mf_sol_time = mf_sol_time * alpha
+        plt.loglog(list_hif_size, hif_sol_time, '-r', label='HIF')
+        plt.loglog(list_mf_size, mf_sol_time, '-b', label='MF')
 
         alpha = hif_sol_time[0] / n[0]
         n = n * alpha
-        plt.plot(list_size, n, '--y', label='$O(n)$')
+        plt.plot(list_hif_size, n, '--y', label='$O(n)$')
 
         alpha = hif_sol_time[0] / nf4c3[0]
         nf4c3 = nf4c3 * alpha
-        plt.plot(list_size, nf4c3, '--g', label=r'$O(n^{\frac{4}{3}})$')
+        plt.plot(list_hif_size, nf4c3, '--g', label=r'$O(n^{\frac{4}{3}})$')
 
         plt.title(f'{titlename}: Solve time')
         plt.xlabel('Matrix size')
@@ -244,7 +249,7 @@ def PlotResults_HIF_MF(hif_result, mf_result, num, titlename, d):
         plt.legend()
         plt.tight_layout()
         plt.show()
-        fig2.savefig(f'./figures/{titlename}_hifmf_solve.png', format='png')
+        fig2.savefig(f'{titlename}_hifmf_solve.png', format='png')
 
         # Error
         hif_rel_err2 = np.array(list_hif_rel_err2)
@@ -252,8 +257,8 @@ def PlotResults_HIF_MF(hif_result, mf_result, num, titlename, d):
 
         fig3 = plt.figure()
 
-        plt.loglog(list_size, hif_rel_err2, '-r', label='HIF')
-        plt.loglog(list_size, mf_rel_err2, '-b', label='MF')
+        plt.loglog(list_hif_size, hif_rel_err2, '-r', label='HIF')
+        plt.loglog(list_mf_size, mf_rel_err2, '-b', label='MF')
 
         plt.title(f'{titlename}: Relative error')
         plt.xlabel('Matrix Size')
@@ -262,7 +267,7 @@ def PlotResults_HIF_MF(hif_result, mf_result, num, titlename, d):
         plt.legend()
         plt.tight_layout()
         plt.show()
-        fig3.savefig(f'./figures/{titlename}_hifmf_err2.png', format='png')
+        fig3.savefig(f'{titlename}_hifmf_err2.png', format='png')
 
 
 # Plot results about HIF with more details.
@@ -329,7 +334,7 @@ def PlotResults_HIF(hif_result, num, titlename, d):
         plt.legend()
         plt.tight_layout()
         plt.show()
-        fig0.savefig(f'./figures/{titlename}_hif_init.png', format='png')
+        fig0.savefig(f'{titlename}_hif_init.png', format='png')
 
         # Factor time and details.
         hif_factor_time = np.array(list_hif_factor_time)
@@ -367,7 +372,7 @@ def PlotResults_HIF(hif_result, num, titlename, d):
         plt.legend()
         plt.tight_layout()
         plt.show()
-        fig1.savefig(f'./figures/{titlename}_hif_fac.png', format='png')
+        fig1.savefig(f'{titlename}_hif_fac.png', format='png')
 
         # Sol time
         hif_sol_time = np.array(list_hif_sol_time)
@@ -387,7 +392,7 @@ def PlotResults_HIF(hif_result, num, titlename, d):
         plt.legend()
         plt.tight_layout()
         plt.show()
-        fig2.savefig(f'./figures/{titlename}_hif_solve.png', format='png')
+        fig2.savefig(f'{titlename}_hif_solve.png', format='png')
 
         # Error
         hif_rel_err2 = np.array(list_hif_rel_err2)
@@ -402,7 +407,7 @@ def PlotResults_HIF(hif_result, num, titlename, d):
         plt.legend()
         plt.tight_layout()
         plt.show()
-        fig3.savefig(f'./figures/{titlename}_hif_err2.png', format='png')
+        fig3.savefig(f'{titlename}_hif_err2.png', format='png')
     elif d == 3:
         #                HIF            MF
         # fact        O(n logn)       O(n^{2})
@@ -440,7 +445,7 @@ def PlotResults_HIF(hif_result, num, titlename, d):
         plt.legend()
         plt.tight_layout()
         plt.show()
-        fig0.savefig(f'./figures/{titlename}_hif_init.png', format='png')
+        fig0.savefig(f'{titlename}_hif_init.png', format='png')
 
         # Factor time.
         hif_factor_time = np.array(list_hif_factor_time)
@@ -486,7 +491,7 @@ def PlotResults_HIF(hif_result, num, titlename, d):
         plt.legend()
         plt.tight_layout()
         plt.show()
-        fig1.savefig(f'./figures/{titlename}_hif_fac.png', format='png')
+        fig1.savefig(f'{titlename}_hif_fac.png', format='png')
 
         # Sol time
         hif_sol_time = np.array(list_hif_sol_time)
@@ -506,7 +511,7 @@ def PlotResults_HIF(hif_result, num, titlename, d):
         plt.legend()
         plt.tight_layout()
         plt.show()
-        fig2.savefig(f'./figures/{titlename}_hif_solve.png', format='png')
+        fig2.savefig(f'{titlename}_hif_solve.png', format='png')
 
         # Error
         hif_rel_err2 = np.array(list_hif_rel_err2)
@@ -521,4 +526,4 @@ def PlotResults_HIF(hif_result, num, titlename, d):
         plt.legend()
         plt.tight_layout()
         plt.show()
-        fig3.savefig(f'./figures/{titlename}_hif_err2.png', format='png')
+        fig3.savefig(f'{titlename}_hif_err2.png', format='png')
