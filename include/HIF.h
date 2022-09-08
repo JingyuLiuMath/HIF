@@ -12,8 +12,6 @@
 #include <stack>
 #include <string>
 
-// For GNU 8+
-// #include <filesystem>
 // For GNU 7
 #include <experimental/filesystem>
 
