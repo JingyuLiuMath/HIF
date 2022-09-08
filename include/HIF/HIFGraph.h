@@ -72,7 +72,6 @@ private:
 
     HIFGraph *PtChild(int t) { return nodevec[t]; }
     const HIFGraph *PtChild(int t) const { return nodevec[t]; }
-
   }; // children node.
 
   // Graph data.

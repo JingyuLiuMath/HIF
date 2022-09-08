@@ -24,7 +24,7 @@ extern "C" {
     #include "metislib.h"
 }
 
-#include "HIF/core/environment.hpp"
+#include "HIF/core/environment.h"
 #include "HIF/graphpartition.h"
 #include "HIF/HIFGraph.h"
 #include "HIF/setoperation.h"

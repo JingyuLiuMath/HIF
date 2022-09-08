@@ -1,6 +1,5 @@
-#pragma once
-#ifndef HIF_CORE_ENVIRONMENT_DECL_HPP
-#define HIF_CORE_ENVIRONMENT_DECL_HPP
+#ifndef HIF_CORE_ENVIRONMENT_DECL_H
+#define HIF_CORE_ENVIRONMENT_DECL_H
 
 #ifdef RELEASE
 #define DEBUG_HIF(cmd)
@@ -194,4 +193,4 @@ bool Button();
 
 } // namespace HIF.
 
-#endif // ifndef HIF_CORE_ENVIRONMENT_DECL_HPP
+#endif // ifndef HIF_CORE_ENVIRONMENT_DECL_H
