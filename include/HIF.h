@@ -1,5 +1,5 @@
-#ifndef HIF_HPP
-#define HIF_HPP
+#ifndef HIF_H
+#define HIF_H
 
 #include <algorithm>
 #include <fstream>
@@ -35,4 +35,4 @@ extern "C" {
 // For GNU 7
 namespace fs = std::experimental::filesystem;
 
-#endif // ifndef HIF_HPP
+#endif // ifndef HIF_H
