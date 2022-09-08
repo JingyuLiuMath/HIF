@@ -1,7 +1,6 @@
 #include "HIF.h"
 
 namespace HIF {
-
 // Graph partition.
 template <typename Scalar>
 void GraphPart(const SparseMatrix<Scalar> &A, vector<int> &p1, vector<int> &p2,
@@ -34,9 +33,6 @@ void MetisPart(const SparseMatrix<Scalar> &A, vector<int> &p1, vector<int> &p2,
                vector<int> &sep) {
   DEBUG_HIF(CallStackEntry cse("MetisPart"))
 
-  // degree = sum((spones(nvtxs) - speye(size(nvtxs))) > 0);
-  // singleidx = find(degree == 0);
-  // idx = find(degree > 0);
   const int *offsetA = A.LockedOffsetBuffer();
   vector<int> degree(A.Height(), 0);
   for (int t = 1; t <= A.Height(); t++) {

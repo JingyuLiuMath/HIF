@@ -214,5 +214,4 @@ void ShowVector(const vector<int> &v, const string discription) {
 
 PROTOTYPE(float)
 PROTOTYPE(double)
-
 } // namespace HIF.

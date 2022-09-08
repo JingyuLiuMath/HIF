@@ -11,7 +11,6 @@ bool g_button;
 } // namespace
 
 namespace HIF {
-
 void OpenLog(const char *filename) {
   if (::g_logFileAppend) {
     ::g_logFile.open(filename, std::fstream::app);
@@ -99,5 +98,4 @@ double Tol() { return ::g_tol; }
 void SetButton(bool button) { ::g_button = button; }
 
 bool Button() { return ::g_button; }
-
 } // namespace HIF.
