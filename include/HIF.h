@@ -18,9 +18,14 @@
 #include "El.hpp"
 #include "HIF/config.h"
 #include "metis.h"
-extern "C" {
+
+#ifdef __cplusplus
 #include "metislib.h"
-}
+#endif
+
+//extern "C" {
+//    #include "metislib.h"
+//}
 
 #include "HIF/core/environment.hpp"
 #include "HIF/graphpartition.hpp"
