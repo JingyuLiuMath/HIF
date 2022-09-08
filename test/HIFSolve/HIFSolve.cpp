@@ -11,169 +11,154 @@
 
 using namespace HIF;
 
-int main(int argc, char* argv[])
-{
-	El::Initialize(argc, argv);
+int main(int argc, char *argv[]) {
+  El::Initialize(argc, argv);
 
-	try
-	{
-		const string inputfileA = Input("--input_A", "input filename of A", "./A.txt");
-		const string inputfileb = Input("--input_b", "input filename of b", "./b.txt");
-		const int minvtx = Input("--minvtx", "minvtx", 64);
-		const bool button = Input("--HIFbutton", "true for HIF, false for MF", true);
-		const double tol = Input("--tol", "tolerance", 1e-3);
-		const bool logApp = Input("--logApp", "Log File appending", false);
-		
-		/*if (argc != 7)
-		{
-			printf("HIFsolve, Usage: ./HIFsolve input_A input_b minvtx button tol logApp\n");
-			exit(-1);
-		}
-		string inputfileA = string(argv[1]);
-		string inputfileb = string(argv[2]);
-		int minvtx = int(atoi(argv[3]));
-		bool button;
-		if (int(atoi(argv[4])) == 0)
-		{
-			button = false;
-		}
-		else
-		{
-			button = true;
-		}
-		double tol = double(atof(argv[5]));
-		if (int(atoi(argv[6])) == 0)
-		{
-			bool logApp = false;
-		}
-		else
-		{
-			bool logApp = true;
-		}
+  try {
+    const string inputfileA =
+        Input("--input_A", "input filename of A", "./A.txt");
+    const string inputfileb =
+        Input("--input_b", "input filename of b", "./b.txt");
+    const int minvtx = Input("--minvtx", "minvtx", 64);
+    const bool button =
+        Input("--HIFbutton", "true for HIF, false for MF", true);
+    const double tol = Input("--tol", "tolerance", 1e-3);
+    const bool logApp = Input("--logApp", "Log File appending", false);
 
-		std::cout << "inputfileA: " << inputfileA << std::endl;
-		std::cout << "inputfileb: " << inputfileb << std::endl;
-		std::cout << "minvtx: " << minvtx << std::endl;
-		std::cout << "button: " << button << std::endl;
-		std::cout << "tol: " << tol << std::endl;
-		std::cout << "logApp: " << logApp << std::endl;*/
+    /*if (argc != 7)
+    {
+            printf("HIFsolve, Usage: ./HIFsolve input_A input_b minvtx button
+    tol logApp\n"); exit(-1);
+    }
+    string inputfileA = string(argv[1]);
+    string inputfileb = string(argv[2]);
+    int minvtx = int(atoi(argv[3]));
+    bool button;
+    if (int(atoi(argv[4])) == 0)
+    {
+            button = false;
+    }
+    else
+    {
+            button = true;
+    }
+    double tol = double(atof(argv[5]));
+    if (int(atoi(argv[6])) == 0)
+    {
+            bool logApp = false;
+    }
+    else
+    {
+            bool logApp = true;
+    }
 
-		El::ProcessInput();
-		LogAppend(logApp);
-		SetTol(tol);
-		SetButton(button);
-		El::PrintInputReport();
+    std::cout << "inputfileA: " << inputfileA << std::endl;
+    std::cout << "inputfileb: " << inputfileb << std::endl;
+    std::cout << "minvtx: " << minvtx << std::endl;
+    std::cout << "button: " << button << std::endl;
+    std::cout << "tol: " << tol << std::endl;
+    std::cout << "logApp: " << logApp << std::endl;*/
 
-		El::SetBlocksize(128);
-		El::SetLocalTrrkBlocksize<double>(8);
+    El::ProcessInput();
+    LogAppend(logApp);
+    SetTol(tol);
+    SetButton(button);
+    El::PrintInputReport();
 
-		DEBUG_HIF(MasterCout("Debug Mode"));
+    El::SetBlocksize(128);
+    El::SetLocalTrrkBlocksize<double>(8);
 
-		// Reading input.
-		El::Timer readTimer("ReadTimer");
-		readTimer.Start();
-		MasterCout("Reading input starts...");
+    DEBUG_HIF(MasterCout("Debug Mode"));
 
-		string fileA = inputfileA;
-		std::ifstream finA;
-		finA.open(fileA, std::ios::in);
-		if (!finA)
-		{
-			std::cerr << "cannot open the file" << std::endl;
-		}
-		int n;
-		finA >> n;
-		SparseMatrix<double> A(n, n);
-		int i, j;
-		double value;
-		while (finA >> i >> j >> value)
-		{
-			A.QueueUpdate(i, j, value);
-		}
-		A.ProcessQueues();
-		finA.close();
+    // Reading input.
+    El::Timer readTimer("ReadTimer");
+    readTimer.Start();
+    MasterCout("Reading input starts...");
 
-		string fileb = inputfileb;
-		std::ifstream finb;
-		finb.open(fileb, std::ios::in);
-		if (!finb)
-		{
-			std::cerr << "cannot open the file" << std::endl;
-		}
-		Matrix<double> b(n, 1);
-		int k = 0;
-		while (finb >> value)
-		{
-			b.Set(k, 0, value);
-			k++;
-		}
-		finb.close();
+    string fileA = inputfileA;
+    std::ifstream finA;
+    finA.open(fileA, std::ios::in);
+    if (!finA) {
+      std::cerr << "cannot open the file" << std::endl;
+    }
+    int n;
+    finA >> n;
+    SparseMatrix<double> A(n, n);
+    int i, j;
+    double value;
+    while (finA >> i >> j >> value) {
+      A.QueueUpdate(i, j, value);
+    }
+    A.ProcessQueues();
+    finA.close();
 
-		readTimer.Stop();
-		MasterCout("Reading input ends in ", readTimer.Total(), " sec.");
+    string fileb = inputfileb;
+    std::ifstream finb;
+    finb.open(fileb, std::ios::in);
+    if (!finb) {
+      std::cerr << "cannot open the file" << std::endl;
+    }
+    Matrix<double> b(n, 1);
+    int k = 0;
+    while (finb >> value) {
+      b.Set(k, 0, value);
+      k++;
+    }
+    finb.close();
 
-		// Initialization.
-		El::Timer initTimer("InitTimer");
-		initTimer.Start();
-		MasterCout("Initialization starts...");
+    readTimer.Stop();
+    MasterCout("Reading input ends in ", readTimer.Total(), " sec.");
 
-		HIFGraph<double> HIF(A, minvtx);
+    // Initialization.
+    El::Timer initTimer("InitTimer");
+    initTimer.Start();
+    MasterCout("Initialization starts...");
 
-		initTimer.Stop();
-		MasterCout("Initialization ends in ", initTimer.Total(), " sec.");
+    HIFGraph<double> HIF(A, minvtx);
 
-		// Factorization.
-		El::Timer factTimer("FactTimer");
-		factTimer.Start();
-		MasterCout("Factorization starts...");
+    initTimer.Stop();
+    MasterCout("Initialization ends in ", initTimer.Total(), " sec.");
 
-		HIF.Factorization();
-		
-		factTimer.Stop();
-		MasterCout("Factorization ends in ", factTimer.Total(), " sec.");
+    // Factorization.
+    El::Timer factTimer("FactTimer");
+    factTimer.Start();
+    MasterCout("Factorization starts...");
 
-		// Problem solving.
-		El::Timer solTimer("SolveTimer");
-		solTimer.Start();
-		MasterCout("Problem solving starts...");
+    HIF.Factorization();
 
-		HIF.Apply(b);
+    factTimer.Stop();
+    MasterCout("Factorization ends in ", factTimer.Total(), " sec.");
 
-		solTimer.Stop();
-		MasterCout("Problem solving ends in ", solTimer.Total(), " sec.");
+    // Problem solving.
+    El::Timer solTimer("SolveTimer");
+    solTimer.Start();
+    MasterCout("Problem solving starts...");
 
-		INFO_HIF
-		(
-			Log(
-				"        InitT        FactT        SolT"
-			);
-			Log(
-				setw(13), scientific, setprecision(2), initTimer.Total(),
-				setw(13), scientific, setprecision(2), factTimer.Total(),
-				setw(12), scientific, setprecision(2), solTimer.Total()
-			);
-			Log(
-				"==================================================",
-				"==================================================",
-				"=================================================="
-			);
-		)
+    HIF.Apply(b);
 
-		string filex = "./sol.txt";
-		std::ofstream foutx;
-		foutx.open(filex, std::ios::out);
-		for (int k = 0; k < b.Height(); k++)
-		{
-			foutx << b.Get(k, 0) << endl;
-		}
-		foutx.close();
-	}
-	catch (std::exception& e)
-	{
-		EL_DEBUG_ONLY(El::DumpCallStack())
-		DEBUG_HIF(DumpCallStack())
-	}
-	CloseLog();
-	El::Finalize();
-	return 0;
+    solTimer.Stop();
+    MasterCout("Problem solving ends in ", solTimer.Total(), " sec.");
+
+    INFO_HIF(Log("        InitT        FactT        SolT");
+             Log(setw(13), scientific, setprecision(2), initTimer.Total(),
+                 setw(13), scientific, setprecision(2), factTimer.Total(),
+                 setw(12), scientific, setprecision(2), solTimer.Total());
+             Log("==================================================",
+                 "==================================================",
+                 "==================================================");)
+
+    string filex = "./sol.txt";
+    std::ofstream foutx;
+    foutx.open(filex, std::ios::out);
+    for (int k = 0; k < b.Height(); k++) {
+      foutx << b.Get(k, 0) << endl;
+    }
+    foutx.close();
+  } catch (std::exception &e) {
+    EL_DEBUG_ONLY(El::DumpCallStack())
+    DEBUG_HIF(DumpCallStack())
+  }
+  CloseLog();
+  El::Finalize();
+  return 0;
 }

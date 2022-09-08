@@ -9,11 +9,10 @@
 #endif
 
 #ifdef NDEBUG
-#define ASSERT_HIF(ex,msg...) ;
+#define ASSERT_HIF(ex, msg...) ;
 #else
-#define \
-    ASSERT_HIF(ex,msg...) \
-                (void)((ex)||(Assert(#ex,__func__,__FILE__,__LINE__,msg),0));
+#define ASSERT_HIF(ex, msg...)                                                 \
+  (void)((ex) || (Assert(#ex, __func__, __FILE__, __LINE__, msg), 0));
 #endif
 
 #ifdef TIMER
@@ -37,48 +36,46 @@ using namespace El::OrientationNS;
 using namespace El::UnitOrNonUnitNS;
 using namespace El::UpperOrLowerNS;
 
-template<typename Scalar>
-using complex = El::Complex<Scalar>;
+template <typename Scalar> using complex = El::Complex<Scalar>;
 
 // El Matrix and Grid
 using El::ElementalMatrix;
-using El::Matrix;
-using El::SparseMatrix;
-using El::Permutation;
-using El::Grid;
-using El::ValueInt;
 using El::Entry;
+using El::Grid;
+using El::Matrix;
+using El::Permutation;
 using El::QRCtrl;
+using El::SparseMatrix;
+using El::ValueInt;
 
 // El functions
-using El::Base;
-using El::IR;
-using El::SwapClear;
-using El::FastResize;
-using El::Scan;
 using El::Abs;
+using El::Base;
+using El::FastResize;
+using El::Input;
+using El::IR;
 using El::Max;
 using El::Min;
-using El::Input;
-using El::View;
-using El::SampleUniform;
 using El::SampleNormal;
+using El::SampleUniform;
+using El::Scan;
+using El::SwapClear;
+using El::View;
 
 using El::Axpy;
-using El::Gemv;
-using El::Trmm;
+using El::DiagonalScale;
 using El::Gemm;
-using El::TriangularInverse;
-using El::Transpose;
-using El::MakeTrapezoidal;
+using El::Gemv;
+using El::GetDiagonal;
 using El::ID;
 using El::LDL;
-using El::GetDiagonal;
+using El::MakeTrapezoidal;
+using El::Transpose;
+using El::TriangularInverse;
+using El::Trmm;
 using El::ldl::MultiplyAfter;
-using El::DiagonalScale;
 
-template<typename Scalar>
-using Vector = Matrix<Scalar>;
+template <typename Scalar> using Vector = Matrix<Scalar>;
 
 // Pull in some of Elemental's imported libraries
 namespace blas = El::blas;
@@ -86,32 +83,29 @@ namespace lapack = El::lapack;
 // namespace mpi = El::mpi;
 
 // Pull in some of standard libraries imported libraries
-using std::vector;
-using std::string;
-using std::setw;
-using std::setprecision;
-using std::scientific;
 using std::endl;
+using std::scientific;
+using std::setprecision;
+using std::setw;
+using std::string;
+using std::vector;
 
-inline void BuildStream( std::ostringstream& os ) { }
+inline void BuildStream(std::ostringstream &os) {}
 
-template<typename T, typename... Args>
-inline void BuildStream( std::ostringstream& os, T item, Args... args )
-{
-    os << item;
-    HIF::BuildStream( os, args... );
+template <typename T, typename... Args>
+inline void BuildStream(std::ostringstream &os, T item, Args... args) {
+  os << item;
+  HIF::BuildStream(os, args...);
 }
 
-void OpenLog( const char* filename );
-void LogAppend( bool logAppend );
-std::ostream & LogOS();
+void OpenLog(const char *filename);
+void LogAppend(bool logAppend);
+std::ostream &LogOS();
 void CloseLog();
-template<typename... Args>
-void Log( Args... args )
-{
-    std::ostringstream str;
-    HIF::BuildStream( str, args... );
-    LogOS() << str.str() << std::endl;
+template <typename... Args> void Log(Args... args) {
+  std::ostringstream str;
+  HIF::BuildStream(str, args...);
+  LogOS() << str.str() << std::endl;
 }
 
 DEBUG_HIF(
@@ -126,13 +120,13 @@ DEBUG_HIF(
         {
             if( !std::uncaught_exception() )
                 PushCallStack(s);
-        }
-        ~CallStackEntry()
-        {
-            if( !std::uncaught_exception() )
-                PopCallStack();
-        }
-    };
+} // namespace HIF
+~CallStackEntry() {
+  if (!std::uncaught_exception())
+    PopCallStack();
+}
+}
+;
 )
 
 enum TimerType
@@ -157,47 +151,39 @@ enum TimerType
     NUM_OF_TIMER_TYPE
 };
 
-TIMER_HIF(
-    void InitTimer();
-    void TimerStart( TimerType typ );
-    double TimerStop( TimerType typ );
-    double TimerPartial( TimerType typ );
-    double TimerTotal( TimerType typ );
-)
+TIMER_HIF(void InitTimer(); void TimerStart(TimerType typ);
+          double TimerStop(TimerType typ); double TimerPartial(TimerType typ);
+          double TimerTotal(TimerType typ);)
 
-template<typename... Args>
-void Assert(const char* ex, const char* func, const char* file, int line,
-            Args... args)
-{
-    std::ostringstream msg;
-    HIF::BuildStream( msg, args... );
+template <typename... Args>
+void Assert(const char *ex, const char *func, const char *file, int line,
+            Args... args) {
+  std::ostringstream msg;
+  HIF::BuildStream(msg, args...);
 
-    LogOS() << "Assertion failed: " << msg.str() << "\nExpression "
-            << ex << ", " << "function " << func
-            << ", file " << file << ", line " << line << "\n";
+  LogOS() << "Assertion failed: " << msg.str() << "\nExpression " << ex << ", "
+          << "function " << func << ", file " << file << ", line " << line
+          << "\n";
 
-    std::cerr << "Assertion failed: " << msg.str() << "\nExpression "
-              << ex << ", " << "function " << func
-              << ", file " << file << ", line " << line << "\n";
-    DEBUG_HIF(DumpCallStack())
-    std::cerr.flush();
-    throw std::logic_error(msg.str());
+  std::cerr << "Assertion failed: " << msg.str() << "\nExpression " << ex
+            << ", "
+            << "function " << func << ", file " << file << ", line " << line
+            << "\n";
+  DEBUG_HIF(DumpCallStack())
+  std::cerr.flush();
+  throw std::logic_error(msg.str());
 }
 
-template<typename... Args>
-void MasterCout( Args... args )
-{
-    std::ostringstream str;
-    HIF::BuildStream( str, args... );
-    std::cout << str.str() << std::endl;
+template <typename... Args> void MasterCout(Args... args) {
+  std::ostringstream str;
+  HIF::BuildStream(str, args...);
+  std::cout << str.str() << std::endl;
 }
 
-template<typename... Args>
-void MasterLog( Args... args )
-{
-    std::ostringstream str;
-    HIF::BuildStream( str, args... );
-    LogOS() << str.str() << std::endl;
+template <typename... Args> void MasterLog(Args... args) {
+  std::ostringstream str;
+  HIF::BuildStream(str, args...);
+  LogOS() << str.str() << std::endl;
 }
 
 void SetTol(double tol);
