@@ -6,8 +6,8 @@ std::ofstream g_logFile;
 bool g_logFileAppend = false;
 DEBUG_HIF(std::stack<std::string> callStack)
 TIMER_HIF(std::vector<El::Timer> timerQueue)
-double TOL;
-bool BUTTON;
+double g_tol;
+bool g_button;
 } // namespace
 
 namespace HIF {
@@ -92,12 +92,12 @@ TIMER_HIF(
       }
     })
 
-void SetTol(double tol) { ::TOL = tol; }
+void SetTol(double tol) { ::g_tol = tol; }
 
-double Tol() { return ::TOL; }
+double Tol() { return ::g_tol; }
 
-void SetButton(bool button) { ::BUTTON = button; }
+void SetButton(bool button) { ::g_button = button; }
 
-bool Button() { return ::BUTTON; }
+bool Button() { return ::g_button; }
 
 } // namespace HIF.
