@@ -1,7 +1,6 @@
 #include "HIF.h"
 
 namespace HIF {
-
 // The inverse of A by LDL, stored in A.
 template <typename Scalar> void LDLSolve(Matrix<Scalar> &A) {
   DEBUG_HIF(CallStackEntry cse("LDLSolve"))

@@ -2,8 +2,8 @@
 
 namespace {
 // Global Variable
-std::ofstream logFile;
-bool logFileAppend = false;
+std::ofstream g_logFile;
+bool g_logFileAppend = false;
 DEBUG_HIF(std::stack<std::string> callStack)
 TIMER_HIF(std::vector<El::Timer> timerQueue)
 double TOL;
@@ -13,17 +13,17 @@ bool BUTTON;
 namespace HIF {
 
 void OpenLog(const char *filename) {
-  if (::logFileAppend) {
-    ::logFile.open(filename, std::fstream::app);
+  if (::g_logFileAppend) {
+    ::g_logFile.open(filename, std::fstream::app);
   } else {
-    ::logFile.open(filename);
+    ::g_logFile.open(filename);
   }
 }
 
-void LogAppend(bool logAppend) { ::logFileAppend = logAppend; }
+void LogAppend(bool logAppend) { ::g_logFileAppend = logAppend; }
 
 std::ostream &LogOS() {
-  if (!::logFile.is_open()) {
+  if (!::g_logFile.is_open()) {
     std::ostringstream fileOS;
     fileOS << "./log";
     fs::path filedir(fileOS.str().c_str());
@@ -33,14 +33,14 @@ std::ostream &LogOS() {
     fileOS << "/log.log";
     OpenLog(fileOS.str().c_str());
   }
-  return ::logFile;
+  return ::g_logFile;
 }
 
 void CloseLog() {
-  if (::logFile.is_open()) {
-    ::logFile << "\n\n";
+  if (::g_logFile.is_open()) {
+    ::g_logFile << "\n\n";
   }
-  ::logFile.close();
+  ::g_logFile.close();
 }
 
 DEBUG_HIF(
