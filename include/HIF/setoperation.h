@@ -1,6 +1,6 @@
 #pragma once
-#ifndef SETOP_HPP
-#define SETOP_HPP 1
+#ifndef SETOP_H
+#define SETOP_H
 
 #include "HIF.h"
 
@@ -52,4 +52,4 @@ template <typename Scalar> void Unique_Sort(vector<Scalar> &vec);
 
 } // namespace HIF.
 
-#endif // ifndef HIF_SETOP_HPP
+#endif // ifndef SETOP_H
