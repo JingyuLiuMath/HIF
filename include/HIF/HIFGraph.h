@@ -7,8 +7,8 @@ namespace HIF {
 
 template <typename Scalar> class HIFGraph {
 public:
-  typedef Matrix<Scalar> MatrixS;
-  typedef SparseMatrix<Scalar> SparseMatrixS;
+  using MatrixS = Matrix<Scalar>;
+  typedef SparseMatrixS = SparseMatrix<Scalar>;
 
   // Initialization.
   HIFGraph(const SparseMatrixS &A, int minvtx);
