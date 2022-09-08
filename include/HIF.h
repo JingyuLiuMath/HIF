@@ -20,7 +20,11 @@
 #include "metis.h"
 
 #ifdef __cplusplus
-#include "metislib.h"
+#include "metislib.h" // 符合，不会有extern c嵌套
+extern "C" {
+#endif
+#ifdef __cplusplus
+}
 #endif
 
 //extern "C" {
