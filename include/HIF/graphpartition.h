@@ -1,5 +1,5 @@
-#ifndef GRAPHPARTITION_HPP
-#define GRAPHPARTITION_HPP
+#ifndef GRAPHPARTITION_H
+#define GRAPHPARTITION_H
 
 #include "HIF.h"
 
@@ -19,4 +19,4 @@ void MetisSepPart(const SparseMatrix<Scalar> &A, vector<int> &p1,
 
 } // namespace HIF.
 
-#endif // METISMEX_HPP
+#endif // ifndef GRAPHPARTITION_H
