@@ -1,4 +1,3 @@
-#pragma once
 #ifndef HIF_HPP
 #define HIF_HPP
 
