@@ -2,7 +2,7 @@
 #ifndef HIFGRAPH_HPP
 #define HIFGRAPH_HPP 1
 
-#include "HIF.hpp"
+#include "HIF.h"
 
 namespace HIF {
 

@@ -1,4 +1,4 @@
-#include "HIF.hpp"
+#include "HIF.h"
 
 // input file of A
 // n

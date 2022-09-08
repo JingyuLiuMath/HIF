@@ -1,4 +1,4 @@
-#include "HIF.hpp"
+#include "HIF.h"
 
 #include "./BuildTree.hpp"
 #include "./FillTree.hpp"
