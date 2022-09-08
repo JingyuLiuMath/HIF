@@ -30,8 +30,6 @@ extern "C" {
 #include "HIF/setoperation.hpp"
 #include "HIF/tools.hpp"
 
-// For GNU 8+
-// namespace fs = std::filesystem;
 // For GNU 7
 namespace fs = std::experimental::filesystem;
 

@@ -1,6 +1,5 @@
-#pragma once
 #ifndef GRAPHPARTITION_HPP
-#define GRAPHPARTITION_HPP 1
+#define GRAPHPARTITION_HPP
 
 #include "HIF.h"
 
