@@ -4,30 +4,29 @@
 #ifdef RELEASE
 #define DEBUG_HIF(cmd)
 #else
-#define DEBUG_HIF(cmd) cmd;
+#define DEBUG_HIF(cmd) cmd
 #endif
 
 #ifdef NDEBUG
-#define ASSERT_HIF(ex, msg...) ;
+#define ASSERT_HIF(ex, msg...)
 #else
 #define ASSERT_HIF(ex, msg...)                                                 \
-  (void)((ex) || (Assert(#ex, __func__, __FILE__, __LINE__, msg), 0));
+  (void)((ex) || (Assert(#ex, __func__, __FILE__, __LINE__, msg), 0))
 #endif
 
 #ifdef TIMER
-#define TIMER_HIF(cmd) cmd;
+#define TIMER_HIF(cmd) cmd
 #else
 #define TIMER_HIF(cmd)
 #endif
 
 #ifdef HIF_INFO
-#define INFO_HIF(cmd) cmd;
+#define INFO_HIF(cmd) cmd
 #else
 #define INFO_HIF(cmd)
 #endif
 
 namespace HIF {
-
 // Pull in a number of useful enums from Elemental
 using namespace El::LeftOrRightNS;
 using ELLR = El::LeftOrRightNS::LeftOrRight;
@@ -79,7 +78,6 @@ template <typename Scalar> using Vector = Matrix<Scalar>;
 // Pull in some of Elemental's imported libraries
 namespace blas = El::blas;
 namespace lapack = El::lapack;
-// namespace mpi = El::mpi;
 
 // Pull in some of standard libraries imported libraries
 using std::endl;
@@ -108,29 +106,30 @@ template <typename... Args> void Log(Args... args) {
 }
 
 DEBUG_HIF(
-    void PushCallStack( string s );
+    void PushCallStack(string s);
     void PopCallStack();
     void DumpCallStack();
 
     class CallStackEntry
     {
     public:
-        CallStackEntry( string s )
-        {
-            if( !std::uncaught_exception() )
+        CallStackEntry(string s) {
+            if (!std::uncaught_exception()) {
                 PushCallStack(s);
-} // namespace HIF
-~CallStackEntry() {
-  if (!std::uncaught_exception())
-    PopCallStack();
-}
-}
-;
+            }
+        } // namespace HIF.
+
+        ~CallStackEntry() {
+            if (!std::uncaught_exception()) {
+                PopCallStack();
+            }
+        }
+    };
 )
 
-enum TimerType
+enum class TimerType
 {
-    TIMER_FACTOR=0,
+    TIMER_FACTOR = 0,
     TIMER_SPARSEELIM,
     TIMER_SKEL,
     TIMER_MERGE,
@@ -190,7 +189,6 @@ double Tol();
 
 void SetButton(bool button);
 bool Button();
-
 } // namespace HIF.
 
 #endif // ifndef HIF_CORE_ENVIRONMENT_DECL_H
