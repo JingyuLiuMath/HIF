@@ -19,17 +19,10 @@
 #include "HIF/config.h"
 #include "metis.h"
 
-#ifdef __cplusplus
-#include "metislib.h" // 符合，不会有extern c嵌套
+// There is an error about extern "C" here, but I don't know how to fix it.
 extern "C" {
-#endif
-#ifdef __cplusplus
+    #include "metislib.h"
 }
-#endif
-
-//extern "C" {
-//    #include "metislib.h"
-//}
 
 #include "HIF/core/environment.hpp"
 #include "HIF/graphpartition.hpp"
