@@ -26,7 +26,7 @@ extern "C" {
 
 #include "HIF/core/environment.hpp"
 #include "HIF/graphpartition.h"
-#include "HIF/hifgraph.h"
+#include "HIF/HIFGraph.h"
 #include "HIF/setoperation.h"
 #include "HIF/tools.h"
 
