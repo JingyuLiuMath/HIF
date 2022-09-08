@@ -1,6 +1,5 @@
-#pragma once
-#ifndef HIFGRAPH_HPP
-#define HIFGRAPH_HPP 1
+#ifndef HIFGRAPH_H
+#define HIFGRAPH_H
 
 #include "HIF.h"
 
@@ -173,4 +172,4 @@ private:
 
 } // namespace HIF.
 
-#endif // ifndef HIFGRAPH_HPP
+#endif // ifndef HIFGRAPH_H
