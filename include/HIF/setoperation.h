@@ -5,7 +5,6 @@
 #include "HIF.h"
 
 namespace HIF {
-
 // ---------------------------------------Find---------------------------------------
 template <typename Scalar>
 int FindIndex_Sort(const vector<Scalar> &vec, const Scalar value);
@@ -49,7 +48,6 @@ void AddVec_Sort(vector<Scalar> &vec1, const vector<Scalar> &vec2);
 
 // ---------------------------------------Unique---------------------------------------
 template <typename Scalar> void Unique_Sort(vector<Scalar> &vec);
-
 } // namespace HIF.
 
 #endif // ifndef SETOP_H

@@ -4,7 +4,6 @@
 #include "HIF.h"
 
 namespace HIF {
-
 template <typename Scalar> void LDLSolve(Matrix<Scalar> &A);
 
 template <typename Scalar>
@@ -44,7 +43,6 @@ template <typename Scalar>
 void ShowMatrix(const Matrix<Scalar> &A, const string discription);
 
 void ShowVector(const vector<int> &v, const string discription);
-
 } // namespace HIF.
 
 #endif // ifndef TOOLS_H
