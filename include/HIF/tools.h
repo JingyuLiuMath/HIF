@@ -1,6 +1,5 @@
-#pragma once
-#ifndef TOOLS_HPP
-#define TOOLS_HPP 1
+#ifndef TOOLS_H
+#define TOOLS_H
 
 #include "HIF.h"
 
@@ -48,4 +47,4 @@ void ShowVector(const vector<int> &v, const string discription);
 
 } // namespace HIF.
 
-#endif // ifndef HIF_TOOLS_HPP
+#endif // ifndef TOOLS_H

@@ -28,7 +28,7 @@ extern "C" {
 #include "HIF/graphpartition.h"
 #include "HIF/hifgraph.hpp"
 #include "HIF/setoperation.h"
-#include "HIF/tools.hpp"
+#include "HIF/tools.h"
 
 // For GNU 7
 namespace fs = std::experimental::filesystem;
