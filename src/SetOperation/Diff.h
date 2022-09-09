@@ -1,7 +1,9 @@
+#ifndef DIFF_H
+#define DIFF_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // vec = setdiff(vec1, vec2) where vec1 and vec2 are two sorted vectors. vec is
 // also sorted.
 template <typename Scalar>
@@ -49,5 +51,5 @@ void Diff_Sort(const vector<Scalar> &vec1, const vector<Scalar> &vec2,
   }
   TIMER_HIF(TimerStop(TIMER_SETOP))
 }
-
 } // namespace HIF.
+#endif // ifndef DIFF_H

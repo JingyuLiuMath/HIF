@@ -1,7 +1,9 @@
+#ifndef ADDELEMENT_H
+#define ADDELEMENT_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Add a sorted vector vec2 to a sorted vector vec1.
 template <typename Scalar>
 void AddVec_Sort(vector<Scalar> &vec1, const vector<Scalar> &vec2) {
@@ -60,5 +62,5 @@ void AddVec_Sort(vector<Scalar> &vec1, const vector<Scalar> &vec2) {
   vec1.assign(vec.begin(), vec.end());
   TIMER_HIF(TimerStop(TIMER_SETOP))
 }
-
 } // namespace HIF.
+#endif // ifndef ADDELEMENT_H

@@ -1,7 +1,9 @@
+#ifndef FIND_H
+#define FIND_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Find the index of value in vec. If no index is found, return -1.
 template <typename Scalar>
 int FindIndex_Sort(const vector<Scalar> &vec, const Scalar value) {
@@ -92,5 +94,5 @@ void FindAllIndex_Sort(const vector<Scalar> &vec1, const vector<Scalar> &vec2,
   }
   TIMER_HIF(TimerStop(TIMER_SETOP))
 }
-
 } // namespace HIF.
+#endif // ifndef FIND_H

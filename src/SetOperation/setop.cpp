@@ -1,13 +1,12 @@
 #include "HIF.h"
 
-#include "./AddElement.hpp"
-#include "./Diff.hpp"
-#include "./Find.hpp"
-#include "./Intersect.hpp"
-#include "./Unique.hpp"
+#include "./AddElement.h"
+#include "./Diff.h"
+#include "./Find.h"
+#include "./Intersect.h"
+#include "./Unique.h"
 
 namespace HIF {
-
 #define PROTOTYPE_SET(Scalar)                                                  \
   template void AddVec_Sort(vector<Scalar> &vec1, const vector<Scalar> &vec2); \
   template void Diff_Sort(const vector<Scalar> &vec1,                          \
@@ -37,5 +36,4 @@ namespace HIF {
 PROTOTYPE_SET(int)
 PROTOTYPE_SET(float)
 PROTOTYPE_SET(double)
-
 } // namespace HIF.

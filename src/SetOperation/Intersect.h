@@ -1,7 +1,9 @@
+#ifndef INTERSECT_H
+#define INTERSECT_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Return true if the intersection of two sorted vectors vec1 and vec2 is not
 // empty.
 template <typename Scalar>
@@ -416,5 +418,5 @@ void Intersect_Sort(const vector<Scalar> &vec1, const vector<Scalar> &vec2,
   }
   TIMER_HIF(TimerStop(TIMER_SETOP))
 }
-
 } // namespace HIF.
+#endif // ifndef INTERSECT_H
