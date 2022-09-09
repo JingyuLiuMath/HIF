@@ -1,7 +1,9 @@
+#ifndef ROOTAPPLY_H
+#define ROOTAPPLY_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Apply on the root.
 template <typename Scalar> void HIFGraph<Scalar>::RootApply() {
   DEBUG_HIF(CallStackEntry cse("HIFGraph:RootApply"))
@@ -14,5 +16,5 @@ template <typename Scalar> void HIFGraph<Scalar>::RootApply() {
   // xI = LI^{-T} * xI.
   Trmm(ELLR::LEFT, LOWER, TRANSPOSE, UNIT, Scalar(1), AIIinv_, xI_);
 }
-
 } // namespace HIF.
+#endif // ifndef ROOTAPPLY_H

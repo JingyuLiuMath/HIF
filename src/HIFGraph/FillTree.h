@@ -1,7 +1,9 @@
+#ifndef FILLTREE_H
+#define FILLTREE_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Fill the tree structure with A.
 template <typename Scalar>
 void HIFGraph<Scalar>::FillTree(const SparseMatrixS &A) {
@@ -26,5 +28,5 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrixS &A) {
     }
   }
 }
-
 } // namespace HIF.
+#endif // ifndef FILLTREE_H

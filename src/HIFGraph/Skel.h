@@ -1,7 +1,9 @@
+#ifndef SKEL_H
+#define SKEL_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Recursively skeletonization.
 template <typename Scalar> void HIFGraph<Scalar>::RecursiveSkel(int whatlevel) {
   DEBUG_HIF(CallStackEntry cse("HIFGraph:RecursiveSkel"))
@@ -407,5 +409,5 @@ template <typename Scalar> void HIFGraph<Scalar>::NoSkel() {
   sk_.assign(sep_.begin(), sep_.end());
   nbsk_.assign(nb_.begin(), nb_.end());
 }
-
 } // namespace HIF.
+#endif // ifndef SKEL_H

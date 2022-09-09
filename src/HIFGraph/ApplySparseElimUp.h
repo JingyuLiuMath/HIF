@@ -1,7 +1,9 @@
+#ifndef APPLYSPARSEELIMUP_H
+#define APPLYSPARSEELIMUP_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Phase 1 for applying sparse elimination recusively.
 template <typename Scalar>
 void HIFGraph<Scalar>::RecursiveApplySparseElimUp(int whatlevel) {
@@ -31,5 +33,5 @@ template <typename Scalar> void HIFGraph<Scalar>::ApplySparseElimUp() {
   auto D = GetDiagonal(AIIinv_);
   DiagonalScale(ELLR::LEFT, NORMAL, D, xI_);
 }
-
 } // namespace HIF.
+#endif // ifndef APPLYSPARSEELIMUP_H

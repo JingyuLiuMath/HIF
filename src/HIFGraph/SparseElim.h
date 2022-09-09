@@ -1,7 +1,9 @@
+#ifndef SPARSEELIM_H
+#define SPARSEELIM_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Recursively sparse elimination.
 template <typename Scalar>
 void HIFGraph<Scalar>::RecursiveSparseElim(int whatlevel) {
@@ -42,5 +44,5 @@ template <typename Scalar> void HIFGraph<Scalar>::SparseElim() {
   AII_.Empty();
   ASI_.Empty();
 }
-
 } // namespace HIF.
+#endif // ifndef SPARSEELIM_H

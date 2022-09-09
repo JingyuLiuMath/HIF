@@ -1,7 +1,9 @@
+#ifndef APPLYMERGE_H
+#define APPLYMERGE_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Recusively send vectors' information from children to parent.
 template <typename Scalar>
 void HIFGraph<Scalar>::RecursiveApplyMerge(int whatlevel,
@@ -47,5 +49,5 @@ void HIFGraph<Scalar>::ApplyMerge(const vector<int> &xcol) {
         childrennode_.Child(iter).xS_(childreninfo_[iter].cindex_sep, xcol));
   }
 }
-
 } // namespace HIF.
+#endif // ifndef APPLYMERGE_H

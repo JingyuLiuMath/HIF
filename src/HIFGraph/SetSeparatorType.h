@@ -1,7 +1,9 @@
+#ifndef SETSEPARATORTYPE_H
+#define SETSEPARATORTYPE_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Recusively set separator vertices' type.
 template <typename Scalar>
 void HIFGraph<Scalar>::RecursiveSetSeparatorType(int whatlevel) {
@@ -72,5 +74,5 @@ template <typename Scalar> void HIFGraph<Scalar>::SetSeparatorType() {
           }
   }*/
 }
-
 } // namespace HIF.
+#endif // ifndef SETSEPARATORTYPE_H

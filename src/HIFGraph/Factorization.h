@@ -1,7 +1,9 @@
+#ifndef FACTORIZATION_H
+#define FACTORIZATION_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Factorization
 template <typename Scalar> void HIFGraph<Scalar>::Factorization() {
   DEBUG_HIF(CallStackEntry cse("HIFGraph:Factorization"))
@@ -80,5 +82,5 @@ template <typename Scalar> void HIFGraph<Scalar>::Factorization() {
                "==================================================",
                "==================================================");)
 }
-
 } // namespace HIF.
+#endif // ifndef FACTORIZATION_H

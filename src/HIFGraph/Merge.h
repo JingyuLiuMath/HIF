@@ -1,7 +1,9 @@
+#ifndef MERGE_H
+#define MERGE_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Recusively send matrices' information from children to parent.
 template <typename Scalar>
 void HIFGraph<Scalar>::RecursiveMerge(int whatlevel) {
@@ -179,5 +181,5 @@ template <typename Scalar> void HIFGraph<Scalar>::FactorClear() {
   ASS_.Empty();
   ANS_.Empty();
 }
-
 } // namespace HIF.
+#endif // ifndef MERGE_H

@@ -1,7 +1,9 @@
+#ifndef APPLYSPLIT_H
+#define APPLYSPLIT_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Recusively send vectors' information from parent to children.
 template <typename Scalar>
 void HIFGraph<Scalar>::RecursiveApplySplit(int whatlevel,
@@ -39,5 +41,5 @@ void HIFGraph<Scalar>::ApplySplit(const vector<int> &xcol) {
                     xS_(childreninfo_[iter].myindex_sep, xcol));
   }
 }
-
 } // namespace HIF.
+#endif // ifndef APPLYSPLIT_H

@@ -1,7 +1,9 @@
+#ifndef APPLYSKELUP_H
+#define APPLYSKELUP_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Phase 1 for applying skeletonization recusively.
 template <typename Scalar>
 void HIFGraph<Scalar>::RecursiveApplySkelUp(int whatlevel,
@@ -93,5 +95,5 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int> &xcol) {
     SubMatrixUpdate(nbnodek.xS_, nbinfok.nodekindex_p22, xcol, copyvec);
   }
 }
-
 } // namespace HIF.
+#endif // ifndef APPLYSKEL_H

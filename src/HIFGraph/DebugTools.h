@@ -1,7 +1,9 @@
+#ifndef DEBUGTOOLS_H
+#define DEBUGTOOLS_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Show partition results.
 template <typename Scalar> void HIFGraph<Scalar>::ShowPartition() {
   DEBUG_HIF(CallStackEntry cse("HIFGraph:ShowPartition"))
@@ -18,5 +20,5 @@ template <typename Scalar> void HIFGraph<Scalar>::ShowPartition() {
     }
   }
 }
-
 } // namespace HIF.
+#endif // ifndef DEBUGTOOLS_H

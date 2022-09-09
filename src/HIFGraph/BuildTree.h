@@ -1,7 +1,9 @@
+#ifndef BUILDTREE_H
+#define BUILDTREE_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Build tree structure according to graph partition.
 template <typename Scalar>
 void HIFGraph<Scalar>::BuildTree(const SparseMatrixS &A, int minvtx) {
@@ -103,5 +105,5 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS &A) {
   AddVec_Sort(childrennode_.Child(1).nb_, addnb2);
   TIMER_HIF(TimerStop(TIMER_PASS))
 }
-
 } // namespace HIF.
+#endif // ifndef BUILDTREE_H

@@ -1,7 +1,9 @@
+#ifndef ROOTFACTORIZATION_H
+#define ROOTFACTORIZATION_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 template <typename Scalar> void HIFGraph<Scalar>::RootFactorization() {
   DEBUG_HIF(CallStackEntry cse("HIFGraph:RootFactorization"))
 
@@ -14,5 +16,5 @@ template <typename Scalar> void HIFGraph<Scalar>::RootFactorization() {
   // AII = 0.
   AII_.Empty();
 }
-
 } // namespace HIF.
+#endif // ifndef ROOTFACTORIZATION_H

@@ -1,7 +1,9 @@
+#ifndef SETNEIGHBORNODE_H
+#define SETNEIGHBORNODE_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // Set neighbor node.
 template <typename Scalar> void HIFGraph<Scalar>::SetNeighborNode() {
   DEBUG_HIF(CallStackEntry cse("HIFGraph:SetNeighborNode"))
@@ -55,5 +57,5 @@ template <typename Scalar> void HIFGraph<Scalar>::SetNeighborNode() {
     childrennode_.Child(iter).SetNeighborNode();
   }
 }
-
 } // namespace HIF.
+#endif // ifndef SETNEIGHBORNODE_H

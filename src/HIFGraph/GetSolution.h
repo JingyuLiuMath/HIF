@@ -1,7 +1,9 @@
+#ifndef GETSOLUTION_H
+#define GETSOLUTION_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 template <typename Scalar>
 void HIFGraph<Scalar>::GetSolution(MatrixS &b, const vector<int> &xcol) {
   DEBUG_HIF(CallStackEntry cse("HIFGraph:GetSolution"))
@@ -19,5 +21,5 @@ void HIFGraph<Scalar>::GetSolution(MatrixS &b, const vector<int> &xcol) {
     }
   }
 }
-
 } // namespace HIF
+#endif // ifndef GETSOLUTION_H
