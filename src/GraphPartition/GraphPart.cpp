@@ -135,7 +135,6 @@ void MetisSepPart(const SparseMatrix<Scalar> &A, vector<int> &p1,
 
   // Set up the run time parameters.
   ctrl = SetupCtrl(METIS_OP_OMETIS, options, 1, 3, NULL, NULL);
-
   // Prune the dense columns.
   if (ctrl->pfactor > 0.0) {
     piperm = imalloc(nvtxs, "OMETIS: piperm");
@@ -215,10 +214,6 @@ void MetisSepPart(const SparseMatrix<Scalar> &A, vector<int> &p1,
     }
   }
 
-  /*std::sort(p1.begin(), p1.end());
-  std::sort(p2.begin(), p2.end());
-  std::sort(sep.begin(), sep.end());*/
-
   // Clean up
   FreeCtrl(&ctrl);
   TIMER_HIF(TimerStop(TIMER_METIS))
@@ -236,5 +231,4 @@ void MetisSepPart(const SparseMatrix<Scalar> &A, vector<int> &p1,
 
 PROTOTYPE_PART(float)
 PROTOTYPE_PART(double)
-
 } // namespace HIF.
