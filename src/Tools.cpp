@@ -210,7 +210,7 @@ void ShowVector(const vector<int> &v, const string discription) {
   template void FullMat(const SparseMatrix<Scalar> &sparseA,                   \
                         const vector<int> &rowindex,                           \
                         const vector<int> &colindex, Matrix<Scalar> &A);       \
-  template void ShowMatrix(const Matrix<Scalar> &A, const string discription)
+  template void ShowMatrix(const Matrix<Scalar> &A, const string discription);
 
 PROTOTYPE(float)
 PROTOTYPE(double)
