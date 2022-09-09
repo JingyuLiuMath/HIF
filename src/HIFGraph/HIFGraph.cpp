@@ -1,6 +1,6 @@
 #include "HIF.h"
 
-//#include "./BuildTree.h"
+#include "./BuildTree.h"
 #include "./FillTree.h"
 #include "./SetNeighborNode.h"
 #include "./SetSeparatorType.h"
