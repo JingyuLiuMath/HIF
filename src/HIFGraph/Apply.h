@@ -1,7 +1,9 @@
+#ifndef APPLY_H
+#define APPLY_H
+
 #include "HIF.h"
 
 namespace HIF {
-
 // b = A^{-1} b where A^{-1} is given by HIF.
 template <typename Scalar> void HIFGraph<Scalar>::Apply(MatrixS &b) {
   DEBUG_HIF(CallStackEntry cse("HIFGraph:Apply"))
@@ -38,5 +40,5 @@ template <typename Scalar> void HIFGraph<Scalar>::Apply(MatrixS &b) {
   // GetSolution.
   GetSolution(b, xcol);
 }
-
 } // namespace HIF.
+#endif // ifndef APPLY_H
