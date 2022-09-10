@@ -1,5 +1,5 @@
-#ifndef ROOTAPPLY_H
-#define ROOTAPPLY_H
+#ifndef HIF_SRC_HIFGRAPH_ROOTAPPLY_H
+#define HIF_SRC_HIFGRAPH_ROOTAPPLY_H
 
 #include "HIF.h"
 
@@ -18,4 +18,4 @@ template <typename Scalar> void HIFGraph<Scalar>::RootApply() {
 }
 } // namespace HIF.
 
-#endif // ifndef ROOTAPPLY_H
+#endif // ifndef HIF_SRC_HIFGRAPH_ROOTAPPLY_H

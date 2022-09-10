@@ -1,5 +1,5 @@
-#ifndef ADDELEMENT_H
-#define ADDELEMENT_H
+#ifndef HIF_SRC_SETOPERATION_ADDELEMENT_H
+#define HIF_SRC_SETOPERATION_ADDELEMENT_H
 
 #include "HIF.h"
 
@@ -64,4 +64,4 @@ void AddVec_Sort(vector<Scalar> &vec1, const vector<Scalar> &vec2) {
 }
 } // namespace HIF.
 
-#endif // ifndef ADDELEMENT_H
+#endif // ifndef HIF_SRC_SETOPERATION_ADDELEMENT_H

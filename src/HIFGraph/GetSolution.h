@@ -1,5 +1,5 @@
-#ifndef GETSOLUTION_H
-#define GETSOLUTION_H
+#ifndef HIF_SRC_HIFGRAPH_GETSOLUTION_H
+#define HIF_SRC_HIFGRAPH_GETSOLUTION_H
 
 #include "HIF.h"
 
@@ -23,4 +23,4 @@ void HIFGraph<Scalar>::GetSolution(MatrixS &b, const vector<int> &xcol) {
 }
 } // namespace HIF.
 
-#endif // ifndef GETSOLUTION_H
+#endif // ifndef HIF_SRC_HIFGRAPH_GETSOLUTION_H

@@ -1,5 +1,5 @@
-#ifndef APPLY_H
-#define APPLY_H
+#ifndef HIF_SRC_HIFGRAPH_APPLY_H
+#define HIF_SRC_HIFGRAPH_APPLY_H
 
 #include "HIF.h"
 
@@ -42,4 +42,4 @@ template <typename Scalar> void HIFGraph<Scalar>::Apply(MatrixS &b) {
 }
 } // namespace HIF.
 
-#endif // ifndef APPLY_H
+#endif // ifndef HIF_SRC_HIFGRAPH_APPLY_H

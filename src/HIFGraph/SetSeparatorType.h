@@ -1,5 +1,5 @@
-#ifndef SETSEPARATORTYPE_H
-#define SETSEPARATORTYPE_H
+#ifndef HIF_SRC_HIFGRAPH_SETSEPARATORTYPE_H
+#define HIF_SRC_HIFGRAPH_SETSEPARATORTYPE_H
 
 #include "HIF.h"
 
@@ -52,28 +52,7 @@ template <typename Scalar> void HIFGraph<Scalar>::SetSeparatorType() {
     Diff_Sort(tmpvec, singlesep_[k], complexsep_);
     tmpvec = complexsep_;
   }
-
-  /*for (int k = 0; k < nbnode_.size(); k++)
-  {
-          vector<int> index_find_ordersep_1;
-          FindAllIndex(ordersep, 1, index_find_ordersep_1);
-          vector<int> index_sep;
-          Intersect_Sort(index_find_ordersep_1, singlesep_[k], index_sep);
-          singlesep_[k].resize(index_sep.size());
-          for (int i = 0; i < index_sep.size(); i++)
-          {
-                  singlesep_[k][i] = sep_[index_sep[i]];
-          }
-  }
-
-  for (int i = 0; i < sep_.size(); i++)
-  {
-          if (ordersep[i] > 1)
-          {
-                  complexsep_.push_back(sep_[i]);
-          }
-  }*/
 }
 } // namespace HIF.
 
-#endif // ifndef SETSEPARATORTYPE_H
+#endif // ifndef HIF_SRC_HIFGRAPH_SETSEPARATORTYPE_H

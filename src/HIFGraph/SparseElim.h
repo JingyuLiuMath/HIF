@@ -1,5 +1,5 @@
-#ifndef SPARSEELIM_H
-#define SPARSEELIM_H
+#ifndef HIF_SRC_HIFGRAPH_SPARSEELIM_H
+#define HIF_SRC_HIFGRAPH_SPARSEELIM_H
 
 #include "HIF.h"
 
@@ -46,4 +46,4 @@ template <typename Scalar> void HIFGraph<Scalar>::SparseElim() {
 }
 } // namespace HIF.
 
-#endif // ifndef SPARSEELIM_H
+#endif // ifndef HIF_SRC_HIFGRAPH_SPARSEELIM_H

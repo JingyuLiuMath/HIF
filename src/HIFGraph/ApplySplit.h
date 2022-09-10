@@ -1,5 +1,5 @@
-#ifndef APPLYSPLIT_H
-#define APPLYSPLIT_H
+#ifndef HIF_SRC_HIFGRAPH_APPLYSPLIT_H
+#define HIF_SRC_HIFGRAPH_APPLYSPLIT_H
 
 #include "HIF.h"
 
@@ -43,4 +43,4 @@ void HIFGraph<Scalar>::ApplySplit(const vector<int> &xcol) {
 }
 } // namespace HIF.
 
-#endif // ifndef APPLYSPLIT_H
+#endif // ifndef HIF_SRC_HIFGRAPH_APPLYSPLIT_H

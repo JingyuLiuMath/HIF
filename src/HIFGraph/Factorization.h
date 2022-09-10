@@ -1,5 +1,5 @@
-#ifndef FACTORIZATION_H
-#define FACTORIZATION_H
+#ifndef HIF_SRC_HIFGRAPH_FACTORIZATION_H
+#define HIF_SRC_HIFGRAPH_FACTORIZATION_H
 
 #include "HIF.h"
 
@@ -84,4 +84,4 @@ template <typename Scalar> void HIFGraph<Scalar>::Factorization() {
 }
 } // namespace HIF.
 
-#endif // ifndef FACTORIZATION_H
+#endif // ifndef HIF_SRC_HIFGRAPH_FACTORIZATION_H

@@ -1,5 +1,5 @@
-#ifndef APPLYSPARSEELIMUP_H
-#define APPLYSPARSEELIMUP_H
+#ifndef HIF_SRC_HIFGRAPH_APPLYSPARSEELIMUP_H
+#define HIF_SRC_HIFGRAPH_APPLYSPARSEELIMUP_H
 
 #include "HIF.h"
 
@@ -35,4 +35,4 @@ template <typename Scalar> void HIFGraph<Scalar>::ApplySparseElimUp() {
 }
 } // namespace HIF.
 
-#endif // ifndef APPLYSPARSEELIMUP_H
+#endif // ifndef HIF_SRC_HIFGRAPH_APPLYSPARSEELIMUP_H

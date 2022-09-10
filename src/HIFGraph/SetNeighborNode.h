@@ -1,5 +1,5 @@
-#ifndef SETNEIGHBORNODE_H
-#define SETNEIGHBORNODE_H
+#ifndef HIF_SRC_HIFGRAPH_SETNEIGHBORNODE_H
+#define HIF_SRC_HIFGRAPH_SETNEIGHBORNODE_H
 
 #include "HIF.h"
 
@@ -56,4 +56,4 @@ template <typename Scalar> void HIFGraph<Scalar>::SetNeighborNode() {
 }
 } // namespace HIF.
 
-#endif // ifndef SETNEIGHBORNODE_H
+#endif // ifndef HIF_SRC_HIFGRAPH_SETNEIGHBORNODE_H

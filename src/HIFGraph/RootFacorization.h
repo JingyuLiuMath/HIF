@@ -1,5 +1,5 @@
-#ifndef ROOTFACTORIZATION_H
-#define ROOTFACTORIZATION_H
+#ifndef HIF_SRC_HIFGRAPH_ROOTFACORIZATION_H
+#define HIF_SRC_HIFGRAPH_ROOTFACORIZATION_H
 
 #include "HIF.h"
 
@@ -18,4 +18,4 @@ template <typename Scalar> void HIFGraph<Scalar>::RootFactorization() {
 }
 } // namespace HIF.
 
-#endif // ifndef ROOTFACTORIZATION_H
+#endif // ifndef HIF_SRC_HIFGRAPH_ROOTFACORIZATION_H

@@ -1,5 +1,5 @@
-#ifndef MERGE_H
-#define MERGE_H
+#ifndef HIF_SRC_HIFGRAPH_MERGE_H
+#define HIF_SRC_HIFGRAPH_MERGE_H
 
 #include "HIF.h"
 
@@ -183,4 +183,4 @@ template <typename Scalar> void HIFGraph<Scalar>::FactorClear() {
 }
 } // namespace HIF.
 
-#endif // ifndef MERGE_H
+#endif // ifndef HIF_SRC_HIFGRAPH_MERGE_H

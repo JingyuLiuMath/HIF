@@ -1,5 +1,5 @@
-#ifndef DIFF_H
-#define DIFF_H
+#ifndef HIF_SRC_SETOPERATION_DIFF_H
+#define HIF_SRC_SETOPERATION_DIFF_H
 
 #include "HIF.h"
 
@@ -53,4 +53,4 @@ void Diff_Sort(const vector<Scalar> &vec1, const vector<Scalar> &vec2,
 }
 } // namespace HIF.
 
-#endif // ifndef DIFF_H
+#endif // ifndef HIF_SRC_SETOPERATION_DIFF_H

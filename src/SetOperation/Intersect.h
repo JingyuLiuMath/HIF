@@ -1,5 +1,5 @@
-#ifndef INTERSECT_H
-#define INTERSECT_H
+#ifndef HIF_SRC_SETOPERATION_INTERSECT_H
+#define HIF_SRC_SETOPERATION_INTERSECT_H
 
 #include "HIF.h"
 
@@ -420,4 +420,4 @@ void Intersect_Sort(const vector<Scalar> &vec1, const vector<Scalar> &vec2,
 }
 } // namespace HIF.
 
-#endif // ifndef INTERSECT_H
+#endif // ifndef HIF_SRC_SETOPERATION_INTERSECT_H

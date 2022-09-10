@@ -1,5 +1,5 @@
-#ifndef SKEL_H
-#define SKEL_H
+#ifndef HIF_SRC_HIFGRAPH_SKEL_H
+#define HIF_SRC_HIFGRAPH_SKEL_H
 
 #include "HIF.h"
 
@@ -403,4 +403,4 @@ template <typename Scalar> void HIFGraph<Scalar>::NoSkel() {
 }
 } // namespace HIF.
 
-#endif // ifndef SKEL_H
+#endif // ifndef HIF_SRC_HIFGRAPH_SKEL

@@ -1,5 +1,5 @@
-#ifndef FILLTREE_H
-#define FILLTREE_H
+#ifndef HIF_SRC_HIFGRAPH_FILLTREE_H
+#define HIF_SRC_HIFGRAPH_FILLTREE_H
 
 #include "HIF.h"
 
@@ -30,4 +30,4 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrixS &A) {
 }
 } // namespace HIF.
 
-#endif // ifndef FILLTREE_H
+#endif // ifndef HIF_SRC_HIFGRAPH_FILLTREE_H

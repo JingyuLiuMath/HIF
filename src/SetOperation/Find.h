@@ -1,5 +1,5 @@
-#ifndef FIND_H
-#define FIND_H
+#ifndef HIF_SRC_SETOPERATION_FIND_H
+#define HIF_SRC_SETOPERATION_FIND_H
 
 #include "HIF.h"
 
@@ -96,4 +96,4 @@ void FindAllIndex_Sort(const vector<Scalar> &vec1, const vector<Scalar> &vec2,
 }
 } // namespace HIF.
 
-#endif // ifndef FIND_H
+#endif // ifndef HIF_SRC_SETOPERATION_FIND_H

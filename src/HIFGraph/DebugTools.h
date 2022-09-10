@@ -1,5 +1,5 @@
-#ifndef DEBUGTOOLS_H
-#define DEBUGTOOLS_H
+#ifndef HIF_SRC_HIFGRAPH_DEBUGTOOLS_H
+#define HIF_SRC_HIFGRAPH_DEBUGTOOLS_H
 
 #include "HIF.h"
 
@@ -22,4 +22,4 @@ template <typename Scalar> void HIFGraph<Scalar>::ShowPartition() {
 }
 } // namespace HIF.
 
-#endif // ifndef DEBUGTOOLS_H
+#endif // ifndef HIF_SRC_HIFGRAPH_DEBUGTOOLS_H

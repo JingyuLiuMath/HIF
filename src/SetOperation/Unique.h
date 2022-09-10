@@ -1,5 +1,5 @@
-#ifndef UNIQUE_H
-#define UNIQUE_H
+#ifndef HIF_SRC_SETOPERATION_UNIQUE_H
+#define HIF_SRC_SETOPERATION_UNIQUE_H
 
 #include "HIF.h"
 
@@ -24,4 +24,4 @@ template <typename Scalar> void Unique_Sort(vector<Scalar> &vec) {
 }
 } // namespace HIF.
 
-#endif // ifndef UNIQUE_H
+#endif // ifndef HIF_SRC_SETOPERATION_UNIQUE_H

@@ -1,5 +1,5 @@
-#ifndef TOOLS_H
-#define TOOLS_H
+#ifndef HIF_TOOLS_H
+#define HIF_TOOLS_H
 
 #include "HIF.h"
 
@@ -45,4 +45,4 @@ void ShowMatrix(const Matrix<Scalar> &A, const string discription);
 void ShowVector(const vector<int> &v, const string discription);
 } // namespace HIF.
 
-#endif // ifndef TOOLS_H
+#endif // ifndef HIF_TOOLS_H

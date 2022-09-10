@@ -1,5 +1,5 @@
-#ifndef APPLYSKELDOWN_H
-#define APPLYSKELDOWN_H
+#ifndef HIF_SRC_HIFGRAPH_APPLYSKELDOWN_H
+#define HIF_SRC_HIFGRAPH_APPLYSKELDOWN_H
 
 #include "HIF.h"
 
@@ -76,4 +76,4 @@ void HIFGraph<Scalar>::ApplySkelDown(const vector<int> &xcol) {
 }
 } // namespace HIF.
 
-#endif // ifndef APPLYSKELDOWN_H
+#endif // ifndef HIF_SRC_HIFGRAPH_APPLYSKELDOWN_H

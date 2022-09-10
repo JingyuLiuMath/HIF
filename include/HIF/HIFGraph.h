@@ -1,5 +1,5 @@
-#ifndef HIFGRAPH_H
-#define HIFGRAPH_H
+#ifndef HIF_HIFGRAPH_H
+#define HIF_HIFGRAPH_H
 
 #include "HIF.h"
 
@@ -169,4 +169,4 @@ private:
 };
 } // namespace HIF.
 
-#endif // ifndef HIFGRAPH_H
+#endif // ifndef HIF_HIFGRAPH_H

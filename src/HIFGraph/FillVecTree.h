@@ -1,5 +1,5 @@
-#ifndef FILLVECTREE_H
-#define FILLVECTREE_H
+#ifndef HIF_SRC_HIFGRAPH_FILLVECTREE_H
+#define HIF_SRC_HIFGRAPH_FILLVECTREE_H
 
 #include "HIF.h"
 
@@ -20,4 +20,4 @@ void HIFGraph<Scalar>::FillVecTree(const MatrixS &b, const vector<int> &xcol) {
 }
 } // namespace HIF.
 
-#endif // ifndef FILLVECTREE_H
+#endif // ifndef HIF_SRC_HIFGRAPH_FILLVECTREE_H
