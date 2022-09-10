@@ -182,4 +182,5 @@ template <typename Scalar> void HIFGraph<Scalar>::FactorClear() {
   ANS_.Empty();
 }
 } // namespace HIF.
+
 #endif // ifndef MERGE_H

@@ -52,4 +52,5 @@ void Diff_Sort(const vector<Scalar> &vec1, const vector<Scalar> &vec2,
   TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 } // namespace HIF.
+
 #endif // ifndef DIFF_H

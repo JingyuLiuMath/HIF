@@ -75,4 +75,5 @@ template <typename Scalar> void HIFGraph<Scalar>::SetSeparatorType() {
   }*/
 }
 } // namespace HIF.
+
 #endif // ifndef SETSEPARATORTYPE_H

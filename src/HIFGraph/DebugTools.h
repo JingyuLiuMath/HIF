@@ -21,4 +21,5 @@ template <typename Scalar> void HIFGraph<Scalar>::ShowPartition() {
   }
 }
 } // namespace HIF.
+
 #endif // ifndef DEBUGTOOLS_H

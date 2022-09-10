@@ -96,4 +96,5 @@ void HIFGraph<Scalar>::ApplySkelUp(const vector<int> &xcol) {
   }
 }
 } // namespace HIF.
+
 #endif // ifndef APPLYSKEL_H

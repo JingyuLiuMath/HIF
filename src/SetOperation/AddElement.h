@@ -63,4 +63,5 @@ void AddVec_Sort(vector<Scalar> &vec1, const vector<Scalar> &vec2) {
   TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 } // namespace HIF.
+
 #endif // ifndef ADDELEMENT_H

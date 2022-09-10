@@ -41,4 +41,5 @@ template <typename Scalar> void HIFGraph<Scalar>::Apply(MatrixS &b) {
   GetSolution(b, xcol);
 }
 } // namespace HIF.
+
 #endif // ifndef APPLY_H

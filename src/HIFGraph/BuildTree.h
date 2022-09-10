@@ -106,4 +106,5 @@ void HIFGraph<Scalar>::PassSeparatorNeighbor(const SparseMatrixS &A) {
   TIMER_HIF(TimerStop(TIMER_PASS))
 }
 } // namespace HIF.
+
 #endif // ifndef BUILDTREE_H

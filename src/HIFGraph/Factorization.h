@@ -83,4 +83,5 @@ template <typename Scalar> void HIFGraph<Scalar>::Factorization() {
                "==================================================");)
 }
 } // namespace HIF.
+
 #endif // ifndef FACTORIZATION_H

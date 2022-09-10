@@ -45,4 +45,5 @@ template <typename Scalar> void HIFGraph<Scalar>::SparseElim() {
   ASI_.Empty();
 }
 } // namespace HIF.
+
 #endif // ifndef SPARSEELIM_H

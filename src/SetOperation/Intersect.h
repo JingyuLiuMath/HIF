@@ -419,4 +419,5 @@ void Intersect_Sort(const vector<Scalar> &vec1, const vector<Scalar> &vec2,
   TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 } // namespace HIF.
+
 #endif // ifndef INTERSECT_H

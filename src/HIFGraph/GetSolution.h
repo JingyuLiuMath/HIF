@@ -21,5 +21,6 @@ void HIFGraph<Scalar>::GetSolution(MatrixS &b, const vector<int> &xcol) {
     }
   }
 }
-} // namespace HIF
+} // namespace HIF.
+
 #endif // ifndef GETSOLUTION_H

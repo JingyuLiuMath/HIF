@@ -23,4 +23,5 @@ template <typename Scalar> void Unique_Sort(vector<Scalar> &vec) {
   TIMER_HIF(TimerStop(TIMER_SETOP))
 }
 } // namespace HIF.
+
 #endif // ifndef UNIQUE_H

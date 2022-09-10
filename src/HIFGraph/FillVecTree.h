@@ -19,4 +19,5 @@ void HIFGraph<Scalar>::FillVecTree(const MatrixS &b, const vector<int> &xcol) {
   }
 }
 } // namespace HIF.
+
 #endif // ifndef FILLVECTREE_H

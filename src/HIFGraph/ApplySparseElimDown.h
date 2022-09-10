@@ -29,4 +29,5 @@ template <typename Scalar> void HIFGraph<Scalar>::ApplySparseElimDown() {
   Gemm(NORMAL, NORMAL, Scalar(-1), AIIinvAIS_, xS_, Scalar(1), xI_);
 }
 } // namespace HIF.
+
 #endif // ifndef APPLYSPARSEELIMDOWN_H

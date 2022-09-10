@@ -42,4 +42,5 @@ void HIFGraph<Scalar>::ApplySplit(const vector<int> &xcol) {
   }
 }
 } // namespace HIF.
+
 #endif // ifndef APPLYSPLIT_H

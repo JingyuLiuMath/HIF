@@ -25,7 +25,6 @@
 #include "./DebugTools.h"
 
 namespace HIF {
-
 // Create a HIFGraph class.
 template <typename Scalar>
 HIFGraph<Scalar>::HIFGraph(const SparseMatrixS &A, int minvtx) {
@@ -90,5 +89,4 @@ template <typename Scalar> HIFGraph<Scalar>::~HIFGraph() {
 
 template class HIFGraph<float>;
 template class HIFGraph<double>;
-
 } // namespace HIF.

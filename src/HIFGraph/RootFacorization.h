@@ -17,4 +17,5 @@ template <typename Scalar> void HIFGraph<Scalar>::RootFactorization() {
   AII_.Empty();
 }
 } // namespace HIF.
+
 #endif // ifndef ROOTFACTORIZATION_H

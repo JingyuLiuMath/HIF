@@ -29,4 +29,5 @@ void HIFGraph<Scalar>::FillTree(const SparseMatrixS &A) {
   }
 }
 } // namespace HIF.
+
 #endif // ifndef FILLTREE_H

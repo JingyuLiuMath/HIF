@@ -50,4 +50,5 @@ void HIFGraph<Scalar>::ApplyMerge(const vector<int> &xcol) {
   }
 }
 } // namespace HIF.
+
 #endif // ifndef APPLYMERGE_H

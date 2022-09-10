@@ -17,4 +17,5 @@ template <typename Scalar> void HIFGraph<Scalar>::RootApply() {
   Trmm(ELLR::LEFT, LOWER, TRANSPOSE, UNIT, Scalar(1), AIIinv_, xI_);
 }
 } // namespace HIF.
+
 #endif // ifndef ROOTAPPLY_H

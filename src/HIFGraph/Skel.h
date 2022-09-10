@@ -402,4 +402,5 @@ template <typename Scalar> void HIFGraph<Scalar>::NoSkel() {
   nbsk_.assign(nb_.begin(), nb_.end());
 }
 } // namespace HIF.
+
 #endif // ifndef SKEL_H

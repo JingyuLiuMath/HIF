@@ -75,4 +75,5 @@ void HIFGraph<Scalar>::ApplySkelDown(const vector<int> &xcol) {
   }
 }
 } // namespace HIF.
+
 #endif // ifndef APPLYSKELDOWN_H

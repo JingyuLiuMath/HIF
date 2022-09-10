@@ -34,4 +34,5 @@ template <typename Scalar> void HIFGraph<Scalar>::ApplySparseElimUp() {
   DiagonalScale(ELLR::LEFT, NORMAL, D, xI_);
 }
 } // namespace HIF.
+
 #endif // ifndef APPLYSPARSEELIMUP_H

@@ -4,7 +4,6 @@
 #include "HIF.h"
 
 namespace HIF {
-
 template <typename Scalar> class HIFGraph {
 public:
   using MatrixS = Matrix<Scalar>;
@@ -168,7 +167,6 @@ private:
   // Debug functions.
   void ShowPartition();
 };
-
 } // namespace HIF.
 
 #endif // ifndef HIFGRAPH_H

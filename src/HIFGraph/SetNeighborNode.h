@@ -55,4 +55,5 @@ template <typename Scalar> void HIFGraph<Scalar>::SetNeighborNode() {
   }
 }
 } // namespace HIF.
+
 #endif // ifndef SETNEIGHBORNODE_H
