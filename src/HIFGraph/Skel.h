@@ -50,7 +50,6 @@ template <typename Scalar> void HIFGraph<Scalar>::Skel() {
     // The following data are vertices.
     vector<int> sep1(singlesep_[k]);
     vector<int> mysep1C;
-    // Diff_Sort(sep_, sep1, mysep1C);
     for (int nok = 0; nok < nbnode_.size(); nok++) {
       if (nok == k) {
         continue;
@@ -81,7 +80,6 @@ template <typename Scalar> void HIFGraph<Scalar>::Skel() {
     }
     vector<int> sep2(nodek.singlesep_[korder]);
     vector<int> nodeksep2C;
-    // Diff_Sort(nodek.sep_, sep2, nodeksep2C);
     for (int nok = 0; nok < nodek.nbnode_.size(); nok++) {
       if (nok == korder) {
         continue;
@@ -142,21 +140,15 @@ template <typename Scalar> void HIFGraph<Scalar>::Skel() {
     MatrixS viewmtx;
     View(viewmtx, skelmtx1, 0, 0, myindex_mysep1C.size(), myindex_sep1.size());
     viewmtx = ASS_(myindex_mysep1C, myindex_sep1);
-    // SubMatrixEqual(viewmtx, ASS_, myindex_mysep1C, myindex_sep1);
     View(viewmtx, skelmtx1, myindex_mysep1C.size(), 0, myindex_mysep2C.size(),
          myindex_sep1.size());
     viewmtx = ANS_(myindex_mysep2C, myindex_sep1);
-    // SubMatrixEqual(viewmtx, ANS_, myindex_mysep2C, myindex_sep1);
     View(viewmtx, skelmtx2, 0, 0, nodekindex_nodeksep2C.size(),
          nodekindex_sep2.size());
     viewmtx = nodek.ASS_(nodekindex_nodeksep2C, nodekindex_sep2);
-    // SubMatrixEqual(viewmtx, nodek->ASS_, nodekindex_nodeksep2C,
-    // nodekindex_sep2);
     View(viewmtx, skelmtx2, nodekindex_nodeksep2C.size(), 0,
          nodekindex_nodeksep1C.size(), nodekindex_sep2.size());
     viewmtx = nodek.ANS_(nodekindex_nodeksep1C, nodekindex_sep2);
-    // SubMatrixEqual(viewmtx, nodek->ANS_, nodekindex_nodeksep1C,
-    // nodekindex_sep2);
 
     // In the following process, the first "1" or "2" denotes my or nodek,
     // the second "1" or "2" denotes sk or re.

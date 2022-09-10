@@ -1,5 +1,5 @@
 #include "HIF.h"
-#include "math.h"
+#include <cmath>
 #include <random>
 
 // input file of A
@@ -110,9 +110,9 @@ int main(int argc, char *argv[]) {
 
     double relnorm2 = 0.0;
     double xnorm2 = 0.0;
-    for (int k = 0; k < n; k++) {
-      relnorm2 += std::pow(b.Get(k, 0) - x.Get(k, 0), 2);
-      xnorm2 += std::pow(x.Get(k, 0), 2);
+    for (int t = 0; t < n; t++) {
+      relnorm2 += std::pow(b.Get(t, 0) - x.Get(t, 0), 2);
+      xnorm2 += std::pow(x.Get(t, 0), 2);
     }
     relnorm2 = relnorm2 / xnorm2;
     relnorm2 = std::sqrt(relnorm2);
