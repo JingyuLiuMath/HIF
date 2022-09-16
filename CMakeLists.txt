@@ -80,7 +80,7 @@ include_directories("${PROJECT_BINARY_DIR}/include")
 
 set(TEST_DIR ${PROJECT_SOURCE_DIR}/test)
 set(TEST_TYPES HIFSolve HIFGMRES)
-set(HIFSolve_TESTS HIFSolve testHIFSolve testHIFSolve2)
+set(HIFSolve_TESTS HIFSolve testHIFSolve testHIFSolve2 testHIFSolveworst_grid3d7)
 set(HIFGMRES_TESTS HIFGMRES testHIFGMRES testHIFGMRES2)
 foreach(TYPE ${TEST_TYPES})
   set(OUTPUT_DIR "${PROJECT_BINARY_DIR}/bin/${TYPE}")
