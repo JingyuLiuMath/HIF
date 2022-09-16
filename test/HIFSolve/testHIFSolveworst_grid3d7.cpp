@@ -70,8 +70,8 @@ int main(int argc, char* argv[])
 				for (int zit = 0; zit < dirSize; zit++)
 				{
 					x.Set(Idx1D(xit, yit, zit, dirSize, dirSize, dirSize), 0,
-						normalized_coeff * sin(xit*frac_npi_nplus1) * 
-						sin(yit * frac_npi_nplus1) * sin(zit * frac_npi_nplus1));
+						normalized_coeff * sin((xit + 1) * frac_npi_nplus1) * 
+						sin((yit + 1) * frac_npi_nplus1) * sin((zit + 1) * frac_npi_nplus1));
 				}
 			}
 		}
