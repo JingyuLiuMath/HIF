@@ -61,7 +61,8 @@ int main(int argc, char* argv[])
 		std::default_random_engine e(time(NULL));
 		for (int k = 0; k < n; k++)
 		{
-			x.Set(k, 0, u(e));
+			// x.Set(k, 0, u(e));
+			x.Set(k, 0, 1);
 		}
 
 		Matrix<double> b(n, 1);
