@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 		const double normalized_coeff = pow(sqrt(double(2 / n + 1)), 3);
 
 		Matrix<double> x(n, 1);
-		for (int xit = 0; xit < dirSize; xit++)
+		/*for (int xit = 0; xit < dirSize; xit++)
 		{
 			for (int yit = 0; yit < dirSize; yit++)
 			{
@@ -74,6 +74,10 @@ int main(int argc, char* argv[])
 						sin((yit + 1) * frac_npi_nplus1) * sin((zit + 1) * frac_npi_nplus1));
 				}
 			}
+		}*/
+		for (int k = 0; k < n; k++)
+		{
+			x.Set(k, 0, 1);
 		}
 
 		Matrix<double> b(n, 1);
